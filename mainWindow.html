@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>On Off Switch</title>
+</head>
+
+<body>
+    <input style="background-color: green" type="button" id="btnOn" value="Left" onclick="onSwitch()" />
+    <input style="background-color: red" type="button" id="btnOff" value="Right" onclick="offSwitch()" />
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+
+        const onSwitch = () => {
+            console.log('on');
+            ipcRenderer.send('button:on', 'on');
+        };
+
+        const offSwitch = () => {
+            console.log('off');
+            ipcRenderer.send('button:off', 'off');
+        };
+
+    </script>
+</body>
+
+</html>
