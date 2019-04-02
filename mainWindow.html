@@ -10,6 +10,8 @@
     <input style="background-color: green" type="button" id="btnOn" value="Left" onclick="onSwitch()" />
     <input style="background-color: red" type="button" id="btnOff" value="Right" onclick="offSwitch()" />
 
+    <video id="video" width="640" height="480" autoplay></video>
+
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
@@ -24,6 +26,35 @@
             ipcRenderer.send('button:off', 'off');
         };
 
+    </script>
+
+    <script>
+        // List cameras and microphones.
+
+        // navigator.mediaDevices.enumerateDevices()
+        //     .then(function (devices) {
+        //         devices.forEach(function (device) {
+        //             console.log(device.kind + ": " + device.label +
+        //                 " id = " + device.deviceId);
+        //         });
+        //     })
+        //     .catch(function (err) {
+        //         console.log(err.name + ": " + err.message);
+        //     });
+
+        // Grab elements, create settings, etc.
+        var video = document.getElementById('video');
+        const cameraId = '68afde853869aa2364faf5cae098fcfa9a73ab1dd4107d7e30b39b6fd4864dbb';
+
+        // Get access to the camera!
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            navigator.mediaDevices.getUserMedia({ video: { deviceId: cameraId } }).then(function (stream) {
+                //video.src = window.URL.createObjectURL(stream);
+                video.srcObject = stream;
+                video.play();
+            });
+        }
     </script>
 </body>
 
