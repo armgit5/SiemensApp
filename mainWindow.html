@@ -15,112 +15,132 @@
         <video id="video" width="640" height="480" autoplay></video>
         <div id="message"></div>
     </div>
-        <!-- Video -->
-        <script>
-            const electron = require('electron');
-            const { ipcRenderer } = electron;
+    <!-- Video -->
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
 
-            const onSwitch = () => {
-                console.log('on');
-                ipcRenderer.send('button:on', 'on');
-            };
+        const onSwitch = () => {
+            console.log('on');
+            ipcRenderer.send('button:on', 'on');
+        };
 
-            const offSwitch = () => {
-                console.log('off');
-                ipcRenderer.send('button:off', 'off');
-            };
+        const offSwitch = () => {
+            console.log('off');
+            ipcRenderer.send('button:off', 'off');
+        };
 
-        </script>
+    </script>
 
-        <script>
-            // List cameras and microphones.
+    <script>
+        // List cameras and microphones.
 
-            // navigator.mediaDevices.enumerateDevices()
-            //     .then(function (devices) {
-            //         devices.forEach(function (device) {
-            //             console.log(device.kind + ": " + device.label +
-            //                 " id = " + device.deviceId);
-            //         });
-            //     })
-            //     .catch(function (err) {
-            //         console.log(err.name + ": " + err.message);
-            //     });
+        // navigator.mediaDevices.enumerateDevices()
+        //     .then(function (devices) {
+        //         devices.forEach(function (device) {
+        //             console.log(device.kind + ": " + device.label +
+        //                 " id = " + device.deviceId);
+        //         });
+        //     })
+        //     .catch(function (err) {
+        //         console.log(err.name + ": " + err.message);
+        //     });
 
-            // Grab elements, create settings, etc.
-            var video = document.getElementById('video');
-            const cameraId = '68afde853869aa2364faf5cae098fcfa9a73ab1dd4107d7e30b39b6fd4864dbb';
+        // Grab elements, create settings, etc.
+        var video = document.getElementById('video');
+        const cameraId = '68afde853869aa2364faf5cae098fcfa9a73ab1dd4107d7e30b39b6fd4864dbb';
 
-            // Get access to the camera!
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                // Not adding `{ audio: true }` since we only want video now
-                navigator.mediaDevices.getUserMedia({ video: { deviceId: cameraId } }).then(function (stream) {
-                    //video.src = window.URL.createObjectURL(stream);
-                    video.srcObject = stream;
-                    video.play();
-                });
-            }
-        </script>
-
-
-        <!-- Swipe -->
-        <script src="dist/swipe-listener.min.js"></script>
-        <script>
-            let setMessage = function (msg) {
-                document.querySelector('#message').innerHTML = msg;
-            }
-
-            let container = document.querySelector('#container');
-            container.addEventListener('touchstart', function () {
-                setMessage('');
+        // Get access to the camera!
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            navigator.mediaDevices.getUserMedia({ video: { deviceId: cameraId } }).then(function (stream) {
+                //video.src = window.URL.createObjectURL(stream);
+                video.srcObject = stream;
+                video.play();
             });
-            container.addEventListener('mousedown', function () {
-                setMessage('');
-            });
+        }
+    </script>
 
-            var listener = SwipeListener(container);
 
-            container.addEventListener('swipe', function (e) {
-                console.log('swipe', e.detail);
-                var d = e.detail.directions;
+    <!-- Swipe -->
+    <script src="dist/swipe-listener.min.js"></script>
 
-                if (d.top) {
-                    if (d.right) {
-                        setMessage('Swiped top-right.');
-                    } else if (d.left) {
-                        setMessage('Swiped top-left.');
-                    } else {
-                        setMessage('Swiped top.');
-                    }
-                } else if (d.bottom) {
-                    if (d.right) {
-                        setMessage('Swiped bottom-right.');
-                    } else if (d.left) {
-                        setMessage('Swiped bottom-left.');
-                    } else {
-                        setMessage('Swiped bottom.');
-                    }
+    <!-- Send swipe left or right and pixel -->
+    <script>
+        const swipeLeftRight = (direction, pixel) => {
+
+            ipcRenderer.send('swipe:left-right', direction, pixel);
+        };
+    </script>
+
+    <script>
+        let setMessage = function (msg) {
+            document.querySelector('#message').innerHTML = msg;
+        }
+
+        let container = document.querySelector('#container');
+        container.addEventListener('touchstart', function () {
+            setMessage('');
+        });
+        container.addEventListener('mousedown', function () {
+            setMessage('');
+        });
+
+        var listener = SwipeListener(container);
+
+        container.addEventListener('swipe', function (e) {
+            console.log('swipe', e.detail);
+            var d = e.detail.directions;
+            let direction = '';
+
+            if (d.top) {
+                if (d.right) {
+                    setMessage('Swiped top-right.');
+                } else if (d.left) {
+                    setMessage('Swiped top-left.');
                 } else {
-                    if (d.right) {
-                        setMessage('Swiped right.');
-                    } else if (d.left) {
-                        setMessage('Swiped left.');
-                    }
+                    setMessage('Swiped top.');
                 }
-                document.querySelector('#message').innerHTML += ' Starting ' + e.detail.x[0] + ' Stopping ' + e.detail.x[1] + ' Diff ' + Math.abs(e.detail.x[0] - e.detail.x[1]);
-            });
+            } else if (d.bottom) {
+                if (d.right) {
+                    setMessage('Swiped bottom-right.');
+                } else if (d.left) {
+                    setMessage('Swiped bottom-left.');
+                } else {
+                    setMessage('Swiped bottom.');
+                }
+            } else {
+                if (d.right) {
+                    setMessage('Swiped right.');
+                    direction = 'right';
+                } else if (d.left) {
+                    setMessage('Swiped left.');
+                    direction = 'left';
+                }
+            }
+            let distance = Math.abs(e.detail.x[0] - e.detail.x[1]);
+            document.querySelector('#message').innerHTML += ' Starting ' + e.detail.x[0] + ' Stopping ' + e.detail.x[1] + ' Diff ' + distance;
 
-            container.addEventListener('swiping', function (e) {
-                console.log('swiping', e.detail);
-            });
+            // Send to swipe movement to backend.
+            if (direction !== '') {
+                swipeLeftRight(direction, distance);
+            }
+        });
 
-            container.addEventListener('swiperelease', function (e) {
-                console.log('swiperelease', e.detail);
-            });
+        container.addEventListener('swiping', function (e) {
+            console.log('swiping', e.detail);
+        });
 
-            container.addEventListener('swipecancel', function (e) {
-                console.log('swipecancel', e.detail);
-            });
-        </script>
+        container.addEventListener('swiperelease', function (e) {
+            console.log('swiperelease', e.detail);
+        });
+
+        container.addEventListener('swipecancel', function (e) {
+            console.log('swipecancel', e.detail);
+        });
+    </script>
+
+
 </body>
 
 </html>

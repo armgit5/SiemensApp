@@ -51,6 +51,11 @@ ipcMain.on('button:off', (e, item) => {
     console.log(item);
 });
 
+// Catch swipe left or right
+ipcMain.on('swipe:left-right', (e, direction, pixel) => {
+    console.log(direction, pixel);
+});
+
 // Create menu template
 const mainMenuTemplate = [
     {
