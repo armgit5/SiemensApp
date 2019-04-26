@@ -5,7 +5,11 @@ const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 const SerialPort = require('serialport');
 const Readline = require('@serialport/parser-readline');
-const port = new SerialPort('/dev/cu.usbmodem1421', { baudRate: 9600 });
+const port = new SerialPort('/dev/cu.usbmodem1411', { baudRate: 9600, 
+    dataBits: 8, 
+    parity: 'none', 
+    stopBits: 1, 
+    flowControl: false  });
 const parser = port.pipe(new Readline({ delimiter: '\n' }));
 
 let mainWindow;
@@ -53,7 +57,9 @@ ipcMain.on('button:off', (e, item) => {
 
 // Catch swipe left or right
 ipcMain.on('swipe:left-right', (e, direction, pixel) => {
-    console.log(direction, pixel);
+    const message = direction + ',' + pixel + '\n';
+    _writeMessage(message);
+    console.log(message);
 });
 
 // Create menu template

@@ -9,8 +9,8 @@
 <body>
 
     <div id="container">
-        <input style="background-color: green" type="button" id="btnOn" value="Left" onclick="onSwitch()" />
-        <input style="background-color: red" type="button" id="btnOff" value="Right" onclick="offSwitch()" />
+        <!-- <input style="background-color: green" type="button" id="btnOn" value="Left" onclick="onSwitch()" />
+        <input style="background-color: red" type="button" id="btnOff" value="Right" onclick="offSwitch()" /> -->
 
         <video id="video" width="640" height="480" autoplay></video>
         <div id="message"></div>
@@ -89,7 +89,6 @@
         var listener = SwipeListener(container);
 
         container.addEventListener('swipe', function (e) {
-            console.log('swipe', e.detail);
             var d = e.detail.directions;
             let direction = '';
 
@@ -112,10 +111,10 @@
             } else {
                 if (d.right) {
                     setMessage('Swiped right.');
-                    direction = 'right';
+                    direction = 'r';
                 } else if (d.left) {
                     setMessage('Swiped left.');
-                    direction = 'left';
+                    direction = 'l';
                 }
             }
             let distance = Math.abs(e.detail.x[0] - e.detail.x[1]);
