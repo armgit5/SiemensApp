@@ -3,15 +3,6 @@ const url = require('url');
 const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
 
-// const SerialPort = require('serialport');
-// const Readline = require('@serialport/parser-readline');
-// const port = new SerialPort('/dev/cu.usbmodem1411', { baudRate: 9600, 
-//     dataBits: 8, 
-//     parity: 'none', 
-//     stopBits: 1, 
-//     flowControl: false  });
-// const parser = port.pipe(new Readline({ delimiter: '\n' }));
-
 // ----------   Node 7  -------------
 const nodes7 = require('nodes7');  // This is the package name, if the repository is cloned you may need to require 'nodeS7' with uppercase S
 const conn = new nodes7;
@@ -65,15 +56,14 @@ ipcMain.on('m4:click', (e, status) => {
     conn.writeItems('TEST3', true, valuesWritten);
 });
 
+ipcMain.on('m4:clickoff', (e, status) => {
+    console.log(status);
+    conn.writeItems('TEST3', false, valuesWritten);
+});
+
 // ----------   Node 7  -------------
 
-
 let mainWindow;
-
-// Read the port data
-// port.on("open", () => {
-//     console.log('serial port open');
-// });
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow();
@@ -89,15 +79,6 @@ app.on('ready', () => {
     // Insert menu
     Menu.setApplicationMenu(mainMenu);
 });
-
-const _writeMessage = (message) => {
-    // port.write(message, (err) => {
-    //     if (err) {
-    //         return console.log('Error on write: ', err.message);
-    //     }
-    //     console.log('message written');
-    // });
-}
 
 // Catch button:on
 ipcMain.on('button:on', (e, item) => {
