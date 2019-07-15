@@ -18,7 +18,7 @@ var variables = { TEST1: 'MR4', 		// Memory real at MD4
 		  TEST7: 'DB1,INT12.2'		// Two integer value array
 };
 
-conn.initiateConnection({port: 102, host: '192.168.0.11', rack: 0, slot: 1}, connected); // slot 2 for 300/400, slot 1 for 1200/1500
+conn.initiateConnection({port: 102, host: '10.211.55.7', rack: 0, slot: 1}, connected); // slot 2 for 300/400, slot 1 for 1200/1500
 //conn.initiateConnection({port: 102, host: '192.168.0.2', localTSAP: 0x0100, remoteTSAP: 0x0200, timeout: 8000}, connected); // local and remote TSAP can also be directly specified instead.  The timeout option specifies the TCP timeout.
 
 function connected(err) {
@@ -29,10 +29,6 @@ function connected(err) {
 	}
 
 	conn.setTranslationCB(function(tag) {return variables[tag];}); 	// This sets the "translation" to allow us to work with object names
-	
-	// conn.writeItems('M4.0', true, valuesWritten);
-	// conn.addItems('M4.0');
-	// conn.readAllItems(valuesReady);
 }
 
 function valuesReady(anythingBad, values) {
@@ -61,7 +57,7 @@ ipcMain.on('m4:clickoff', (e, status) => {
     conn.writeItems('TEST3', false, valuesWritten);
 });
 
-// ----------   Node 7  -------------
+// ----------  End Node 7  -------------
 
 let mainWindow;
 
@@ -78,25 +74,16 @@ app.on('ready', () => {
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     // Insert menu
     Menu.setApplicationMenu(mainMenu);
+    
+    // Prevent memory leak when windows is closed
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
 });
 
-// Catch button:on
-ipcMain.on('button:on', (e, item) => {
-    _writeMessage(item);
-    console.log(item);
-});
-
-// Catch button:off
-ipcMain.on('button:off', (e, item) => {
-    _writeMessage(item);
-    console.log(item);
-});
-
-// Catch swipe left or right
-ipcMain.on('swipe:left-right', (e, direction, pixel) => {
-    const message = direction + ',' + pixel + '\n';
-    _writeMessage(message);
-    console.log(message);
+// Quit when all windows are closed.
+app.on('window-all-closed', function () {
+    app.quit();
 });
 
 // Create menu template
