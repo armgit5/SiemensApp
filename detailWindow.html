@@ -1,16 +1,69 @@
-<h1>Detail Window</h1>
+<!DOCTYPE html>
+<html>
 
-<div class="col-sm">
-    <button type="button" class="btn btn-light" id="test">test</button>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <title>BTS APP</title>
 
-<!-- IPC script -->
-<script>
-    const electron = require('electron');
-    const { ipcRenderer } = electron;
+    <link rel="stylesheet" href="mainWindow.css">
+</head>
 
-    document.getElementById('test').onclick = () => {
-        console.log('test clicked');
-        ipcRenderer.send('page2', 'on');
-    };
-</script>
+<body style="background-color: #4E81C3">
+
+    <div class="container">
+        <h1 class="header" style="border: solid 1px;">MONITOR STATUS</h1>
+
+        <div style="background-color: black; border-radius: 5px">
+
+            <!-- Row 1 -->
+            <div class="row">
+                <div class="col-sm" style="text-align: center;">
+                    <button type="button" class="btn btn-success" id="M4">AUTO N8_SCR</button>
+                </div>
+                <div class="col-sm" style="color: white; text-align: center;">06/07/19 10:18</div>
+                <div class="col-sm" style="text-align: center;">
+                    <button type="button" class="btn btn-success" id="M4">AUTO N8_TO</button>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="row">
+                <div class="col-sm align-self-start" style="text-align: center;">
+                    <button type="button" class="btn btn-success" id="M4">UP (ON) Setting</button>
+                </div>
+                <div class="col-sm align-self-start" style="text-align: center;">
+                    <span>
+                        <button type="button" class="btn btn-success" id="M4">UP (ON) Setting</button>
+                        <button type="button" class="btn btn-success" id="M4">UP (ON) Setting</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+
+        <!-- IPC script -->
+        <script>
+            const electron = require('electron');
+            const { ipcRenderer } = electron;
+
+            document.getElementById('M4').onclick = () => {
+                console.log('M4 on clicked');
+                ipcRenderer.send('m4:click', 'on');
+            };
+
+            document.getElementById('M4Off').onclick = () => {
+                console.log('M4 off clicked');
+                ipcRenderer.send('m4:clickoff', 'off');
+            };
+        </script>
+
+
+</body>
+
+</html>
