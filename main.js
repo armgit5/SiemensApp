@@ -3,8 +3,10 @@ const url = require('url');
 const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
 
+// For Nodes7 functions
 require('./helpers/nodes7')();
 
+// Starting main window
 let mainWindow;
 
 app.on('ready', () => {
@@ -46,12 +48,6 @@ const mainMenuTemplate = [
     {
         label: "File",
         submenu: [
-            {
-                label: 'Add Item'
-            },
-            {
-                label: 'Clear Items'
-            },
             {
                 label: 'Quit'
             }
