@@ -18,7 +18,7 @@ var variables = { TEST1: 'MR4', 		// Memory real at MD4
 		  TEST7: 'DB1,INT12.2'		// Two integer value array
 };
 
-conn.initiateConnection({port: 102, host: '10.211.55.7', rack: 0, slot: 1}, connected); // slot 2 for 300/400, slot 1 for 1200/1500
+conn.initiateConnection({port: 102, host: '192.168.0.11', rack: 0, slot: 1}, connected); // slot 2 for 300/400, slot 1 for 1200/1500
 //conn.initiateConnection({port: 102, host: '192.168.0.2', localTSAP: 0x0100, remoteTSAP: 0x0200, timeout: 8000}, connected); // local and remote TSAP can also be directly specified instead.  The timeout option specifies the TCP timeout.
 
 function connected(err) {
@@ -56,6 +56,11 @@ ipcMain.on('m4:clickoff', (e, status) => {
     console.log(status);
     conn.writeItems('TEST3', false, valuesWritten);
 });
+
+ipcMain.on('page2', (e, status) => {
+    console.log(status);
+});
+
 
 // ----------  End Node 7  -------------
 
