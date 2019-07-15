@@ -3,8 +3,6 @@ const url = require('url');
 const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
 
-// For Nodes7 functions
-require('./helpers/nodes7')();
 
 // Starting main window
 let mainWindow;
@@ -27,7 +25,11 @@ app.on('ready', () => {
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+    // For Nodes7 functions
+    require('./helpers/nodes7')(mainWindow);
 });
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

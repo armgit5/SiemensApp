@@ -54,11 +54,16 @@
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 
+    <script src="./node_modules/ejs/ejs.min.js"></script>
 
     <!-- IPC script -->
     <script>
       const electron = require('electron');
       const { ipcRenderer } = electron;
+
+      ipcRenderer.on('get:stations', (e, connections) => {
+        console.log('connections', connections);
+      });
 
       document.getElementById('M4').onclick = () => {
         console.log('M4 on clicked');
