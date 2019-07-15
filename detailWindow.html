@@ -1,0 +1,16 @@
+<h1>Detail Window</h1>
+
+<div class="col-sm">
+    <button type="button" class="btn btn-light" id="test">test</button>
+</div>
+
+<!-- IPC script -->
+<script>
+    const electron = require('electron');
+    const { ipcRenderer } = electron;
+
+    document.getElementById('test').onclick = () => {
+        console.log('test clicked');
+        ipcRenderer.send('page2', 'on');
+    };
+</script>

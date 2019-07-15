@@ -22,25 +22,16 @@ app.on('ready', () => {
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     // Insert menu
     Menu.setApplicationMenu(mainMenu);
+    
+    // Prevent memory leak when windows is closed
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
 });
 
-// Catch button:on
-ipcMain.on('button:on', (e, item) => {
-    _writeMessage(item);
-    console.log(item);
-});
-
-// Catch button:off
-ipcMain.on('button:off', (e, item) => {
-    _writeMessage(item);
-    console.log(item);
-});
-
-// Catch swipe left or right
-ipcMain.on('swipe:left-right', (e, direction, pixel) => {
-    const message = direction + ',' + pixel + '\n';
-    _writeMessage(message);
-    console.log(message);
+// Quit when all windows are closed.
+app.on('window-all-closed', function () {
+    app.quit();
 });
 
 // Create menu template
