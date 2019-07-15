@@ -62,12 +62,12 @@
 
       document.getElementById('M4').onclick = () => {
         console.log('M4 on clicked');
-        ipcRenderer.send('m4:click', 'on');
+        ipcRenderer.send('m4:click', 'N1', 'on');
       };
 
       document.getElementById('M4Off').onclick = () => {
         console.log('M4 off clicked');
-        ipcRenderer.send('m4:clickoff', 'off');
+        ipcRenderer.send('m4:clickoff', 'N1', 'off');
       };
     </script>
 
