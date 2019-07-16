@@ -29,13 +29,21 @@ module.exports = (mainWindow) => {
     ipcMain.on('m4:click', (e, id, status) => {
         console.log(id, status);
         const node = connections[id];
+        node.conn.addItems('M4.0');
+        node.conn.readAllItems(node.valuesReady);
         node.conn.writeItems('M4.0', true, node.valuesWritten);
+        node.conn.addItems('M4.0');
+        node.conn.readAllItems(node.valuesReady);
         mainWindow.webContents.send('get:connections', connections);
     });
 
     ipcMain.on('m4:clickoff', (e, id, status) => {
         console.log(status);
         const node = connections[id];
+        node.conn.addItems('M4.0');
+        node.conn.readAllItems(node.valuesReady);
         node.conn.writeItems('M4.0', false, node.valuesWritten);
+        node.conn.addItems('M4.0');
+        node.conn.readAllItems(node.valuesReady);
     });
 }

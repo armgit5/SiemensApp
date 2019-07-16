@@ -8,6 +8,9 @@ module.exports = class Node {
         this.doneReading = false;
         this.doneWriting = false;
         this.conn = new nodes7;
+        this.variables = {
+            TEST1: 'M4.0'
+        };
         this.initConnection();
     }
 
@@ -19,9 +22,10 @@ module.exports = class Node {
         if (typeof (err) !== "undefined") {
             // We have an error.  Maybe the PLC is not reachable.
             console.log(err);
-            console.log('variables ', variables['m4']);
         } else {
-            this.conn.setTranslationCB((tag) => { return variables[tag]; }); 	// This sets the "translation" to allow us to work with object names
+            if (this.conn) {
+                this.conn.setTranslationCB((tag) => { return this.variables[tag]; }); 	// This sets the "translation" to allow us to work with object names
+            }
         }
     }
 
@@ -29,14 +33,14 @@ module.exports = class Node {
         if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
         console.log(values);
         this.doneReading = true;
-        if (this.doneWriting) { process.exit(); }
+        // if (this.doneWriting) { process.exit(); }
     }
 
     valuesWritten(anythingBad) {
         if (anythingBad) { console.log("SOMETHING WENT WRONG WRITING VALUES!!!!"); }
         console.log("Done writing.");
         this.doneWriting = true;
-        if (this.doneReading) { process.exit(); }
+        // if (this.doneReading) { process.exit(); }
     }
 
 };
