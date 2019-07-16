@@ -1,4 +1,5 @@
 const nodes7 = require('nodes7');  // This is the package name, if the repository is cloned you may need to require 'nodeS7' with uppercase S
+const variables = require('./variables');
 
 module.exports = class Node {
     constructor(id, ip) {
@@ -8,9 +9,6 @@ module.exports = class Node {
         this.doneWriting = false;
         this.conn = new nodes7;
         this.initConnection();
-        this.variables = {
-           TEST1: 'M4.0'
-        };
     }
 
     initConnection() {
@@ -21,8 +19,9 @@ module.exports = class Node {
         if (typeof (err) !== "undefined") {
             // We have an error.  Maybe the PLC is not reachable.
             console.log(err);
+            console.log('variables ', variables['m4']);
         } else {
-            this.conn.setTranslationCB((tag) => { return this.variables[tag]; }); 	// This sets the "translation" to allow us to work with object names
+            this.conn.setTranslationCB((tag) => { return variables[tag]; }); 	// This sets the "translation" to allow us to work with object names
         }
     }
 
