@@ -2,7 +2,6 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
-const ejs = require('ejs');
 
 // Starting main window
 let mainWindow;
