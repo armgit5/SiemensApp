@@ -2,7 +2,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
-
+const ejs = require('ejs');
 
 // Starting main window
 let mainWindow;
@@ -20,14 +20,16 @@ app.on('ready', () => {
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     // Insert menu
     Menu.setApplicationMenu(mainMenu);
-    
+
     // Prevent memory leak when windows is closed
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
 
-    // For Nodes7 functions
-    require('./helpers/nodes7')(mainWindow);
+    mainWindow.webContents.on('did-finish-load', () => {
+        // Starting Siemens Nodes7
+        require('./helpers/nodes7')(mainWindow);
+    });    
 });
 
 

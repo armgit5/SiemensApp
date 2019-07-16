@@ -21,7 +21,7 @@ module.exports = (mainWindow) => {
         const node = new Node(data[0].id, data[0].ip);
         connections[data[0].id] = node;
 
-        mainWindow.webContents.send('get:connections', connections);
+        mainWindow.webContents.send('get:data', data); // Send data to front end
     });
    
     // IPC calls
@@ -30,6 +30,7 @@ module.exports = (mainWindow) => {
         console.log(id, status);
         const node = connections[id];
         node.conn.writeItems('M4.0', true, node.valuesWritten);
+        mainWindow.webContents.send('get:connections', connections);
     });
 
     ipcMain.on('m4:clickoff', (e, id, status) => {
