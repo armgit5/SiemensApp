@@ -9,7 +9,7 @@
 
 </head>
 
-<body style="background-color: #4E81C3; display: none;" >
+<body style="background-color: #4E81C3; display: none;">
 
     <div class="container">
         <h1 class="header" style="border: solid 1px;">MONITOR STATUS <a href="mainWindow.html">&#127968;</a></h1>
@@ -34,12 +34,12 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-5" style="margin: 0px; width: 500px; height: 500p; margin-left: 10%;">
-                                <button type="button" class="btn btn-success" id="M4"
+                                <button type="button" class="btn btn-success"
                                     style="height: 100px; width: 120px; border: 2px solid;">UP (ON) Setting</button>
                             </div>
                             <div class="col-sm-3">
                                 <div class="row" style="padding-left: 5px; width: 100px; padding-bottom: 10px;">
-                                    <button type="button" class="btn btn-success" id="M4"
+                                    <button type="button" class="btn btn-success" id="P1"
                                         style="width: 60px; height: 45px; border: 2px solid;">ON</button>
                                 </div>
                                 <div class="row" style="padding-left: 5px;">
@@ -128,11 +128,9 @@
         <!-- IPC script -->
         <script>
             const electron = require('electron');
+            const $ = require('jquery');
             const { ipcRenderer } = electron;
-
-            document.getElementById('M4').onclick = () => {
-                console.log('test click');
-            };
+            const { PRESSTIME } = require('./helpers/environments');
 
             // Show when ready
             $(document).ready(() => {
@@ -161,6 +159,18 @@
             setInterval(() => {
                 vm.time(getHrMin());
             }, 1000);
+
+
+            // Press timer
+            var timeoutId = 0;
+
+            $('#P1').on('mousedown', function () {
+                timeoutId = setTimeout(() => {
+                    console.log('2 secs');
+                }, PRESSTIME);
+            }).on('mouseup mouseleave', function () {
+                clearTimeout(timeoutId);
+            });
         </script>
 
     </div>
