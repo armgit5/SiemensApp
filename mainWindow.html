@@ -20,14 +20,16 @@
           <a href="detailWindow.html">
             <div class="col-sm-1">
               <div class="row">
-                <a href="detailWindow.html"><span class="dot" style="background-color: green;"></span></a>
+                <a href="detailWindow.html"><span class="dot" data-bind="style: S1_1Style"></span></a>
               </div>
               <div class="row">
                 <a href="detailWindow.html"><span class="dot" style="background-color: green;"></span></a>
               </div>
             </div>
             <div class="col-sm-1" style="left: -26px; bottom: -7px; z-index: 1;">
-              <button type="button" onclick="window.location.href='detailWindow.html'" style="background-color: red;"
+              <button type="button" 
+                onclick="window.location.href='detailWindow.html'" 
+                data-bind="style: S1Style"
                 class="btn btn-light" id="M4_ON">M4</button>
             </div>
             <div class="col-sm-4">
@@ -171,6 +173,14 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable(getHrMin());
+
+        this.S1Style = ko.observable({
+          'background-color': 'green'
+        });
+
+        this.S1_1Style = ko.observable({
+          'background-color': 'red'
+        });
       }
 
       function getHrMin() {
@@ -189,7 +199,6 @@
       // Run program
       setInterval(() => {
         vm.time(getHrMin());
-        count++;
       }, 1000);
     </script>
 

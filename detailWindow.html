@@ -130,10 +130,9 @@
             const electron = require('electron');
             const { ipcRenderer } = electron;
 
-            // document.getElementById('M4').onclick = () => {
-            //     console.log('M4 on clicked');
-            //     ipcRenderer.send('m4:click', 'N1', 'on');
-            // };
+            document.getElementById('M4').onclick = () => {
+                console.log('test click');
+            };
 
             // document.getElementById('M4Off').onclick = () => {
             //     console.log('M4 off clicked');
@@ -162,7 +161,6 @@
             // Run program
             setInterval(() => {
                 vm.time(getHrMin());
-                count++;
             }, 1000);
         </script>
 
