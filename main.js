@@ -7,7 +7,12 @@ const { app, BrowserWindow, Menu, ipcMain } = electron;
 let mainWindow;
 
 app.on('ready', () => {
-    mainWindow = new BrowserWindow();
+    mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        resizable: false,
+        show: false
+    });
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'mainWindow.html'),
@@ -28,7 +33,11 @@ app.on('ready', () => {
     mainWindow.webContents.on('did-finish-load', () => {
         // Starting Siemens Nodes7
         require('./helpers/nodes7')(mainWindow);
-    });    
+    });
+
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show();
+    })
 });
 
 
