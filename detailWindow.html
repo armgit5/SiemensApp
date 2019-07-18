@@ -9,7 +9,7 @@
 
 </head>
 
-<body style="background-color: #4E81C3">
+<body style="background-color: #4E81C3; display: none;" >
 
     <div class="container">
         <h1 class="header" style="border: solid 1px;">MONITOR STATUS <a href="mainWindow.html">&#127968;</a></h1>
@@ -134,11 +134,10 @@
                 console.log('test click');
             };
 
-            // document.getElementById('M4Off').onclick = () => {
-            //     console.log('M4 off clicked');
-            //     ipcRenderer.send('m4:clickoff', 'N1', 'off');
-            // };
-
+            // Show when ready
+            $(document).ready(() => {
+                $('body').show();
+            });
 
             // Knockout functions
             function AppViewModel() {
