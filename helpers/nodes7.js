@@ -2,6 +2,7 @@ const { ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const Node = require('./node');
+const { CHANNELS } = require('./environments');
 
 module.exports = (mainWindow) => {
     const connections = {}; // Hold nodes connection
@@ -22,8 +23,26 @@ module.exports = (mainWindow) => {
         connections[data[0].id] = node;
 
         mainWindow.webContents.send('get:data', data); // Send data to front end
+
+        sendDateTime();
     });
-   
+
+    function getHrMin() {
+        const date = new Date;
+        const hour = date.getHours();
+        const min = date.getMinutes();
+        const sec = date.getSeconds()
+
+        return time = hour + ":" + min + ":" + sec;
+    }
+
+    function sendDateTime() {
+        // Run program
+        setInterval(() => {
+            mainWindow.webContents.send(CHANNELS.datetime, getHrMin());
+        }, 1000);
+    }
+
     // IPC calls
     // Catch item:add
     ipcMain.on('m4:click', (e, id, status) => {

@@ -161,7 +161,12 @@
 
     <!-- IPC script -->
     <script>
-      const { ipcRenderer } = require('electron');
+      const electron = require('electron');
+      const { ipcRenderer } = electron;
+      // let path = require('path');
+      // let appPath = electron.app.getAppPath();
+      // const { CHANNELS } = require(path.resolve(appPath, './helpers/environments'));
+      const { CHANNELS } = require('./helpers/environments');
 
       // Show when ready
       $(document).ready(() => {
@@ -199,10 +204,14 @@
       const vm = new AppViewModel();
       ko.applyBindings(vm);
 
-      // Run program
-      setInterval(() => {
-        vm.time(getHrMin());
-      }, 1000);
+      ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+        vm.time(datetime);
+      });
+
+      // // Run program
+      // setInterval(() => {
+      //   vm.time(getHrMin());
+      // }, 1000);
     </script>
 
 
