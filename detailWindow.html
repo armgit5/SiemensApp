@@ -12,7 +12,7 @@
 <body style="background-color: #4E81C3">
 
     <div class="container">
-        <h1 class="header" style="border: solid 1px;">MONITOR STATUS  <a href="mainWindow.html">&#127968;</a></h1>
+        <h1 class="header" style="border: solid 1px;">MONITOR STATUS <a href="mainWindow.html">&#127968;</a></h1>
         <div style="background-color: black; border-radius: 5px; padding: 15px;">
 
             <!-- Row 1 -->
@@ -20,7 +20,7 @@
                 <div class="col-sm" style="text-align: center;">
                     <button type="button" class="btn btn-success" id="M4">AUTO N8_SCR</button>
                 </div>
-                <div class="col-sm" style="color: white; text-align: center;">06/07/19 10:18</div>
+                <div class="col-sm" style="color: white; text-align: center;" data-bind="text: time"></div>
                 <div class="col-sm" style="text-align: center;">
                     <button type="button" class="btn btn-success" id="M4">AUTO N8_TO</button>
                 </div>
@@ -122,20 +122,48 @@
         <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 
+        <!-- Knockout -->
+        <script src="./helpers/knockout.js"></script>
+
         <!-- IPC script -->
         <script>
             const electron = require('electron');
             const { ipcRenderer } = electron;
 
-            document.getElementById('M4').onclick = () => {
-                console.log('M4 on clicked');
-                ipcRenderer.send('m4:click', 'N1', 'on');
-            };
+            // document.getElementById('M4').onclick = () => {
+            //     console.log('M4 on clicked');
+            //     ipcRenderer.send('m4:click', 'N1', 'on');
+            // };
 
-            document.getElementById('M4Off').onclick = () => {
-                console.log('M4 off clicked');
-                ipcRenderer.send('m4:clickoff', 'N1', 'off');
-            };
+            // document.getElementById('M4Off').onclick = () => {
+            //     console.log('M4 off clicked');
+            //     ipcRenderer.send('m4:clickoff', 'N1', 'off');
+            // };
+
+
+            // Knockout functions
+            function AppViewModel() {
+                this.time = ko.observable(getHrMin());
+            }
+
+            function getHrMin() {
+                const date = new Date;
+                const hour = date.getHours();
+                const min = date.getMinutes();
+                const sec = date.getSeconds()
+
+                return time = hour + ":" + min + ":" + sec;
+            }
+
+            // Activates knockout.js
+            const vm = new AppViewModel();
+            ko.applyBindings(vm);
+
+            // Run program
+            setInterval(() => {
+                vm.time(getHrMin());
+                count++;
+            }, 1000);
         </script>
 
     </div>
