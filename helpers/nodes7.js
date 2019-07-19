@@ -19,7 +19,7 @@ module.exports = (mainWindow) => {
         node.conn.addItems(dateTimeHeader.year);
         node.conn.addItems(dateTimeHeader.minute);
         node.conn.addItems(dateTimeHeader.hour);
-        node.conn.addItems(dateTimeHeader.second);
+        // node.conn.addItems(dateTimeHeader.second);
     };
 
     const _getHrMin = () => {
@@ -31,18 +31,31 @@ module.exports = (mainWindow) => {
         return time = hour + ":" + min + ":" + sec;
     };
 
-    const _getDateTime = () => {
-        const node = connections[STATIONS[0].id];
-
+    const _getSteamDateTime = () => {
+        const station = STATIONS[0];
+        const node = connections[station.id];
+        const cacheData = null;
         // Run Loop
         setInterval(() => {
             node.conn.readAllItems((err, data) => {
-                console.log(data);
+                // Check for data change
+                if (JSON.stringify(cacheData) !== JSON.stringify(data)) {
+                    cacheData = data;
+                    const header = station.dateTime.header;
+                    const date = data[header.date];
+                    const month = data[header.month];
+                    const year = data[header.year];
+                    const hour = data[header.hour];
+                    const minute = data[header.minute];
+
+                    const outputDatetime = `${date}/${month}/${year} ${hour}:${minute}`;
+                    mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
+                }
             });
         }, SCANTIME);
     };
 
-    const _sendDateTime = () => {
+    const _streamDateTime = () => {
         // Run program
         setInterval(() => {
             mainWindow.webContents.send(CHANNELS.datetime, _getHrMin());
@@ -54,8 +67,8 @@ module.exports = (mainWindow) => {
         const node = new Node(STATIONS[0].id, STATIONS[0].ip);
         connections[STATIONS[0].id] = node;
         _addToReadList();
-        // _getDateTime();
-        _sendDateTime();
+        // _getSteamDateTime();
+        _streamDateTime();
     };
     _initNodes();
 };
