@@ -6,7 +6,7 @@ const { CHANNELS, SCANTIME } = require('./environments');
 const STATIONS = require('../data/stations');
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+    "July", "August", "September", "October", "November", "December"
 ];
 
 const intervals = [];
@@ -25,6 +25,8 @@ module.exports = (mainWindow) => {
         node.conn.addItems(dateTimeHeader.year);
         node.conn.addItems(dateTimeHeader.minute);
         node.conn.addItems(dateTimeHeader.hour);
+
+        node.conn.addItems( STATIONS[0].bits.ll1On)
         // node.conn.addItems(dateTimeHeader.second);
     };
 
@@ -93,4 +95,21 @@ module.exports = (mainWindow) => {
         // _streamDateTime();
     };
     _initNodes();
+
+
+
+    // Button Click
+    const buttonIntervals = [];
+    ipcMain.on(CHANNELS.ll1On, (e, ll1On) => {
+
+        buttonIntervals.forEach(clearInterval);
+
+        const node = connections[STATIONS[0].id];
+        node.conn.writeItems(STATIONS[0].bits.ll1On, true, node.valuesWritten);
+        const ll1Interval = setInterval(() => {
+            node.conn.writeItems(STATIONS[0].bits.ll1On, false, node.valuesWritten);
+        }, 1000);
+
+        buttonIntervals.push(ll1Interval);
+    });
 };

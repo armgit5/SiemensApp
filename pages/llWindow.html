@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>BTS APP</title>
+
+    <link rel="stylesheet" href="../assets/styles/mainWindow.css">
+
+    <style>
+        .header-row {
+            margin-top: 45px;
+            margin-bottom: 35px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #6095C9; text-align: center; margin: 10px">
+
+    <div class="container">
+        <div class="row header-row">
+            <div class="col-6">
+                <button type="button" class="btn station" style="background-color: lightgreen;">
+                    AUTO
+                </button>
+                <a href="mainWindow-v2.html">
+                    <img src="../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" /> 
+                </a>
+            </div>
+
+            <div class="col-6">
+                <div class="footer" style="margin-top: 0px">
+                    HH:MM</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Station 1 -->
+
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: #31BA63;"
+                    onclick="window.location.href='../timeWindow.html'">
+                    LL1
+                </button>
+            </div>
+
+            <!-- Station 2 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: #31BA63;">
+                    LL2
+                </button>
+            </div>
+
+            <!-- Station 3 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: #31BA63;">
+                    LL3
+                </button>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="row" style="margin-top: 15px;">
+            <!-- On 1 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: white;" id="ll1On">
+                    On
+                </button>
+            </div>
+
+            <!-- On 2 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: white;">
+                    On
+                </button>
+            </div>
+
+            <!-- On 3 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: white;">
+                    On
+                </button>
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="row" style="margin-top: 15px;">
+            <!-- On 1 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: white;" id="ll1Off">
+                    Off
+                </button>
+            </div>
+
+            <!-- On 2 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: white;">
+                    Off
+                </button>
+            </div>
+
+            <!-- On 3 -->
+            <div class="col-sm-4">
+                <button type="button" class="btn station" style="background-color: white;">
+                    Off
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+        <!-- Knockout -->
+        <script src="../helpers/knockout.js"></script>
+
+        <!-- IPC script -->
+        <script>
+            const electron = require('electron');
+            const { ipcRenderer } = electron;
+            const { CHANNELS } = require('../helpers/environments');
+            const greenColor = {
+                'background-color': 'green'
+            };
+
+            const redColor = {
+                'background-color': 'red'
+            };
+
+            // Show when ready
+            $(document).ready(() => {
+                $('body').show();
+            });
+
+
+            // Knockout functions
+            function AppViewModel() {
+                this.time = ko.observable('19 August 2019 16:19');
+
+                this.S1Style = ko.observable(redColor);
+
+                this.S1_1Style = ko.observable(redColor);
+            }
+
+            // Activates knockout.js
+            const vm = new AppViewModel();
+            ko.applyBindings(vm);
+
+            ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+                vm.time(datetime);
+            });
+
+            ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
+                console.log(id, status);
+                if (id === 'N1') {
+                    if (status === true) {
+                        vm.S1Style(greenColor);
+                    } else {
+                        vm.S1Style(redColor);
+                    }
+                }
+            });
+
+
+            // Detect button click
+            document.getElementById('ll1On').onclick = () => {
+                ipcRenderer.send(CHANNELS.ll1On, true);
+                console.log('on');
+            };
+
+
+        </script>
+
+</body>
+
+</html>

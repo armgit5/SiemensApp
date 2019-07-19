@@ -5,6 +5,7 @@ const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 // Starting main window
 let mainWindow;
+let alreadyLoaded = false;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
@@ -32,7 +33,10 @@ app.on('ready', () => {
 
     mainWindow.webContents.on('did-finish-load', () => {
         // Starting Siemens Nodes7
-        require('./helpers/nodes7')(mainWindow);
+        if (!alreadyLoaded) {
+            require('./helpers/nodes7')(mainWindow);
+            alreadyLoaded = true;
+        }
     });
 
     mainWindow.once('ready-to-show', () => {

@@ -10,10 +10,9 @@ module.exports = [
             p4: false
         },
         bits: {
-            p1: 'M4.0',
-            p2: 'M4.1',
-            p3: 'M4.2',
-            p4: 'M4.3'
+            ll1On: 'M150.0',
+            ll1Off: 'M150.1',
+            
         },
         dateTime: {
             header: {

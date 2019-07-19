@@ -21,14 +21,14 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px">
 
   <div class="container">
-    <h1 class="header" style="text-align: left;">Siam station</h1>
+    <h1 class="header" style="text-align: left;">Siam station <a href="mainWindow-v2.html">
+        <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+      </a></h1>
 
     <div class="row">
       <!-- Detail 1 -->
       <div class="col-4">
-        <button type="button" 
-          class="btn station station-mid" 
-          onclick="window.location.href='./subpages/llWindow.html'"
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow.html'"
           style="background-color: white;">
           Lift Lower
         </button>
@@ -36,9 +36,7 @@
 
       <!-- Detail 2 -->
       <div class="col-8">
-        <button type="button" 
-          class="btn station station-longer" 
-          style="background-color: white;">
+        <button type="button" class="btn station station-longer" style="background-color: white;">
           Cading, SideBeam SB
         </button>
       </div>
@@ -47,18 +45,14 @@
     <div class="row">
       <!-- Detail 1 -->
       <div class="col-4">
-        <button type="button" 
-          class="btn station station-mid"
-          style="background-color: white;">
+        <button type="button" class="btn station station-mid" style="background-color: white;">
           Lift
         </button>
       </div>
 
       <!-- Detail 2 -->
       <div class="col-8">
-        <button type="button" 
-          class="btn station station-longer"
-          style="background-color: white;">
+        <button type="button" class="btn station station-longer" style="background-color: white;">
           Cading, SideBeam EB
         </button>
       </div>
@@ -89,9 +83,6 @@
     <script>
       const electron = require('electron');
       const { ipcRenderer } = electron;
-      // let path = require('path');
-      // let appPath = electron.app.getAppPath();
-      // const { CHANNELS } = require(path.resolve(appPath, './helpers/environments'));
       const { CHANNELS } = require('../helpers/environments');
       const greenColor = {
         'background-color': 'green'
@@ -110,9 +101,7 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('19 August 2019 16:19');
-
         this.S1Style = ko.observable(redColor);
-
         this.S1_1Style = ko.observable(redColor);
       }
 
