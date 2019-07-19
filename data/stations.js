@@ -12,7 +12,10 @@ module.exports = [
         bits: {
             ll1On: 'M150.0',
             ll1Off: 'M150.1',
-            
+            ll2On: 'M150.2',
+            ll2Off: 'M150.3',
+            ll3On: 'M150.4',
+            ll3Off: 'M150.5',
         },
         dateTime: {
             header: {

@@ -71,14 +71,14 @@
 
             <!-- On 2 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;">
+                <button type="button" class="btn station" style="background-color: white;" id="ll2On">
                     On
                 </button>
             </div>
 
             <!-- On 3 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;">
+                <button type="button" class="btn station" style="background-color: white;" id="ll3On">
                     On
                 </button>
             </div>
@@ -95,14 +95,14 @@
 
             <!-- On 2 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;">
+                <button type="button" class="btn station" style="background-color: white;" id="ll2Off">
                     Off
                 </button>
             </div>
 
             <!-- On 3 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;">
+                <button type="button" class="btn station" style="background-color: white;" id="ll3Off">
                     Off
                 </button>
             </div>
@@ -169,8 +169,28 @@
             // Detect button click
             document.getElementById('ll1On').onclick = () => {
                 ipcRenderer.send(CHANNELS.ll1On, true);
-                console.log('on');
             };
+
+            document.getElementById('ll2On').onclick = () => {
+                ipcRenderer.send(CHANNELS.ll2On, true);
+            };
+
+            document.getElementById('ll3On').onclick = () => {
+                ipcRenderer.send(CHANNELS.ll3On, true);
+            };
+
+            document.getElementById('ll1Off').onclick = () => {
+                ipcRenderer.send(CHANNELS.ll1Off, true);
+            };
+
+            document.getElementById('ll2Off').onclick = () => {
+                ipcRenderer.send(CHANNELS.ll2Off, true);
+            };
+
+            document.getElementById('ll3Off').onclick = () => {
+                ipcRenderer.send(CHANNELS.ll3Off, true);
+            };
+
 
 
         </script>
