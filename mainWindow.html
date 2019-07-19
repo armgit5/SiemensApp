@@ -167,6 +167,13 @@
       // let appPath = electron.app.getAppPath();
       // const { CHANNELS } = require(path.resolve(appPath, './helpers/environments'));
       const { CHANNELS } = require('./helpers/environments');
+      const greenColor = {
+        'background-color': 'green'
+      };
+
+      const redColor = {
+        'background-color': 'red'
+      };
 
       // Show when ready
       $(document).ready(() => {
@@ -178,17 +185,15 @@
         ipcRenderer.send('m4:clickoff', 'N1', 'off');
       };
 
+
+
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('19 August 2019 16:19');
 
-        this.S1Style = ko.observable({
-          'background-color': 'green'
-        });
+        this.S1Style = ko.observable(redColor);
 
-        this.S1_1Style = ko.observable({
-          'background-color': 'red'
-        });
+        this.S1_1Style = ko.observable(redColor);
       }
 
       function getHrMin() {
@@ -207,6 +212,19 @@
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
         vm.time(datetime);
       });
+
+      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
+        console.log(id, status);
+        if (id === 'N1') {
+          if (status === true) {
+            vm.S1Style(greenColor);
+          } else {
+            vm.S1Style(redColor);
+          }
+        }
+      });
+
+
 
       // // Run program
       // setInterval(() => {

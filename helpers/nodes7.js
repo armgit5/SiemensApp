@@ -67,7 +67,8 @@ module.exports = (mainWindow) => {
         const node = connections[station.id];
 
         const onlineStatusInterval = setInterval(() => {
-            console.log('is online ', node.id, node.isOnline);
+            // console.log('is online ', node.id, node.isOnline);
+            mainWindow.webContents.send(CHANNELS.onlineStatus, node.id, node.isOnline);
         }, SCANTIME);
         intervals.push(onlineStatusInterval);
     }

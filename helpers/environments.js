@@ -1,5 +1,6 @@
 module.exports.CHANNELS = {
-    datetime: 'datetime:data'
+    datetime: 'datetime:data',
+    onlineStatus: 'online:status'
 }
 
 module.exports.PRESSTIME = 2000;
