@@ -5,6 +5,10 @@ const Node = require('./node');
 const { CHANNELS, SCANTIME } = require('./environments');
 const STATIONS = require('../data/stations');
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 module.exports = (mainWindow) => {
     const connections = {}; // Hold nodes connection
 
@@ -48,7 +52,7 @@ module.exports = (mainWindow) => {
                     const hour = data[header.hour];
                     const minute = data[header.minute];
 
-                    const outputDatetime = `${date}/${month}/${year} ${hour}:${minute}`;
+                    const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
                     mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
                 }
             });
