@@ -8,14 +8,14 @@ let mainWindow;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 650,
+        height: 400,
         resizable: false,
         show: false
     });
 
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'mainWindow.html'),
+        pathname: path.join(__dirname, '/pages/mainWindow-v2.html'),
         protocol: 'file',
         slashes: true
     }));

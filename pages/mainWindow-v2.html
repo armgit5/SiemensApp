@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>BTS APP</title>
+
+  <link rel="stylesheet" href="../assets/styles/mainWindow.css">
+
+  <style>
+    
+  </style>
+</head>
+
+<body style="background-color: #6095C9; text-align: center; margin: 10px">
+
+  <div class="container">
+    <h1 class="header" style="text-align: left;">PTL 9M</h1>
+
+    <div class="row">
+      <!-- Station 1 -->
+
+      <div class="col-4">
+        <button type="button" class="btn station" style="background-color: yellow;"
+          onclick="window.location.href='detailWindow-v2.html'">
+          Siam <span class="dot" style="background-color: green;"></span>
+        </button>
+      </div>
+
+      <!-- Station 2 -->
+      <div class="col-4">
+        <button type="button" class="btn station" style="background-color: white;">
+          E4 <span class="dot" style="background-color: green;"></span>
+        </button>
+      </div>
+
+      <!-- Station 3 -->
+      <div class="col-4">
+        <button type="button" class="btn station" style="background-color: white;">
+          E5 <span class="dot" style="background-color: green;"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+      <!-- Station 4 -->
+      <div class="col-4">
+        <button type="button" class="btn station" style="background-color: white;">
+          S2 <span class="dot" style="background-color: red;"></span>
+        </button>
+      </div>
+
+      <!-- Station 5 -->
+      <div class="col-4">
+        <button type="button" class="btn station" style="background-color: white;">
+          S3 <span class="dot" style="background-color: red;"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="row">
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+        <div class="footer">
+          HH:MM</button>
+        </div>
+      </div>
+      <div class="col-4">
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Knockout -->
+    <script src="../helpers/knockout.js"></script>
+
+    <!-- IPC script -->
+    <script>
+      const electron = require('electron');
+      const { ipcRenderer } = electron;
+      // let path = require('path');
+      // let appPath = electron.app.getAppPath();
+      // const { CHANNELS } = require(path.resolve(appPath, './helpers/environments'));
+      const { CHANNELS } = require('../helpers/environments');
+      const greenColor = {
+        'background-color': 'green'
+      };
+
+      const redColor = {
+        'background-color': 'red'
+      };
+
+      // Show when ready
+      $(document).ready(() => {
+        $('body').show();
+      });
+
+
+      // Knockout functions
+      function AppViewModel() {
+        this.time = ko.observable('19 August 2019 16:19');
+
+        this.S1Style = ko.observable(redColor);
+
+        this.S1_1Style = ko.observable(redColor);
+      }
+
+      function getHrMin() {
+        const date = new Date;
+        const hour = date.getHours();
+        const min = date.getMinutes();
+        const sec = date.getSeconds()
+
+        return time = hour + ":" + min + ":" + sec;
+      }
+
+      // Activates knockout.js
+      const vm = new AppViewModel();
+      ko.applyBindings(vm);
+
+      ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+        vm.time(datetime);
+      });
+
+      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
+        console.log(id, status);
+        if (id === 'N1') {
+          if (status === true) {
+            vm.S1Style(greenColor);
+          } else {
+            vm.S1Style(redColor);
+          }
+        }
+      });
+
+    </script>
+
+</body>
+
+</html>

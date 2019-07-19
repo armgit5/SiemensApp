@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>BTS APP</title>
 
-  <link rel="stylesheet" href="mainWindow.css">
+  <link rel="stylesheet" href="../assets/styles/mainWindow.css">
 </head>
 
 <body style="background-color: #128AF4; display: none;">
@@ -153,11 +153,11 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>window.$ = window.jQuery = require('jquery');</script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- Knockout -->
-    <script src="./helpers/knockout.js"></script>
+    <script src="../helpers/knockout.js"></script>
 
     <!-- IPC script -->
     <script>
@@ -166,7 +166,7 @@
       // let path = require('path');
       // let appPath = electron.app.getAppPath();
       // const { CHANNELS } = require(path.resolve(appPath, './helpers/environments'));
-      const { CHANNELS } = require('./helpers/environments');
+      const { CHANNELS } = require('../helpers/environments');
       const greenColor = {
         'background-color': 'green'
       };
@@ -232,12 +232,6 @@
       // }, 1000);
     </script>
 
-
-
-    <script>
-        // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
-
-    </script>
 </body>
 
 </html>
