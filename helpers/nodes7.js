@@ -38,7 +38,7 @@ module.exports = (mainWindow) => {
     const _getSteamDateTime = () => {
         const station = STATIONS[0];
         const node = connections[station.id];
-        const cacheData = null;
+        let cacheData = null;
         // Run Loop
         setInterval(() => {
             node.conn.readAllItems((err, data) => {
@@ -53,6 +53,7 @@ module.exports = (mainWindow) => {
                     const minute = data[header.minute];
 
                     const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
+                    console.log('output time ', outputDatetime);
                     mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
                 }
             });
@@ -71,8 +72,8 @@ module.exports = (mainWindow) => {
         const node = new Node(STATIONS[0].id, STATIONS[0].ip);
         connections[STATIONS[0].id] = node;
         _addToReadList();
-        // _getSteamDateTime();
-        _streamDateTime();
+        _getSteamDateTime();
+        // _streamDateTime();
     };
     _initNodes();
 };
