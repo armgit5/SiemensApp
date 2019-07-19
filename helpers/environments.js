@@ -3,3 +3,4 @@ module.exports.CHANNELS = {
 }
 
 module.exports.PRESSTIME = 2000;
+module.exports.SCANTIME = 1000;

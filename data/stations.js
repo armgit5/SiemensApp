@@ -15,7 +15,7 @@ module.exports = [
             p3: 'M4.2',
             p4: 'M4.3'
         },
-        timer: {
+        dateTime: {
             header: {
                 date: 'MW80',
                 month: 'MW82',

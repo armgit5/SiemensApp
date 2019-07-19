@@ -2,81 +2,60 @@ const { ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const Node = require('./node');
-const { CHANNELS } = require('./environments');
+const { CHANNELS, SCANTIME } = require('./environments');
+const STATIONS = require('../data/stations');
 
 module.exports = (mainWindow) => {
     const connections = {}; // Hold nodes connection
 
-    // Read json file
-    const p = path.join(
-        path.dirname(process.mainModule.filename),
-        'data',
-        'stations.json'
-    );
-    fs.readFile(p, (err, fileContent) => {
-        if (err) {
-            console.log('error reading file');
-        }
-        const data = JSON.parse(fileContent);
-        console.log(data);
-        const node = new Node(data[0].id, data[0].ip);
-        connections[data[0].id] = node;
+    // Private functions
+    const _addToReadList = () => {
+        const node = connections[STATIONS[0].id];
+        const dateTimeHeader = STATIONS[0].dateTime.header;
 
-        mainWindow.webContents.send('get:data', data); // Send data to front end
+        // Add Header Datetime
+        node.conn.addItems(dateTimeHeader.date);
+        node.conn.addItems(dateTimeHeader.month);
+        node.conn.addItems(dateTimeHeader.year);
+        node.conn.addItems(dateTimeHeader.minute);
+        node.conn.addItems(dateTimeHeader.hour);
+        node.conn.addItems(dateTimeHeader.second);
+    };
 
-        sendDateTime();
-    });
-
-    function getHrMin() {
+    const _getHrMin = () => {
         const date = new Date;
         const hour = date.getHours();
         const min = date.getMinutes();
         const sec = date.getSeconds()
 
         return time = hour + ":" + min + ":" + sec;
-    }
+    };
 
-    function sendDateTime() {
+    const _getDateTime = () => {
+        const node = connections[STATIONS[0].id];
+
+        // Run Loop
+        setInterval(() => {
+            node.conn.readAllItems((err, data) => {
+                console.log(data);
+            });
+        }, SCANTIME);
+    };
+
+    const _sendDateTime = () => {
         // Run program
         setInterval(() => {
-            mainWindow.webContents.send(CHANNELS.datetime, getHrMin());
-        }, 1000);
+            mainWindow.webContents.send(CHANNELS.datetime, _getHrMin());
+        }, SCANTIME);
     }
 
-    // IPC calls
-    // Catch item:add
-    ipcMain.on('m4:click', (e, id, status) => {
-        console.log(id, status);
-        const node = connections[id];
-        node.conn.addItems('M4.0');
-        node.conn.readAllItems(node.valuesReady);
-        node.conn.writeItems('M6.0', true, node.valuesWritten);
-
-        // Read M Items
-        node.conn.addItems('M4.0');
-        node.conn.addItems('M4.0');
-        node.conn.addItems('MW80');
-        node.conn.addItems('MW82');
-
-        // Read Data Blocks
-        node.conn.addItems('DB8,INT6.4');
-
-        node.conn.readAllItems(node.valuesReady);
-        mainWindow.webContents.send('get:connections', connections);
-
-        // Assign read to M4
-        const M4 = node.conn.readAllItems(node.valuesReady);
-    });
-
-    ipcMain.on('m4:clickoff', (e, id, status) => {
-        console.log(status);
-        const node = connections[id];
-        node.conn.addItems('M4.0');
-        node.conn.readAllItems(node.valuesReady);
-        node.conn.writeItems('M6.0', false, node.valuesWritten);
-        node.conn.addItems('M4.0');
-        node.conn.readAllItems(node.valuesReady);
-
-
-    });
-}
+    // Main Program
+    const _initNodes = () => {
+        const node = new Node(STATIONS[0].id, STATIONS[0].ip);
+        connections[STATIONS[0].id] = node;
+        _addToReadList();
+        // _getDateTime();
+        _sendDateTime();
+    };
+    _initNodes();
+};
