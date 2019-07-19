@@ -105,6 +105,8 @@ module.exports = (mainWindow) => {
         setTimeout(() => {
             node.conn.writeItems(STATIONS[0].bits.ll1On, false, node.valuesWritten);
         }, 1000);
+
+        // node.conn.writeItems('MW110', 23, node.valuesWritten);
     });
 
     ipcMain.on(CHANNELS.ll1Off, (e, status) => {
