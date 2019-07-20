@@ -37,8 +37,8 @@ module.exports = [
                 setOffHH: 'MW314',
                 setOffMM: 'MW316',
                 save: 'M300.0',
-                plcEdit: 'MW300.3',
-                setPlcEdit: 'M300.1'
+                setCanEdit: 'M300.1',
+                canEdit: 'M300.3'
             },
             step2: {
                 fromHH: 'MW20',
@@ -60,7 +60,8 @@ module.exports = [
             }
         },
         storedKeys: {
-            headerDatetime: 'headerDatetime'
+            headerDatetime: 'headerDatetime',
+            canEdit: 'canEdit'
         }
     },
 ]

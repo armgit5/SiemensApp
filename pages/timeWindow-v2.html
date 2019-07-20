@@ -34,7 +34,7 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn station" style="padding: 0px">PC Edit</button>
+                        <button type="button" class="btn station" style="padding: 0px" id="pcEdit" data-bind="text: pcEdit"></button>
                     </div>
                     <div class="col-6">
                         <div class="footer" style="margin-top: 0px" data-bind="text: time">
@@ -157,24 +157,37 @@
                 this.step1OnMM = ko.observable(0);
                 this.step1OffHH = ko.observable(0);
                 this.step1OffMM = ko.observable(0);
+                this.pcEdit = ko.observable('PC Edit');
             }
 
             // Activates knockout.js
             const vm = new AppViewModel();
             ko.applyBindings(vm);
 
-            const getHeaderDatetime = () => {
+            const getHeaderDatetime = () => { // Init get datetime
                 const headerDatetime = store.get(keys.headerDatetime);
                 vm.time(headerDatetime);
             }
             getHeaderDatetime();
+
+            // Init pc can edit
+            const initPCEdit = () => { // Init get datetime
+                const canEdit = store.get(keys.canEdit);
+                console.log('can Edit', canEdit);
+                if (canEdit) {
+                    vm.pcEdit('PC Edit');
+                } else {
+                    vm.pcEdit('HMI Edit');
+                }
+            }
+            initPCEdit();
 
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);
             });
 
             ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-                console.log(id, status);
+                // console.log(id, status);
                 if (id === 'N1') {
                     if (status === true) {
                         vm.S1Style(greenColor);
@@ -225,6 +238,14 @@
                 ipcRenderer.send(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
             });
 
+            $('#pcEdit').click(() => {
+                const canEdit = store.get(STATIONS[0].storedKeys.canEdit);
+                console.log(canEdit);
+                if (!canEdit) {
+                    ipcRenderer.send(CHANNELS.setCanEdit, '');
+                }
+            });
+
             ipcRenderer.on(CHANNELS.readStep1AfterSave, (e, onHH, onMM, offHH, offMM) => {
                 console.log(onHH, onMM, offHH, offMM);
                 vm.step1OnHH(onHH);
@@ -232,6 +253,16 @@
                 vm.step1OffHH(offHH);
                 vm.step1OffMM(offMM);
             });
+
+            ipcRenderer.on(CHANNELS.canEdit, (e, canEdit) => {
+                console.log(canEdit);
+                if (canEdit) {
+                    vm.pcEdit('PC Edit');
+                } else {
+                    vm.pcEdit('HMI Edit');
+                }
+            });
+
 
 
         </script>

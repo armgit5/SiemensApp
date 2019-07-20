@@ -96,6 +96,9 @@ module.exports = (connections, mainWindow) => {
 
         console.log(step1OnHH, step1OnMM, step1OffHH, step1OffMM);
 
+        // Check if M300.3 is on or not
+        const canEdit = store.get(STATIONS[0].storedKeys.canEdit);
+
         node.conn.writeItems(step1.setPlcEdit, true, (anythingBad) => { // Set Plc Edit true
             if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
             this.doneWriting = true;
@@ -155,5 +158,32 @@ module.exports = (connections, mainWindow) => {
         });
     });
 
+    // Set can edit on
+    ipcMain.on(CHANNELS.setCanEdit, (e, status) => {
+
+        const node = connections[STATIONS[0].id];
+        const dateTime = STATIONS[0].dateTime;
+        const step1 = dateTime.step1;
+        console.log('set can edit');
+        node.conn.writeItems(step1.setCanEdit, true, (anythingBad) => { // // Set can edit true
+            if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+            this.doneWriting = true;
+            
+            node.conn.readAllItems((anythingBad, values) => { // Read all
+                if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
+                console.log(values);
+                this.doneReading = true;
+                mainWindow.webContents.send(CHANNELS.canEdit, values[STATIONS[0].dateTime.step1.canEdit])
+            });
+
+            node.conn.writeItems(step1.setCanEdit, false, (anythingBad) => { // // Set can edit true
+                if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+                this.doneWriting = true;
+
+            });
+
+
+        });
+    }); 
    
 }

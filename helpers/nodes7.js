@@ -41,6 +41,7 @@ module.exports = (mainWindow) => {
         node.conn.addItems(step1.save);
         node.conn.addItems(step1.plcEdit);
         node.conn.addItems(step1.setPlcEdit);
+        node.conn.addItems(step1.canEdit);
 
 
         node.conn.addItems(STATIONS[0].bits.ll1On);
@@ -106,6 +107,32 @@ module.exports = (mainWindow) => {
         }, SCANTIME);
     }
 
+    let canEdit = false;
+    store.set(STATIONS[0].storedKeys.canEdit, false);
+    const _getCanEditStream = () => {
+        const station = STATIONS[0];
+        const node = connections[station.id];
+        const dateTime = STATIONS[0].dateTime;
+        const step1 = dateTime.step1;
+
+        const canEditInterval = setInterval(() => {
+            // Check if M300.3 is on or not
+            node.conn.readAllItems((err, value) => { // Read all
+                if (err) console.log('Cannot read');
+                this.doneReading = true;
+                // console.log(value[step1.canEdit]);
+                // console.log(store.get(STATIONS[0].storedKeys.canEdit));
+                const canEditResult = value[step1.canEdit];
+                if (canEdit !== canEditResult) {
+                    canEdit = canEditResult;
+                    store.set(STATIONS[0].storedKeys.canEdit, canEditResult);
+                    mainWindow.webContents.send(CHANNELS.canEdit, canEdit);
+                }
+            });
+        }, SCANTIME);
+        intervals.push(canEditInterval);
+    };
+
     // Main Program
     const _initNodes = () => {
         const node = new Node(STATIONS[0].id, STATIONS[0].ip);
@@ -116,6 +143,7 @@ module.exports = (mainWindow) => {
         _addToReadList();
         _getSteamDateTime();
         _getStreamOnlineStatus();
+        _getCanEditStream();
         // _streamDateTime();
     };
     _initNodes();

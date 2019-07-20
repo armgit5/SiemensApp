@@ -8,7 +8,9 @@ module.exports.CHANNELS = {
     ll3On: 'll3:On',
     ll3Off: 'll3:Off',
     step1save: 'step1save',
-    readStep1AfterSave: 'read:step1:after:save'
+    readStep1AfterSave: 'read:step1:after:save',
+    canEdit: 'can:edit',
+    setCanEdit: 'set:can:edit'
 }
 
 module.exports.PRESSTIME = 2000;
