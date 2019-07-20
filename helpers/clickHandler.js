@@ -17,34 +17,28 @@ module.exports = (connections, mainWindow) => {
         const dateTime = STATIONS[0].dateTime;
         const step1 = dateTime.step1;
 
-        // node.conn.writeItems(STATIONS[0].bits.ll1On, true, node.valuesWritten);
-        // setTimeout(() => {
-        //     node.conn.writeItems(STATIONS[0].bits.ll1On, false, node.valuesWritten);
-
-        //     node.conn.readAllItems(node.valuesReady);
-        // }, 1000);
-
-        node.conn.writeItems(step1.setPlcEdit, false, (anythingBad) => {
-            if (anythingBad) { console.log("CANNOT WRITE SET PLC EDIT!!!!"); }
-            console.log("Done writing.");
+        node.conn.writeItems(STATIONS[0].bits.ll1On, true, (anythingBad) => { // // Set ll1 M150 true
+            if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
             this.doneWriting = true;
-            
-            node.conn.writeItems('MW310', 19, (anythingBad) => {
-                if (anythingBad) { console.log("CANNOT WRITE MW310!!!!"); }
-                console.log("Done writing.");
-                this.doneWriting = true;
-                node.conn.readAllItems(node.valuesReady);
+
+            node.conn.readAllItems((anythingBad, values) => { // Read all
+                if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
+                console.log(values);
+                this.doneReading = true;
             });
 
+            node.conn.writeItems(STATIONS[0].bits.ll1On, false, (anythingBad) => { // // Set ll1 false
+                if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+                this.doneWriting = true;
+
+                node.conn.readAllItems((anythingBad, values) => { // Read all
+                    if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
+                    console.log(values);
+                    this.doneReading = true;
+                });
+            });
         });
 
-        // node.conn.writeItems('MW310', 21, node.valuesWritten);
-        // node.conn.readAllItems(node.valuesReady);
-
-        // setTimeout(() => {
-        //     node.conn.writeItems(step1.setPlcEdit, false, node.valuesWritten);
-        //     node.conn.readAllItems(node.valuesReady);
-        // }, 1000);
         
     });
 
