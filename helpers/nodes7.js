@@ -17,7 +17,9 @@ module.exports = (mainWindow) => {
     // Private functions
     const _addToReadList = () => {
         const node = connections[STATIONS[0].id];
-        const dateTimeHeader = STATIONS[0].dateTime.header;
+        const dateTime = STATIONS[0].dateTime;
+        const dateTimeHeader = dateTime.header;
+        const step1 = dateTime.step1;
 
         // Add Header Datetime
         node.conn.addItems(dateTimeHeader.date);
@@ -25,6 +27,14 @@ module.exports = (mainWindow) => {
         node.conn.addItems(dateTimeHeader.year);
         node.conn.addItems(dateTimeHeader.minute);
         node.conn.addItems(dateTimeHeader.hour);
+        node.conn.addItems(step1.onHH);
+        node.conn.addItems(step1.onMM);
+        node.conn.addItems(step1.offHH);
+        node.conn.addItems(step1.offMM);
+        node.conn.addItems(step1.setOnHH);
+        node.conn.addItems(step1.setOnMM);
+        node.conn.addItems(step1.setOffHH);
+        node.conn.addItems(step1.setOffMM);
 
         node.conn.addItems( STATIONS[0].bits.ll1On)
         // node.conn.addItems(dateTimeHeader.second);
@@ -58,6 +68,9 @@ module.exports = (mainWindow) => {
 
                     const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
                     mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
+
+                    STATIONS[0].storedDatetime.header = outputDatetime;
+                    console.log(STATIONS[0].storedDatetime, outputDatetime);
                 }
             });
         }, SCANTIME);
@@ -67,7 +80,7 @@ module.exports = (mainWindow) => {
     const _getStreamOnlineStatus = () => {
         const station = STATIONS[0];
         const node = connections[station.id];
-
+    
         const onlineStatusInterval = setInterval(() => {
             // console.log('is online ', node.id, node.isOnline);
             mainWindow.webContents.send(CHANNELS.onlineStatus, node.id, node.isOnline);
@@ -101,12 +114,18 @@ module.exports = (mainWindow) => {
     // Button Click
     ipcMain.on(CHANNELS.ll1On, (e, status) => {
         const node = connections[STATIONS[0].id];
+        const dateTime = STATIONS[0].dateTime;
+        const step1 = dateTime.step1;
+
         node.conn.writeItems(STATIONS[0].bits.ll1On, true, node.valuesWritten);
         setTimeout(() => {
             node.conn.writeItems(STATIONS[0].bits.ll1On, false, node.valuesWritten);
         }, 1000);
 
-        // node.conn.writeItems('MW110', 23, node.valuesWritten);
+
+        node.conn.writeItems(step1.setOnHH, 23, node.valuesWritten);
+        node.conn.readAllItems(node.valuesReady);
+
     });
 
     ipcMain.on(CHANNELS.ll1Off, (e, status) => {

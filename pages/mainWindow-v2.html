@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../assets/styles/mainWindow.css">
 
   <style>
-    
+
   </style>
 </head>
 
@@ -84,10 +84,9 @@
     <script>
       const electron = require('electron');
       const { ipcRenderer } = electron;
-      // let path = require('path');
-      // let appPath = electron.app.getAppPath();
-      // const { CHANNELS } = require(path.resolve(appPath, './helpers/environments'));
       const { CHANNELS } = require('../helpers/environments');
+      const STATIONS = require('../data/stations');
+
       const greenColor = {
         'background-color': 'green'
       };
@@ -96,15 +95,10 @@
         'background-color': 'red'
       };
 
-      // Show when ready
-      $(document).ready(() => {
-        $('body').show();
-      });
-
 
       // Knockout functions
       function AppViewModel() {
-        this.time = ko.observable('19 August 2019 16:19');
+        this.time = ko.observable('Reading...');
 
         this.S1Style = ko.observable(redColor);
 
@@ -125,6 +119,7 @@
       ko.applyBindings(vm);
 
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+        console.log()
         vm.time(datetime);
       });
 
@@ -137,6 +132,12 @@
             vm.S1Style(redColor);
           }
         }
+      });
+
+
+      // Show when ready
+      $(document).ready(() => {
+        $('body').show();
       });
 
     </script>

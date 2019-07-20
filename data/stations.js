@@ -27,10 +27,14 @@ module.exports = [
                 second: 'MW90',
             },
             step1: {
-                fromHH: 'MW10',
-                fromMM: 'MW12',
-                toHH: 'MW14',
-                toMM: 'MW16'
+                onHH: 'MW110',
+                onMM: 'MW112',
+                offHH: 'MW114',
+                offMM: 'MW116',
+                setOnHH: 'MW310',
+                setOnMM: 'MW312',
+                setOffHH: 'MW314',
+                setOffMM: 'MW316'
             },
             step2: {
                 fromHH: 'MW20',
@@ -50,6 +54,9 @@ module.exports = [
                 toHH: 'MW44',
                 toMM: 'MW46'
             }
+        },
+        storedDatetime: {
+            header: '19 August 2019'
         }
     },
 ]
