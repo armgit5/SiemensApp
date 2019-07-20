@@ -86,6 +86,10 @@
       const { ipcRenderer } = electron;
       const { CHANNELS } = require('../helpers/environments');
       const STATIONS = require('../data/stations');
+      const keys =  STATIONS[0].storedKeys;
+
+      const Store = require('electron-store');
+      const store = new Store();
 
       const greenColor = {
         'background-color': 'green'
@@ -105,18 +109,17 @@
         this.S1_1Style = ko.observable(redColor);
       }
 
-      function getHrMin() {
-        const date = new Date;
-        const hour = date.getHours();
-        const min = date.getMinutes();
-        const sec = date.getSeconds()
-
-        return time = hour + ":" + min + ":" + sec;
-      }
-
       // Activates knockout.js
       const vm = new AppViewModel();
       ko.applyBindings(vm);
+
+
+      const getHeaderDatetime = () => {
+        const headerDatetime = store.get(keys.headerDatetime);
+        vm.time(headerDatetime);
+      }
+      getHeaderDatetime();
+
 
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
         console.log()

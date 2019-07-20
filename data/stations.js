@@ -55,8 +55,8 @@ module.exports = [
                 toMM: 'MW46'
             }
         },
-        storedDatetime: {
-            header: '19 August 2019'
+        storedKeys: {
+            headerDatetime: 'headerDatetime'
         }
     },
 ]

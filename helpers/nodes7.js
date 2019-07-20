@@ -5,6 +5,9 @@ const Node = require('./node');
 const { CHANNELS, SCANTIME } = require('./environments');
 const STATIONS = require('../data/stations');
 
+const Store = require('electron-store');
+const store = new Store();
+
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
@@ -52,6 +55,8 @@ module.exports = (mainWindow) => {
     const _getSteamDateTime = () => {
         const station = STATIONS[0];
         const node = connections[station.id];
+        const keys =  STATIONS[0].storedKeys;
+
         let cacheData = null;
         // Run Loop
         const datetimeInterval = setInterval(() => {
@@ -69,8 +74,8 @@ module.exports = (mainWindow) => {
                     const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
                     mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
 
-                    STATIONS[0].storedDatetime.header = outputDatetime;
-                    console.log(STATIONS[0].storedDatetime, outputDatetime);
+                    // Save datetime
+                    store.set(keys.headerDatetime, outputDatetime);
                 }
             });
         }, SCANTIME);
