@@ -66,7 +66,7 @@ module.exports = (mainWindow) => {
         // Run Loop
         const datetimeInterval = setInterval(() => {
             node.conn.readAllItems((err, data) => {
-                console.log(data);
+                
                 // Check for data change
                 if (JSON.stringify(cacheData) !== JSON.stringify(data)) {
                     cacheData = data;
@@ -76,7 +76,7 @@ module.exports = (mainWindow) => {
                     const year = data[header.year];
                     const hour = data[header.hour];
                     const minute = data[header.minute];
-
+                    // console.log(data);
                     const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
                     mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
                    
