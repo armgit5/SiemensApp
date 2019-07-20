@@ -83,10 +83,9 @@
       const { ipcRenderer } = electron;
       const { CHANNELS } = require('../helpers/environments');
       const STATIONS = require('../data/stations');
-      const keys =  STATIONS[0].storedKeys;
-
       const Store = require('electron-store');
       const store = new Store();
+      const keys =  STATIONS[0].storedKeys;
 
       const greenColor = {
         'background-color': 'green'

@@ -24,13 +24,12 @@
                     AUTO
                 </button>
                 <a href="mainWindow-v2.html">
-                    <img src="../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" /> 
+                    <img src="../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
             </div>
 
             <div class="col-6">
-                <div class="footer" style="margin-top: 0px">
-                    HH:MM</button>
+                <div class="footer" style="margin-top: 0px" data-bind="text: time"></button>
                 </div>
             </div>
         </div>
@@ -122,6 +121,11 @@
             const electron = require('electron');
             const { ipcRenderer } = electron;
             const { CHANNELS } = require('../helpers/environments');
+            const STATIONS = require('../data/stations');
+            const Store = require('electron-store');
+            const store = new Store();
+            const keys = STATIONS[0].storedKeys;
+
             const greenColor = {
                 'background-color': 'green'
             };
@@ -138,7 +142,7 @@
 
             // Knockout functions
             function AppViewModel() {
-                this.time = ko.observable('19 August 2019 16:19');
+                this.time = ko.observable('Reading...');
 
                 this.S1Style = ko.observable(redColor);
 
@@ -148,6 +152,13 @@
             // Activates knockout.js
             const vm = new AppViewModel();
             ko.applyBindings(vm);
+
+            const getHeaderDatetime = () => {
+                const headerDatetime = store.get(keys.headerDatetime);
+                vm.time(headerDatetime);
+            }
+            getHeaderDatetime();
+
 
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);

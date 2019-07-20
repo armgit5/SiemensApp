@@ -5,8 +5,8 @@ module.exports = class Node {
     constructor(id, ip) {
         this.id = id;
         this.ip = ip;
-        this.doneReading = false;
-        this.doneWriting = false;
+        this.doneReading = true;
+        this.doneWriting = true;
         this.conn = new nodes7;
         this.variables = {
             TEST1: 'M4.0'

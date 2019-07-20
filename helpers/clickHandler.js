@@ -38,8 +38,6 @@ module.exports = (connections, mainWindow) => {
 
         });
 
-        
-
         // node.conn.writeItems('MW310', 21, node.valuesWritten);
         // node.conn.readAllItems(node.valuesReady);
 
@@ -48,7 +46,6 @@ module.exports = (connections, mainWindow) => {
         //     node.conn.readAllItems(node.valuesReady);
         // }, 1000);
         
-
     });
 
     ipcMain.on(CHANNELS.ll1Off, (e, status) => {
@@ -131,7 +128,7 @@ module.exports = (connections, mainWindow) => {
                                     if (err) console.log('Cannot read');
                                     this.doneReading = true;
                                     console.log(value);
-                                    console.log(value[step1.onHH], value[step1.onMM], value[step1.offHH], value[step1.offMM]);
+                                    console.log('value ', value[step1.onHH], value[step1.onMM], value[step1.offHH], value[step1.offMM]);
                                     mainWindow.webContents.send(CHANNELS.readStep1AfterSave, value[step1.onHH], value[step1.onMM], value[step1.offHH], value[step1.offMM]);
                                 });
                                 
@@ -143,10 +140,10 @@ module.exports = (connections, mainWindow) => {
                                         if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
                                         this.doneWriting = true;
                                         
-                                        node.conn.readAllItems((err, value) => {
-                                            this.doneReading = true;
-                                            console.log(value);
-                                        });
+                                        // node.conn.readAllItems((err, value) => { // Read all
+                                        //     this.doneReading = true;
+                                        //     console.log(value);
+                                        // });
                                     });
                                     
                                 });
@@ -160,9 +157,6 @@ module.exports = (connections, mainWindow) => {
             });
 
         });
-
-        
-
     });
 
    
