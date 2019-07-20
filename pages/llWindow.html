@@ -20,8 +20,11 @@
     <div class="container">
         <div class="row header-row">
             <div class="col-6">
-                <button type="button" class="btn station" style="background-color: lightgreen;" id="autoManual"> 
-                    AUTO
+                <button type="button" 
+                    class="btn station" 
+                    style="background-color: lightgreen;" 
+                    id="autoManual"
+                    data-bind="text: autoManual"> 
                 </button>
                 <a href="mainWindow-v2.html">
                     <img src="../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
@@ -211,7 +214,7 @@
             };
 
             ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
-                console.log(autoManual);
+                console.log('auto manual ', autoManual);
                 if (autoManual) {
                     vm.autoManual('AUTO');
                 } else {

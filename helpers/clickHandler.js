@@ -45,12 +45,13 @@ module.exports = (connections, mainWindow) => {
     });
 
     ipcMain.on(CHANNELS.ll1Off, (e, status) => {
-        console.log(status);
         const node = connections[STATIONS[0].id];
-        node.conn.writeItems(STATIONS[0].bits.ll1Off, true, node.valuesWritten);
-        setTimeout(() => {
-            node.conn.writeItems(STATIONS[0].bits.ll1Off, false, node.valuesWritten);
-        }, 1000);
+        node.conn.writeItems(STATIONS[0].bits.ll1Off, true, (anythingBad) => {
+            this.doneReading = true;
+            node.conn.writeItems(STATIONS[0].bits.ll1Off, false,  (anythingBad) => {
+                this.doneReading = true;
+            });
+        });
     });
 
     ipcMain.on(CHANNELS.ll2On, (e, status) => {
@@ -86,7 +87,6 @@ module.exports = (connections, mainWindow) => {
             node.conn.writeItems(STATIONS[0].bits.ll3Off, false, node.valuesWritten);
         }, 1000);
     });
-
 
     // Save
     ipcMain.on(CHANNELS.step1save, (e, step1OnHH, step1OnMM, step1OffHH, step1OffMM) => {
@@ -160,7 +160,6 @@ module.exports = (connections, mainWindow) => {
 
     // Set can edit on
     ipcMain.on(CHANNELS.setCanEdit, (e, status) => {
-
         const node = connections[STATIONS[0].id];
         const dateTime = STATIONS[0].dateTime;
         const step1 = dateTime.step1;
@@ -179,10 +178,7 @@ module.exports = (connections, mainWindow) => {
             node.conn.writeItems(step1.setCanEdit, false, (anythingBad) => { // // Set can edit true
                 if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
                 this.doneWriting = true;
-
             });
-
-
         });
     }); 
  
@@ -194,7 +190,7 @@ module.exports = (connections, mainWindow) => {
         const dateTime = STATIONS[0].dateTime;
         const step1 = dateTime.step1;
         console.log('set can edit', step1.setAutoManual, autoManual);
-        node.conn.writeItems(step1.setAutoManual, autoManual, (anythingBad) => { // // Set can edit true
+        node.conn.writeItems(step1.setAutoManual, true, (anythingBad) => { // // Set can edit true
             if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
             this.doneWriting = true;
             
