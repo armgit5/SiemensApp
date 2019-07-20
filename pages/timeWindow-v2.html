@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>BTS APP</title>
+
+    <link rel="stylesheet" href="../assets/styles/mainWindow.css">
+
+    <style>
+        .station-mid {
+            width: 150px;
+        }
+
+        .station-longer {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #6095C9; text-align: center; margin: 10px;">
+
+    <div class="container">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1 class="header" style="text-align: left; margin: 0px;">LL1</h1>
+
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn station" style="padding: 0px">PC Edit</button>
+                    </div>
+                    <div class="col-6">
+                        <div class="footer" style="margin-top: 0px">
+                            HH:MM
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6" style="background-color: lightgreen;">
+                Time On
+            </div>
+            <div class="col-6" style="background-color: yellow;">
+                Time Off
+            </div>
+            <!-- <div class="col2"></div> -->
+        </div>
+
+        <div class="row">
+            <!-- Detail 1 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-6" style="padding-right: 0px">
+                        <input type="text" class="form-control" placeholder="HH" id="step1setOnHH">
+                    </div>
+                    <div class="col-6" style="padding-left: 0px">
+                        <input type="text" class="form-control" placeholder="MM" id="step1setOnMM">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail 2 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-6" style="padding-right: 0px">
+                        <input type="text" class="form-control" placeholder="HH" id="step1setOffHH">
+                    </div>
+                    <div class="col-6" style="padding-left: 0px">
+                        <input type="text" class="form-control" placeholder="MM" id="step1setOffMM">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2" style="padding: 0px">
+                <button type="button" class="btn station" 
+                    style="padding: 0px; margin-top: 15px; height: 35px; background-color: white;" 
+                    id="save">Save</button>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 0px;">
+            <!-- Detail 1 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-6" style="padding-right: 0px">
+                        <input type="text" class="form-control" placeholder="HH" data-bind="value: step1OnHH">
+                    </div>
+                    <div class="col-6" style="padding-left: 0px">
+                        <input type="text" class="form-control" placeholder="MM" data-bind="value: step1OnMM">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail 2 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-6" style="padding-right: 0px">
+                        <input type="text" class="form-control" placeholder="HH" data-bind="value: step1OffHH">
+                    </div>
+                    <div class="col-6" style="padding-left: 0px">
+                        <input type="text" class="form-control" placeholder="MM" data-bind="value: step1OffMM">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+        <!-- Knockout -->
+        <script src="../helpers/knockout.js"></script>
+
+        <!-- IPC script -->
+        <script>
+            const electron = require('electron');
+            const { ipcRenderer } = electron;
+            const { CHANNELS } = require('../helpers/environments');
+            const greenColor = {
+                'background-color': 'green'
+            };
+
+            const redColor = {
+                'background-color': 'red'
+            };
+
+            // Show when ready
+            $(document).ready(() => {
+                $('body').show();
+            });
+
+
+            // Knockout functions
+            function AppViewModel() {
+                this.time = ko.observable('19 August 2019 16:19');
+                this.S1Style = ko.observable(redColor);
+                this.S1_1Style = ko.observable(redColor);
+                this.step1OnHH = ko.observable(0);
+                this.step1OnMM = ko.observable(0);
+                this.step1OffHH = ko.observable(0);
+                this.step1OffMM = ko.observable(0);
+            }
+
+            // Activates knockout.js
+            const vm = new AppViewModel();
+            ko.applyBindings(vm);
+
+            ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+                vm.time(datetime);
+            });
+
+            ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
+                console.log(id, status);
+                if (id === 'N1') {
+                    if (status === true) {
+                        vm.S1Style(greenColor);
+                    } else {
+                        vm.S1Style(redColor);
+                    }
+                }
+            });
+
+
+            // On Click
+
+            let step1setOnHH = 0;
+            let step1setOnMM = 0;
+            let step1setOffHH = 0;
+            let step1setOffMM = 0;
+
+            $('#step1setOnHH').keyup(function () {
+                const HH = this.value;
+                step1setOnHH = HH;
+                // console.log(HH);
+            });
+
+            $('#step1setOnMM').keyup(function () {
+                const MM = this.value;
+                step1setOnMM = MM;
+                // console.log(MM);
+            });
+
+            $('#step1setOffHH').keyup(function () {
+                const HH = this.value;
+                step1setOffHH = HH;
+                // console.log(HH);
+            });
+
+            $('#step1setOffMM').keyup(function () {
+                const MM = this.value;
+                step1setOffMM = MM;
+                // console.log(MM);
+            });
+
+            // document.getElementById('save').onclick = () => {
+            //     // ipcRenderer.send(CHANNELS.ll1On, true);
+            // };
+            $('#save').click(() => {
+                console.log('save');
+                console.log(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
+                ipcRenderer.send(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
+            });
+
+            ipcRenderer.on(CHANNELS.readStep1AfterSave, (e, onHH, onMM, offHH, offMM) => {
+                console.log(onHH, onMM, offHH, offMM);
+                vm.step1OnHH(onHH);
+                vm.step1OnMM(onMM);
+                vm.step1OffHH(offHH);
+                vm.step1OffMM(offMM);
+            });
+
+
+        </script>
+
+</body>
+
+</html>

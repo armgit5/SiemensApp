@@ -11,6 +11,7 @@ module.exports = [
         },
         bits: {
             ll1On: 'M150.0',
+            ll1isOn: 'M210.0',
             ll1Off: 'M150.1',
             ll2On: 'M150.2',
             ll2Off: 'M150.3',
@@ -34,7 +35,10 @@ module.exports = [
                 setOnHH: 'MW310',
                 setOnMM: 'MW312',
                 setOffHH: 'MW314',
-                setOffMM: 'MW316'
+                setOffMM: 'MW316',
+                save: 'M300.0',
+                plcEdit: 'MW300.3',
+                setPlcEdit: 'M300.1'
             },
             step2: {
                 fromHH: 'MW20',

@@ -38,8 +38,13 @@ module.exports = (mainWindow) => {
         node.conn.addItems(step1.setOnMM);
         node.conn.addItems(step1.setOffHH);
         node.conn.addItems(step1.setOffMM);
+        node.conn.addItems(step1.save);
+        node.conn.addItems(step1.plcEdit);
+        node.conn.addItems(step1.setPlcEdit);
 
-        node.conn.addItems( STATIONS[0].bits.ll1On)
+
+        node.conn.addItems(STATIONS[0].bits.ll1On);
+        node.conn.addItems(STATIONS[0].bits.ll1isOn)
         // node.conn.addItems(dateTimeHeader.second);
     };
 
@@ -115,5 +120,5 @@ module.exports = (mainWindow) => {
     _initNodes();
 
     // Receive click callls
-    require('./clickHandler')(connections);
+    require('./clickHandler')(connections, mainWindow);
 };
