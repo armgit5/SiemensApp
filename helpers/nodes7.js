@@ -42,6 +42,8 @@ module.exports = (mainWindow) => {
         node.conn.addItems(step1.plcEdit);
         node.conn.addItems(step1.setPlcEdit);
         node.conn.addItems(step1.canEdit);
+        node.conn.addItems(step1.autoManual);
+        node.conn.addItems(step1.setAutoManual);
 
 
         node.conn.addItems(STATIONS[0].bits.ll1On);
@@ -107,6 +109,7 @@ module.exports = (mainWindow) => {
         }, SCANTIME);
     }
 
+    // Can Edit Status
     let canEdit = false;
     store.set(STATIONS[0].storedKeys.canEdit, false);
     const _getCanEditStream = () => {
@@ -133,6 +136,34 @@ module.exports = (mainWindow) => {
         intervals.push(canEditInterval);
     };
 
+    // Get auto manual
+    let autoManual = false;
+    store.set(STATIONS[0].storedKeys.autoManual, false);
+    const _getAutoManualStream = () => {
+        const station = STATIONS[0];
+        const node = connections[station.id];
+        const dateTime = STATIONS[0].dateTime;
+        const step1 = dateTime.step1;
+
+        const autoManualInterval = setInterval(() => {
+            // Check if M300.3 is on or not
+            node.conn.readAllItems((err, value) => { // Read all
+                if (err) console.log('Cannot read');
+                this.doneReading = true;
+                const autoManualResult = value[step1.autoManual];
+
+                if (autoManual !== autoManualResult) {
+                    console.log(autoManualResult);
+                    autoManual = autoManualResult;
+                    store.set(STATIONS[0].storedKeys.autoManual, autoManualResult);
+                    mainWindow.webContents.send(CHANNELS.autoManual, autoManualResult);
+                }
+            });
+        }, SCANTIME);
+
+        intervals.push(autoManualInterval);
+    };
+
     // Main Program
     const _initNodes = () => {
         const node = new Node(STATIONS[0].id, STATIONS[0].ip);
@@ -144,7 +175,8 @@ module.exports = (mainWindow) => {
         _getSteamDateTime();
         _getStreamOnlineStatus();
         _getCanEditStream();
-        // _streamDateTime();
+        _getAutoManualStream();
+        _streamDateTime();
     };
     _initNodes();
 

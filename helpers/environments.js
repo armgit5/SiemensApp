@@ -10,7 +10,9 @@ module.exports.CHANNELS = {
     step1save: 'step1save',
     readStep1AfterSave: 'read:step1:after:save',
     canEdit: 'can:edit',
-    setCanEdit: 'set:can:edit'
+    setCanEdit: 'set:can:edit',
+    autoManual: 'auto:manual',
+    setAutoManual: 'set:auto:manual'
 }
 
 module.exports.PRESSTIME = 2000;

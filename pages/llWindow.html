@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row header-row">
             <div class="col-6">
-                <button type="button" class="btn station" style="background-color: lightgreen;">
+                <button type="button" class="btn station" style="background-color: lightgreen;" id="autoManual"> 
                     AUTO
                 </button>
                 <a href="mainWindow-v2.html">
@@ -143,10 +143,9 @@
             // Knockout functions
             function AppViewModel() {
                 this.time = ko.observable('Reading...');
-
                 this.S1Style = ko.observable(redColor);
-
                 this.S1_1Style = ko.observable(redColor);
+                this.autoManual = ko.observable('AUTO');
             }
 
             // Activates knockout.js
@@ -165,7 +164,7 @@
             });
 
             ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-                console.log(id, status);
+                // console.log(id, status);
                 if (id === 'N1') {
                     if (status === true) {
                         vm.S1Style(greenColor);
@@ -201,8 +200,24 @@
                 ipcRenderer.send(CHANNELS.ll3Off, true);
             };
 
+            document.getElementById('autoManual').onclick = () => {
+                const autoManual = store.get(STATIONS[0].storedKeys.autoManual);
+                console.log('auto manual', autoManual);
+                if (autoManual) {
+                    ipcRenderer.send(CHANNELS.setAutoManual, false);
+                } else {
+                    ipcRenderer.send(CHANNELS.setAutoManual, true);
+                }
+            };
 
-
+            ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
+                console.log(autoManual);
+                if (autoManual) {
+                    vm.autoManual('AUTO');
+                } else {
+                    vm.autoManual('MANUAL');
+                }
+            });
         </script>
 
 </body>

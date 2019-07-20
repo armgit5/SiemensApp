@@ -38,7 +38,9 @@ module.exports = [
                 setOffMM: 'MW316',
                 save: 'M300.0',
                 setCanEdit: 'M300.1',
-                canEdit: 'M300.3'
+                canEdit: 'M300.3',
+                autoManual: 'M160.1',
+                setAutoManual: 'M160.0'
             },
             step2: {
                 fromHH: 'MW20',
@@ -61,7 +63,8 @@ module.exports = [
         },
         storedKeys: {
             headerDatetime: 'headerDatetime',
-            canEdit: 'canEdit'
+            canEdit: 'canEdit',
+            autoManual: 'autoManual'
         }
     },
 ]

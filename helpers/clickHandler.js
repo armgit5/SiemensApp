@@ -185,5 +185,34 @@ module.exports = (connections, mainWindow) => {
 
         });
     }); 
+ 
+    // Set automanual
+    ipcMain.on(CHANNELS.setAutoManual, (e, autoManual) => {
+        console.log(autoManual);
+
+        const node = connections[STATIONS[0].id];
+        const dateTime = STATIONS[0].dateTime;
+        const step1 = dateTime.step1;
+        console.log('set can edit', step1.setAutoManual, autoManual);
+        node.conn.writeItems(step1.setAutoManual, autoManual, (anythingBad) => { // // Set can edit true
+            if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+            this.doneWriting = true;
+            
+            node.conn.readAllItems((anythingBad, values) => { // Read all
+                if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
+                console.log(values);
+                this.doneReading = true;
+                const autoManualResult = values[STATIONS[0].dateTime.step1.autoManual];
+                store.set(STATIONS[0].storedKeys.autoManual, autoManualResult);
+                mainWindow.webContents.send(CHANNELS.autoManual, autoManualResult);
+            });
+
+            node.conn.writeItems(step1.setAutoManual, false, (anythingBad) => { // // Set can edit true
+                if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+                this.doneWriting = true;
+
+            });
+        });
+    }); 
    
 }
