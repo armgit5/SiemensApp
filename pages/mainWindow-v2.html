@@ -12,7 +12,7 @@
   </style>
 </head>
 
-<body style="background-color: #6095C9; text-align: center; margin: 10px">
+<body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
   <div class="container">
     <h1 class="header" style="text-align: left;">PTL 9M</h1>
@@ -120,7 +120,6 @@
       }
       getHeaderDatetime();
 
-
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
         console.log()
         vm.time(datetime);
@@ -136,7 +135,6 @@
           }
         }
       });
-
 
       // Show when ready
       $(document).ready(() => {
