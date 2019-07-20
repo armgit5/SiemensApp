@@ -27,16 +27,18 @@ module.exports = (connections, mainWindow) => {
                 this.doneReading = true;
             });
 
-            node.conn.writeItems(STATIONS[0].bits.ll1On, false, (anythingBad) => { // // Set ll1 false
-                if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                this.doneWriting = true;
-
-                node.conn.readAllItems((anythingBad, values) => { // Read all
-                    if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
-                    console.log(values);
-                    this.doneReading = true;
+            setImmediate(() => {
+                node.conn.writeItems(STATIONS[0].bits.ll1On, false, (anythingBad) => { // // Set ll1 false
+                    if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+                    this.doneWriting = true;
+    
+                    node.conn.readAllItems((anythingBad, values) => { // Read all
+                        if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
+                        console.log(values);
+                        this.doneReading = true;
+                    });
                 });
-            });
+            }, 1000);
         });
 
         
