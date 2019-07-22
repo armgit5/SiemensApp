@@ -20,11 +20,8 @@
     <div class="container">
         <div class="row header-row">
             <div class="col-6">
-                <button type="button" 
-                    class="btn station" 
-                    style="background-color: lightgreen;" 
-                    id="autoManual"
-                    data-bind="text: autoManual"> 
+                <button type="button" class="btn station" style="background-color: lightgreen;" id="autoManual"
+                    data-bind="text: autoManual">
                 </button>
                 <a href="mainWindow-v2.html">
                     <img src="../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
@@ -112,39 +109,35 @@
 
     </div>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script>window.$ = window.jQuery = require('jquery');</script>
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-        <!-- Knockout -->
-        <script src="../helpers/knockout.js"></script>
+    <!-- Knockout -->
+    <script src="../helpers/knockout.js"></script>
 
-        <!-- IPC script -->
-        <script>
-            const electron = require('electron');
-            const { ipcRenderer } = electron;
-            const { CHANNELS } = require('../helpers/environments');
-            const STATIONS = require('../data/stations');
-            const Store = require('electron-store');
-            const store = new Store();
-            const keys = STATIONS[0].storedKeys;
+    <!-- IPC script -->
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+        const { CHANNELS } = require('../helpers/environments');
+        const STATIONS = require('../data/stations');
+        const Store = require('electron-store');
+        const store = new Store();
+        const keys = STATIONS[0].storedKeys;
 
-            const greenColor = {
-                'background-color': 'green'
-            };
+        const greenColor = {
+            'background-color': 'green'
+        };
+        const redColor = {
+            'background-color': 'red'
+        };
+        let vm;
 
-            const redColor = {
-                'background-color': 'red'
-            };
-
-            // Show when ready
-            $(document).ready(() => {
-                $('body').show();
-            });
-
-
+        // Start View Model
+        const _startViewModel = () => {
             // Knockout functions
             function AppViewModel() {
                 this.time = ko.observable('Reading...');
@@ -154,16 +147,18 @@
             }
 
             // Activates knockout.js
-            const vm = new AppViewModel();
+            vm = new AppViewModel();
             ko.applyBindings(vm);
+        };
 
-            const getHeaderDatetime = () => {
-                const headerDatetime = store.get(keys.headerDatetime);
-                vm.time(headerDatetime);
-            }
-            getHeaderDatetime();
+        // Get from store
+        const _getFromStore = () => {
+            const headerDatetime = store.get(keys.headerDatetime);
+            vm.time(headerDatetime);
+        };
 
-
+        // Read streaming
+        const _readStreaming = () => {
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);
             });
@@ -179,6 +174,18 @@
                 }
             });
 
+            ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
+                console.log('auto manual ', autoManual);
+                if (autoManual) {
+                    vm.autoManual('AUTO');
+                } else {
+                    vm.autoManual('MANUAL');
+                }
+            });
+
+        };
+
+        const _buttonClick = () => {
 
             // Detect button click
             document.getElementById('ll1On').onclick = () => {
@@ -215,15 +222,20 @@
                 }
             };
 
-            ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
-                console.log('auto manual ', autoManual);
-                if (autoManual) {
-                    vm.autoManual('AUTO');
-                } else {
-                    vm.autoManual('MANUAL');
-                }
-            });
-        </script>
+        };
+
+        // Show when ready
+        $(document).ready(() => {
+            $('body').show();
+            _startViewModel();
+            _getFromStore();
+            _readStreaming();
+            _buttonClick();
+        });
+
+
+
+    </script>
 
 </body>
 
