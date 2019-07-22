@@ -2,6 +2,7 @@ const { ipcMain } = require('electron');
 const Node = require('./node');
 const { CHANNELS, SCANTIME } = require('./environments');
 const STATION1 = require('../data/station1');
+const initHelper = require('./initHelper');
 
 let NODE; // Hold node connection
 let STATION_ID = 0;
@@ -25,12 +26,12 @@ module.exports = (mainWindow) => {
         // Init station 1
         if (STATION_ID === 1) {
             NODE = new Node(STATION1.id, STATION1.ip);
+            console.log('S1 is online ', NODE.isOnline);
+            initHelper(NODE).then(isOnline => {
+                console.log('S1 is online ', isOnline);
+            });
             _addStation1DatetimeReadList();
             require('./station1-process/readingHandler')(NODE, mainWindow);
-
-            setTimeout(() => {
-                console.log('Station 1 online ', NODE.isOnline);
-            }, 5000);
         }
     };
 
