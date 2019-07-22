@@ -21,9 +21,11 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
   <div class="container">
-    <h1 class="header" style="text-align: left;">Siam station <a href="mainWindow.html">
+    <h1 class="header" style="text-align: left;">Siam station
+      <!-- <a href="mainWindow.html">
         <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-      </a></h1>
+      </a> -->
+    </h1>
 
     <div class="row">
       <!-- Detail 1 -->
@@ -58,6 +60,7 @@
       </div>
     </div>
 
+    <!-- Datetime -->
     <div class="row">
       <div class="col-4">
       </div>
@@ -68,6 +71,19 @@
       <div class="col-4">
       </div>
     </div>
+
+    <!-- Footer -->
+    <div class="row">
+      <span>
+        <!-- <a href="detailWindow.html">
+          <img src="../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+        </a> -->
+        <a href="mainWindow.html">
+          <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+        </a>
+      </span>
+    </div>
+
   </div>
 
   <!-- Optional JavaScript -->
@@ -82,10 +98,10 @@
     const electron = require('electron');
     const { ipcRenderer } = electron;
     const { CHANNELS } = require('../helpers/environments');
-    const STATIONS = require('../data/stations');
+    const STATION1 = require('../data/station1');
     const Store = require('electron-store');
     const store = new Store();
-    const keys = STATIONS[0].storedKeys;
+    const keys = STATION1.storedKeys;
 
     const greenColor = {
       'background-color': 'green'

@@ -23,9 +23,9 @@
                 <button type="button" class="btn station" style="background-color: lightgreen;" id="autoManual"
                     data-bind="text: autoManual">
                 </button>
-                <a href="mainWindow-v2.html">
+                <!-- <a href="mainWindow.html">
                     <img src="../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-                </a>
+                </a> -->
             </div>
 
             <div class="col-6">
@@ -39,7 +39,7 @@
 
             <div class="col-sm-4">
                 <button type="button" class="btn station" style="background-color: #31BA63;"
-                    onclick="window.location.href='timeWindow-v2.html'">
+                    onclick="window.location.href='timeWindow.html'">
                     LL1
                 </button>
             </div>
@@ -107,6 +107,18 @@
             </div>
         </div>
 
+        <!-- Footer -->
+        <div class="row">
+            <span>
+                <a href="detailWindow.html">
+                    <img src="../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+                </a>
+                <a href="mainWindow.html">
+                    <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+                </a>
+            </span>
+        </div>
+
     </div>
 
     <!-- Optional JavaScript -->
@@ -123,10 +135,10 @@
         const electron = require('electron');
         const { ipcRenderer } = electron;
         const { CHANNELS } = require('../helpers/environments');
-        const STATIONS = require('../data/stations');
+        const STATION1 = require('../data/station1');
         const Store = require('electron-store');
         const store = new Store();
-        const keys = STATIONS[0].storedKeys;
+        const keys = STATION1.storedKeys;
 
         const greenColor = {
             'background-color': 'green'
@@ -213,7 +225,7 @@
             };
 
             document.getElementById('autoManual').onclick = () => {
-                const autoManual = store.get(STATIONS[0].storedKeys.autoManual);
+                const autoManual = store.get(STATION1.storedKeys.autoManual);
                 console.log('auto manual', autoManual);
                 if (autoManual) {
                     ipcRenderer.send(CHANNELS.setAutoManual, false);

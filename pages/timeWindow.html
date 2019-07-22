@@ -15,6 +15,15 @@
         .station-longer {
             width: 300px;
         }
+
+        .time-border {
+            border: 2px solid gray;
+            border-radius: 5px;
+        }
+
+        .col-4 input {
+            background-color: #FCCBA1;
+        }
     </style>
 </head>
 
@@ -24,9 +33,7 @@
         <div class="row header-row">
             <div class="col-6">
                 <h1 class="header" style="text-align: left; margin: 0px;">
-                    LL1 <a href="mainWindow-v2.html">
-                        <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-                    </a>
+                    LL1
                 </h1>
 
             </div>
@@ -34,8 +41,8 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn station" style="padding: 0px" id="pcEdit"
-                            data-bind="text: pcEdit"></button>
+                        <!-- <button type="button" class="btn station" style="padding: 0px" id="pcEdit"
+                            data-bind="text: pcEdit"></button> -->
                     </div>
                     <div class="col-6">
                         <div class="footer" style="margin-top: 0px" data-bind="text: time">
@@ -46,56 +53,35 @@
             </div>
         </div>
 
+        <!-- Time On Off -->
         <div class="row">
-            <div class="col-6" style="background-color: lightgreen;">
+            <div class="col-6 time-border" style="background-color: lightgreen;">
                 Time On
             </div>
-            <div class="col-6" style="background-color: yellow;">
+            <div class="col-6 time-border" style="background-color: yellow;">
                 Time Off
             </div>
             <!-- <div class="col2"></div> -->
         </div>
 
+        <!-- Row 1 -->
         <div class="row">
+            <div class="col-1">
+                <div class="row" style="padding-left: 15px; padding-top: 10px;">1</div>
+            </div>
+
             <!-- Detail 1 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-6" style="padding-right: 0px">
-                        <input type="text" class="form-control" placeholder="HH" id="step1setOnHH">
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="HH" id="step1setOnHH" d
+                            data-bind="value: step1OnHH">
                     </div>
-                    <div class="col-6" style="padding-left: 0px">
-                        <input type="text" class="form-control" placeholder="MM" id="step1setOnMM">
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="MM" id="step1setOnMM"
+                            data-bind="value: step1OnMM">
                     </div>
-                </div>
-            </div>
-
-            <!-- Detail 2 -->
-            <div class="col-5">
-                <div class="row">
-                    <div class="col-6" style="padding-right: 0px">
-                        <input type="text" class="form-control" placeholder="HH" id="step1setOffHH">
-                    </div>
-                    <div class="col-6" style="padding-left: 0px">
-                        <input type="text" class="form-control" placeholder="MM" id="step1setOffMM">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-2" style="padding: 0px">
-                <button type="button" class="btn station"
-                    style="padding: 0px; margin-top: 15px; height: 35px; background-color: white;"
-                    id="save">Save</button>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 0px;">
-            <!-- Detail 1 -->
-            <div class="col-5">
-                <div class="row">
-                    <div class="col-6" style="padding-right: 0px">
-                        <input type="text" class="form-control" placeholder="HH" data-bind="value: step1OnHH">
-                    </div>
-                    <div class="col-6" style="padding-left: 0px">
+                    <div class="col-4" style="padding-left: 5px">
                         <input type="text" class="form-control" placeholder="MM" data-bind="value: step1OnMM">
                     </div>
                 </div>
@@ -104,14 +90,140 @@
             <!-- Detail 2 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-6" style="padding-right: 0px">
-                        <input type="text" class="form-control" placeholder="HH" data-bind="value: step1OffHH">
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="HH">
                     </div>
-                    <div class="col-6" style="padding-left: 0px">
-                        <input type="text" class="form-control" placeholder="MM" data-bind="value: step1OffMM">
+                    <div class="col-4" style="padding-right: 5px;">
+                        <input type="text" class="form-control" placeholder="MM">
+                    </div>
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="SS">
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="row" style="margin-top: 0px">
+            <div class="col-1">
+                <div class="row" style="padding-left: 15px; padding-top: 10px;">2</div>
+            </div>
+
+            <!-- Detail 1 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="HH">
+                    </div>
+                    <div class="col-4" style="padding-left: 5px;">
+                        <input type="text" class="form-control" placeholder="MM">
+                    </div>
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="SS">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail 2 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="HH">
+                    </div>
+                    <div class="col-4" style="padding-right: 5px;">
+                        <input type="text" class="form-control" placeholder="MM">
+                    </div>
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="SS">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="row" style="margin-top: 0px">
+            <div class="col-1">
+                <div class="row" style="padding-left: 15px; padding-top: 10px;">3</div>
+            </div>
+
+            <!-- Detail 1 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="HH">
+                    </div>
+                    <div class="col-4" style="padding-left: 5px;">
+                        <input type="text" class="form-control" placeholder="MM">
+                    </div>
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="SS">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail 2 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="HH">
+                    </div>
+                    <div class="col-4" style="padding-right: 5px;">
+                        <input type="text" class="form-control" placeholder="MM">
+                    </div>
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="SS">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="row" style="margin-top: 0px">
+            <div class="col-1">
+                <div class="row" style="padding-left: 15px; padding-top: 10px;">4</div>
+            </div>
+
+            <!-- Detail 1 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="HH">
+                    </div>
+                    <div class="col-4" style="padding-left: 5px;">
+                        <input type="text" class="form-control" placeholder="MM">
+                    </div>
+                    <div class="col-4" style="padding-left: 5px">
+                        <input type="text" class="form-control" placeholder="SS">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail 2 -->
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="HH">
+                    </div>
+                    <div class="col-4" style="padding-right: 5px;">
+                        <input type="text" class="form-control" placeholder="MM">
+                    </div>
+                    <div class="col-4" style="padding-right: 5px">
+                        <input type="text" class="form-control" placeholder="SS">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="row">
+            <span>
+                <a href="llWindow.html">
+                    <img src="../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+                </a>
+                <a href="mainWindow.html">
+                    <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+                </a>
+            </span>
         </div>
 
     </div>
@@ -128,10 +240,10 @@
         const electron = require('electron');
         const { ipcRenderer } = electron;
         const { CHANNELS } = require('../helpers/environments');
-        const STATIONS = require('../data/stations');
+        const STATION1 = require('../data/station1');
         const Store = require('electron-store');
         const store = new Store();
-        const keys = STATIONS[0].storedKeys;
+        const keys = STATION1.storedKeys;
 
         const greenColor = {
             'background-color': 'green'
@@ -148,11 +260,11 @@
                 this.time = ko.observable('Reading...');
                 this.S1Style = ko.observable(redColor);
                 this.S1_1Style = ko.observable(redColor);
-                this.step1OnHH = ko.observable(0);
-                this.step1OnMM = ko.observable(0);
+                this.step1OnHH = ko.observable('');
+                this.step1OnMM = ko.observable('');
                 this.step1OffHH = ko.observable(0);
                 this.step1OffMM = ko.observable(0);
-                this.pcEdit = ko.observable('PC Edit');
+                // this.pcEdit = ko.observable('PC Edit');
             }
 
             // Activates knockout.js
@@ -178,15 +290,6 @@
                 vm.step1OnMM(onMM);
                 vm.step1OffHH(offHH);
                 vm.step1OffMM(offMM);
-            });
-
-            ipcRenderer.on(CHANNELS.canEdit, (e, canEdit) => {
-                console.log(canEdit);
-                if (canEdit) {
-                    vm.pcEdit('PC Edit');
-                } else {
-                    vm.pcEdit('HMI Edit');
-                }
             });
         };
 
@@ -225,44 +328,17 @@
                 console.log(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
                 ipcRenderer.send(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
             });
-
-            $('#pcEdit').click(() => {
-                const canEdit = store.get(STATIONS[0].storedKeys.canEdit);
-                console.log(canEdit);
-                if (!canEdit) {
-                    ipcRenderer.send(CHANNELS.setCanEdit, '');
-                }
-            });
         };
 
         // Show when ready
         $(document).ready(() => {
             $('body').show();
+
+            _startViewModel();
+            _getFromStore();
+            _readStreaming();
+            _buttonClick();
         });
-
-        // Init pc can edit
-        const initPCEdit = () => { // Init get datetime
-            const canEdit = store.get(keys.canEdit);
-            console.log('can Edit', canEdit);
-            if (canEdit) {
-                vm.pcEdit('PC Edit');
-            } else {
-                vm.pcEdit('HMI Edit');
-            }
-        }
-        initPCEdit();
-
-
-        // On Click
-
-
-
-        // document.getElementById('save').onclick = () => {
-        //     // ipcRenderer.send(CHANNELS.ll1On, true);
-        // };
-
-
-
 
     </script>
 
