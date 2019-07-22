@@ -1,6 +1,6 @@
 const { ipcMain } = require('electron');
-const { CHANNELS, SCANTIME } = require('./environments');
-const STATIONS = require('../data/stations');
+const { CHANNELS, SCANTIME } = require('../environments');
+const STATIONS = require('../../data/station1');
 
 const Store = require('electron-store');
 const store = new Store();
@@ -9,11 +9,11 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
-module.exports = (connections, mainWindow) => {
+module.exports = (NODE, mainWindow) => {
 
     // Button Click
     ipcMain.on(CHANNELS.ll1On, (e, status) => {
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         const dateTime = STATIONS[0].dateTime;
         const step1 = dateTime.step1;
 
@@ -45,7 +45,7 @@ module.exports = (connections, mainWindow) => {
     });
 
     ipcMain.on(CHANNELS.ll1Off, (e, status) => {
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         node.conn.writeItems(STATIONS[0].bits.ll1Off, true, (anythingBad) => {
             this.doneReading = true;
             node.conn.writeItems(STATIONS[0].bits.ll1Off, false,  (anythingBad) => {
@@ -55,7 +55,7 @@ module.exports = (connections, mainWindow) => {
     });
 
     ipcMain.on(CHANNELS.ll2On, (e, status) => {
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         node.conn.writeItems(STATIONS[0].bits.ll2On, true, node.valuesWritten);
         setTimeout(() => {
             node.conn.writeItems(STATIONS[0].bits.ll2On, false, node.valuesWritten);
@@ -64,7 +64,7 @@ module.exports = (connections, mainWindow) => {
 
     ipcMain.on(CHANNELS.ll2Off, (e, status) => {
         console.log(status);
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         node.conn.writeItems(STATIONS[0].bits.ll2Off, true, node.valuesWritten);
         setTimeout(() => {
             node.conn.writeItems(STATIONS[0].bits.ll2Off, false, node.valuesWritten);
@@ -72,7 +72,7 @@ module.exports = (connections, mainWindow) => {
     });
     
     ipcMain.on(CHANNELS.ll3On, (e, status) => {
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         node.conn.writeItems(STATIONS[0].bits.ll3On, true, node.valuesWritten);
         setTimeout(() => {
             node.conn.writeItems(STATIONS[0].bits.ll3On, false, node.valuesWritten);
@@ -81,7 +81,7 @@ module.exports = (connections, mainWindow) => {
 
     ipcMain.on(CHANNELS.ll3Off, (e, status) => {
         console.log(status);
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         node.conn.writeItems(STATIONS[0].bits.ll3Off, true, node.valuesWritten);
         setTimeout(() => {
             node.conn.writeItems(STATIONS[0].bits.ll3Off, false, node.valuesWritten);
@@ -90,7 +90,7 @@ module.exports = (connections, mainWindow) => {
 
     // Save
     ipcMain.on(CHANNELS.step1save, (e, step1OnHH, step1OnMM, step1OffHH, step1OffMM) => {
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         const dateTime = STATIONS[0].dateTime;
         const step1 = dateTime.step1;
 
@@ -160,7 +160,7 @@ module.exports = (connections, mainWindow) => {
 
     // Set can edit on
     ipcMain.on(CHANNELS.setCanEdit, (e, status) => {
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         const dateTime = STATIONS[0].dateTime;
         const step1 = dateTime.step1;
         console.log('set can edit');
@@ -186,7 +186,7 @@ module.exports = (connections, mainWindow) => {
     ipcMain.on(CHANNELS.setAutoManual, (e, autoManual) => {
         console.log(autoManual);
 
-        const node = connections[STATIONS[0].id];
+        const node = NODE[STATIONS[0].id];
         const dateTime = STATIONS[0].dateTime;
         const step1 = dateTime.step1;
         console.log('set can edit', step1.setAutoManual, autoManual);
