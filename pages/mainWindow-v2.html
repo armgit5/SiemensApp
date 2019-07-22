@@ -66,35 +66,34 @@
       <div class="col-4">
       </div>
     </div>
+  </div>
 
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script src="../helpers/knockout.js"></script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script>window.$ = window.jQuery = require('jquery');</script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- IPC script -->
+  <script>
+    const electron = require('electron');
+    const { ipcRenderer } = electron;
+    const { CHANNELS } = require('../helpers/environments');
+    const STATION1 = require('../data/station1');
+    const Store = require('electron-store');
+    const store = new Store();
+    const keys = STATION1.storedKeys;
+    
+    const greenColor = {
+      'background-color': 'green'
+    };
+    const redColor = {
+      'background-color': 'red'
+    };
 
-    <!-- Knockout -->
-    <script src="../helpers/knockout.js"></script>
-
-    <!-- IPC script -->
-    <script>
-      const electron = require('electron');
-      const { ipcRenderer } = electron;
-      const { CHANNELS } = require('../helpers/environments');
-      const STATION1 = require('../data/station1');
-      const Store = require('electron-store');
-      const store = new Store();
-      const keys =  STATION1.storedKeys;
-
-      const greenColor = {
-        'background-color': 'green'
-      };
-
-      const redColor = {
-        'background-color': 'red'
-      };
-
+    // Start View Model
+    const _startViewModel = () => {
 
       // Knockout functions
       function AppViewModel() {
@@ -109,22 +108,24 @@
       const vm = new AppViewModel();
       ko.applyBindings(vm);
 
+    }
 
-      const getHeaderDatetime = () => {
-        const headerDatetime = store.get(keys.headerDatetime);
-        vm.time(headerDatetime);
-      }
-      getHeaderDatetime();
+    // Get from store
+    const _getFromStore = () => {
+      const headerDatetime = store.get(keys.headerDatetime);
+      vm.time(headerDatetime);
+    };
 
-      
+    // Read streaming
+    const _readStreaming = () => {
 
+      // Date time streaming
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
-        console.log()
         vm.time(datetime);
       });
 
+      // Online status streaming
       ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-        console.log(id, status);
         if (id === 'N1') {
           if (status === true) {
             vm.S1Style(greenColor);
@@ -134,13 +135,20 @@
         }
       });
 
-      // Show when ready
-      $(document).ready(() => {
-        $('body').show();
-        // ipcRenderer.send(CHANNELS.onNewStation, 1); // Send station id
-      });
+    };
 
-    </script>
+    // Show when ready
+    $(document).ready(() => {
+      $('body').show();
+      // Send station id to init connection
+      ipcRenderer.send(CHANNELS.onNewStation, 1);
+
+      _startViewModel();
+      _getFromStore();
+      _readStreaming();
+    });
+
+  </script>
 
 </body>
 
