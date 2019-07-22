@@ -11,7 +11,7 @@ const readHelper = require('../readHelper');
 module.exports = (NODE, mainWindow) => {
 
     // Button Click
-    ipcMain.on(CHANNELS.ll1On, (e, status) => {
+    ipcMain.on(CHANNELS.ll1On, (e, _) => {
 
         writeHelper(NODE, STATION1.bits.ll1On, true)
             .then(_ => {
