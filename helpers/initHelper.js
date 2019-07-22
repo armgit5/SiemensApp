@@ -3,7 +3,7 @@ module.exports = (NODE) => {
         NODE.conn.initiateConnection({ port: 102, host: NODE.ip, rack: 0, slot: 1 }, (err) => {
             if (typeof (err) !== "undefined") {
                 console.log('not connected', err);
-                NODE.isOnline = true;
+                NODE.isOnline = false;
             } else {
                 console.log('connected');
                 NODE.isOnline = true;
