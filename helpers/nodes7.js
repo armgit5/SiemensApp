@@ -3,24 +3,23 @@ const Node = require('./node');
 const { CHANNELS, SCANTIME } = require('./environments');
 const STATION1 = require('../data/station1');
 
-const NODE; // Hold node connection
+let NODE; // Hold node connection
 let STATION_ID = 0;
 
 module.exports = (mainWindow) => {
 
     const _addStation1DatetimeReadList = () => { // Will be used on every page
-        const dateTime = STATION1.dateTime;
-        const dateTimeHeader = dateTime.header;
+        const datetime = STATION1.datetime;
+        const datetimeHeader = datetime.header;
 
-        NODE.conn.addItems(dateTimeHeader.date);
-        NODE.conn.addItems(dateTimeHeader.month);
-        NODE.conn.addItems(dateTimeHeader.year);
-        NODE.conn.addItems(dateTimeHeader.minute);
-        NODE.conn.addItems(dateTimeHeader.hour);
+        NODE.conn.addItems(datetimeHeader.date);
+        NODE.conn.addItems(datetimeHeader.month);
+        NODE.conn.addItems(datetimeHeader.year);
+        NODE.conn.addItems(datetimeHeader.minute);
+        NODE.conn.addItems(datetimeHeader.hour);
     }
 
     const _initNode = () => {
-        INTERVALS.forEach(clearInterval); // Clear interval
         NODE = null; // Clear node to kill old connection
 
         // Init station 1

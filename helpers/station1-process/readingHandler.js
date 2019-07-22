@@ -1,7 +1,6 @@
 const { ipcMain } = require('electron');
-const Node = require('./NODE');
-const { CHANNELS, SCANTIME } = require('./environments');
-const STATION1 = require('../data/station1');
+const { CHANNELS, SCANTIME } = require('../environments');
+const STATION1 = require('../../data/station1');
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
@@ -14,9 +13,9 @@ module.exports = (NODE) => {
 
     // Private functions
     const _addToReadList = () => {
-        const dateTime = STATION1.dateTime;
-        const dateTimeHeader = dateTime.header;
-        const step1 = dateTime.step1;
+        const datetime = STATION1.datetime;
+        const datetimeHeader = datetime.header;
+        const step1 = datetime.step1;
 
         // Add Header Datetime
         NODE.conn.addItems(step1.onHH);
@@ -50,7 +49,7 @@ module.exports = (NODE) => {
                 // Check for data change
                 if (JSON.stringify(cacheData) !== JSON.stringify(data)) {
                     cacheData = data;
-                    const header = station.dateTime.header;
+                    const header = station.datetime.header;
                     const date = data[header.date];
                     const month = data[header.month];
                     const year = data[header.year];
@@ -92,8 +91,8 @@ module.exports = (NODE) => {
     const _getCanEditStream = () => {
         const station = STATION1;
         const NODE = CONNECTION[station.id];
-        const dateTime = STATION1.dateTime;
-        const step1 = dateTime.step1;
+        const datetime = STATION1.datetime;
+        const step1 = datetime.step1;
 
         const canEditInterval = setInterval(() => {
             // Check if M300.3 is on or not
@@ -119,8 +118,8 @@ module.exports = (NODE) => {
     const _getAutoManualStream = () => {
         const station = STATION1;
         const NODE = CONNECTION[station.id];
-        const dateTime = STATION1.dateTime;
-        const step1 = dateTime.step1;
+        const datetime = STATION1.datetime;
+        const step1 = datetime.step1;
 
         const autoManualInterval = setInterval(() => {
             // Check if M300.3 is on or not
@@ -142,7 +141,7 @@ module.exports = (NODE) => {
     };
 
     const main = () => {
-
+        INTERVALS.forEach(clearInterval); // Clear interval
     };
 
     main();

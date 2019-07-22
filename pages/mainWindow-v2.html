@@ -91,6 +91,7 @@
     const redColor = {
       'background-color': 'red'
     };
+    let vm;
 
     // Start View Model
     const _startViewModel = () => {
@@ -105,7 +106,7 @@
       }
 
       // Activates knockout.js
-      const vm = new AppViewModel();
+      vm = new AppViewModel();
       ko.applyBindings(vm);
 
     }
