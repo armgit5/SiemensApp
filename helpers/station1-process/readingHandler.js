@@ -1,6 +1,7 @@
 const { ipcMain } = require('electron');
 const { CHANNELS, SCANTIME } = require('../environments');
 const STATION1 = require('../../data/station1');
+const readHelper = require('../readHelper');
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
@@ -13,9 +14,7 @@ module.exports = (NODE) => {
 
     // Private functions
     const _addToReadList = () => {
-        const datetime = STATION1.datetime;
-        const datetimeHeader = datetime.header;
-        const step1 = datetime.step1;
+        const step1 = STATION1.datetime.step1;
 
         // Add Header Datetime
         NODE.conn.addItems(step1.onHH);
@@ -38,31 +37,32 @@ module.exports = (NODE) => {
 
     const _getSteamDateTime = () => {
         const station = STATION1;
-        const NODE = CONNECTION[station.id];
         const keys = STATION1.storedKeys;
 
         let cacheData = null;
         // Run Loop
         const datetimeInterval = setInterval(() => {
-            NODE.conn.readAllItems((err, data) => {
+            readHelper(NODE)
+                .then(data => {
+                    if (JSON.stringify(cacheData) !== JSON.stringify(data)) {
+                        cacheData = data;
+                        const header = station.datetime.header;
+                        const date = data[header.date];
+                        const month = data[header.month];
+                        const year = data[header.year];
+                        const hour = data[header.hour];
+                        const minute = data[header.minute];
+                        // console.log(data);
+                        const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
+                        mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
 
-                // Check for data change
-                if (JSON.stringify(cacheData) !== JSON.stringify(data)) {
-                    cacheData = data;
-                    const header = station.datetime.header;
-                    const date = data[header.date];
-                    const month = data[header.month];
-                    const year = data[header.year];
-                    const hour = data[header.hour];
-                    const minute = data[header.minute];
-                    // console.log(data);
-                    const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
-                    mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
-
-                    // Save datetime
-                    store.set(keys.headerDatetime, outputDatetime);
-                }
-            });
+                        // Save datetime
+                        store.set(keys.headerDatetime, outputDatetime);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }, SCANTIME);
         INTERVALS.push(datetimeInterval);
     };
@@ -142,6 +142,8 @@ module.exports = (NODE) => {
 
     const main = () => {
         INTERVALS.forEach(clearInterval); // Clear interval
+
+        _addToReadList();
     };
 
     main();
