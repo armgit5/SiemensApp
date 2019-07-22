@@ -15,8 +15,7 @@ module.exports = class Node {
         this.conn.initiateConnection({ port: 102, host: this.ip, rack: 0, slot: 1 }, (err) => {
             if (typeof (err) !== "undefined") {
                 // We have an error.  Maybe the PLC is not reachable.
-                console.log(err);
-                console.log('not connected');
+                console.log('not connected', err);
                 this.isOnline = false;
             } else {
                 console.log('connected');
@@ -25,7 +24,7 @@ module.exports = class Node {
                 }
                 this.isOnline = true;
             }
-        }); // slot 2 for 300/400, slot 1 for 1200/1500
+        });
     }
 
 

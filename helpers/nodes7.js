@@ -27,6 +27,10 @@ module.exports = (mainWindow) => {
             NODE = new Node(STATION1.id, STATION1.ip);
             _addStation1DatetimeReadList();
             require('./station1-process/readingHandler')(NODE, mainWindow);
+
+            setTimeout(() => {
+                console.log('Station 1 online ', NODE.isOnline);
+            }, 5000);
         }
     };
 
