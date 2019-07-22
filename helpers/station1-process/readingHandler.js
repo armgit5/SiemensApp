@@ -10,7 +10,7 @@ const store = new Store();
 
 const INTERVALS = [];
 
-module.exports = (NODE) => {
+module.exports = (NODE, mainWindow) => {
 
     // Private functions
     const _addToReadList = () => {
@@ -35,7 +35,7 @@ module.exports = (NODE) => {
         NODE.conn.addItems(STATION1.bits.ll1isOn);
     };
 
-    const _getSteamDateTime = () => {
+    const _getStreamDateTime = () => {
         const station = STATION1;
         const keys = STATION1.storedKeys;
 
@@ -54,14 +54,15 @@ module.exports = (NODE) => {
                         const minute = data[header.minute];
                         // console.log(data);
                         const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
-                        mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
-
-                        // Save datetime
-                        store.set(keys.headerDatetime, outputDatetime);
+                        mainWindow.webContents.send(CHANNELS.datetime, outputDatetime); // Send to channel                        
+                        store.set(keys.headerDatetime, outputDatetime); // Save datetime
                     }
                 })
                 .catch(err => {
                     console.log(err);
+                    const errMessage = 'Reading...';
+                    mainWindow.webContents.send(CHANNELS.datetime, errMessage); // Send to channel
+                    store.set(keys.headerDatetime, errMessage); // Save datetime
                 });
         }, SCANTIME);
         INTERVALS.push(datetimeInterval);
@@ -76,13 +77,6 @@ module.exports = (NODE) => {
             mainWindow.webContents.send(CHANNELS.onlineStatus, NODE.id, NODE.isOnline);
         }, SCANTIME);
         INTERVALS.push(onlineStatusInterval);
-    }
-
-    const _streamDateTime = () => {
-        // Run program
-        setInterval(() => {
-            mainWindow.webContents.send(CHANNELS.datetime, _getHrMin());
-        }, SCANTIME);
     }
 
     // Can Edit Status
@@ -144,6 +138,7 @@ module.exports = (NODE) => {
         INTERVALS.forEach(clearInterval); // Clear interval
 
         _addToReadList();
+        _getStreamDateTime();
     };
 
     main();

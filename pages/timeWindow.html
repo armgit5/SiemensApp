@@ -25,8 +25,8 @@
             <div class="col-6">
                 <h1 class="header" style="text-align: left; margin: 0px;">
                     LL1 <a href="mainWindow-v2.html">
-                            <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-                          </a>
+                        <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+                    </a>
                 </h1>
 
             </div>
@@ -34,7 +34,8 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn station" style="padding: 0px" id="pcEdit" data-bind="text: pcEdit"></button>
+                        <button type="button" class="btn station" style="padding: 0px" id="pcEdit"
+                            data-bind="text: pcEdit"></button>
                     </div>
                     <div class="col-6">
                         <div class="footer" style="margin-top: 0px" data-bind="text: time">
@@ -113,41 +114,35 @@
             </div>
         </div>
 
+    </div>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../helpers/knockout.js"></script>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script>window.$ = window.jQuery = require('jquery');</script>
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- IPC script -->
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+        const { CHANNELS } = require('../helpers/environments');
+        const STATIONS = require('../data/stations');
+        const Store = require('electron-store');
+        const store = new Store();
+        const keys = STATIONS[0].storedKeys;
 
-        <!-- Knockout -->
-        <script src="../helpers/knockout.js"></script>
+        const greenColor = {
+            'background-color': 'green'
+        };
+        const redColor = {
+            'background-color': 'red'
+        };
+        let vm;
 
-        <!-- IPC script -->
-        <script>
-            const electron = require('electron');
-            const { ipcRenderer } = electron;
-            const { CHANNELS } = require('../helpers/environments');
-            const STATIONS = require('../data/stations');
-            const Store = require('electron-store');
-            const store = new Store();
-            const keys = STATIONS[0].storedKeys;
-
-            const greenColor = {
-                'background-color': 'green'
-            };
-
-            const redColor = {
-                'background-color': 'red'
-            };
-
-            // Show when ready
-            $(document).ready(() => {
-                $('body').show();
-            });
-
-
+        // Start View Model
+        const _startViewModel = () => {
             // Knockout functions
             function AppViewModel() {
                 this.time = ko.observable('Reading...');
@@ -161,45 +156,41 @@
             }
 
             // Activates knockout.js
-            const vm = new AppViewModel();
+            vm = new AppViewModel();
             ko.applyBindings(vm);
+        };
 
-            const getHeaderDatetime = () => { // Init get datetime
-                const headerDatetime = store.get(keys.headerDatetime);
-                vm.time(headerDatetime);
-            }
-            getHeaderDatetime();
+        // Get from store
+        const _getFromStore = () => {
+            const headerDatetime = store.get(keys.headerDatetime);
+            vm.time(headerDatetime);
+        };
 
-            // Init pc can edit
-            const initPCEdit = () => { // Init get datetime
-                const canEdit = store.get(keys.canEdit);
-                console.log('can Edit', canEdit);
+        // Read streaming
+        const _readStreaming = () => {
+            ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+                vm.time(datetime);
+            });
+
+            ipcRenderer.on(CHANNELS.readStep1AfterSave, (e, onHH, onMM, offHH, offMM) => {
+                console.log(onHH, onMM, offHH, offMM);
+                vm.step1OnHH(onHH);
+                vm.step1OnMM(onMM);
+                vm.step1OffHH(offHH);
+                vm.step1OffMM(offMM);
+            });
+
+            ipcRenderer.on(CHANNELS.canEdit, (e, canEdit) => {
+                console.log(canEdit);
                 if (canEdit) {
                     vm.pcEdit('PC Edit');
                 } else {
                     vm.pcEdit('HMI Edit');
                 }
-            }
-            initPCEdit();
-
-            ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
-                vm.time(datetime);
             });
+        };
 
-            ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-                // console.log(id, status);
-                if (id === 'N1') {
-                    if (status === true) {
-                        vm.S1Style(greenColor);
-                    } else {
-                        vm.S1Style(redColor);
-                    }
-                }
-            });
-
-
-            // On Click
-
+        const _buttonClick = () => {
             let step1setOnHH = 0;
             let step1setOnMM = 0;
             let step1setOffHH = 0;
@@ -229,9 +220,6 @@
                 // console.log(MM);
             });
 
-            // document.getElementById('save').onclick = () => {
-            //     // ipcRenderer.send(CHANNELS.ll1On, true);
-            // };
             $('#save').click(() => {
                 console.log('save');
                 console.log(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
@@ -245,27 +233,38 @@
                     ipcRenderer.send(CHANNELS.setCanEdit, '');
                 }
             });
+        };
 
-            ipcRenderer.on(CHANNELS.readStep1AfterSave, (e, onHH, onMM, offHH, offMM) => {
-                console.log(onHH, onMM, offHH, offMM);
-                vm.step1OnHH(onHH);
-                vm.step1OnMM(onMM);
-                vm.step1OffHH(offHH);
-                vm.step1OffMM(offMM);
-            });
+        // Show when ready
+        $(document).ready(() => {
+            $('body').show();
+        });
 
-            ipcRenderer.on(CHANNELS.canEdit, (e, canEdit) => {
-                console.log(canEdit);
-                if (canEdit) {
-                    vm.pcEdit('PC Edit');
-                } else {
-                    vm.pcEdit('HMI Edit');
-                }
-            });
+        // Init pc can edit
+        const initPCEdit = () => { // Init get datetime
+            const canEdit = store.get(keys.canEdit);
+            console.log('can Edit', canEdit);
+            if (canEdit) {
+                vm.pcEdit('PC Edit');
+            } else {
+                vm.pcEdit('HMI Edit');
+            }
+        }
+        initPCEdit();
+
+
+        // On Click
 
 
 
-        </script>
+        // document.getElementById('save').onclick = () => {
+        //     // ipcRenderer.send(CHANNELS.ll1On, true);
+        // };
+
+
+
+
+    </script>
 
 </body>
 

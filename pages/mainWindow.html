@@ -99,9 +99,7 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('Reading...');
-
         this.S1Style = ko.observable(redColor);
-
         this.S1_1Style = ko.observable(redColor);
       }
 
@@ -123,6 +121,11 @@
       // Date time streaming
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
         vm.time(datetime);
+        // if (datetime.includes('BAD')) {
+        //   vm.time('Cannot read datetime');
+        // } else {
+        //   vm.time(datetime);
+        // }
       });
 
       // Online status streaming

@@ -55,13 +55,21 @@ module.exports = (NODE, mainWindow) => {
     });
 
     ipcMain.on(CHANNELS.ll1Off, (e, status) => {
-        const NODE = NODE[STATION1.id];
-        NODE.conn.writeItems(STATION1.bits.ll1Off, true, (anythingBad) => {
-            this.doneReading = true;
-            NODE.conn.writeItems(STATION1.bits.ll1Off, false,  (anythingBad) => {
-                this.doneReading = true;
+        writeHelper(NODE, STATION1.bits.ll1Off, true)
+            .then(_ => {
+                return writeHelper(NODE, STATION1.bits.ll1On, false);
+            })
+            .then(_ => {
+            })
+            .catch(err => {
+                console.log(err);
             });
-        });
+        // NODE.conn.writeItems(STATION1.bits.ll1Off, true, (anythingBad) => {
+        //     this.doneReading = true;
+        //     NODE.conn.writeItems(STATION1.bits.ll1Off, false,  (anythingBad) => {
+        //         this.doneReading = true;
+        //     });
+        // });
     });
 
     ipcMain.on(CHANNELS.ll2On, (e, status) => {
@@ -99,73 +107,73 @@ module.exports = (NODE, mainWindow) => {
     });
 
     // Save
-    ipcMain.on(CHANNELS.step1save, (e, step1OnHH, step1OnMM, step1OffHH, step1OffMM) => {
+    ipcMain.on(CHANNELS.step1save, (e, onHH, onMM, offHH, offMM) => {
         const NODE = NODE[STATION1.id];
         const dateTime = STATION1.dateTime;
         const step1 = dateTime.step1;
 
-        console.log(step1OnHH, step1OnMM, step1OffHH, step1OffMM);
+        console.log(onHH, onMM, offHH, offMM);
 
         // Check if M300.3 is on or not
         const canEdit = store.get(STATION1.storedKeys.canEdit);
 
-        NODE.conn.writeItems(step1.setPlcEdit, true, (anythingBad) => { // Set Plc Edit true
-            if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-            this.doneWriting = true;
+        // NODE.conn.writeItems(step1.setPlcEdit, true, (anythingBad) => { // Set Plc Edit true
+        //     if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //     this.doneWriting = true;
 
-            NODE.conn.writeItems(step1.setOnHH, step1OnHH, (anythingBad) => { // On HH
-                if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                this.doneWriting = true;
+        //     NODE.conn.writeItems(step1.setOnHH, onHH, (anythingBad) => { // On HH
+        //         if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //         this.doneWriting = true;
                 
-                NODE.conn.writeItems(step1.setOnMM, step1OnMM, (anythingBad) => { // On MM
-                    if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                    this.doneWriting = true;
+        //         NODE.conn.writeItems(step1.setOnMM, onMM, (anythingBad) => { // On MM
+        //             if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //             this.doneWriting = true;
     
-                    NODE.conn.writeItems(step1.setOffHH, step1OffHH, (anythingBad) => { // Off HH
-                        if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                        this.doneWriting = true;
+        //             NODE.conn.writeItems(step1.setOffHH, offHH, (anythingBad) => { // Off HH
+        //                 if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //                 this.doneWriting = true;
         
-                        NODE.conn.writeItems(step1.setOffMM, step1OffMM, (anythingBad) => { // Off MM
-                            if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                            this.doneWriting = true;
+        //                 NODE.conn.writeItems(step1.setOffMM, offMM, (anythingBad) => { // Off MM
+        //                     if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //                     this.doneWriting = true;
                             
-                            NODE.conn.writeItems(step1.save, true, (anythingBad) => { // Save true
-                                if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                                this.doneWriting = true;
+        //                     NODE.conn.writeItems(step1.save, true, (anythingBad) => { // Save true
+        //                         if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //                         this.doneWriting = true;
 
-                                NODE.conn.readAllItems((err, value) => { // Read all
-                                    if (err) console.log('Cannot read');
-                                    this.doneReading = true;
-                                    console.log(value);
-                                    console.log('value ', value[step1.onHH], value[step1.onMM], value[step1.offHH], value[step1.offMM]);
-                                    mainWindow.webContents.send(CHANNELS.readStep1AfterSave, value[step1.onHH], value[step1.onMM], value[step1.offHH], value[step1.offMM]);
-                                });
+        //                         NODE.conn.readAllItems((err, value) => { // Read all
+        //                             if (err) console.log('Cannot read');
+        //                             this.doneReading = true;
+        //                             console.log(value);
+        //                             console.log('value ', value[step1.onHH], value[step1.onMM], value[step1.offHH], value[step1.offMM]);
+        //                             mainWindow.webContents.send(CHANNELS.readStep1AfterSave, value[step1.onHH], value[step1.onMM], value[step1.offHH], value[step1.offMM]);
+        //                         });
                                 
-                                NODE.conn.writeItems(step1.save, false, (anythingBad) => { // // Set Plc Edit false
-                                    if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                                    this.doneWriting = true;
+        //                         NODE.conn.writeItems(step1.save, false, (anythingBad) => { // // Set Plc Edit false
+        //                             if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //                             this.doneWriting = true;
                                     
-                                    NODE.conn.writeItems(step1.setPlcEdit, false, (anythingBad) => { // // Set Save false
-                                        if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                                        this.doneWriting = true;
+        //                             NODE.conn.writeItems(step1.setPlcEdit, false, (anythingBad) => { // // Set Save false
+        //                                 if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //                                 this.doneWriting = true;
                                         
-                                        // NODE.conn.readAllItems((err, value) => { // Read all
-                                        //     this.doneReading = true;
-                                        //     console.log(value);
-                                        // });
-                                    });
+        //                                 // NODE.conn.readAllItems((err, value) => { // Read all
+        //                                 //     this.doneReading = true;
+        //                                 //     console.log(value);
+        //                                 // });
+        //                             });
                                     
-                                });
+        //                         });
                 
-                            });
+        //                     });
             
-                        });
-                    });
-                });
+        //                 });
+        //             });
+        //         });
     
-            });
+        //     });
 
-        });
+        // });
     });
 
     // Set can edit on
