@@ -82,10 +82,10 @@
       const electron = require('electron');
       const { ipcRenderer } = electron;
       const { CHANNELS } = require('../helpers/environments');
-      const STATIONS = require('../data/stations');
+      const STATION1 = require('../data/station1');
       const Store = require('electron-store');
       const store = new Store();
-      const keys =  STATIONS[0].storedKeys;
+      const keys =  STATION1.storedKeys;
 
       const greenColor = {
         'background-color': 'green'
@@ -116,6 +116,8 @@
       }
       getHeaderDatetime();
 
+      
+
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
         console.log()
         vm.time(datetime);
@@ -135,6 +137,7 @@
       // Show when ready
       $(document).ready(() => {
         $('body').show();
+        ipcRenderer.send(CHANNELS.onNewStation, 1); // Send station id
       });
 
     </script>

@@ -1,4 +1,5 @@
 module.exports.CHANNELS = {
+    onNewStation: 'on:new:station',
     datetime: 'datetime:data',
     onlineStatus: 'online:status',
     ll1On: 'll1:On',

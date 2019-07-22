@@ -1,9 +1,7 @@
 const { ipcMain } = require('electron');
-const path = require('path');
-const fs = require('fs');
 const Node = require('./node');
 const { CHANNELS, SCANTIME } = require('./environments');
-const STATIONS = require('../data/stations');
+const STATION1 = require('../data/station1');
 
 const Store = require('electron-store');
 const store = new Store();
@@ -12,15 +10,15 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
-const intervals = [];
+const INTERVALS = [];
 
 module.exports = (mainWindow) => {
     const connections = {}; // Hold nodes connection
 
     // Private functions
     const _addToReadList = () => {
-        const node = connections[STATIONS[0].id];
-        const dateTime = STATIONS[0].dateTime;
+        const node = connections[STATION1.id];
+        const dateTime = STATION1.dateTime;
         const dateTimeHeader = dateTime.header;
         const step1 = dateTime.step1;
 
@@ -46,8 +44,8 @@ module.exports = (mainWindow) => {
         node.conn.addItems(step1.setAutoManual);
 
 
-        node.conn.addItems(STATIONS[0].bits.ll1On);
-        node.conn.addItems(STATIONS[0].bits.ll1isOn)
+        node.conn.addItems(STATION1.bits.ll1On);
+        node.conn.addItems(STATION1.bits.ll1isOn)
         // node.conn.addItems(dateTimeHeader.second);
     };
 
@@ -61,15 +59,15 @@ module.exports = (mainWindow) => {
     };
 
     const _getSteamDateTime = () => {
-        const station = STATIONS[0];
+        const station = STATION1;
         const node = connections[station.id];
-        const keys =  STATIONS[0].storedKeys;
+        const keys = STATION1.storedKeys;
 
         let cacheData = null;
         // Run Loop
         const datetimeInterval = setInterval(() => {
             node.conn.readAllItems((err, data) => {
-                
+
                 // Check for data change
                 if (JSON.stringify(cacheData) !== JSON.stringify(data)) {
                     cacheData = data;
@@ -82,24 +80,24 @@ module.exports = (mainWindow) => {
                     // console.log(data);
                     const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
                     mainWindow.webContents.send(CHANNELS.datetime, outputDatetime);
-                   
+
                     // Save datetime
                     store.set(keys.headerDatetime, outputDatetime);
                 }
             });
         }, SCANTIME);
-        intervals.push(datetimeInterval);
+        INTERVALS.push(datetimeInterval);
     };
 
     const _getStreamOnlineStatus = () => {
-        const station = STATIONS[0];
+        const station = STATION1;
         const node = connections[station.id];
-    
+
         const onlineStatusInterval = setInterval(() => {
             // console.log('is online ', node.id, node.isOnline);
             mainWindow.webContents.send(CHANNELS.onlineStatus, node.id, node.isOnline);
         }, SCANTIME);
-        intervals.push(onlineStatusInterval);
+        INTERVALS.push(onlineStatusInterval);
     }
 
     const _streamDateTime = () => {
@@ -111,11 +109,11 @@ module.exports = (mainWindow) => {
 
     // Can Edit Status
     let canEdit = false;
-    store.set(STATIONS[0].storedKeys.canEdit, false);
+    store.set(STATION1.storedKeys.canEdit, false);
     const _getCanEditStream = () => {
-        const station = STATIONS[0];
+        const station = STATION1;
         const node = connections[station.id];
-        const dateTime = STATIONS[0].dateTime;
+        const dateTime = STATION1.dateTime;
         const step1 = dateTime.step1;
 
         const canEditInterval = setInterval(() => {
@@ -124,25 +122,25 @@ module.exports = (mainWindow) => {
                 if (err) console.log('Cannot read');
                 this.doneReading = true;
                 // console.log(value[step1.canEdit]);
-                // console.log(store.get(STATIONS[0].storedKeys.canEdit));
+                // console.log(store.get(STATION1.storedKeys.canEdit));
                 const canEditResult = value[step1.canEdit];
                 if (canEdit !== canEditResult) {
                     canEdit = canEditResult;
-                    store.set(STATIONS[0].storedKeys.canEdit, canEditResult);
+                    store.set(STATION1.storedKeys.canEdit, canEditResult);
                     mainWindow.webContents.send(CHANNELS.canEdit, canEdit);
                 }
             });
         }, SCANTIME);
-        intervals.push(canEditInterval);
+        INTERVALS.push(canEditInterval);
     };
 
     // Get auto manual
     let autoManual = false;
-    store.set(STATIONS[0].storedKeys.autoManual, false);
+    store.set(STATION1.storedKeys.autoManual, false);
     const _getAutoManualStream = () => {
-        const station = STATIONS[0];
+        const station = STATION1;
         const node = connections[station.id];
-        const dateTime = STATIONS[0].dateTime;
+        const dateTime = STATION1.dateTime;
         const step1 = dateTime.step1;
 
         const autoManualInterval = setInterval(() => {
@@ -155,21 +153,21 @@ module.exports = (mainWindow) => {
                 if (autoManual !== autoManualResult) {
                     console.log(autoManualResult);
                     autoManual = autoManualResult;
-                    store.set(STATIONS[0].storedKeys.autoManual, autoManualResult);
+                    store.set(STATION1.storedKeys.autoManual, autoManualResult);
                     mainWindow.webContents.send(CHANNELS.autoManual, autoManualResult);
                 }
             });
         }, SCANTIME);
 
-        intervals.push(autoManualInterval);
+        INTERVALS.push(autoManualInterval);
     };
 
     // Main Program
     const _initNodes = () => {
-        const node = new Node(STATIONS[0].id, STATIONS[0].ip);
-        connections[STATIONS[0].id] = node;
+        const node = new Node(STATION1.id, STATION1.ip);
+        connections[STATION1.id] = node;
 
-        intervals.forEach(clearInterval);
+        INTERVALS.forEach(clearInterval);
 
         _addToReadList();
         _getSteamDateTime();
@@ -178,8 +176,25 @@ module.exports = (mainWindow) => {
         _getAutoManualStream();
         _streamDateTime();
     };
-    _initNodes();
+    // _initNodes();
+
+    const main = () => {
+        console.log('starting main');
+        // Get station id when page changes
+        let oldStationId = 0;
+        ipcMain.on(CHANNELS.onNewStation, (e, stationId) => {
+            // If new id comes in then kills old connection and start 
+            // new connection to new plc
+            if (stationId !== oldStationId) {
+                oldStationId = stationId;
+            }
+        });
+
+
+    }
+
+    main();
 
     // Receive click callls
-    require('./clickHandler')(connections, mainWindow);
+    // require('./clickHandler')(connections, mainWindow);
 };
