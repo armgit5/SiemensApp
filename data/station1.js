@@ -12,12 +12,12 @@ module.exports = {
     },
     datetime: {
         header: {
-            date: 'MW80',
-            month: 'MW82',
-            year: 'MW84',
-            hour: 'MW86',
-            minute: 'MW88',
-            second: 'MW90',
+            date: 'MW200',
+            month: 'MW202',
+            year: 'MW204',
+            hour: 'MW206',
+            minute: 'MW208',
+            second: 'MW210',
         },
         step1: {
             onHH: 'MW110',
