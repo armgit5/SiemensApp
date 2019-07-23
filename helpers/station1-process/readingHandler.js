@@ -134,11 +134,22 @@ module.exports = (NODE, mainWindow) => {
         INTERVALS.push(autoManualInterval);
     };
 
+
+    const _getTime = () => {
+        const getTime = setInterval(() => {
+            readHelper(NODE).then(data => {
+                console.log('On step1 on hh ', data[STATION1.datetime.step1.onHH]);
+            });
+        }, SCANTIME);
+        INTERVALS.push(getTime);
+    };
+
     const main = () => {
         INTERVALS.forEach(clearInterval); // Clear interval
 
         _addToReadList();
         _getStreamDateTime();
+        _getTime();
     };
 
     main();
