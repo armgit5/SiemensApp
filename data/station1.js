@@ -31,8 +31,8 @@ module.exports = {
             save: 'M300.0',
             setCanEdit: 'M300.1',
             canEdit: 'M300.3',
-            autoManual: 'M160.1',
-            setAutoManual: 'M160.0'
+            autoManual: 'M190.1',
+            setAutoManual: 'M190.0'
         },
         step2: {
             fromHH: 'MW20',

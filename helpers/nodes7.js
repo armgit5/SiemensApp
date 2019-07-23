@@ -32,6 +32,7 @@ module.exports = (mainWindow) => {
             });
             _addStation1DatetimeReadList();
             require('./station1-process/readingHandler')(NODE, mainWindow);
+            require('./station1-process/clickHandler')(NODE, mainWindow);
         }
     };
 

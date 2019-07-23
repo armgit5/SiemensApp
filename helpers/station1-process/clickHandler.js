@@ -13,6 +13,7 @@ module.exports = (NODE, mainWindow) => {
     // Button Click
     ipcMain.on(CHANNELS.ll1On, (e, _) => {
 
+
         writeHelper(NODE, STATION1.bits.ll1On, true)
             .then(_ => {
                 readHelper(NODE).then(data => {
@@ -178,10 +179,6 @@ module.exports = (NODE, mainWindow) => {
 
     // Set can edit on
     ipcMain.on(CHANNELS.setCanEdit, (e, status) => {
-        const NODE = NODE[STATION1.id];
-        const dateTime = STATION1.dateTime;
-        const step1 = dateTime.step1;
-        console.log('set can edit');
         NODE.conn.writeItems(step1.setCanEdit, true, (anythingBad) => { // // Set can edit true
             if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
             this.doneWriting = true;
@@ -202,31 +199,37 @@ module.exports = (NODE, mainWindow) => {
  
     // Set automanual
     ipcMain.on(CHANNELS.setAutoManual, (e, autoManual) => {
-        console.log(autoManual);
+        const step1 = STATION1.datetime.step1;
+        writeHelper(NODE, step1.setAutoManual, true)
+            .then(_ => {
+                return writeHelper(NODE, step1.setAutoManual, false);
+            })
+            .then(_ => {
+                readHelper(NODE).then(data => {
+                    console.log(data);
+                });
+            });
 
-        const NODE = NODE[STATION1.id];
-        const dateTime = STATION1.dateTime;
-        const step1 = dateTime.step1;
-        console.log('set can edit', step1.setAutoManual, autoManual);
-        NODE.conn.writeItems(step1.setAutoManual, true, (anythingBad) => { // // Set can edit true
-            if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-            this.doneWriting = true;
+
+        // NODE.conn.writeItems(step1.setAutoManual, true, (anythingBad) => { // // Set can edit true
+        //     if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //     this.doneWriting = true;
             
-            NODE.conn.readAllItems((anythingBad, values) => { // Read all
-                if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
-                console.log(values);
-                this.doneReading = true;
-                const autoManualResult = values[STATION1.dateTime.step1.autoManual];
-                store.set(STATION1.storedKeys.autoManual, autoManualResult);
-                mainWindow.webContents.send(CHANNELS.autoManual, autoManualResult);
-            });
+        //     NODE.conn.readAllItems((anythingBad, values) => { // Read all
+        //         if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
+        //         console.log(values);
+        //         this.doneReading = true;
+        //         const autoManualResult = values[STATION1.dateTime.step1.autoManual];
+        //         store.set(STATION1.storedKeys.autoManual, autoManualResult);
+        //         mainWindow.webContents.send(CHANNELS.autoManual, autoManualResult);
+        //     });
 
-            NODE.conn.writeItems(step1.setAutoManual, false, (anythingBad) => { // // Set can edit true
-                if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
-                this.doneWriting = true;
+        //     NODE.conn.writeItems(step1.setAutoManual, false, (anythingBad) => { // // Set can edit true
+        //         if (anythingBad) { console.log("CANNOT WRITE!!!!"); }
+        //         this.doneWriting = true;
 
-            });
-        });
+        //     });
+        // });
     }); 
    
 }
