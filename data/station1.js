@@ -20,8 +20,10 @@ module.exports = {
             second: 'MW210',
         },
         step1: {
-            onHH: 'MW110',
+            onHH: 'MW10',
+            onHHTimer: 'M22.0',
             onMM: 'MW112',
+            onMMTimer: 'M22.1',
             offHH: 'MW114',
             offMM: 'MW116',
             setOnHH: 'MW310',
