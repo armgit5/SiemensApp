@@ -10,18 +10,18 @@ const store = new Store();
 
 const INTERVALS = [];
 
-const KEYS = STATION1.storedKEYS;
+const KEYS = STATION1.storedKeys;
 const DATETIME = STATION1.datetime;
 let cachedDatetime = null;
 store.set(KEYS.headerDatetime, 'Reading...');
-let cachedAutoManual = false;
-store.set(KEYS.cachedAutoManual, false);
+let autoManual = false;
+store.set(KEYS.autoManual, false);
 
 module.exports = (NODE, mainWindow) => {
 
     // Private functions
     const _addLL1TimeReadList = () => {
-        const step1 = STATION1.datetime.step1;
+        const step1 = STATION1.datetime.ll1.step1;
 
         // Add Header Datetime
         NODE.conn.addItems(step1.onHH);
@@ -32,7 +32,7 @@ module.exports = (NODE, mainWindow) => {
         NODE.conn.addItems(STATION1.bits.ll1On);
         NODE.conn.addItems(STATION1.bits.ll1isOn);
     };
-    
+
     const _parseDatetime = (data) => {
         const header = DATETIME.header;
         const date = data[header.date];
