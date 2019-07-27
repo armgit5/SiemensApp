@@ -11,11 +11,15 @@ const store = new Store();
 const INTERVALS = [];
 const KEYS = STATION1.storedKeys;
 const DATETIME = STATION1.datetime;
+let LLN = 0;
 
 module.exports = (NODE, mainWindow) => {
 
     // Private functions
-    
+    const _stopIntervals = () => {
+        INTERVALS.forEach(clearInterval); // Clear interval
+    }
+
     // ---- Add to read list ----- //
     const _addAutoManual = () => {
         NODE.conn.addItems(DATETIME.header.autoManual);
@@ -34,6 +38,7 @@ module.exports = (NODE, mainWindow) => {
     };
 
     const _removeLLnTime = (lln) => {
+        // Loop through 4 steps
         for (const i = 1; i <= 4; i++) {
             const key = lln[`step${i}`];
             NODE.conn.removeItems(key.onHH);
@@ -44,6 +49,17 @@ module.exports = (NODE, mainWindow) => {
             NODE.conn.removeItems(key.offSS);
         }
     };
+
+    // Remove if exists
+    const _removeAllLLn = (data) => {
+        // Loop through 3 lln
+        for (const i = 1; i <= 3; i++) {
+            const lln = DATETIME[`ll${i}`];
+            if (data[lln].step1.onHH) {
+                _removeAllLLn(lln);
+            }
+        }
+    }
 
     const _addDatetime = () => { // Will be used on every page
         const datetime = STATION1.datetime;
@@ -58,8 +74,8 @@ module.exports = (NODE, mainWindow) => {
     }
 
     // ----- Parse data ------- //
-    let cachedDatetime = null;
-    store.set(KEYS.headerDatetime, 'Reading...');
+    // let cachedDatetime = null;
+    // store.set(KEYS.headerDatetime, 'Reading...');
     const _parseDatetime = (data) => {
         let outputDatetime = 'Reading...';
 
@@ -76,7 +92,7 @@ module.exports = (NODE, mainWindow) => {
 
         mainWindow.webContents.send(CHANNELS.datetime, outputDatetime); // Send to channel                        
         store.set(KEYS.headerDatetime, outputDatetime); // Save datetime
-        
+
     };
 
 
@@ -84,7 +100,8 @@ module.exports = (NODE, mainWindow) => {
     const _parseLLnTime = (lln) => {
 
 
-    }; 
+
+    };
 
     let cachedAutoManual = false;
     store.set(KEYS.autoManual, false);
@@ -117,27 +134,38 @@ module.exports = (NODE, mainWindow) => {
         INTERVALS.push(loopInterval);
     };
 
-    
+
 
 
 
     // ---- Main Program ---- //
     const main = () => {
-        INTERVALS.forEach(clearInterval); // Clear interval
-
         const ll1 = DATETIME.ll1;
+        const ll2 = DATETIME.ll2;
+        const ll3 = DATETIME.ll3;
+
+        _stopIntervals();
+        _addDatetime();
+        _addAutoManual();
+        // _startLoop();
 
         //  ----  Catch page ---  //
         ipcMain.on(CHANNELS.onLLn, (e, lln) => {
-            if (lln !== 'll1') {
+            if (lln === 1) {
                 console.log('ll1');
+                _stopIntervals();
+                readHelper(NODE)
+                    .then(data => {
+                        _removeAllLLn(data);
+                    })
+                _addLLnTime(ll1);
+                // _startLoop();
             }
         });
 
-        _addDatetime();
-        _addAutoManual();
-        _addLLnTime(ll1);
-        _startLoop();
+
+
+
     };
 
     main();

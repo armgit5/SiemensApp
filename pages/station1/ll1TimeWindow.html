@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>BTS APP</title>
 
-    <link rel="stylesheet" href="../assets/styles/mainWindow.css">
+    <link rel="stylesheet" href="../../assets/styles/mainWindow.css">
 
     <style>
         .station-mid {
@@ -74,15 +74,16 @@
             <div class="col-5">
                 <div class="row">
                     <div class="col-4" style="padding-left: 5px">
-                        <input type="text" class="form-control" placeholder="HH" id="step1setOnHH" d
+                        <input type="text" class="form-control" placeholder="HH" id="step1OnHH"
                             data-bind="value: step1OnHH">
                     </div>
                     <div class="col-4" style="padding-left: 5px">
-                        <input type="text" class="form-control" placeholder="MM" id="step1setOnMM"
+                        <input type="text" class="form-control" placeholder="MM" id="step1OnMM"
                             data-bind="value: step1OnMM">
                     </div>
                     <div class="col-4" style="padding-left: 5px">
-                        <input type="text" class="form-control" placeholder="SS" data-bind="value: step1OnMM" id="step1setOnSS">
+                        <input type="text" class="form-control" placeholder="SS" data-bind="value: step1OnMM"
+                            id="step1OnSS">
                     </div>
                 </div>
             </div>
@@ -91,13 +92,16 @@
             <div class="col-5">
                 <div class="row">
                     <div class="col-4" style="padding-right: 5px">
-                        <input type="text" class="form-control" placeholder="HH" id="step1setOffHH">
+                        <input type="text" class="form-control" placeholder="HH" id="step1OffHH"
+                            data-bind="value: step1OffHH">
                     </div>
                     <div class="col-4" style="padding-right: 5px;">
-                        <input type="text" class="form-control" placeholder="MM" id="step1setOffMM">
+                        <input type="text" class="form-control" placeholder="MM" id="step1OffMM"
+                            data-bind="value: step1OffMM">
                     </div>
                     <div class="col-4" style="padding-right: 5px">
-                        <input type="text" class="form-control" placeholder="SS" id="step1setOffSS">
+                        <input type="text" class="form-control" placeholder="SS" id="step1OffSS"
+                            data-bind="value: step1OffSS">
                     </div>
                 </div>
             </div>
@@ -218,10 +222,10 @@
         <div class="row">
             <span>
                 <a href="llWindow.html">
-                    <img src="../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+                    <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
                 <a href="mainWindow.html">
-                    <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+                    <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
             </span>
         </div>
@@ -231,16 +235,16 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>window.$ = window.jQuery = require('jquery');</script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="../helpers/knockout.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../helpers/knockout.js"></script>
 
     <!-- IPC script -->
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
-        const { CHANNELS } = require('../helpers/environments');
-        const STATION1 = require('../data/station1');
+        const { CHANNELS } = require('../../helpers/environments');
+        const STATION1 = require('../../data/station1');
         const Store = require('electron-store');
         const store = new Store();
         const keys = STATION1.storedKeys;
@@ -260,11 +264,14 @@
                 this.time = ko.observable('Reading...');
                 this.S1Style = ko.observable(redColor);
                 this.S1_1Style = ko.observable(redColor);
-                this.step1OnHH = ko.observable('');
-                this.step1OnMM = ko.observable('');
-                this.step1OffHH = ko.observable(0);
-                this.step1OffMM = ko.observable(0);
-                // this.pcEdit = ko.observable('PC Edit');
+
+                // Step 1
+                this.step1OnHH = ko.observable('00');
+                this.step1OnMM = ko.observable('00');
+                this.step1OnSS = ko.observable('00');
+                this.step1OffHH = ko.observable('00');
+                this.step1OffMM = ko.observable('00');
+                this.step1OffSS = ko.observable('00');
             }
 
             // Activates knockout.js
@@ -293,59 +300,78 @@
             });
         };
 
+
+
         const _buttonClick = () => {
-            let step1setOnHH = 0;
-            let step1setOnMM = 0;
-            let step1setOffHH = 0;
-            let step1setOffMM = 0;
+            function setInputFilter(textbox, inputFilter) {
+                ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+                    textbox.addEventListener(event, function () {
+                        if (inputFilter(this.value)) {
+                            this.oldValue = this.value;
+                            this.oldSelectionStart = this.selectionStart;
+                            this.oldSelectionEnd = this.selectionEnd;
+                        } else if (this.hasOwnProperty("oldValue")) {
+                            this.value = this.oldValue;
+                            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                        }
+                    });
+                });
+            }
 
-            $('#step1setOnHH').keyup(function () {
-                const HH = this.value;
-                console.log(HH);
-                ipcRenderer.send(CHANNELS.step1save, 'step1OnHH', HH);
+            setInputFilter(document.getElementById('step1OnHH'), function (value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
+            });
+            $('#step1OnHH').keyup(function () {
+                const HH = parseInt(this.value);
+                ipcRenderer.send(CHANNELS.ll1.step1.onHH, HH);
             });
 
-            $('#step1setOnMM').keyup(function () {
+            $('#step1OnMM').keyup(function () {
                 const MM = this.value;
                 console.log(MM);
-                ipcRenderer.send(CHANNELS.step1save, 'step1OnMM', MM);
+                ipcRenderer.send(CHANNELS.ll1.step1.onMM, MM);
             });
 
-            $('#step1setOnSS').keyup(function () {
+            $('#step1OnSS').keyup(function () {
+                const SS = this.value;
+                console.log(SS);
+                ipcRenderer.send(CHANNELS.ll1.step1.onSS, SS);
+            });
+
+            $('#step1OffHH').keyup(function () {
+                const HH = this.value;
+                console.log(HH);
+            });
+
+            $('#step1OffMM').keyup(function () {
+                const MM = this.value;
+                console.log(MM);
+            });
+
+            $('#step1OffSS').keyup(function () {
                 const SS = this.value;
                 console.log(SS);
             });
 
-            $('#step1setOffHH').keyup(function () {
-                const HH = this.value;
-                console.log(HH);
-            });
-
-            $('#step1setOffMM').keyup(function () {
-                const MM = this.value;
-                console.log(MM);
-            });
-
-            $('#step1setOffSS').keyup(function () {
-                const SS = this.value;
-                console.log(SS);
-            });
-
-            $('#save').click(() => {
-                console.log('save');
-                console.log(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
-                ipcRenderer.send(CHANNELS.step1save, step1setOnHH, step1setOnMM, step1setOffHH, step1setOffMM);
-            });
         };
 
+        const _setLimits = () => {
+            // Restricts input for the given textbox to the given inputFilter.
+
+
+
+        };
         // Show when ready
         $(document).ready(() => {
             $('body').show();
+            // Send station id to init connection
+            ipcRenderer.send(CHANNELS.onLLn, 1);
 
             _startViewModel();
             _getFromStore();
             _readStreaming();
             _buttonClick();
+            _setLimits();
         });
 
     </script>
