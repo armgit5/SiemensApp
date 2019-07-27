@@ -1,5 +1,6 @@
 module.exports.CHANNELS = {
     onNewStation: 'on:new:station',
+    onLLn: 'on:ll:n',
     datetime: 'datetime:data',
     onlineStatus: 'online:status',
     ll1On: 'll1:On',
@@ -8,12 +9,8 @@ module.exports.CHANNELS = {
     ll2Off: 'll2:Off',
     ll3On: 'll3:On',
     ll3Off: 'll3:Off',
-    step1save: 'step1save',
-    readStep1AfterSave: 'read:step1:after:save',
-    canEdit: 'can:edit',
-    setCanEdit: 'set:can:edit',
     autoManual: 'auto:manual',
-    setAutoManual: 'set:auto:manual'
+    setAutoManual: 'set:auto:manual',
 }
 
 module.exports.PRESSTIME = 2000;

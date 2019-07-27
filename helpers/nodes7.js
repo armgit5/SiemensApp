@@ -9,28 +9,15 @@ let STATION_ID = 0;
 
 module.exports = (mainWindow) => {
 
-    const _addStation1DatetimeReadList = () => { // Will be used on every page
-        const datetime = STATION1.datetime;
-        const datetimeHeader = datetime.header;
-
-        NODE.conn.addItems(datetimeHeader.date);
-        NODE.conn.addItems(datetimeHeader.month);
-        NODE.conn.addItems(datetimeHeader.year);
-        NODE.conn.addItems(datetimeHeader.minute);
-        NODE.conn.addItems(datetimeHeader.hour);
-    }
-
     const _initNode = () => {
         NODE = null; // Clear node to kill old connection
 
         // Init station 1
         if (STATION_ID === 1) {
             NODE = new Node(STATION1.id, STATION1.ip);
-            console.log('S1 is online ', NODE.isOnline);
             initHelper(NODE).then(isOnline => {
                 console.log('S1 is online ', isOnline);
             });
-            _addStation1DatetimeReadList();
             require('./station1-process/readingHandler')(NODE, mainWindow);
             require('./station1-process/clickHandler')(NODE, mainWindow);
         }

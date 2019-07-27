@@ -9,46 +9,97 @@ const Store = require('electron-store');
 const store = new Store();
 
 const INTERVALS = [];
-
 const KEYS = STATION1.storedKeys;
 const DATETIME = STATION1.datetime;
-let cachedDatetime = null;
-store.set(KEYS.headerDatetime, 'Reading...');
-let autoManual = false;
-store.set(KEYS.autoManual, false);
 
 module.exports = (NODE, mainWindow) => {
 
     // Private functions
-    const _addLL1TimeReadList = () => {
-        const step1 = STATION1.datetime.ll1.step1;
+    
+    // ---- Add to read list ----- //
+    const _addAutoManual = () => {
+        NODE.conn.addItems(DATETIME.header.autoManual);
+    }
 
-        // Add Header Datetime
-        NODE.conn.addItems(step1.onHH);
-        NODE.conn.addItems(step1.onMM);
-        NODE.conn.addItems(step1.offHH);
-        NODE.conn.addItems(step1.offMM);
-        NODE.conn.addItems(step1.autoManual);
-        NODE.conn.addItems(STATION1.bits.ll1On);
-        NODE.conn.addItems(STATION1.bits.ll1isOn);
-    };
-
-    const _parseDatetime = (data) => {
-        const header = DATETIME.header;
-        const date = data[header.date];
-        const month = data[header.month];
-        const year = data[header.year];
-        const hour = data[header.hour];
-        const minute = data[header.minute];
-        const outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}`;
-
-        if (JSON.stringify(cachedDatetime) !== JSON.stringify(outputDatetime)) {
-            cachedDatetime = outputDatetime;
-            mainWindow.webContents.send(CHANNELS.datetime, outputDatetime); // Send to channel                        
-            store.set(KEYS.headerDatetime, outputDatetime); // Save datetime
+    const _addLLnTime = (lln) => {
+        for (let i = 1; i <= 4; i++) {
+            let key = lln[`step${i}`];
+            NODE.conn.addItems(key.onHH);
+            NODE.conn.addItems(key.onMM);
+            NODE.conn.addItems(key.onSS);
+            NODE.conn.addItems(key.offHH);
+            NODE.conn.addItems(key.offMM);
+            NODE.conn.addItems(key.offSS);
         }
     };
 
+    const _removeLLnTime = (lln) => {
+        for (const i = 1; i <= 4; i++) {
+            const key = lln[`step${i}`];
+            NODE.conn.removeItems(key.onHH);
+            NODE.conn.removeItems(key.onMM);
+            NODE.conn.removeItems(key.onSS);
+            NODE.conn.removeItems(key.offHH);
+            NODE.conn.removeItems(key.offMM);
+            NODE.conn.removeItems(key.offSS);
+        }
+    };
+
+    const _addDatetime = () => { // Will be used on every page
+        const datetime = STATION1.datetime;
+        const datetimeHeader = datetime.header;
+
+        NODE.conn.addItems(datetimeHeader.date);
+        NODE.conn.addItems(datetimeHeader.month);
+        NODE.conn.addItems(datetimeHeader.year);
+        NODE.conn.addItems(datetimeHeader.minute);
+        NODE.conn.addItems(datetimeHeader.hour);
+        NODE.conn.addItems(datetimeHeader.second);
+    }
+
+    // ----- Parse data ------- //
+    let cachedDatetime = null;
+    store.set(KEYS.headerDatetime, 'Reading...');
+    const _parseDatetime = (data) => {
+        let outputDatetime = 'Reading...';
+
+        if (data !== 'Reading...') {
+            const header = DATETIME.header;
+            const date = data[header.date];
+            const month = data[header.month];
+            const year = data[header.year];
+            const hour = data[header.hour];
+            const minute = data[header.minute];
+            const second = data[header.second];
+            outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}:${second}`;
+        }
+
+        mainWindow.webContents.send(CHANNELS.datetime, outputDatetime); // Send to channel                        
+        store.set(KEYS.headerDatetime, outputDatetime); // Save datetime
+        
+    };
+
+
+
+    const _parseLLnTime = (lln) => {
+
+
+    }; 
+
+    let cachedAutoManual = false;
+    store.set(KEYS.autoManual, false);
+    const _parseAutoManual = (data) => {
+        const autoManual = data[DATETIME.header.autoManual];
+
+        if (cachedAutoManual !== autoManual) {
+            cachedAutoManual = autoManual;
+            store.set(STATION1.storedKEYS.AutoManual, autoManual);
+            mainWindow.webContents.send(CHANNELS.cachedAutoManual, autoManual);
+        }
+    };
+
+
+    // ---- Loop Watch ---- //
     // Will read and keep watching for data change
     const _startLoop = () => {
         const loopInterval = setInterval(() => {
@@ -66,18 +117,26 @@ module.exports = (NODE, mainWindow) => {
         INTERVALS.push(loopInterval);
     };
 
-    const _parseAutoManual = (data) => {
-        if (cachedAutoManual !== data) {
-            cachedAutoManual = cachedAutoManualResult;
-            store.set(STATION1.storedKEYS.cachedAutoManual, cachedAutoManualResult);
-            mainWindow.webContents.send(CHANNELS.cachedAutoManual, cachedAutoManualResult);
-        }
-    };
+    
 
+
+
+    // ---- Main Program ---- //
     const main = () => {
         INTERVALS.forEach(clearInterval); // Clear interval
 
-        _addLL1TimeReadList();
+        const ll1 = DATETIME.ll1;
+
+        //  ----  Catch page ---  //
+        ipcMain.on(CHANNELS.onLLn, (e, lln) => {
+            if (lln !== 'll1') {
+                console.log('ll1');
+            }
+        });
+
+        _addDatetime();
+        _addAutoManual();
+        _addLLnTime(ll1);
         _startLoop();
     };
 
