@@ -290,17 +290,7 @@
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);
             });
-
-            ipcRenderer.on(CHANNELS.readStep1AfterSave, (e, onHH, onMM, offHH, offMM) => {
-                console.log(onHH, onMM, offHH, offMM);
-                vm.step1OnHH(onHH);
-                vm.step1OnMM(onMM);
-                vm.step1OffHH(offHH);
-                vm.step1OffMM(offMM);
-            });
         };
-
-
 
         const _buttonClick = () => {
             function setInputFilter(textbox, inputFilter) {
@@ -318,6 +308,7 @@
                 });
             }
 
+            // STEP 1 On //
             setInputFilter(document.getElementById('step1OnHH'), function (value) {
                 return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
             });
@@ -326,28 +317,44 @@
                 ipcRenderer.send(CHANNELS.ll1.step1.onHH, HH);
             });
 
+            setInputFilter(document.getElementById('step1OnMM'), function (value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+            });
             $('#step1OnMM').keyup(function () {
                 const MM = this.value;
                 console.log(MM);
                 ipcRenderer.send(CHANNELS.ll1.step1.onMM, MM);
             });
 
+            setInputFilter(document.getElementById('step1OnSS'), function (value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+            });
             $('#step1OnSS').keyup(function () {
                 const SS = this.value;
                 console.log(SS);
                 ipcRenderer.send(CHANNELS.ll1.step1.onSS, SS);
             });
 
+            // Step 1 Off //
+            setInputFilter(document.getElementById('step1OffHH'), function (value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
+            });
             $('#step1OffHH').keyup(function () {
                 const HH = this.value;
                 console.log(HH);
             });
 
+            setInputFilter(document.getElementById('step1OfMM'), function (value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+            });
             $('#step1OffMM').keyup(function () {
                 const MM = this.value;
                 console.log(MM);
             });
 
+            setInputFilter(document.getElementById('step1OffSS'), function (value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+            });
             $('#step1OffSS').keyup(function () {
                 const SS = this.value;
                 console.log(SS);
