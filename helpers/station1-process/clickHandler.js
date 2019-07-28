@@ -108,4 +108,22 @@ module.exports = (NODE, mainWindow) => {
                 });
             });
     }); 
+
+
+    // LL1 clicks
+    // Step 1
+    const onHH = STATION1.datetime.ll1.onHH;
+    ipcMain.on(onHH, (e, HH) => {
+        const timer = STATION1.datetime.ll1.onHHTimer;
+        writeHelper(NODE, timer, true)
+            .then(_ => {
+                return writeHelper(NODE, onHH, HH);
+            })
+            .then(_ => {
+                return writeHelper(NODE, timer, false);
+            })
+            .then(_ => {
+                
+            });
+    }); 
 }

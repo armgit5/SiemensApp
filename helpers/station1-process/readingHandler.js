@@ -96,10 +96,10 @@ module.exports = (NODE, mainWindow) => {
     };
 
 
-
+    let step1OnHH = 0;
     const _parseLLnTime = (lln) => {
 
-
+        // const step1OnHHResult = 
 
     };
 

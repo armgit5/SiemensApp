@@ -332,6 +332,7 @@
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);
             });
+            
         };
 
         const _buttonClick = () => {
@@ -357,7 +358,7 @@
                 });
                 $('#step1OnHH').keyup(function () {
                     const HH = parseInt(this.value);
-                    ipcRenderer.send(CHANNELS.ll1.step1.onHH, HH);
+                    ipcRenderer.send(STATION1.datetime.ll1.onHH, HH);
                 });
 
                 setInputFilter(document.getElementById('step1OnMM'), function (value) {
