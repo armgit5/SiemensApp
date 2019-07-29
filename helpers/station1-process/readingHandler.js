@@ -56,7 +56,7 @@ module.exports = (NODE, mainWindow) => {
         for (const i = 1; i <= 3; i++) {
             const lln = DATETIME[`ll${i}`];
             if (data[lln].step1.onHH) {
-                _removeAllLLn(lln);
+                _removeLLnTime(lln);
             }
         }
     }
@@ -95,14 +95,6 @@ module.exports = (NODE, mainWindow) => {
 
     };
 
-
-    let step1OnHH = 0;
-    const _parseLLnTime = (lln) => {
-
-        // const step1OnHHResult = 
-
-    };
-
     let cachedAutoManual = false;
     store.set(KEYS.autoManual, false);
     const _parseAutoManual = (data) => {
@@ -115,14 +107,16 @@ module.exports = (NODE, mainWindow) => {
         }
     };
 
-
     // ---- Loop Watch ---- //
     // Will read and keep watching for data change
-    const _startLoop = () => {
+    const _startLoop = (n) => {
         const loopInterval = setInterval(() => {
             readHelper(NODE)
                 .then(data => {
                     _parseDatetime(data);
+                    if (n === 1) {
+                        require('./readingll1step1')(mainWindow, data);
+                    }
                 })
                 .catch(err => {
                     console.log(err);
@@ -133,9 +127,6 @@ module.exports = (NODE, mainWindow) => {
         }, SCANTIME);
         INTERVALS.push(loopInterval);
     };
-
-
-
 
 
     // ---- Main Program ---- //
@@ -159,25 +150,10 @@ module.exports = (NODE, mainWindow) => {
                         _removeAllLLn(data);
                     })
                 _addLLnTime(ll1);
-                // _startLoop();
+                _startLoop(1);
             }
         });
-
-
-
-
     };
 
     main();
-}
-
-// const _getStreamOnlineStatus = () => {
-//     const station = STATION1;
-//     const NODE = CONNECTION[station.id];
-
-//     const onlineStatusInterval = setInterval(() => {
-//         // console.log('is online ', NODE.id, NODE.isOnline);
-//         mainWindow.webContents.send(CHANNELS.onlineStatus, NODE.id, NODE.isOnline);
-//     }, SCANTIME);
-//     INTERVALS.push(onlineStatusInterval);
-// }
+};
