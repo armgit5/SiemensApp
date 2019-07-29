@@ -332,7 +332,23 @@
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);
             });
-            
+
+            _step1Read = () => {
+                const STEP1 = STATION1.datetime.ll1.step1;
+                ipcRenderer.on(STEP1.onHH, (e, data) => {
+                    vm.step1OnHH(data);
+                });
+
+                ipcRenderer.on(STEP1.onMM, (e, data) => {
+                    vm.step1OnMM(data);
+                });
+
+                ipcRenderer.on(STEP1.onSS, (e, data) => {
+                    vm.step1OnSS(data);
+                });
+            };
+            _step1Read();
+
         };
 
         const _buttonClick = () => {
@@ -353,12 +369,13 @@
 
             // STEP 1 //
             const _step1Click = () => {
+                const STEP1 = STATION1.datetime.ll1.step1;
                 setInputFilter(document.getElementById('step1OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
                 $('#step1OnHH').keyup(function () {
                     const HH = parseInt(this.value);
-                    ipcRenderer.send(STATION1.datetime.ll1.onHH, HH);
+                    ipcRenderer.send(STEP1.onHH, HH);
                 });
 
                 setInputFilter(document.getElementById('step1OnMM'), function (value) {
@@ -367,7 +384,7 @@
                 $('#step1OnMM').keyup(function () {
                     const MM = this.value;
                     console.log(MM);
-                    ipcRenderer.send(CHANNELS.ll1.step1.onMM, MM);
+                    ipcRenderer.send(STEP1.onMM, MM);
                 });
 
                 setInputFilter(document.getElementById('step1OnSS'), function (value) {
@@ -376,7 +393,7 @@
                 $('#step1OnSS').keyup(function () {
                     const SS = this.value;
                     console.log(SS);
-                    ipcRenderer.send(CHANNELS.ll1.step1.onSS, SS);
+                    ipcRenderer.send(STEP1.onSS, SS);
                 });
 
                 // Off //
