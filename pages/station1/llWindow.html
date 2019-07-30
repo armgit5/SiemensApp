@@ -184,6 +184,7 @@
                 vm.time(headerDatetime);
             }
 
+            console.log(store.get(CHANNELS.autoManual));
             if (store.get(CHANNELS.autoManual) === true) {
                 vm.autoManualStyle(greenColor);
                 vm.autoManual('AUTO');
@@ -195,6 +196,7 @@
 
         // Read streaming
         const _readStreaming = () => {
+            console.log('reading');
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);
             });
@@ -261,7 +263,6 @@
             }
 
             ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
-                console.log('auto manual ', autoManual);
                 if (autoManual) {
                     vm.autoManual('AUTO');
                     vm.autoManualStyle(greenColor);
@@ -271,7 +272,7 @@
 
                     _readLLn();
                 }
-            });            
+            });  
         };
 
         const _buttonClick = () => {
@@ -302,12 +303,12 @@
             };
 
             document.getElementById('autoManual').onclick = () => {
-                const autoManual = store.get(STATION1.storedKeys.autoManual);
+                const autoManual = store.get(CHANNELS.autoManual);
                 console.log('auto manual', autoManual);
                 if (autoManual) {
-                    ipcRenderer.send(CHANNELS.setAutoManual, false);
+                    ipcRenderer.send(CHANNELS.autoManual, false);
                 } else {
-                    ipcRenderer.send(CHANNELS.setAutoManual, true);
+                    ipcRenderer.send(CHANNELS.autoManual, true);
                 }
             };
 

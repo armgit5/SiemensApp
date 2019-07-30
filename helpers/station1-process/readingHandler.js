@@ -96,13 +96,13 @@ module.exports = (NODE, mainWindow) => {
     };
 
     let cachedAutoManual = false;
-    store.set(KEYS.autoManual, false);
     const _parseAutoManual = (data) => {
         const autoManual = data[DATETIME.header.autoManual];
+        console.log(autoManual);
 
         if (cachedAutoManual !== autoManual) {
             cachedAutoManual = autoManual;
-            store.set(STATION1.storedKeys.autoManual, autoManual);
+            store.set(CHANNELS.autoManual, autoManual);
             mainWindow.webContents.send(CHANNELS.autoManual, autoManual);
         }
     };
@@ -114,6 +114,7 @@ module.exports = (NODE, mainWindow) => {
             readHelper(NODE)
                 .then(data => {
                     _parseDatetime(data);
+                    // console.log(data);
                     _parseAutoManual(data);
                     if (n === 1) {
                         require('./readingll1step1')(mainWindow, data);
@@ -139,7 +140,7 @@ module.exports = (NODE, mainWindow) => {
         _stopIntervals();
         _addDatetime();
         _addAutoManual();
-        // _startLoop();
+        _startLoop(0);
 
         //  ----  Catch page ---  //
         ipcMain.on(CHANNELS.onLLn, (e, lln) => {

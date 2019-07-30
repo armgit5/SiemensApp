@@ -134,6 +134,7 @@
 
       // Auto manual 
       ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
+        console.log(autoManual);
         if (autoManual) {
           vm.SiamStyle(greenColor);
         } else {
