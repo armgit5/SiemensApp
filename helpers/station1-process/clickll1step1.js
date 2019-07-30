@@ -2,7 +2,7 @@ const STATION1 = require('../../data/station1');
 const { ipcMain } = require('electron');
 const writeHelper = require('../writeHelper');
 
-module.exports = () => {
+module.exports = (NODE) => {
 
     // On
     const onHH = STATION1.datetime.ll1.step1.onHH;

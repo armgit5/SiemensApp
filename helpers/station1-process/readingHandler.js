@@ -150,6 +150,7 @@ module.exports = (NODE, mainWindow) => {
                     _parseAutoManual(data);
                     _parseLLn(data);
                     if (n === 1) {
+                        // console.log('reading step1', data);
                         require('./readingll1step1')(mainWindow, data);
                     }
                 })
@@ -181,10 +182,10 @@ module.exports = (NODE, mainWindow) => {
             if (lln === 1) {
                 console.log('ll1');
                 _stopIntervals();
-                readHelper(NODE)
-                    .then(data => {
-                        _removeAllLLn(data);
-                    })
+                // readHelper(NODE)
+                //     .then(data => {
+                //         _removeAllLLn(data);
+                //     })
                 _addLLnTime(ll1);
                 _startLoop(1);
             }
