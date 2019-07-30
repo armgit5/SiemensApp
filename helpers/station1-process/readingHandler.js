@@ -27,6 +27,8 @@ module.exports = (NODE, mainWindow) => {
 
     const _addllnBits = () => {
         NODE.conn.addItems(STATION1.bits.ll1isOn);
+        NODE.conn.addItems(STATION1.bits.ll2isOn);
+        NODE.conn.addItems(STATION1.bits.ll3isOn);
     };
 
     const _addLLnTime = (lln) => {
@@ -110,14 +112,30 @@ module.exports = (NODE, mainWindow) => {
         }
     };
 
-    let ll1On = false; 
+    let ll1On = false;
+    let ll2On = false;
+    let ll3On = false;
     const _parseLLn = (data) => {
         const ll1OnResult = data[STATION1.bits.ll1isOn];
-        console.log(ll1OnResult);
+        const ll2OnResult = data[STATION1.bits.ll2isOn];
+        const ll3OnResult = data[STATION1.bits.ll3isOn];
+
         if (ll1On !== ll1OnResult) {
             ll1On = ll1OnResult;
             store.set(CHANNELS.ll1On, ll1On);
             mainWindow.webContents.send(CHANNELS.ll1On, ll1On);
+        }
+
+        if (ll2On !== ll2OnResult) {
+            ll2On = ll2OnResult;
+            store.set(CHANNELS.ll2On, ll2On);
+            mainWindow.webContents.send(CHANNELS.ll2On, ll2On);
+        }
+
+        if (ll3On !== ll3OnResult) {
+            ll3On = ll3OnResult;
+            store.set(CHANNELS.ll3On, ll3On);
+            mainWindow.webContents.send(CHANNELS.ll3On, ll3On);
         }
     }
 

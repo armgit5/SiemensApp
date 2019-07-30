@@ -184,7 +184,7 @@
                 vm.time(headerDatetime);
             }
 
-            console.log(store.get(CHANNELS.autoManual));
+
             if (store.get(CHANNELS.autoManual) === true) {
                 vm.autoManualStyle(greenColor);
                 vm.autoManual('AUTO');
@@ -192,6 +192,25 @@
                 vm.autoManualStyle(redColor);
                 vm.autoManual('MANUAL');
             }
+
+            if (store.get(CHANNELS.ll1On) === true) {
+                vm.ll1Style(greenColor);
+            } else {
+                vm.ll1Style(redColor);
+            }
+
+            if (store.get(CHANNELS.ll2On) === true) {
+                vm.ll2Style(greenColor);
+            } else {
+                vm.ll2Style(redColor);
+            }
+
+            if (store.get(CHANNELS.ll3On) === true) {
+                vm.ll3Style(greenColor);
+            } else {
+                vm.ll3Style(redColor);
+            }
+
         };
 
         // Read streaming
@@ -221,45 +240,45 @@
                     }
                 });
 
-                ipcRenderer.on(CHANNELS.ll1Off, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll1OnStyle(redColor);
-                    } else {
-                        vm.ll1OnStyle(whiteColor);
-                    }
-                });
+                // ipcRenderer.on(CHANNELS.ll1Off, (e, isOn) => {
+                //     if (isOn) {
+                //         vm.ll1OnStyle(redColor);
+                //     } else {
+                //         vm.ll1OnStyle(whiteColor);
+                //     }
+                // });
 
                 ipcRenderer.on(CHANNELS.ll2On, (e, isOn) => {
                     if (isOn) {
-                        vm.ll1OnStyle(greenColor);
+                        vm.ll2Style(greenColor);
                     } else {
-                        vm.ll1OnStyle(whiteColor);
+                        vm.ll2Style(redColor);
                     }
                 });
 
-                ipcRenderer.on(CHANNELS.ll2Off, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll1OnStyle(redColor);
-                    } else {
-                        vm.ll1OnStyle(whiteColor);
-                    }
-                });
+                // ipcRenderer.on(CHANNELS.ll2Off, (e, isOn) => {
+                //     if (isOn) {
+                //         vm.ll1OnStyle(redColor);
+                //     } else {
+                //         vm.ll1OnStyle(whiteColor);
+                //     }
+                // });
 
                 ipcRenderer.on(CHANNELS.ll3On, (e, isOn) => {
                     if (isOn) {
-                        vm.ll1OnStyle(greenColor);
+                        vm.ll3Style(greenColor);
                     } else {
-                        vm.ll1OnStyle(whiteColor);
+                        vm.ll3Style(redColor);
                     }
                 });
 
-                ipcRenderer.on(CHANNELS.ll3Off, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll1OnStyle(redColor);
-                    } else {
-                        vm.ll1OnStyle(whiteColor);
-                    }
-                });
+                // ipcRenderer.on(CHANNELS.ll3Off, (e, isOn) => {
+                //     if (isOn) {
+                //         vm.ll1OnStyle(redColor);
+                //     } else {
+                //         vm.ll1OnStyle(whiteColor);
+                //     }
+                // });
             }
             _readLLn();
 

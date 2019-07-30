@@ -6,8 +6,10 @@ module.exports = {
         ll1isOn: 'M215.0',
         ll1Off: 'M212.1',
         ll2On: 'M212.2',
+        ll2isOn: 'M215.1',
         ll2Off: 'M212.3',
         ll3On: 'M212.4',
+        ll3isOn: 'M215.2',
         ll3Off: 'M212.5',
     },
     datetime: {
