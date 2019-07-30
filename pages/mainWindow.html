@@ -20,7 +20,7 @@
       <div class="col-4">
         <button type="button" class="btn station" style="background-color: yellow;"
           onclick="window.location.href='detailWindow.html'">
-          Siam <span class="dot" style="background-color: green;"></span>
+          Siam <span class="dot" data-bind="style: SiamStyle"></span>
         </button>
       </div>
 
@@ -99,8 +99,7 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('Reading...');
-        this.S1Style = ko.observable(redColor);
-        this.S1_1Style = ko.observable(redColor);
+        this.SiamStyle = ko.observable(redColor);
       }
 
       // Activates knockout.js
@@ -121,23 +120,27 @@
       // Date time streaming
       ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
         vm.time(datetime);
-        // if (datetime.includes('BAD')) {
-        //   vm.time('Cannot read datetime');
-        // } else {
-        //   vm.time(datetime);
-        // }
+      });
+
+      // Auto manual 
+      ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
+        if (autoManual) {
+          vm.SiamStyle(greenColor);
+        } else {
+          vm.SiamStyle(redColor);
+        }
       });
 
       // Online status streaming
-      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-        if (id === 'N1') {
-          if (status === true) {
-            vm.S1Style(greenColor);
-          } else {
-            vm.S1Style(redColor);
-          }
-        }
-      });
+      // ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
+      //   if (id === 'N1') {
+      //     if (status === true) {
+      //       vm.S1Style(greenColor);
+      //     } else {
+      //       vm.S1Style(redColor);
+      //     }
+      //   }
+      // });
 
     };
 
