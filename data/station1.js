@@ -2,13 +2,13 @@ module.exports = {
     id: 'N1',
     ip: '192.168.0.11',
     bits: {
-        ll1On: 'M150.0',
-        ll1isOn: 'M210.0',
-        ll1Off: 'M150.1',
-        ll2On: 'M150.2',
-        ll2Off: 'M150.3',
-        ll3On: 'M150.4',
-        ll3Off: 'M150.5',
+        ll1On: 'M212.0',
+        ll1isOn: 'M215.0',
+        ll1Off: 'M212.1',
+        ll2On: 'M212.2',
+        ll2Off: 'M212.3',
+        ll3On: 'M212.4',
+        ll3Off: 'M212.5',
     },
     datetime: {
         header: {

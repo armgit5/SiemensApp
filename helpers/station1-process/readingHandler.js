@@ -25,6 +25,10 @@ module.exports = (NODE, mainWindow) => {
         NODE.conn.addItems(DATETIME.header.autoManual);
     }
 
+    const _addllnBits = () => {
+        NODE.conn.addItems(STATION1.bits.ll1isOn);
+    };
+
     const _addLLnTime = (lln) => {
         for (let i = 1; i <= 4; i++) {
             let key = lln[`step${i}`];
@@ -98,7 +102,6 @@ module.exports = (NODE, mainWindow) => {
     let cachedAutoManual = false;
     const _parseAutoManual = (data) => {
         const autoManual = data[DATETIME.header.autoManual];
-        console.log(autoManual);
 
         if (cachedAutoManual !== autoManual) {
             cachedAutoManual = autoManual;
@@ -106,6 +109,17 @@ module.exports = (NODE, mainWindow) => {
             mainWindow.webContents.send(CHANNELS.autoManual, autoManual);
         }
     };
+
+    let ll1On = false; 
+    const _parseLLn = (data) => {
+        const ll1OnResult = data[STATION1.bits.ll1isOn];
+        console.log(ll1OnResult);
+        if (ll1On !== ll1OnResult) {
+            ll1On = ll1OnResult;
+            store.set(CHANNELS.ll1On, ll1On);
+            mainWindow.webContents.send(CHANNELS.ll1On, ll1On);
+        }
+    }
 
     // ---- Loop Watch ---- //
     // Will read and keep watching for data change
@@ -116,6 +130,7 @@ module.exports = (NODE, mainWindow) => {
                     _parseDatetime(data);
                     // console.log(data);
                     _parseAutoManual(data);
+                    _parseLLn(data);
                     if (n === 1) {
                         require('./readingll1step1')(mainWindow, data);
                     }
@@ -140,6 +155,7 @@ module.exports = (NODE, mainWindow) => {
         _stopIntervals();
         _addDatetime();
         _addAutoManual();
+        _addllnBits();
         _startLoop(0);
 
         //  ----  Catch page ---  //

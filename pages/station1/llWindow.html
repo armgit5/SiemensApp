@@ -215,9 +215,9 @@
             const _readLLn = () => {
                 ipcRenderer.on(CHANNELS.ll1On, (e, isOn) => {
                     if (isOn) {
-                        vm.ll1OnStyle(greenColor);
+                        vm.ll1Style(greenColor);
                     } else {
-                        vm.ll1OnStyle(whiteColor);
+                        vm.ll1Style(redColor);
                     }
                 });
 
@@ -261,6 +261,7 @@
                     }
                 });
             }
+            _readLLn();
 
             ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
                 if (autoManual) {
@@ -270,7 +271,7 @@
                     vm.autoManual('MANUAL');
                     vm.autoManualStyle(redColor);
 
-                    _readLLn();
+                   
                 }
             });  
         };
@@ -304,7 +305,6 @@
 
             document.getElementById('autoManual').onclick = () => {
                 const autoManual = store.get(CHANNELS.autoManual);
-                console.log('auto manual', autoManual);
                 if (autoManual) {
                     ipcRenderer.send(CHANNELS.autoManual, false);
                 } else {
