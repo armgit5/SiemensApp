@@ -84,7 +84,7 @@
     const Store = require('electron-store');
     const store = new Store();
     const keys = STATION1.storedKeys;
-    
+
     const greenColor = {
       'background-color': 'green'
     };
@@ -111,7 +111,17 @@
     // Get from store
     const _getFromStore = () => {
       const headerDatetime = store.get(keys.headerDatetime);
-      vm.time(headerDatetime);
+      if (headerDatetime) {
+        vm.time(headerDatetime);
+      }
+
+      if (CHANNELS.autoManual === true) {
+        vm.SiamStyle(greenColor);
+      } else {
+        vm.SiamStyle(redColor);
+      }
+
+
     };
 
     // Read streaming

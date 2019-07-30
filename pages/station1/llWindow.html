@@ -20,8 +20,8 @@
     <div class="container">
         <div class="row header-row">
             <div class="col-6">
-                <button type="button" class="btn station" style="background-color: lightgreen;" id="autoManual"
-                    data-bind="text: autoManual">
+                <button type="button" class="btn station" id="autoManual"
+                    data-bind="text: autoManual, style: autoManualStyle">
                 </button>
                 <!-- <a href="mainWindow.html">
                     <img src="../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
@@ -38,7 +38,7 @@
             <!-- Station 1 -->
 
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: #31BA63;"
+                <button type="button" class="btn station" data-bind="style: ll1Style"
                     onclick="window.location.href='ll1TimeWindow.html'">
                     LL1
                 </button>
@@ -46,14 +46,14 @@
 
             <!-- Station 2 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: #31BA63;">
+                <button type="button" class="btn station" data-bind="style: ll2Style">
                     LL2
                 </button>
             </div>
 
             <!-- Station 3 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: #31BA63;">
+                <button type="button" class="btn station" data-bind="style: ll3Style">
                     LL3
                 </button>
             </div>
@@ -63,21 +63,21 @@
         <div class="row" style="margin-top: 15px;">
             <!-- On 1 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;" id="ll1On">
+                <button type="button" class="btn station" data-bind="style: ll1OnStyle" id="ll1On">
                     On
                 </button>
             </div>
 
             <!-- On 2 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;" id="ll2On">
+                <button type="button" class="btn station" data-bind="style: ll2OnStyle" id="ll2On">
                     On
                 </button>
             </div>
 
             <!-- On 3 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;" id="ll3On">
+                <button type="button" class="btn station" data-bind="style: ll3OnStyle" id="ll3On">
                     On
                 </button>
             </div>
@@ -87,21 +87,21 @@
         <div class="row" style="margin-top: 15px;">
             <!-- On 1 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;" id="ll1Off">
+                <button type="button" class="btn station" data-bind="style: ll1OffStyle" id="ll1Off">
                     Off
                 </button>
             </div>
 
             <!-- On 2 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;" id="ll2Off">
+                <button type="button" class="btn station" data-bind="style: ll2OffStyle" id="ll2Off">
                     Off
                 </button>
             </div>
 
             <!-- On 3 -->
             <div class="col-sm-4">
-                <button type="button" class="btn station" style="background-color: white;" id="ll3Off">
+                <button type="button" class="btn station" data-bind="style: ll3OffStyle" id="ll3Off">
                     Off
                 </button>
             </div>
@@ -146,6 +146,9 @@
         const redColor = {
             'background-color': 'red'
         };
+        const whiteColor = {
+            'background-color': 'white'
+        };
         let vm;
 
         // Start View Model
@@ -153,9 +156,20 @@
             // Knockout functions
             function AppViewModel() {
                 this.time = ko.observable('Reading...');
-                this.S1Style = ko.observable(redColor);
-                this.S1_1Style = ko.observable(redColor);
+                this.autoManualStyle = ko.observable(greenColor);
                 this.autoManual = ko.observable('AUTO');
+
+                this.ll1Style = ko.observable(greenColor);
+                this.ll1OnStyle = ko.observable(whiteColor);
+                this.ll1OffStyle = ko.observable(whiteColor);
+
+                this.ll2Style = ko.observable(greenColor);
+                this.ll2OnStyle = ko.observable(whiteColor);
+                this.ll2OffStyle = ko.observable(whiteColor);
+
+                this.ll3Style = ko.observable(greenColor);
+                this.ll3OnStyle = ko.observable(whiteColor);
+                this.ll3OffStyle = ko.observable(whiteColor);
             }
 
             // Activates knockout.js
@@ -166,7 +180,17 @@
         // Get from store
         const _getFromStore = () => {
             const headerDatetime = store.get(keys.headerDatetime);
-            vm.time(headerDatetime);
+            if (headerDatetime) {
+                vm.time(headerDatetime);
+            }
+
+            if (store.get(CHANNELS.autoManual) === true) {
+                vm.autoManualStyle(greenColor);
+                vm.autoManual('AUTO');
+            } else {
+                vm.autoManualStyle(redColor);
+                vm.autoManual('MANUAL');
+            }
         };
 
         // Read streaming
@@ -186,15 +210,68 @@
                 }
             });
 
+            const _readLLn = () => {
+                ipcRenderer.on(CHANNELS.ll1On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll1OnStyle(greenColor);
+                    } else {
+                        vm.ll1OnStyle(whiteColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll1Off, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll1OnStyle(redColor);
+                    } else {
+                        vm.ll1OnStyle(whiteColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll2On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll1OnStyle(greenColor);
+                    } else {
+                        vm.ll1OnStyle(whiteColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll2Off, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll1OnStyle(redColor);
+                    } else {
+                        vm.ll1OnStyle(whiteColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll3On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll1OnStyle(greenColor);
+                    } else {
+                        vm.ll1OnStyle(whiteColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll3Off, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll1OnStyle(redColor);
+                    } else {
+                        vm.ll1OnStyle(whiteColor);
+                    }
+                });
+            }
+
             ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
                 console.log('auto manual ', autoManual);
                 if (autoManual) {
                     vm.autoManual('AUTO');
+                    vm.autoManualStyle(greenColor);
                 } else {
                     vm.autoManual('MANUAL');
-                }
-            });
+                    vm.autoManualStyle(redColor);
 
+                    _readLLn();
+                }
+            });            
         };
 
         const _buttonClick = () => {

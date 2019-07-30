@@ -102,8 +102,8 @@ module.exports = (NODE, mainWindow) => {
 
         if (cachedAutoManual !== autoManual) {
             cachedAutoManual = autoManual;
-            store.set(STATION1.storedKEYS.AutoManual, autoManual);
-            mainWindow.webContents.send(CHANNELS.cachedAutoManual, autoManual);
+            store.set(STATION1.storedKeys.autoManual, autoManual);
+            mainWindow.webContents.send(CHANNELS.autoManual, autoManual);
         }
     };
 
@@ -114,6 +114,7 @@ module.exports = (NODE, mainWindow) => {
             readHelper(NODE)
                 .then(data => {
                     _parseDatetime(data);
+                    _parseAutoManual(data);
                     if (n === 1) {
                         require('./readingll1step1')(mainWindow, data);
                     }

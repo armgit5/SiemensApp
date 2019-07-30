@@ -96,16 +96,12 @@ module.exports = (NODE, mainWindow) => {
     });
  
     // Set automanual
-    ipcMain.on(CHANNELS.setAutoManual, (e, autoManual) => {
-        const step1 = STATION1.datetime.step1;
-        writeHelper(NODE, step1.setAutoManual, true)
+    ipcMain.on(CHANNELS.autoManual, (e, autoManual) => {
+        writeHelper(NODE, STATION1.datetime.header.setAutoManual, true)
             .then(_ => {
-                return writeHelper(NODE, step1.setAutoManual, false);
+                return writeHelper(NODE, STATION1.datetime.header.setAutoManual, false);
             })
             .then(_ => {
-                readHelper(NODE).then(data => {
-                    console.log(data);
-                });
             });
     }); 
 
