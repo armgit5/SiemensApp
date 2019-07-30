@@ -325,6 +325,98 @@
         const _getFromStore = () => {
             const headerDatetime = store.get(keys.headerDatetime);
             vm.time(headerDatetime);
+
+            _step1Store = () => {
+                const STEP = STATION1.datetime.ll1.step1;
+                if (store.get(STEP.onHH)) {
+                    vm.step1OnHH(store.get(STEP.onHH));
+                }
+                if (store.get(STEP.onMM)) {
+                    vm.step1OnMM(store.get(STEP.onMM));
+                }
+                if (store.get(STEP.onSS)) {
+                    vm.step1OnSS(store.get(STEP.onSS));
+                }
+                if (store.get(STEP.offHH)) {
+                    vm.step1OffHH(store.get(STEP.offHH));
+                }
+                if (store.get(STEP.offMM)) {
+                    vm.step1OffMM(store.get(STEP.offMM));
+                }
+                if (store.get(STEP.offSS)) {
+                    vm.step1OffSS(store.get(STEP.offSS));
+                }
+            };
+            _step1Store();
+
+            _step2Store = () => {
+                const STEP = STATION1.datetime.ll1.step2;
+                if (store.get(STEP.onHH)) {
+                    vm.step2OnHH(store.get(STEP.onHH));
+                }
+                if (store.get(STEP.onMM)) {
+                    vm.step2OnMM(store.get(STEP.onMM));
+                }
+                if (store.get(STEP.onSS)) {
+                    vm.step2OnSS(store.get(STEP.onSS));
+                }
+                if (store.get(STEP.offHH)) {
+                    vm.step2OffHH(store.get(STEP.offHH));
+                }
+                if (store.get(STEP.offMM)) {
+                    vm.step2OffMM(store.get(STEP.offMM));
+                }
+                if (store.get(STEP.offSS)) {
+                    vm.step2OffSS(store.get(STEP.offSS));
+                }
+            };
+            _step2Store();
+
+            _step3Store = () => {
+                const STEP = STATION1.datetime.ll1.step3;
+                if (store.get(STEP.onHH)) {
+                    vm.step3OnHH(store.get(STEP.onHH));
+                }
+                if (store.get(STEP.onMM)) {
+                    vm.step3OnMM(store.get(STEP.onMM));
+                }
+                if (store.get(STEP.onSS)) {
+                    vm.step3OnSS(store.get(STEP.onSS));
+                }
+                if (store.get(STEP.offHH)) {
+                    vm.step3OffHH(store.get(STEP.offHH));
+                }
+                if (store.get(STEP.offMM)) {
+                    vm.step3OffMM(store.get(STEP.offMM));
+                }
+                if (store.get(STEP.offSS)) {
+                    vm.step3OffSS(store.get(STEP.offSS));
+                }
+            };
+            _step3Store();
+
+            _step4Store = () => {
+                const STEP = STATION1.datetime.ll1.step4;
+                if (store.get(STEP.onHH)) {
+                    vm.step4OnHH(store.get(STEP.onHH));
+                }
+                if (store.get(STEP.onMM)) {
+                    vm.step4OnMM(store.get(STEP.onMM));
+                }
+                if (store.get(STEP.onSS)) {
+                    vm.step4OnSS(store.get(STEP.onSS));
+                }
+                if (store.get(STEP.offHH)) {
+                    vm.step4OffHH(store.get(STEP.offHH));
+                }
+                if (store.get(STEP.offMM)) {
+                    vm.step4OffMM(store.get(STEP.offMM));
+                }
+                if (store.get(STEP.offSS)) {
+                    vm.step4OffSS(store.get(STEP.offSS));
+                }
+            };
+            _step4Store();
         };
 
         // Read streaming
@@ -334,21 +426,96 @@
             });
 
             _step1Read = () => {
-                const STEP1 = STATION1.datetime.ll1.step1;
-                ipcRenderer.on(STEP1.onHH, (e, data) => {
+                const STEP = STATION1.datetime.ll1.step1;
+                ipcRenderer.on(STEP.onHH, (e, data) => {
                     vm.step1OnHH(data);
                 });
-
-                ipcRenderer.on(STEP1.onMM, (e, data) => {
+                ipcRenderer.on(STEP.onMM, (e, data) => {
                     vm.step1OnMM(data);
                 });
-
-                ipcRenderer.on(STEP1.onSS, (e, data) => {
+                ipcRenderer.on(STEP.onSS, (e, data) => {
                     vm.step1OnSS(data);
+                });
+                ipcRenderer.on(STEP.offHH, (e, data) => {
+                    vm.step1OffHH(data);
+                });
+                ipcRenderer.on(STEP.offMM, (e, data) => {
+                    vm.step1OffMM(data);
+                });
+                ipcRenderer.on(STEP.offSS, (e, data) => {
+                    vm.step1OffSS(data);
                 });
             };
             _step1Read();
 
+            _step2Read = () => {
+                const STEP = STATION1.datetime.ll1.step2;
+                ipcRenderer.on(STEP.onHH, (e, data) => {
+                    vm.step2OnHH(data);
+                });
+                ipcRenderer.on(STEP.onMM, (e, data) => {
+                    vm.step2OnMM(data);
+                });
+                ipcRenderer.on(STEP.onSS, (e, data) => {
+                    vm.step2OnSS(data);
+                });
+                ipcRenderer.on(STEP.offHH, (e, data) => {
+                    vm.step2OffHH(data);
+                });
+                ipcRenderer.on(STEP.offMM, (e, data) => {
+                    vm.step2OffMM(data);
+                });
+                ipcRenderer.on(STEP.offSS, (e, data) => {
+                    vm.step2OffSS(data);
+                });
+            };
+            _step2Read();
+
+            _step3Read = () => {
+                const STEP = STATION1.datetime.ll1.step3;
+                ipcRenderer.on(STEP.onHH, (e, data) => {
+                    vm.step3OnHH(data);
+                });
+                ipcRenderer.on(STEP.onMM, (e, data) => {
+                    vm.step3OnMM(data);
+                });
+                ipcRenderer.on(STEP.onSS, (e, data) => {
+                    vm.step3OnSS(data);
+                });
+                ipcRenderer.on(STEP.offHH, (e, data) => {
+                    vm.step3OffHH(data);
+                });
+                ipcRenderer.on(STEP.offMM, (e, data) => {
+                    vm.step3OffMM(data);
+                });
+                ipcRenderer.on(STEP.offSS, (e, data) => {
+                    vm.step3OffSS(data);
+                });
+            };
+            _step3Read();
+
+            _step4Read = () => {
+                const STEP = STATION1.datetime.ll1.step4;
+                ipcRenderer.on(STEP.onHH, (e, data) => {
+                    vm.step4OnHH(data);
+                });
+                ipcRenderer.on(STEP.onMM, (e, data) => {
+                    vm.step4OnMM(data);
+                });
+                ipcRenderer.on(STEP.onSS, (e, data) => {
+                    vm.step4OnSS(data);
+                });
+                ipcRenderer.on(STEP.offHH, (e, data) => {
+                    vm.step4OffHH(data);
+                });
+                ipcRenderer.on(STEP.offMM, (e, data) => {
+                    vm.step4OffMM(data);
+                });
+                ipcRenderer.on(STEP.offSS, (e, data) => {
+                    vm.step4OffSS(data);
+                });
+            };
+            _step4Read();
         };
 
         const _buttonClick = () => {
@@ -369,13 +536,13 @@
 
             // STEP 1 //
             const _step1Click = () => {
-                const STEP1 = STATION1.datetime.ll1.step1;
+                const STEP = STATION1.datetime.ll1.step1;
                 setInputFilter(document.getElementById('step1OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
                 $('#step1OnHH').keyup(function () {
                     const HH = parseInt(this.value);
-                    ipcRenderer.send(STEP1.onHH, HH);
+                    ipcRenderer.send(STEP.onHH, HH);
                 });
 
                 setInputFilter(document.getElementById('step1OnMM'), function (value) {
@@ -384,7 +551,7 @@
                 $('#step1OnMM').keyup(function () {
                     const MM = this.value;
                     console.log(MM);
-                    ipcRenderer.send(STEP1.onMM, MM);
+                    ipcRenderer.send(STEP.onMM, MM);
                 });
 
                 setInputFilter(document.getElementById('step1OnSS'), function (value) {
@@ -393,7 +560,7 @@
                 $('#step1OnSS').keyup(function () {
                     const SS = this.value;
                     console.log(SS);
-                    ipcRenderer.send(STEP1.onSS, SS);
+                    ipcRenderer.send(STEP.onSS, SS);
                 });
 
                 // Off //
@@ -482,13 +649,6 @@
 
 
         };
-
-        const _setLimits = () => {
-            // Restricts input for the given textbox to the given inputFilter.
-
-
-
-        };
         // Show when ready
         $(document).ready(() => {
             $('body').show();
@@ -499,7 +659,6 @@
             _getFromStore();
             _readStreaming();
             _buttonClick();
-            _setLimits();
         });
 
     </script>
