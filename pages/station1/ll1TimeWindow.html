@@ -428,7 +428,12 @@
             _step1Read = () => {
                 const STEP = STATION1.datetime.ll1.step1;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
-                    vm.step1OnHH(data);
+                    
+                    if (data < 10) {
+                        vm.step1OnHH('0' + data);
+                    } else {
+                        vm.step1OnHH(data);
+                    }
                 });
                 ipcRenderer.on(STEP.onMM, (e, data) => {
                     vm.step1OnMM(data);
@@ -569,7 +574,7 @@
                 });
                 $('#step1OffHH').keyup(function () {
                     const HH = this.value;
-                    console.log(HH);
+                    ipcRenderer.send(STEP.offHH, HH);
                 });
 
                 setInputFilter(document.getElementById('step1OffMM'), function (value) {
@@ -578,6 +583,7 @@
                 $('#step1OffMM').keyup(function () {
                     const MM = this.value;
                     console.log(MM);
+                    ipcRenderer.send(STEP.offMM, MM);
                 });
 
                 setInputFilter(document.getElementById('step1OffSS'), function (value) {
@@ -586,6 +592,7 @@
                 $('#step1OffSS').keyup(function () {
                     const SS = this.value;
                     console.log(SS);
+                    ipcRenderer.send(STEP.offSS, SS);
                 });
             };
             _step1Click();

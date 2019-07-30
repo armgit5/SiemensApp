@@ -115,7 +115,7 @@
         vm.time(headerDatetime);
       }
 
-      if (CHANNELS.autoManual === true) {
+      if (store.get(CHANNELS.autoManual) === true) {
         vm.SiamStyle(greenColor);
       } else {
         vm.SiamStyle(redColor);
