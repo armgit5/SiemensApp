@@ -13,7 +13,8 @@ app.on('ready', () => {
         width: 800,
         height: 600,
         resizable: false,
-        show: false
+        show: false,
+        icon: __dirname + '/assets/icons/win/bts.ico'
     });
 
     mainWindow.loadURL(url.format({
