@@ -14,7 +14,7 @@ app.on('ready', () => {
         height: 600,
         resizable: false,
         show: false,
-        icon: __dirname + '/assets/icons/win/bts.ico'
+        icon: path.join(__dirname, '/assets/icons/win/bts.ico')
     });
 
     mainWindow.loadURL(url.format({
