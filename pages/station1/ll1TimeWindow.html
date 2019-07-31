@@ -545,115 +545,341 @@
                 setInputFilter(document.getElementById('step1OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step1OnHH').keyup(function () {
-                    const HH = parseInt(this.value);
-                    ipcRenderer.send(STEP.onHH, HH);
+                $('#step1OnHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        // console.log(data);
+                        if (data) {
+                            ipcRenderer.send(STEP.onHH, data);
+                        }
+                    };
                 });
+                // $('#step1OnHH').keyup(function () {
+                //     const HH = parseInt(this.value);
+                //     console.log(HH);
+                //     ipcRenderer.send(STEP.onHH, HH);
+                // });
 
                 setInputFilter(document.getElementById('step1OnMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OnMM').keyup(function () {
-                    const MM = this.value;
-                    console.log(MM);
-                    ipcRenderer.send(STEP.onMM, MM);
+                $('#step1OnMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onMM, data);
+                        }
+                    };
                 });
+                // $('#step1OnMM').keyup(function () {
+                //     const MM = this.value;
+                //     console.log(MM);
+                //     ipcRenderer.send(STEP.onMM, MM);
+                // });
 
                 setInputFilter(document.getElementById('step1OnSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OnSS').keyup(function () {
-                    const SS = this.value;
-                    console.log(SS);
-                    ipcRenderer.send(STEP.onSS, SS);
+                $('#step1OnSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onSS, data);
+                        }
+                    };
                 });
+                // $('#step1OnSS').keyup(function () {
+                //     const SS = this.value;
+                //     console.log(SS);
+                //     ipcRenderer.send(STEP.onSS, SS);
+                // });
 
                 // Off //
                 setInputFilter(document.getElementById('step1OffHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step1OffHH').keyup(function () {
-                    const HH = this.value;
-                    ipcRenderer.send(STEP.offHH, HH);
+                $('#step1OffHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offHH, data);
+                        }
+                    };
                 });
+                // $('#step1OffHH').keyup(function () {
+                //     const HH = this.value;
+                //     ipcRenderer.send(STEP.offHH, HH);
+                // });
 
                 setInputFilter(document.getElementById('step1OffMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OffMM').keyup(function () {
-                    const MM = this.value;
-                    console.log(MM);
-                    ipcRenderer.send(STEP.offMM, MM);
+                $('#step1OffMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offMM, data);
+                        }
+                    };
                 });
+                // $('#step1OffMM').keyup(function () {
+                //     const MM = this.value;
+                //     console.log(MM);
+                //     ipcRenderer.send(STEP.offMM, MM);
+                // });
 
                 setInputFilter(document.getElementById('step1OffSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OffSS').keyup(function () {
-                    const SS = this.value;
-                    console.log(SS);
-                    ipcRenderer.send(STEP.offSS, SS);
+                $('#step1OffSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offSS, data);
+                        }
+                    };
                 });
+                // $('#step1OffSS').keyup(function () {
+                //     const SS = this.value;
+                //     console.log(SS);
+                //     ipcRenderer.send(STEP.offSS, SS);
+                // });
             };
             _step1Click();
 
             // Step 2
             const _step2Click = () => {
+                const STEP = STATION1.datetime.ll1.step2;
                 setInputFilter(document.getElementById('step2OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step2OnHH').keyup(function () {
-                    const HH = parseInt(this.value);
-                    ipcRenderer.send(CHANNELS.ll1.step1.onHH, HH);
+                $('#step2OnHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onHH, data);
+                        }
+                    };
                 });
 
                 setInputFilter(document.getElementById('step2OnMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OnMM').keyup(function () {
-                    const MM = this.value;
-                    console.log(MM);
-                    ipcRenderer.send(CHANNELS.ll1.step1.onMM, MM);
+                $('#step2OnMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onMM, data);
+                        }
+                    };
                 });
 
                 setInputFilter(document.getElementById('step2OnSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OnSS').keyup(function () {
-                    const SS = this.value;
-                    console.log(SS);
-                    ipcRenderer.send(CHANNELS.ll1.step1.onSS, SS);
+                $('#step2OnSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onSS, data);
+                        }
+                    };
                 });
 
-                // Step 1 Off //
+                // Off //
                 setInputFilter(document.getElementById('step2OffHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step2OffHH').keyup(function () {
-                    const HH = this.value;
-                    console.log(HH);
+                $('#step2OffHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offHH, data);
+                        }
+                    };
                 });
 
                 setInputFilter(document.getElementById('step2OffMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OffMM').keyup(function () {
-                    const MM = this.value;
-                    console.log(MM);
+                $('#step2OffMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offMM, data);
+                        }
+                    };
                 });
 
                 setInputFilter(document.getElementById('step2OffSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OffSS').keyup(function () {
-                    const SS = this.value;
-                    console.log(SS);
+                $('#step2OffSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offSS, data);
+                        }
+                    };
                 });
             };
-            // _step2Click();
+            _step2Click();
 
             // Step 3
+            const _step3Click = () => {
+                const STEP = STATION1.datetime.ll1.step3;
+                setInputFilter(document.getElementById('step3OnHH'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
+                });
+                $('#step3OnHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onHH, data);
+                        }
+                    };
+                });
 
+                setInputFilter(document.getElementById('step3OnMM'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step3OnMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onMM, data);
+                        }
+                    };
+                });
+
+                setInputFilter(document.getElementById('step3OnSS'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step3OnSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onSS, data);
+                        }
+                    };
+                });
+
+                // Off //
+                setInputFilter(document.getElementById('step3OffHH'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
+                });
+                $('#step3OffHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offHH, data);
+                        }
+                    };
+                });
+
+                setInputFilter(document.getElementById('step3OffMM'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step3OffMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offMM, data);
+                        }
+                    };
+                });
+
+                setInputFilter(document.getElementById('step3OffSS'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step3OffSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offSS, data);
+                        }
+                    };
+                });
+            };
+            _step3Click();
+
+            // Step 4
+            const _step4Click = () => {
+                const STEP = STATION1.datetime.ll1.step4;
+                setInputFilter(document.getElementById('step4OnHH'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
+                });
+                $('#step4OnHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onHH, data);
+                        }
+                    };
+                });
+
+                setInputFilter(document.getElementById('step4OnMM'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step4OnMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onMM, data);
+                        }
+                    };
+                });
+
+                setInputFilter(document.getElementById('step4OnSS'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step4OnSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.onSS, data);
+                        }
+                    };
+                });
+
+                // Off //
+                setInputFilter(document.getElementById('step4OffHH'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
+                });
+                $('#step4OffHH').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offHH, data);
+                        }
+                    };
+                });
+
+                setInputFilter(document.getElementById('step4OffMM'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step4OffMM').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offMM, data);
+                        }
+                    };
+                });
+
+                setInputFilter(document.getElementById('step4OffSS'), function (value) {
+                    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
+                });
+                $('#step4OffSS').on('keypress', function(e) {
+                    if (e.which === 13) {
+                        const data = parseInt(this.value);
+                        if (data) {
+                            ipcRenderer.send(STEP.offSS, data);
+                        }
+                    };
+                });
+            };
+            _step4Click();
 
         };
         // Show when ready
