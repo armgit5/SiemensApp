@@ -162,9 +162,9 @@ module.exports = (NODE, mainWindow) => {
                     if (n === 1) {
                         // console.log('reading step1', data);
                         require('./readingll1step1')(mainWindow, data);
-                        require('./readingll1step2')(mainWindow, data);
-                        require('./readingll1step3')(mainWindow, data);
-                        require('./readingll1step4')(mainWindow, data);
+                        // require('./readingll1step2')(mainWindow, data);
+                        // require('./readingll1step3')(mainWindow, data);
+                        // require('./readingll1step4')(mainWindow, data);
                     }
                 })
                 .catch(err => {

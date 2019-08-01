@@ -436,19 +436,39 @@
                     }
                 });
                 ipcRenderer.on(STEP.onMM, (e, data) => {
-                    vm.step1OnMM(data);
+                    if (data < 10) {
+                        vm.step1OnMM('0' + data);
+                    } else {
+                        vm.step1OnMM(data);
+                    }
                 });
                 ipcRenderer.on(STEP.onSS, (e, data) => {
-                    vm.step1OnSS(data);
+                    if (data < 10) {
+                        vm.step1OnSS('0' + data);
+                    } else {
+                        vm.step1OnSS(data);
+                    }
                 });
                 ipcRenderer.on(STEP.offHH, (e, data) => {
-                    vm.step1OffHH(data);
+                    if (data < 10) {
+                        vm.step1OffHH('0' + data);
+                    } else {
+                        vm.step1OffHH(data);
+                    }
                 });
                 ipcRenderer.on(STEP.offMM, (e, data) => {
-                    vm.step1OffMM(data);
+                    if (data < 10) {
+                        vm.step1OffMM('0' + data);
+                    } else {
+                        vm.step1OffMM(data);
+                    }
                 });
                 ipcRenderer.on(STEP.offSS, (e, data) => {
-                    vm.step1OffSS(data);
+                    if (data < 10) {
+                        vm.step1OffSS('0' + data);
+                    } else {
+                        vm.step1OffSS(data);
+                    }
                 });
             };
             _step1Read();
@@ -563,17 +583,11 @@
                 $('#step1OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        // console.log(data);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onHH, data);
                         }
                     };
                 });
-                // $('#step1OnHH').keyup(function () {
-                //     const HH = parseInt(this.value);
-                //     console.log(HH);
-                //     ipcRenderer.send(STEP.onHH, HH);
-                // });
 
                 setInputFilter(document.getElementById('step1OnMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
@@ -581,16 +595,11 @@
                 $('#step1OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onMM, data);
                         }
                     };
                 });
-                // $('#step1OnMM').keyup(function () {
-                //     const MM = this.value;
-                //     console.log(MM);
-                //     ipcRenderer.send(STEP.onMM, MM);
-                // });
 
                 setInputFilter(document.getElementById('step1OnSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
@@ -598,16 +607,11 @@
                 $('#step1OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onSS, data);
                         }
                     };
                 });
-                // $('#step1OnSS').keyup(function () {
-                //     const SS = this.value;
-                //     console.log(SS);
-                //     ipcRenderer.send(STEP.onSS, SS);
-                // });
 
                 // Off //
                 setInputFilter(document.getElementById('step1OffHH'), function (value) {
@@ -616,15 +620,11 @@
                 $('#step1OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offHH, data);
                         }
                     };
                 });
-                // $('#step1OffHH').keyup(function () {
-                //     const HH = this.value;
-                //     ipcRenderer.send(STEP.offHH, HH);
-                // });
 
                 setInputFilter(document.getElementById('step1OffMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
@@ -632,16 +632,11 @@
                 $('#step1OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offMM, data);
                         }
                     };
                 });
-                // $('#step1OffMM').keyup(function () {
-                //     const MM = this.value;
-                //     console.log(MM);
-                //     ipcRenderer.send(STEP.offMM, MM);
-                // });
 
                 setInputFilter(document.getElementById('step1OffSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
@@ -649,16 +644,11 @@
                 $('#step1OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offSS, data);
                         }
                     };
                 });
-                // $('#step1OffSS').keyup(function () {
-                //     const SS = this.value;
-                //     console.log(SS);
-                //     ipcRenderer.send(STEP.offSS, SS);
-                // });
             };
             _step1Click();
 
@@ -671,7 +661,7 @@
                 $('#step2OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onHH, data);
                         }
                     };
@@ -683,7 +673,7 @@
                 $('#step2OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onMM, data);
                         }
                     };
@@ -695,7 +685,7 @@
                 $('#step2OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onSS, data);
                         }
                     };
@@ -708,7 +698,7 @@
                 $('#step2OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offHH, data);
                         }
                     };
@@ -720,7 +710,7 @@
                 $('#step2OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offMM, data);
                         }
                     };
@@ -732,7 +722,7 @@
                 $('#step2OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offSS, data);
                         }
                     };
@@ -749,7 +739,7 @@
                 $('#step3OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onHH, data);
                         }
                     };
@@ -761,7 +751,7 @@
                 $('#step3OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onMM, data);
                         }
                     };
@@ -773,7 +763,7 @@
                 $('#step3OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onSS, data);
                         }
                     };
@@ -786,7 +776,7 @@
                 $('#step3OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offHH, data);
                         }
                     };
@@ -798,7 +788,7 @@
                 $('#step3OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offMM, data);
                         }
                     };
@@ -810,7 +800,7 @@
                 $('#step3OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offSS, data);
                         }
                     };
@@ -827,7 +817,7 @@
                 $('#step4OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onHH, data);
                         }
                     };
@@ -839,7 +829,7 @@
                 $('#step4OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onMM, data);
                         }
                     };
@@ -851,7 +841,7 @@
                 $('#step4OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.onSS, data);
                         }
                     };
@@ -864,7 +854,7 @@
                 $('#step4OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offHH, data);
                         }
                     };
@@ -876,7 +866,7 @@
                 $('#step4OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offMM, data);
                         }
                     };
@@ -888,7 +878,7 @@
                 $('#step4OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
-                        if (data) {
+                        if (data >= 0) {
                             ipcRenderer.send(STEP.offSS, data);
                         }
                     };
