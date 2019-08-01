@@ -17,9 +17,18 @@ module.exports = (mainWindow) => {
             NODE = new Node(STATION1.id, STATION1.ip);
             initHelper(NODE).then(isOnline => {
                 console.log('S1 is online ', isOnline);
+                if (isOnline) {
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                }
             });
-            require('./station1-process/readingHandler')(NODE, mainWindow);
-            require('./station1-process/clickHandler')(NODE, mainWindow);
+
+            // const _removeLl1 = () => {
+            //     ipcMain.on(CHANNELS.removeLl1, (e, _) => {
+            //         console.log('remove ll1');
+            //     });
+            // };
+            // _removeLl1();
         }
     };
 

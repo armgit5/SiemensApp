@@ -239,10 +239,10 @@
         <!-- Footer -->
         <div class="row">
             <span>
-                <a href="llWindow.html">
+                <a href="" id="back">
                     <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
-                <a href="mainWindow.html">
+                <a href="" id="home">
                     <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
             </span>
@@ -428,7 +428,7 @@
             _step1Read = () => {
                 const STEP = STATION1.datetime.ll1.step1;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
-                    
+
                     if (data < 10) {
                         vm.step1OnHH('0' + data);
                     } else {
@@ -524,6 +524,21 @@
         };
 
         const _buttonClick = () => {
+
+            // Back button
+            document.getElementById("back").onclick = function () {
+                console.log("removed ll1 reads");
+                ipcRenderer.send(CHANNELS.removeLl1, true);
+                location.href = "llWindow.html";
+            };
+
+            // Home button
+            document.getElementById("home").onclick = function () {
+                console.log("removed ll1 reads");
+                ipcRenderer.send(CHANNELS.removeLl1, true);
+                location.href = "../mainWindow.html";
+            };
+
             function setInputFilter(textbox, inputFilter) {
                 ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
                     textbox.addEventListener(event, function () {
@@ -545,7 +560,7 @@
                 setInputFilter(document.getElementById('step1OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step1OnHH').on('keypress', function(e) {
+                $('#step1OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         // console.log(data);
@@ -563,7 +578,7 @@
                 setInputFilter(document.getElementById('step1OnMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OnMM').on('keypress', function(e) {
+                $('#step1OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -580,7 +595,7 @@
                 setInputFilter(document.getElementById('step1OnSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OnSS').on('keypress', function(e) {
+                $('#step1OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -598,7 +613,7 @@
                 setInputFilter(document.getElementById('step1OffHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step1OffHH').on('keypress', function(e) {
+                $('#step1OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -614,7 +629,7 @@
                 setInputFilter(document.getElementById('step1OffMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OffMM').on('keypress', function(e) {
+                $('#step1OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -631,7 +646,7 @@
                 setInputFilter(document.getElementById('step1OffSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step1OffSS').on('keypress', function(e) {
+                $('#step1OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -653,7 +668,7 @@
                 setInputFilter(document.getElementById('step2OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step2OnHH').on('keypress', function(e) {
+                $('#step2OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -665,7 +680,7 @@
                 setInputFilter(document.getElementById('step2OnMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OnMM').on('keypress', function(e) {
+                $('#step2OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -677,7 +692,7 @@
                 setInputFilter(document.getElementById('step2OnSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OnSS').on('keypress', function(e) {
+                $('#step2OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -690,7 +705,7 @@
                 setInputFilter(document.getElementById('step2OffHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step2OffHH').on('keypress', function(e) {
+                $('#step2OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -702,7 +717,7 @@
                 setInputFilter(document.getElementById('step2OffMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OffMM').on('keypress', function(e) {
+                $('#step2OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -714,7 +729,7 @@
                 setInputFilter(document.getElementById('step2OffSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step2OffSS').on('keypress', function(e) {
+                $('#step2OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -731,7 +746,7 @@
                 setInputFilter(document.getElementById('step3OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step3OnHH').on('keypress', function(e) {
+                $('#step3OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -743,7 +758,7 @@
                 setInputFilter(document.getElementById('step3OnMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step3OnMM').on('keypress', function(e) {
+                $('#step3OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -755,7 +770,7 @@
                 setInputFilter(document.getElementById('step3OnSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step3OnSS').on('keypress', function(e) {
+                $('#step3OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -768,7 +783,7 @@
                 setInputFilter(document.getElementById('step3OffHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step3OffHH').on('keypress', function(e) {
+                $('#step3OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -780,7 +795,7 @@
                 setInputFilter(document.getElementById('step3OffMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step3OffMM').on('keypress', function(e) {
+                $('#step3OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -792,7 +807,7 @@
                 setInputFilter(document.getElementById('step3OffSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step3OffSS').on('keypress', function(e) {
+                $('#step3OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -809,7 +824,7 @@
                 setInputFilter(document.getElementById('step4OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step4OnHH').on('keypress', function(e) {
+                $('#step4OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -821,7 +836,7 @@
                 setInputFilter(document.getElementById('step4OnMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step4OnMM').on('keypress', function(e) {
+                $('#step4OnMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -833,7 +848,7 @@
                 setInputFilter(document.getElementById('step4OnSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step4OnSS').on('keypress', function(e) {
+                $('#step4OnSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -846,7 +861,7 @@
                 setInputFilter(document.getElementById('step4OffHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
-                $('#step4OffHH').on('keypress', function(e) {
+                $('#step4OffHH').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -858,7 +873,7 @@
                 setInputFilter(document.getElementById('step4OffMM'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step4OffMM').on('keypress', function(e) {
+                $('#step4OffMM').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {
@@ -870,7 +885,7 @@
                 setInputFilter(document.getElementById('step4OffSS'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 59 && value.length <= 2);
                 });
-                $('#step4OffSS').on('keypress', function(e) {
+                $('#step4OffSS').on('keypress', function (e) {
                     if (e.which === 13) {
                         const data = parseInt(this.value);
                         if (data) {

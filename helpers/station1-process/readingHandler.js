@@ -67,6 +67,13 @@ module.exports = (NODE, mainWindow) => {
         }
     }
 
+    const _removeLl1 = () => {
+        ipcMain.on(CHANNELS.removeLl1, (e, _) => {
+            console.log('remove ll1');
+            _removeLLnTime(1);
+        });
+    };
+
     const _addDatetime = () => { // Will be used on every page
         const datetime = STATION1.datetime;
         const datetimeHeader = datetime.header;
@@ -152,6 +159,9 @@ module.exports = (NODE, mainWindow) => {
                     if (n === 1) {
                         // console.log('reading step1', data);
                         require('./readingll1step1')(mainWindow, data);
+                        require('./readingll1step2')(mainWindow, data);
+                        require('./readingll1step3')(mainWindow, data);
+                        require('./readingll1step4')(mainWindow, data);
                     }
                 })
                 .catch(err => {
@@ -164,6 +174,7 @@ module.exports = (NODE, mainWindow) => {
         INTERVALS.push(loopInterval);
     };
 
+    
 
     // ---- Main Program ---- //
     const main = () => {
@@ -182,12 +193,9 @@ module.exports = (NODE, mainWindow) => {
             if (lln === 1) {
                 console.log('ll1');
                 _stopIntervals();
-                // readHelper(NODE)
-                //     .then(data => {
-                //         _removeAllLLn(data);
-                //     })
                 _addLLnTime(ll1);
                 _startLoop(1);
+                _removeLl1(); // Listen for ll1 page change
             }
         });
     };
