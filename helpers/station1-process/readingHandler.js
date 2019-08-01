@@ -11,6 +11,9 @@ const store = new Store();
 const INTERVALS = [];
 const KEYS = STATION1.storedKeys;
 const DATETIME = STATION1.datetime;
+const LL1 = DATETIME.ll1;
+const ll2 = DATETIME.ll2;
+const ll3 = DATETIME.ll3;
 let LLN = 0;
 
 module.exports = (NODE, mainWindow) => {
@@ -70,7 +73,7 @@ module.exports = (NODE, mainWindow) => {
     const _removeLl1 = () => {
         ipcMain.on(CHANNELS.removeLl1, (e, _) => {
             console.log('remove ll1');
-            _removeLLnTime(1);
+            _removeLLnTime(LL1);
         });
     };
 
@@ -178,9 +181,6 @@ module.exports = (NODE, mainWindow) => {
 
     // ---- Main Program ---- //
     const main = () => {
-        const ll1 = DATETIME.ll1;
-        const ll2 = DATETIME.ll2;
-        const ll3 = DATETIME.ll3;
 
         _stopIntervals();
         _addDatetime();
@@ -193,7 +193,7 @@ module.exports = (NODE, mainWindow) => {
             if (lln === 1) {
                 console.log('ll1');
                 _stopIntervals();
-                _addLLnTime(ll1);
+                _addLLnTime(LL1);
                 _startLoop(1);
                 _removeLl1(); // Listen for ll1 page change
             }
