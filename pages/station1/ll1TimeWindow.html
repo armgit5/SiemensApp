@@ -275,6 +275,15 @@
         };
         let vm;
 
+        // Make 2 digit helper function
+        const _make2Digits = (data) => {
+            if (data < 10) {
+                return '0' + data;
+            } else {
+                return data;
+            }
+        };
+
         // Start View Model
         const _startViewModel = () => {
             // Knockout functions
@@ -329,22 +338,28 @@
             _step1Store = () => {
                 const STEP = STATION1.datetime.ll1.step1;
                 if (store.get(STEP.onHH)) {
-                    vm.step1OnHH(store.get(STEP.onHH));
+                    const data = _make2Digits(store.get(STEP.onHH));
+                    vm.step1OnHH(data);
                 }
                 if (store.get(STEP.onMM)) {
-                    vm.step1OnMM(store.get(STEP.onMM));
+                    const data = _make2Digits(store.get(STEP.onMM));
+                    vm.step1OnMM(data);
                 }
                 if (store.get(STEP.onSS)) {
-                    vm.step1OnSS(store.get(STEP.onSS));
+                    const data = _make2Digits(store.get(STEP.onSS));
+                    vm.step1OnSS(data);
                 }
                 if (store.get(STEP.offHH)) {
-                    vm.step1OffHH(store.get(STEP.offHH));
+                    const data = _make2Digits(store.get(STEP.offHH));
+                    vm.step1OffHH(data);
                 }
                 if (store.get(STEP.offMM)) {
-                    vm.step1OffMM(store.get(STEP.offMM));
+                    const data = _make2Digits(store.get(STEP.offMM));
+                    vm.step1OffMM(data);
                 }
                 if (store.get(STEP.offSS)) {
-                    vm.step1OffSS(store.get(STEP.offSS));
+                    const data = _make2Digits(store.get(STEP.offSS));
+                    vm.step1OffSS(data);
                 }
             };
             _step1Store();
