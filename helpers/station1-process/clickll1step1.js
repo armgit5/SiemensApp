@@ -23,9 +23,9 @@ module.exports = (NODE) => {
     const onMM = STATION1.datetime.ll1.step1.onMM;
     const onMMTimer = STATION1.datetime.ll1.step1.onMMTimer;
     ipcMain.on(onMM, (e, data) => {
-        writeHelper(NODE, onMMTimer, true)
+        writeHelper(NODE, onMM, data)
             .then(_ => {
-                return writeHelper(NODE, onMM, data);
+                return writeHelper(NODE, onMMTimer, true);
             })
             .then(_ => {
                 return writeHelper(NODE, onMMTimer, false);
@@ -38,9 +38,9 @@ module.exports = (NODE) => {
     const onSS = STATION1.datetime.ll1.step1.onSS;
     const onSSTimer = STATION1.datetime.ll1.step1.onSSTimer;
     ipcMain.on(onSS, (e, data) => {
-        writeHelper(NODE, onSSTimer, true)
+        writeHelper(NODE, onSS, data)
             .then(_ => {
-                return writeHelper(NODE, onSS, data);
+                return writeHelper(NODE, onSSTimer, true);
             })
             .then(_ => {
                 return writeHelper(NODE, onSSTimer, false);
@@ -54,9 +54,9 @@ module.exports = (NODE) => {
     const offHH = STATION1.datetime.ll1.step1.offHH;
     const offHHTimer = STATION1.datetime.ll1.step1.offHHTimer;
     ipcMain.on(offHH, (e, data) => {
-        writeHelper(NODE, offHHTimer, true)
+        writeHelper(NODE, offHH, data)
             .then(_ => {
-                return writeHelper(NODE, offHH, data);
+                return writeHelper(NODE, offHHTimer, true);
             })
             .then(_ => {
                 return writeHelper(NODE, offHHTimer, false);
@@ -69,10 +69,9 @@ module.exports = (NODE) => {
     const offMM = STATION1.datetime.ll1.step1.offMM;
     const offMMTimer = STATION1.datetime.ll1.step1.offMMTimer;
     ipcMain.on(offMM, (e, data) => {
-        writeHelper(NODE, offMMTimer, true)
+        writeHelper(NODE, offMM, data)
             .then(_ => {
-                console.log(data, offMM, offMMTimer)
-                return writeHelper(NODE, offMM, data);
+                return writeHelper(NODE, offMMTimer, true);
             })
             .then(_ => {
                 return writeHelper(NODE, offMMTimer, false);
@@ -85,9 +84,9 @@ module.exports = (NODE) => {
     const offSS = STATION1.datetime.ll1.step1.offSS;
     const offSSTimer = STATION1.datetime.ll1.step1.offSSTimer;
     ipcMain.on(offSS, (e, data) => {
-        writeHelper(NODE, offSSTimer, true)
+        writeHelper(NODE, offSS, data)
             .then(_ => {
-                return writeHelper(NODE, offSS, data);
+                return writeHelper(NODE, offSSTimer, true);
             })
             .then(_ => {
                 return writeHelper(NODE, offSSTimer, false);
