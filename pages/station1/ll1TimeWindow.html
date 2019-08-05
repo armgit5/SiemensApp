@@ -491,22 +491,22 @@
             _step2Read = () => {
                 const STEP = STATION1.datetime.ll1.step2;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
-                    vm.step2OnHH(data);
+                    vm.step2OnHH(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.onMM, (e, data) => {
-                    vm.step2OnMM(data);
+                    vm.step2OnMM(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.onSS, (e, data) => {
-                    vm.step2OnSS(data);
+                    vm.step2OnSS(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offHH, (e, data) => {
-                    vm.step2OffHH(data);
+                    vm.step2OffHH(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offMM, (e, data) => {
-                    vm.step2OffMM(data);
+                    vm.step2OffMM(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offSS, (e, data) => {
-                    vm.step2OffSS(data);
+                    vm.step2OffSS(_make2Digits(data));
                 });
             };
             _step2Read();
@@ -514,22 +514,22 @@
             _step3Read = () => {
                 const STEP = STATION1.datetime.ll1.step3;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
-                    vm.step3OnHH(data);
+                    vm.step3OnHH(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.onMM, (e, data) => {
-                    vm.step3OnMM(data);
+                    vm.step3OnMM(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.onSS, (e, data) => {
-                    vm.step3OnSS(data);
+                    vm.step3OnSS(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offHH, (e, data) => {
-                    vm.step3OffHH(data);
+                    vm.step3OffHH(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offMM, (e, data) => {
-                    vm.step3OffMM(data);
+                    vm.step3OffMM(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offSS, (e, data) => {
-                    vm.step3OffSS(data);
+                    vm.step3OffSS(_make2Digits(data));
                 });
             };
             _step3Read();
@@ -537,22 +537,22 @@
             _step4Read = () => {
                 const STEP = STATION1.datetime.ll1.step4;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
-                    vm.step4OnHH(data);
+                    vm.step4OnHH(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.onMM, (e, data) => {
-                    vm.step4OnMM(data);
+                    vm.step4OnMM(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.onSS, (e, data) => {
-                    vm.step4OnSS(data);
+                    vm.step4OnSS(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offHH, (e, data) => {
-                    vm.step4OffHH(data);
+                    vm.step4OffHH(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offMM, (e, data) => {
-                    vm.step4OffMM(data);
+                    vm.step4OffMM(_make2Digits(data));
                 });
                 ipcRenderer.on(STEP.offSS, (e, data) => {
-                    vm.step4OffSS(data);
+                    vm.step4OffSS(_make2Digits(data));
                 });
             };
             _step4Read();
