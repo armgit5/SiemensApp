@@ -1,6 +1,6 @@
 module.exports = {
     id: 'N1',
-    ip: '192.168.0.11',
+    ip: '192.168.0.12',
     bits: {
         ll1On: 'M212.0',
         ll1isOn: 'M215.0',
@@ -36,7 +36,7 @@ module.exports = {
                 offSS: 'MW20',
                 offHHTimer: 'M22.3',
                 offMMTimer: 'M22.4',
-                offMMTimer: 'M22.5',
+                offSSTimer: 'M22.5',
             },
             step2: {
                 onHH: 'MW30',
@@ -50,7 +50,7 @@ module.exports = {
                 offSS: 'MW40',
                 offHHTimer: 'M42.3',
                 offMMTimer: 'M42.4',
-                offMMTimer: 'M42.5',
+                offSSTimer: 'M42.5',
             },
             step3: {
                 onHH: 'MW50',
@@ -64,7 +64,7 @@ module.exports = {
                 offSS: 'MW60',
                 offHHTimer: 'M62.3',
                 offMMTimer: 'M62.4',
-                offMMTimer: 'M62.5',
+                offSSTimer: 'M62.5',
             },
             step4: {
                 onHH: 'MW70',
@@ -78,7 +78,7 @@ module.exports = {
                 offSS: 'MW80',
                 offHHTimer: 'M82.3',
                 offMMTimer: 'M82.4',
-                offMMTimer: 'M82.5',
+                offSSTimer: 'M82.5',
             },
         },
         ll2: {
@@ -94,7 +94,7 @@ module.exports = {
                 offSS: 'MW240',
                 offHHTimer: 'M242.3',
                 offMMTimer: 'M242.4',
-                offMMTimer: 'M242.5',
+                offSSTimer: 'M242.5',
             },
             step2: {
                 onHH: 'MW250',
@@ -108,7 +108,7 @@ module.exports = {
                 offSS: 'MW260',
                 offHHTimer: 'M262.3',
                 offMMTimer: 'M262.4',
-                offMMTimer: 'M262.5',
+                offSSTimer: 'M262.5',
             },
             step3: {
                 onHH: 'MW270',
@@ -122,7 +122,7 @@ module.exports = {
                 offSS: 'MW280',
                 offHHTimer: 'M282.3',
                 offMMTimer: 'M282.4',
-                offMMTimer: 'M282.5',
+                offSSTimer: 'M282.5',
             },
             step4: {
                 onHH: 'MW290',
@@ -136,7 +136,7 @@ module.exports = {
                 offSS: 'MW290',
                 offHHTimer: 'M302.3',
                 offMMTimer: 'M302.4',
-                offMMTimer: 'M302.5',
+                offSSTimer: 'M302.5',
             },
         },
         ll3: {
@@ -152,7 +152,7 @@ module.exports = {
                 offSS: 'MW420',
                 offHHTimer: 'M422.3',
                 offMMTimer: 'M422.4',
-                offMMTimer: 'M422.5',
+                offSSTimer: 'M422.5',
             },
             step2: {
                 onHH: 'MW430',
@@ -166,7 +166,7 @@ module.exports = {
                 offSS: 'MW430',
                 offHHTimer: 'M442.3',
                 offMMTimer: 'M442.4',
-                offMMTimer: 'M442.5',
+                offSSTimer: 'M442.5',
             },
             step3: {
                 onHH: 'MW450',
@@ -180,7 +180,7 @@ module.exports = {
                 offSS: 'MW450',
                 offHHTimer: 'M462.3',
                 offMMTimer: 'M462.4',
-                offMMTimer: 'M462.5',
+                offSSTimer: 'M462.5',
             },
             step4: {
                 onHH: 'MW470',
@@ -194,7 +194,7 @@ module.exports = {
                 offSS: 'MW480',
                 offHHTimer: 'M482.3',
                 offMMTimer: 'M482.4',
-                offMMTimer: 'M482.5',
+                offSSTimer: 'M482.5',
             },
         },
     },
