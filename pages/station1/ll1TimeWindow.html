@@ -367,22 +367,28 @@
             _step2Store = () => {
                 const STEP = STATION1.datetime.ll1.step2;
                 if (store.get(STEP.onHH)) {
-                    vm.step2OnHH(store.get(STEP.onHH));
+                    const data = _make2Digits(store.get(STEP.onHH));
+                    vm.step1OnHH(data);
                 }
                 if (store.get(STEP.onMM)) {
-                    vm.step2OnMM(store.get(STEP.onMM));
+                    const data = _make2Digits(store.get(STEP.onMM));
+                    vm.step1OnMM(data);
                 }
                 if (store.get(STEP.onSS)) {
-                    vm.step2OnSS(store.get(STEP.onSS));
+                    const data = _make2Digits(store.get(STEP.onSS));
+                    vm.step1OnSS(data);
                 }
                 if (store.get(STEP.offHH)) {
-                    vm.step2OffHH(store.get(STEP.offHH));
+                    const data = _make2Digits(store.get(STEP.offHH));
+                    vm.step1OffHH(data);
                 }
                 if (store.get(STEP.offMM)) {
-                    vm.step2OffMM(store.get(STEP.offMM));
+                    const data = _make2Digits(store.get(STEP.offMM));
+                    vm.step1OffMM(data);
                 }
                 if (store.get(STEP.offSS)) {
-                    vm.step2OffSS(store.get(STEP.offSS));
+                    const data = _make2Digits(store.get(STEP.offSS));
+                    vm.step1OffSS(data);
                 }
             };
             _step2Store();
@@ -390,45 +396,57 @@
             _step3Store = () => {
                 const STEP = STATION1.datetime.ll1.step3;
                 if (store.get(STEP.onHH)) {
-                    vm.step3OnHH(store.get(STEP.onHH));
+                    const data = _make2Digits(store.get(STEP.onHH));
+                    vm.step1OnHH(data);
                 }
                 if (store.get(STEP.onMM)) {
-                    vm.step3OnMM(store.get(STEP.onMM));
+                    const data = _make2Digits(store.get(STEP.onMM));
+                    vm.step1OnMM(data);
                 }
                 if (store.get(STEP.onSS)) {
-                    vm.step3OnSS(store.get(STEP.onSS));
+                    const data = _make2Digits(store.get(STEP.onSS));
+                    vm.step1OnSS(data);
                 }
                 if (store.get(STEP.offHH)) {
-                    vm.step3OffHH(store.get(STEP.offHH));
+                    const data = _make2Digits(store.get(STEP.offHH));
+                    vm.step1OffHH(data);
                 }
                 if (store.get(STEP.offMM)) {
-                    vm.step3OffMM(store.get(STEP.offMM));
+                    const data = _make2Digits(store.get(STEP.offMM));
+                    vm.step1OffMM(data);
                 }
                 if (store.get(STEP.offSS)) {
-                    vm.step3OffSS(store.get(STEP.offSS));
+                    const data = _make2Digits(store.get(STEP.offSS));
+                    vm.step1OffSS(data);
                 }
             };
             _step3Store();
 
             _step4Store = () => {
                 const STEP = STATION1.datetime.ll1.step4;
-                if (store.get(STEP.onHH)) {
-                    vm.step4OnHH(store.get(STEP.onHH));
+                 if (store.get(STEP.onHH)) {
+                    const data = _make2Digits(store.get(STEP.onHH));
+                    vm.step1OnHH(data);
                 }
                 if (store.get(STEP.onMM)) {
-                    vm.step4OnMM(store.get(STEP.onMM));
+                    const data = _make2Digits(store.get(STEP.onMM));
+                    vm.step1OnMM(data);
                 }
                 if (store.get(STEP.onSS)) {
-                    vm.step4OnSS(store.get(STEP.onSS));
+                    const data = _make2Digits(store.get(STEP.onSS));
+                    vm.step1OnSS(data);
                 }
                 if (store.get(STEP.offHH)) {
-                    vm.step4OffHH(store.get(STEP.offHH));
+                    const data = _make2Digits(store.get(STEP.offHH));
+                    vm.step1OffHH(data);
                 }
                 if (store.get(STEP.offMM)) {
-                    vm.step4OffMM(store.get(STEP.offMM));
+                    const data = _make2Digits(store.get(STEP.offMM));
+                    vm.step1OffMM(data);
                 }
                 if (store.get(STEP.offSS)) {
-                    vm.step4OffSS(store.get(STEP.offSS));
+                    const data = _make2Digits(store.get(STEP.offSS));
+                    vm.step1OffSS(data);
                 }
             };
             _step4Store();
@@ -904,12 +922,12 @@
         };
         // Show when ready
         $(document).ready(() => {
-            $('body').show();
             // Send station id to init connection
             ipcRenderer.send(CHANNELS.onLLn, 1);
 
             _startViewModel();
             _getFromStore();
+            $('body').show();
             _readStreaming();
             _buttonClick();
         });

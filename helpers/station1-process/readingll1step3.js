@@ -3,43 +3,49 @@ const Store = require('electron-store');
 const store = new Store();
 
 module.exports = (mainWindow, data) => {
-    let step3OnHH = -1;
-    let step3OnMM = -1;
-    let step3OnSS = -1;
-    let step3OffHH = -1;
-    let step3OffMM = -1;
-    let step3OffSS = -1;
-    const STEP3 = STATION1.datetime.ll1.step3;
+    let onHH = -1;
+    let onMM = -1;
+    let onSS = -1;
+    let offHH = -1;
+    let offMM = -1;
+    let offSS = -1;
+    const STEP = STATION1.datetime.ll1.step3;
     
-    // STEP 1
-    let step3OnHHResult = data[STEP3.onHH];
-    if (step3OnHHResult !== step3OnHH) {
-        step3OnHH = step3OnHHResult;
-        mainWindow.webContents.send(STEP3.onHH, step3OnHH);
-    }
-    let step3OnMMResult = data[STEP3.onMM];
-    if (step3OnMMResult !== step3OnMM) {
-        step3OnMM = step3OnMMResult;
-        mainWindow.webContents.send(STEP3.onMM, step3OnMM);
-    }
-    let step3OnSSResult = data[STEP3.onSS];
-    if (step3OnSSResult !== step3OnSS) {
-        step3OnSS = step3OnSSResult;
-        mainWindow.webContents.send(STEP3.onSS, step3OnSS);
-    }
-    let step3OffHHResult = data[STEP3.offHH];
-    if (step3OffHHResult !== step3OffHH) {
-        step3OffHH = step3OffHHResult;
-        mainWindow.webContents.send(STEP3.offHH, step3OffHH);
-    }
-    let step3OffMMResult = data[STEP3.offMM];
-    if (step3OffMMResult !== step3OffMM) {
-        step3OffMM = step3OffMMResult;
-        mainWindow.webContents.send(STEP3.offMM, step3OffMM);
-    }
-    let step3OffSSResult = data[STEP3.offSS];
-    if (step3OffSSResult !== step3OffSS) {
-        step3OffSS = step3OffSSResult;
-        mainWindow.webContents.send(STEP3.offSS, step3OffSS);
-    }
+     // STEP 1
+     let onHHResult = data[STEP.onHH];
+     if (onHHResult !== onHH) {
+         onHH = onHHResult;
+         store.set(STEP.onHH, onHH); 
+         mainWindow.webContents.send(STEP.onHH, onHH);
+     }
+     let onMMResult = data[STEP.onMM];
+     if (onMMResult !== onMM) {
+         onMM = onMMResult;
+         store.set(STEP.onMM, onMM); 
+         mainWindow.webContents.send(STEP.onMM, onMM);
+     }
+     let onSSResult = data[STEP.onSS];
+     if (onSSResult !== onSS) {
+         onSS = onSSResult;
+         store.set(STEP.onSS, onSS); 
+         mainWindow.webContents.send(STEP.onSS, onSS);
+     }
+     let offHHResult = data[STEP.offHH];
+     if (offHHResult !== offHH) {
+         offHH = offHHResult;
+         store.set(STEP.offHH, offHH); 
+         mainWindow.webContents.send(STEP.offHH, offHH);
+     }
+     let offMMResult = data[STEP.offMM];
+     if (offMMResult !== offMM) {
+         offMM = offMMResult;
+         store.set(STEP.offMM, offMM);
+         mainWindow.webContents.send(STEP.offMM, offMM);
+     }
+     let offSSResult = data[STEP.offSS];
+     if (offSSResult !== offSS) {
+         offSS = offSSResult;
+         store.set(STEP.offSS, offSS);
+         mainWindow.webContents.send(STEP.offSS, offSS);
+     }
 }; 

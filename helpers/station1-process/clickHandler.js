@@ -109,4 +109,7 @@ module.exports = (NODE, mainWindow) => {
     // LL1 clicks
     // Step 1
     require('./clickll1step1')(NODE);
+    require('./clickll1step2')(NODE);
+    require('./clickll1step3')(NODE);
+    require('./clickll1step4')(NODE);
 }
