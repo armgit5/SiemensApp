@@ -2,15 +2,23 @@ const { ipcMain } = require('electron');
 const Node = require('./node');
 const { CHANNELS, SCANTIME } = require('./environments');
 const STATION1 = require('../data/station1');
+const STATION2 = require('../data/station2');
 const initHelper = require('./initHelper');
 
 let NODE; // Hold node connection
 let STATION_ID = 0;
+let aNodeIsOnline = false;
 
 module.exports = (mainWindow) => {
 
     const _initNode = () => {
-        NODE = null; // Clear node to kill old connection
+        if (aNodeIsOnline) {
+            console.log('kill the existing node');
+            NODE.dropConnection((cb) => {
+                console.log('drop connection', cb);
+            });
+            NODE = null; // Clear node to kill old connection
+        }
 
         // Init station 1
         if (STATION_ID === 1) {
@@ -18,11 +26,27 @@ module.exports = (mainWindow) => {
             initHelper(NODE).then(isOnline => {
                 console.log('S1 is online ', isOnline);
                 if (isOnline) {
+                    aNodeIsOnline = true;
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
                 }
             });
         }
+
+        if (STATION_ID === 2) {
+            NODE = new Node(STATION2.id, STATION2.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S2 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 2 sucessfully');
+                    // require('./station1-process/readingHandler')(NODE, mainWindow);
+                    // require('./station1-process/clickHandler')(NODE, mainWindow);
+                }
+            });
+        }
+
+
     };
 
     // Main Program
