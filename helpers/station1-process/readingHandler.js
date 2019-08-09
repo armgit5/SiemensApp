@@ -118,7 +118,7 @@ module.exports = (NODE, mainWindow) => {
 
     };
 
-    let cachedAutoManual = false;
+    let cachedAutoManual = store.get(CHANNELS.autoManual);
     const _parseAutoManual = (data) => {
         const autoManual = data[DATETIME.header.autoManual];
 

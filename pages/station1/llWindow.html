@@ -221,16 +221,16 @@
                 vm.time(datetime);
             });
 
-            ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-                // console.log(id, status);
-                if (id === 'N1') {
-                    if (status === true) {
-                        vm.S1Style(greenColor);
-                    } else {
-                        vm.S1Style(redColor);
-                    }
-                }
-            });
+            // ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
+            //     // console.log(id, status);
+            //     if (id === 'N1') {
+            //         if (status === true) {
+            //             vm.S1Style(greenColor);
+            //         } else {
+            //             vm.S1Style(redColor);
+            //         }
+            //     }
+            // });
 
             const _readLLn = () => {
                 ipcRenderer.on(CHANNELS.ll1On, (e, isOn) => {
@@ -241,14 +241,6 @@
                     }
                 });
 
-                // ipcRenderer.on(CHANNELS.ll1Off, (e, isOn) => {
-                //     if (isOn) {
-                //         vm.ll1OnStyle(redColor);
-                //     } else {
-                //         vm.ll1OnStyle(whiteColor);
-                //     }
-                // });
-
                 ipcRenderer.on(CHANNELS.ll2On, (e, isOn) => {
                     if (isOn) {
                         vm.ll2Style(greenColor);
@@ -257,14 +249,6 @@
                     }
                 });
 
-                // ipcRenderer.on(CHANNELS.ll2Off, (e, isOn) => {
-                //     if (isOn) {
-                //         vm.ll1OnStyle(redColor);
-                //     } else {
-                //         vm.ll1OnStyle(whiteColor);
-                //     }
-                // });
-
                 ipcRenderer.on(CHANNELS.ll3On, (e, isOn) => {
                     if (isOn) {
                         vm.ll3Style(greenColor);
@@ -272,14 +256,6 @@
                         vm.ll3Style(redColor);
                     }
                 });
-
-                // ipcRenderer.on(CHANNELS.ll3Off, (e, isOn) => {
-                //     if (isOn) {
-                //         vm.ll1OnStyle(redColor);
-                //     } else {
-                //         vm.ll1OnStyle(whiteColor);
-                //     }
-                // });
             }
             _readLLn();
 
