@@ -11,7 +11,9 @@ module.exports.CHANNELS = {
     ll3Off: 'll3:Off',
     autoManual: 'auto:manual',
     setAutoManual: 'set:auto:manual',
-    removeLl1: 'removeLl1'
+    removeLl1: 'removeLl1',
+    removeLl2: 'removeLl2',
+    removeLl3: 'removeLl3'
 }
 
 module.exports.PRESSTIME = 2000;

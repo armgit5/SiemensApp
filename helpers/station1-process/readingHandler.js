@@ -77,6 +77,13 @@ module.exports = (NODE, mainWindow) => {
         });
     };
 
+    const _removeLl2 = () => {
+        ipcMain.on(CHANNELS.removeLl2, (e, _) => {
+            console.log('remove ll2');
+            _removeLLnTime(LL2);
+        });
+    };
+
     const _addDatetime = () => { // Will be used on every page
         const datetime = STATION1.datetime;
         const datetimeHeader = datetime.header;
@@ -166,6 +173,13 @@ module.exports = (NODE, mainWindow) => {
                         require('./readingll1step3')(mainWindow, data);
                         require('./readingll1step4')(mainWindow, data);
                     }
+
+                    if (n === 2) {
+                        require('./readingll2/readingllnstep1')(mainWindow, data);
+                        require('./readingll2/readingllnstep2')(mainWindow, data);
+                        require('./readingll2/readingllnstep3')(mainWindow, data);
+                        require('./readingll2/readingllnstep4')(mainWindow, data);
+                    }
                 })
                 .catch(err => {
                     console.log(err);
@@ -177,8 +191,6 @@ module.exports = (NODE, mainWindow) => {
         INTERVALS.push(loopInterval);
     };
 
-    
-
     // ---- Main Program ---- //
     const main = () => {
 
@@ -188,14 +200,24 @@ module.exports = (NODE, mainWindow) => {
         _addllnBits();
         _startLoop(0);
 
+        console.log('starting reading main');
         //  ----  Catch page ---  //
         ipcMain.on(CHANNELS.onLLn, (e, lln) => {
+            console.log(lln);
             if (lln === 1) {
                 console.log('ll1');
                 _stopIntervals();
                 _addLLnTime(LL1);
                 _startLoop(1);
                 _removeLl1(); // Listen for ll1 page change
+            }
+
+            if (lln === 2) {
+                console.log('ll2');
+                _stopIntervals();
+                _addLLnTime(LL2);
+                _startLoop(2);
+                _removeLl2(); // Listen for ll1 page change
             }
         });
     };

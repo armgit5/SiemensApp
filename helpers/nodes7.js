@@ -22,13 +22,6 @@ module.exports = (mainWindow) => {
                     require('./station1-process/clickHandler')(NODE, mainWindow);
                 }
             });
-
-            // const _removeLl1 = () => {
-            //     ipcMain.on(CHANNELS.removeLl1, (e, _) => {
-            //         console.log('remove ll1');
-            //     });
-            // };
-            // _removeLl1();
         }
     };
 
