@@ -1,6 +1,6 @@
-const STATION1 = require('../../data/station1');
+const STATION1 = require('../../../data/station1');
 const { ipcMain } = require('electron');
-const writeHelper = require('../writeHelper');
+const writeHelper = require('../../writeHelper');
 
 module.exports = (NODE) => {
 

@@ -1,5 +1,5 @@
 
-const STATION1 = require('../../data/station1');
+const STATION1 = require('../../../data/station1');
 const Store = require('electron-store');
 const store = new Store();
 

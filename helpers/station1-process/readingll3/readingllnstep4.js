@@ -1,4 +1,4 @@
-const STATION1 = require('../../data/station1');
+const STATION1 = require('../../../data/station1');
 const Store = require('electron-store');
 const store = new Store();
 
@@ -9,7 +9,7 @@ module.exports = (mainWindow, data) => {
     let offHH = -1;
     let offMM = -1;
     let offSS = -1;
-    const STEP = STATION1.datetime.ll2.step4;
+    const STEP = STATION1.datetime.ll3.step4;
     
      // STEP 1
      let onHHResult = data[STEP.onHH];

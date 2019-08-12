@@ -12,9 +12,11 @@ const INTERVALS = [];
 const KEYS = STATION1.storedKeys;
 const DATETIME = STATION1.datetime;
 const LL1 = DATETIME.ll1;
-const ll2 = DATETIME.ll2;
-const ll3 = DATETIME.ll3;
+const LL2 = DATETIME.ll2;
+const LL3 = DATETIME.ll3;
+let storeReadLLn = [];
 let LLN = 0;
+
 
 module.exports = (NODE, mainWindow) => {
 
@@ -38,25 +40,49 @@ module.exports = (NODE, mainWindow) => {
         for (let i = 1; i <= 4; i++) {
             let key = lln[`step${i}`];
             NODE.conn.addItems(key.onHH);
+            // storeReadLLn.push(key.onHH);
             NODE.conn.addItems(key.onMM);
+            // storeReadLLn.push(key.onMM);
             NODE.conn.addItems(key.onSS);
+            // storeReadLLn.push(key.onSS);
             NODE.conn.addItems(key.offHH);
+            // storeReadLLn.push(key.offHH);
             NODE.conn.addItems(key.offMM);
+            // storeReadLLn.push(key.offMM);
             NODE.conn.addItems(key.offSS);
+            // storeReadLLn.push(key.offSS);
         }
+
+        readHelper(NODE)
+                .then(data => {
+                    console.log(data, Object.keys(data).length);
+                });
+
     };
 
     const _removeLLnTime = (lln) => {
         // Loop through 4 steps
-        for (const i = 1; i <= 4; i++) {
-            const key = lln[`step${i}`];
-            NODE.conn.removeItems(key.onHH);
-            NODE.conn.removeItems(key.onMM);
-            NODE.conn.removeItems(key.onSS);
-            NODE.conn.removeItems(key.offHH);
-            NODE.conn.removeItems(key.offMM);
-            NODE.conn.removeItems(key.offSS);
-        }
+        // for (let i = 1; i <= 4; i++) {
+        //     let key = lln[`step${i}`];
+        //     NODE.conn.removeItems(key.onHH);
+        //     NODE.conn.removeItems(key.onMM);
+        //     NODE.conn.removeItems(key.onSS);
+        //     NODE.conn.removeItems(key.offHH);
+        //     NODE.conn.removeItems(key.offMM);
+        //     NODE.conn.removeItems(key.offSS);
+        // }
+
+        _stopIntervals();
+        storeReadLLn.forEach(read => {
+            NODE.conn.removeItems(read);
+        });
+        _startLoop(1);
+
+        readHelper(NODE)
+                .then(data => {
+                    console.log(data);
+                });
+                
     };
 
     // Remove if exists
@@ -73,14 +99,21 @@ module.exports = (NODE, mainWindow) => {
     const _removeLl1 = () => {
         ipcMain.on(CHANNELS.removeLl1, (e, _) => {
             console.log('remove ll1');
-            _removeLLnTime(LL1);
+            // _removeLLnTime();
         });
     };
 
     const _removeLl2 = () => {
         ipcMain.on(CHANNELS.removeLl2, (e, _) => {
             console.log('remove ll2');
-            _removeLLnTime(LL2);
+            // _removeLLnTime(LL2);
+        });
+    };
+
+    const _removeLl3 = () => {
+        ipcMain.on(CHANNELS.removeLl3, (e, _) => {
+            console.log('remove ll3');
+            // _removeLLnTime(LL2);
         });
     };
 
@@ -180,6 +213,13 @@ module.exports = (NODE, mainWindow) => {
                         require('./readingll2/readingllnstep3')(mainWindow, data);
                         require('./readingll2/readingllnstep4')(mainWindow, data);
                     }
+
+                    if (n === 3) {
+                        require('./readingll3/readingllnstep1')(mainWindow, data);
+                        require('./readingll3/readingllnstep2')(mainWindow, data);
+                        require('./readingll3/readingllnstep3')(mainWindow, data);
+                        require('./readingll3/readingllnstep4')(mainWindow, data);
+                    }
                 })
                 .catch(err => {
                     console.log(err);
@@ -218,6 +258,14 @@ module.exports = (NODE, mainWindow) => {
                 _addLLnTime(LL2);
                 _startLoop(2);
                 _removeLl2(); // Listen for ll1 page change
+            }
+
+            if (lln === 3) {
+                console.log('ll3');
+                _stopIntervals();
+                _addLLnTime(LL3);
+                _startLoop(3);
+                _removeLl3(); // Listen for ll1 page change
             }
         });
     };
