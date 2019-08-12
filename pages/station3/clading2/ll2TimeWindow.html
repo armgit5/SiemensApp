@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>BTS APP</title>
 
-    <link rel="stylesheet" href="../../assets/styles/mainWindow.css">
+    <link rel="stylesheet" href="../../../assets/styles/mainWindow.css">
 
     <style>
         .station-mid {
@@ -33,7 +33,7 @@
         <div class="row header-row">
             <div class="col-6">
                 <h1 class="header" style="text-align: left; margin: 0px;">
-                    LC2
+                    CD2-2
                 </h1>
 
             </div>
@@ -240,10 +240,10 @@
         <div class="row">
             <span>
                 <a href="" id="back">
-                    <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+                    <img src="../../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
                 <a href="" id="home">
-                    <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+                    <img src="../../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
             </span>
         </div>
@@ -253,16 +253,16 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>window.$ = window.jQuery = require('jquery');</script>
-    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="../../helpers/knockout.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../../helpers/knockout.js"></script>
 
     <!-- IPC script -->
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
-        const { CHANNELS } = require('../../helpers/environments');
-        const STATION1 = require('../../data/station1');
+        const { CHANNELS } = require('../../../helpers/environments');
+        const STATION1 = require('../../../data/station1');
         const Store = require('electron-store');
         const store = new Store();
         const keys = STATION1.storedKeys;
