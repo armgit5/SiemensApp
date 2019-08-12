@@ -169,7 +169,7 @@ module.exports = (NODE, mainWindow) => {
         const ll1OnResult = data[STATION1.bits.ll1isOn];
         const ll2OnResult = data[STATION1.bits.ll2isOn];
         const ll3OnResult = data[STATION1.bits.ll3isOn];
-        console.log(ll1OnResult, ll2OnResult, ll3OnResult);
+        // console.log(ll1OnResult, ll2OnResult, ll3OnResult);
 
         if (ll1On !== ll1OnResult) {
             ll1On = ll1OnResult;

@@ -18,7 +18,7 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
     <div class="container">
-        <h1 class="header" style="text-align: left;">Siam LC</h1>
+        <h1 class="header" style="text-align: left;">Clading 1, SB</h1>
         <div class="row header-row">
             <div class="col-6">
                 <button type="button" class="btn station" id="autoManual"
@@ -41,7 +41,7 @@
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll1Style"
                     onclick="window.location.href='ll1TimeWindow.html'">
-                    LC1
+                    CD1-1
                 </button>
             </div>
 
@@ -49,7 +49,7 @@
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll2Style"
                     onclick="window.location.href='ll2TimeWindow.html'">
-                    LC2
+                    CD1-2
                 </button>
             </div>
 
@@ -57,7 +57,7 @@
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll3Style"
                     onclick="window.location.href='ll3TimeWindow.html'">
-                    LC3
+                    CD1-3
                 </button>
             </div>
         </div>
@@ -113,7 +113,7 @@
         <!-- Footer -->
         <div class="row">
             <span>
-                <a href="../detailWindow.html">
+                <a href="./detailWindow.html">
                     <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
                 <a href="../mainWindow.html">
@@ -292,9 +292,9 @@
                     vm.autoManual('MANUAL');
                     vm.autoManualStyle(redColor);
 
-
+                   
                 }
-            });
+            });  
         };
 
         const _buttonClick = () => {
@@ -339,7 +339,7 @@
         $(document).ready(() => {
             $('body').show();
             // Send station id to init connection
-            ipcRenderer.send(CHANNELS.onNewStation, 2);
+            ipcRenderer.send(CHANNELS.onNewStation, 3);
 
             _startViewModel();
             _getFromStore();
