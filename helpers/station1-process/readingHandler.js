@@ -54,35 +54,29 @@ module.exports = (NODE, mainWindow) => {
         }
 
         readHelper(NODE)
-                .then(data => {
-                    console.log(data, Object.keys(data).length);
-                });
+            .then(data => {
+                console.log(data, Object.keys(data).length);
+            });
 
     };
 
     const _removeLLnTime = (lln) => {
         // Loop through 4 steps
-        // for (let i = 1; i <= 4; i++) {
-        //     let key = lln[`step${i}`];
-        //     NODE.conn.removeItems(key.onHH);
-        //     NODE.conn.removeItems(key.onMM);
-        //     NODE.conn.removeItems(key.onSS);
-        //     NODE.conn.removeItems(key.offHH);
-        //     NODE.conn.removeItems(key.offMM);
-        //     NODE.conn.removeItems(key.offSS);
-        // }
-
-        _stopIntervals();
-        storeReadLLn.forEach(read => {
-            NODE.conn.removeItems(read);
-        });
-        _startLoop(1);
+        for (let i = 1; i <= 4; i++) {
+            let key = lln[`step${i}`];
+            NODE.conn.removeItems(key.onHH);
+            NODE.conn.removeItems(key.onMM);
+            NODE.conn.removeItems(key.onSS);
+            NODE.conn.removeItems(key.offHH);
+            NODE.conn.removeItems(key.offMM);
+            NODE.conn.removeItems(key.offSS);
+        }
 
         readHelper(NODE)
-                .then(data => {
-                    console.log(data);
-                });
-                
+            .then(data => {
+                console.log(data);
+            });
+
     };
 
     // Remove if exists
@@ -99,21 +93,27 @@ module.exports = (NODE, mainWindow) => {
     const _removeLl1 = () => {
         ipcMain.on(CHANNELS.removeLl1, (e, _) => {
             console.log('remove ll1');
-            // _removeLLnTime();
+            // _stopIntervals();
+            // _removeLLnTime(LL1);
+            // _startLoop(1);
         });
     };
 
     const _removeLl2 = () => {
         ipcMain.on(CHANNELS.removeLl2, (e, _) => {
             console.log('remove ll2');
+            // _stopIntervals();
             // _removeLLnTime(LL2);
+            // _startLoop(2);
         });
     };
 
     const _removeLl3 = () => {
         ipcMain.on(CHANNELS.removeLl3, (e, _) => {
             console.log('remove ll3');
-            // _removeLLnTime(LL2);
+            // _stopIntervals();
+            // _removeLLnTime(LL3);
+            // _startLoop(3);
         });
     };
 
