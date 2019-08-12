@@ -14,7 +14,7 @@ module.exports = (mainWindow) => {
     const _initNode = () => {
         if (aNodeIsOnline) {
             console.log('kill the existing node');
-            NODE.dropConnection((cb) => {
+            NODE.conn.dropConnection((cb) => {
                 console.log('drop connection', cb);
             });
             NODE = null; // Clear node to kill old connection
@@ -40,8 +40,8 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 2 sucessfully');
-                    // require('./station1-process/readingHandler')(NODE, mainWindow);
-                    // require('./station1-process/clickHandler')(NODE, mainWindow);
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
                 }
             });
         }
@@ -55,6 +55,7 @@ module.exports = (mainWindow) => {
         ipcMain.on(CHANNELS.onNewStation, (e, id) => {
             // If new id comes in then kills old connection and start 
             // new connection to new plc
+            console.log(id);
             if (id !== STATION_ID) {
                 STATION_ID = id;
                 _initNode();

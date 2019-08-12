@@ -1,5 +1,5 @@
 module.exports = {
-    id: 'N1',
+    id: 'N2',
     ip: '192.168.0.12',
     bits: {
         ll1On: 'M212.0',
@@ -112,7 +112,7 @@ module.exports = {
             },
             step3: {
                 onHH: 'MW270',
-                onMM: 'MW270',
+                onMM: 'MW272',
                 onSS: 'MW274',
                 onHHTimer: 'M282.0',
                 onMMTimer: 'M282.1',
@@ -133,7 +133,7 @@ module.exports = {
                 onSSTimer: 'M302.2',
                 offHH: 'MW296',
                 offMM: 'MW298',
-                offSS: 'MW290',
+                offSS: 'MW300',
                 offHHTimer: 'M302.3',
                 offMMTimer: 'M302.4',
                 offSSTimer: 'M302.5',

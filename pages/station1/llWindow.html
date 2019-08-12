@@ -221,17 +221,6 @@
                 vm.time(datetime);
             });
 
-            // ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-            //     // console.log(id, status);
-            //     if (id === 'N1') {
-            //         if (status === true) {
-            //             vm.S1Style(greenColor);
-            //         } else {
-            //             vm.S1Style(redColor);
-            //         }
-            //     }
-            // });
-
             const _readLLn = () => {
                 ipcRenderer.on(CHANNELS.ll1On, (e, isOn) => {
                     if (isOn) {

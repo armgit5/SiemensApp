@@ -162,29 +162,30 @@ module.exports = (NODE, mainWindow) => {
         }
     };
 
-    let ll1On = false;
-    let ll2On = false;
-    let ll3On = false;
+    let ll1On;
+    let ll2On;
+    let ll3On;
     const _parseLLn = (data) => {
         const ll1OnResult = data[STATION1.bits.ll1isOn];
         const ll2OnResult = data[STATION1.bits.ll2isOn];
         const ll3OnResult = data[STATION1.bits.ll3isOn];
+        console.log(ll1OnResult, ll2OnResult, ll3OnResult);
 
         if (ll1On !== ll1OnResult) {
             ll1On = ll1OnResult;
-            store.set(CHANNELS.ll1On, ll1On);
+            store.set(CHANNELS.ll1On, ll1OnResult);
             mainWindow.webContents.send(CHANNELS.ll1On, ll1On);
         }
 
         if (ll2On !== ll2OnResult) {
             ll2On = ll2OnResult;
-            store.set(CHANNELS.ll2On, ll2On);
+            store.set(CHANNELS.ll2On, ll2OnResult);
             mainWindow.webContents.send(CHANNELS.ll2On, ll2On);
         }
 
         if (ll3On !== ll3OnResult) {
             ll3On = ll3OnResult;
-            store.set(CHANNELS.ll3On, ll3On);
+            store.set(CHANNELS.ll3On, ll3OnResult);
             mainWindow.webContents.send(CHANNELS.ll3On, ll3On);
         }
     }

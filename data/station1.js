@@ -1,6 +1,6 @@
 module.exports = {
     id: 'N1',
-    ip: '192.168.5.10',
+    ip: '192.168.0.11',
     bits: {
         ll1On: 'M212.0',
         ll1isOn: 'M215.0',
