@@ -123,4 +123,22 @@ module.exports = (NODE, mainWindow) => {
     require('./clickll3/clickllnstep2')(NODE);
     require('./clickll3/clickllnstep3')(NODE);
     require('./clickll3/clickllnstep4')(NODE);
+
+    // LL4 clicks
+    require('./clickll4/clickllnstep1')(NODE);
+    require('./clickll4/clickllnstep2')(NODE);
+    require('./clickll4/clickllnstep3')(NODE);
+    require('./clickll4/clickllnstep4')(NODE);
+
+    // LL5 clicks
+    require('./clickll5/clickllnstep1')(NODE);
+    require('./clickll5/clickllnstep2')(NODE);
+    require('./clickll5/clickllnstep3')(NODE);
+    require('./clickll5/clickllnstep4')(NODE);
+
+    // LL6 clicks
+    require('./clickll6/clickllnstep1')(NODE);
+    require('./clickll6/clickllnstep2')(NODE);
+    require('./clickll6/clickllnstep3')(NODE);
+    require('./clickll6/clickllnstep4')(NODE);
 }

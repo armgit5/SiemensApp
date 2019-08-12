@@ -14,6 +14,9 @@ const DATETIME = STATION1.datetime;
 const LL1 = DATETIME.ll1;
 const LL2 = DATETIME.ll2;
 const LL3 = DATETIME.ll3;
+const LL4 = DATETIME.ll4;
+const LL5 = DATETIME.ll5;
+const LL6 = DATETIME.ll6;
 let storeReadLLn = [];
 let LLN = 0;
 
@@ -221,6 +224,27 @@ module.exports = (NODE, mainWindow) => {
                         require('./readingll3/readingllnstep3')(mainWindow, data);
                         require('./readingll3/readingllnstep4')(mainWindow, data);
                     }
+
+                    if (n === 4) {
+                        require('./readingll4/readingllnstep1')(mainWindow, data);
+                        require('./readingll4/readingllnstep2')(mainWindow, data);
+                        require('./readingll4/readingllnstep3')(mainWindow, data);
+                        require('./readingll4/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 5) {
+                        require('./readingll5/readingllnstep1')(mainWindow, data);
+                        require('./readingll5/readingllnstep2')(mainWindow, data);
+                        require('./readingll5/readingllnstep3')(mainWindow, data);
+                        require('./readingll5/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 6) {
+                        require('./readingll6/readingllnstep1')(mainWindow, data);
+                        require('./readingll6/readingllnstep2')(mainWindow, data);
+                        require('./readingll6/readingllnstep3')(mainWindow, data);
+                        require('./readingll6/readingllnstep4')(mainWindow, data);
+                    }
                 })
                 .catch(err => {
                     console.log(err);
@@ -267,6 +291,27 @@ module.exports = (NODE, mainWindow) => {
                 _addLLnTime(LL3);
                 _startLoop(3);
                 _removeLl3(); // Listen for ll1 page change
+            }
+
+            if (lln === 4) {
+                console.log('ll4');
+                _stopIntervals();
+                _addLLnTime(LL4);
+                _startLoop(4);
+            }
+
+            if (lln === 5) {
+                console.log('ll5');
+                _stopIntervals();
+                _addLLnTime(LL5);
+                _startLoop(5);
+            }
+
+            if (lln === 6) {
+                console.log('ll6');
+                _stopIntervals();
+                _addLLnTime(LL6);
+                _startLoop(6);
             }
         });
     };
