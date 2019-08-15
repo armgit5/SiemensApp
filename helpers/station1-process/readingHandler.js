@@ -17,6 +17,16 @@ const LL3 = DATETIME.ll3;
 const LL4 = DATETIME.ll4;
 const LL5 = DATETIME.ll5;
 const LL6 = DATETIME.ll6;
+const LL7 = DATETIME.ll7;
+const LL8 = DATETIME.ll8;
+const LL9 = DATETIME.ll9;
+const LL10 = DATETIME.ll10;
+const LL11 = DATETIME.ll11;
+const LL12 = DATETIME.ll12;
+const LL13 = DATETIME.ll13;
+const LL14 = DATETIME.ll14;
+const LL15 = DATETIME.ll15;
+
 let storeReadLLn = [];
 let LLN = 0;
 
@@ -82,43 +92,128 @@ module.exports = (NODE, mainWindow) => {
 
     };
 
-    // Remove if exists
-    const _removeAllLLn = (data) => {
-        // Loop through 3 lln
-        for (const i = 1; i <= 3; i++) {
-            const lln = DATETIME[`ll${i}`];
-            if (data[lln].step1.onHH) {
-                _removeLLnTime(lln);
-            }
-        }
-    }
-
     const _removeLl1 = () => {
         ipcMain.on(CHANNELS.removeLl1, (e, _) => {
             console.log('remove ll1');
-            // _stopIntervals();
-            // _removeLLnTime(LL1);
-            // _startLoop(1);
+            _stopIntervals();
+            _removeLLnTime(LL1);
+            _startLoop(0);
         });
     };
-
     const _removeLl2 = () => {
         ipcMain.on(CHANNELS.removeLl2, (e, _) => {
             console.log('remove ll2');
-            // _stopIntervals();
-            // _removeLLnTime(LL2);
-            // _startLoop(2);
+            _stopIntervals();
+            _removeLLnTime(LL2);
+            _startLoop(0);
         });
     };
-
     const _removeLl3 = () => {
         ipcMain.on(CHANNELS.removeLl3, (e, _) => {
             console.log('remove ll3');
-            // _stopIntervals();
-            // _removeLLnTime(LL3);
-            // _startLoop(3);
+            _stopIntervals();
+            _removeLLnTime(LL3);
+            _startLoop(0);
         });
     };
+    const _removeLl4 = () => {
+        ipcMain.on(CHANNELS.removeLl4, (e, _) => {
+            console.log('remove ll4');
+            _stopIntervals();
+            _removeLLnTime(LL4);
+            _startLoop(0);
+        });
+    };
+    const _removeLl5= () => {
+        ipcMain.on(CHANNELS.removeLl5, (e, _) => {
+            console.log('remove ll5');
+            _stopIntervals();
+            _removeLLnTime(LL5);
+            _startLoop(0);
+        });
+    };
+    const _removeLl6 = () => {
+        ipcMain.on(CHANNELS.removeLl6, (e, _) => {
+            console.log('remove ll6');
+            _stopIntervals();
+            _removeLLnTime(LL6);
+            _startLoop(0);
+        });
+    };
+    const _removeLl7 = () => {
+        ipcMain.on(CHANNELS.removeLl7, (e, _) => {
+            console.log('remove ll7');
+            _stopIntervals();
+            _removeLLnTime(LL7);
+            _startLoop(0);
+        });
+    };
+    const _removeLl8 = () => {
+        ipcMain.on(CHANNELS.removeLl8, (e, _) => {
+            console.log('remove ll8');
+            _stopIntervals();
+            _removeLLnTime(LL8);
+            _startLoop(0);
+        });
+    };
+    const _removeLl9 = () => {
+        ipcMain.on(CHANNELS.removeLl9, (e, _) => {
+            console.log('remove ll9');
+            _stopIntervals();
+            _removeLLnTime(LL9);
+            _startLoop(0);
+        });
+    };
+    const _removeLl10 = () => {
+        ipcMain.on(CHANNELS.removeLl10, (e, _) => {
+            console.log('remove ll10');
+            _stopIntervals();
+            _removeLLnTime(LL10);
+            _startLoop(0);
+        });
+    };
+    const _removeLl11 = () => {
+        ipcMain.on(CHANNELS.removeLl11, (e, _) => {
+            console.log('remove ll11');
+            _stopIntervals();
+            _removeLLnTime(LL11);
+            _startLoop(0);
+        });
+    };
+    const _removeLl12 = () => {
+        ipcMain.on(CHANNELS.removeLl12, (e, _) => {
+            console.log('remove ll12');
+            _stopIntervals();
+            _removeLLnTime(LL12);
+            _startLoop(0);
+        });
+    };
+    const _removeLl13 = () => {
+        ipcMain.on(CHANNELS.removeLl13, (e, _) => {
+            console.log('remove ll13');
+            _stopIntervals();
+            _removeLLnTime(LL13);
+            _startLoop(0);
+        });
+    };
+    const _removeLl14 = () => {
+        ipcMain.on(CHANNELS.removeLl14, (e, _) => {
+            console.log('remove ll14');
+            _stopIntervals();
+            _removeLLnTime(LL14);
+            _startLoop(0);
+        });
+    };
+    const _removeLl15 = () => {
+        ipcMain.on(CHANNELS.removeLl15, (e, _) => {
+            console.log('remove ll15');
+            _stopIntervals();
+            _removeLLnTime(LL15);
+            _startLoop(0);
+        });
+    };
+
+
 
     const _addDatetime = () => { // Will be used on every page
         const datetime = STATION1.datetime;
@@ -298,6 +393,7 @@ module.exports = (NODE, mainWindow) => {
                 _stopIntervals();
                 _addLLnTime(LL4);
                 _startLoop(4);
+                _removeLl4();
             }
 
             if (lln === 5) {
@@ -305,6 +401,7 @@ module.exports = (NODE, mainWindow) => {
                 _stopIntervals();
                 _addLLnTime(LL5);
                 _startLoop(5);
+                _removeLl5();
             }
 
             if (lln === 6) {
@@ -312,6 +409,7 @@ module.exports = (NODE, mainWindow) => {
                 _stopIntervals();
                 _addLLnTime(LL6);
                 _startLoop(6);
+                _removeLl6();
             }
         });
     };

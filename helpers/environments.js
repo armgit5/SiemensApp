@@ -22,7 +22,16 @@ module.exports.CHANNELS = {
     removeLl3: 'removeLl3',
     removeLl4: 'removeLl4',
     removeLl5: 'removeLl5',
-    removeLl6: 'removeLl6'
+    removeLl6: 'removeLl6',
+    removeLl7: 'removeLl7',
+    removeLl8: 'removeLl8',
+    removeLl9: 'removeLl9',
+    removeLl10: 'removeLl10',
+    removeLl11: 'removeLl11',
+    removeLl12: 'removeLl12',
+    removeLl13: 'removeLl13',
+    removeLl14: 'removeLl14',
+    removeLl15: 'removeLl15'
 }
 
 module.exports.PRESSTIME = 2000;
