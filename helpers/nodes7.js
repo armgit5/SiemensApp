@@ -14,7 +14,7 @@ module.exports = (mainWindow) => {
 
     const _initNode = () => {
         if (aNodeIsOnline) {
-            console.log('kill the existing node');
+            console.log('kill the existing node', NODE);
             NODE.conn.dropConnection((cb) => {
                 console.log('drop connection', cb);
             });
@@ -25,7 +25,7 @@ module.exports = (mainWindow) => {
         if (STATION_ID === 1) {
             NODE = new Node(STATION1.id, STATION1.ip);
             initHelper(NODE).then(isOnline => {
-                console.log('S1 is online ', isOnline);
+                console.log('S1 is online ', isOnline, NODE);
                 if (isOnline) {
                     aNodeIsOnline = true;
                     require('./station1-process/readingHandler')(NODE, mainWindow);
