@@ -113,10 +113,10 @@
         <!-- Footer -->
         <div class="row">
             <span>
-                <a href="../detailWindow.html">
+                <a href="" id="back">
                     <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
-                <a href="../mainWindow.html">
+                <a href="" id="home">
                     <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
             </span>
@@ -298,6 +298,20 @@
         };
 
         const _buttonClick = () => {
+
+            // Back button
+            document.getElementById("back").onclick = function () {
+                console.log("removed ll1 reads");
+                ipcRenderer.send(CHANNELS.removeLl3, true);
+                location.href = "llWindow.html";
+            };
+
+            // Home button
+            document.getElementById("home").onclick = function () {
+                console.log("removed ll1 reads");
+                ipcRenderer.send(CHANNELS.removeLl3, true);
+                location.href = "../mainWindow.html";
+            };
 
             // Detect button click
             document.getElementById('ll1On').onclick = () => {

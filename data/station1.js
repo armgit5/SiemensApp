@@ -11,6 +11,13 @@ module.exports = {
         ll3On: 'M212.4',
         ll3isOn: 'M215.2',
         ll3Off: 'M212.5',
+
+        ll4On: 'M212.6',
+        ll4Off: 'M212.7',
+        ll5On: 'M212.8',
+        ll5Off: 'M212.9',
+        ll6On: 'M213.0',
+        ll6Off: 'M213.1',
     },
     datetime: {
         header: {

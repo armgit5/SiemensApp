@@ -3,6 +3,7 @@ const Node = require('./node');
 const { CHANNELS, SCANTIME } = require('./environments');
 const STATION1 = require('../data/station1');
 const STATION2 = require('../data/station2');
+const STATION3 = require('../data/station3');
 const initHelper = require('./initHelper');
 
 let NODE; // Hold node connection
@@ -40,6 +41,19 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 2 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                }
+            });
+        }
+
+        if (STATION_ID === 3) {
+            NODE = new Node(STATION3.id, STATION3.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S3 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 3 sucessfully');
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
                 }
