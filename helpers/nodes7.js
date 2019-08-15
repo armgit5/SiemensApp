@@ -4,6 +4,7 @@ const { CHANNELS, SCANTIME } = require('./environments');
 const STATION1 = require('../data/station1');
 const STATION2 = require('../data/station2');
 const STATION3 = require('../data/station3');
+const STATION4 = require('../data/station4');
 const initHelper = require('./initHelper');
 
 let NODE; // Hold node connection
@@ -54,6 +55,19 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 3 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                }
+            });
+        }
+
+        if (STATION_ID === 4) {
+            NODE = new Node(STATION4.id, STATION4.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S4 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 4 sucessfully');
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
                 }
