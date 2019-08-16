@@ -47,7 +47,7 @@ body {
     height: 50px;
     width: 100px;
     margin: 25px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     font-weight: 100;
     border-radius: 5px;
 }

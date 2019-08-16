@@ -9,9 +9,19 @@ const initHelper = require('./initHelper');
 
 let NODE; // Hold node connection
 let STATION_ID = 0;
+const KEYS = STATION1.storedKeys;
 let aNodeIsOnline = false;
+const Store = require('electron-store');
+const store = new Store();
 
 module.exports = (mainWindow) => {
+
+    const _sendDefaultDatetime = () => {
+        const outputDatetime = 'Reading...';
+        mainWindow.webContents.send(CHANNELS.datetime, outputDatetime); // Send to channel                        
+        store.set(KEYS.headerDatetime, outputDatetime); // Save datetime
+    };
+
 
     const _initNode = () => {
         if (aNodeIsOnline) {
@@ -20,6 +30,8 @@ module.exports = (mainWindow) => {
                 console.log('drop connection', cb);
             });
             NODE = null; // Clear node to kill old connection
+
+
         }
 
         // Init station 1
@@ -31,6 +43,8 @@ module.exports = (mainWindow) => {
                     aNodeIsOnline = true;
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
                 }
             });
         }
@@ -44,6 +58,8 @@ module.exports = (mainWindow) => {
                     console.log('init station 2 sucessfully');
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
                 }
             });
         }
@@ -57,6 +73,8 @@ module.exports = (mainWindow) => {
                     console.log('init station 3 sucessfully');
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
                 }
             });
         }
@@ -70,6 +88,8 @@ module.exports = (mainWindow) => {
                     console.log('init station 4 sucessfully');
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
                 }
             });
         }
