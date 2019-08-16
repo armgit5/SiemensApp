@@ -5,6 +5,14 @@ const STATION1 = require('../data/station1');
 const STATION2 = require('../data/station2');
 const STATION3 = require('../data/station3');
 const STATION4 = require('../data/station4');
+const STATION5 = require('../data/station5');
+const STATION6 = require('../data/station6');
+const STATION7 = require('../data/station7');
+const STATION8 = require('../data/station8');
+const STATION9 = require('../data/station9');
+const STATION10 = require('../data/station10');
+const STATION11 = require('../data/station11');
+const STATION12 = require('../data/station12');
 const initHelper = require('./initHelper');
 
 let NODE; // Hold node connection
@@ -86,6 +94,126 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 4 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 5) {
+            NODE = new Node(STATION5.id, STATION5.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S5 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 5 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 6) {
+            NODE = new Node(STATION6.id, STATION6.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S6 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 6 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 7) {
+            NODE = new Node(STATION7.id, STATION7.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S7 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 7 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 8) {
+            NODE = new Node(STATION8.id, STATION8.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S8 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 8 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 9) {
+            NODE = new Node(STATION9.id, STATION9.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S9 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 9 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 10) {
+            NODE = new Node(STATION10.id, STATION10.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S10 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 10 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 11) {
+            NODE = new Node(STATION11.id, STATION11.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S11 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 11 sucessfully');
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 12) {
+            NODE = new Node(STATION12.id, STATION12.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S12 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 12 sucessfully');
                     require('./station1-process/readingHandler')(NODE, mainWindow);
                     require('./station1-process/clickHandler')(NODE, mainWindow);
                 } else {
