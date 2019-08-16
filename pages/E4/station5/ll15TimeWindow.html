@@ -33,7 +33,7 @@
         <div class="row header-row">
             <div class="col-6">
                 <h1 class="header" style="text-align: left; margin: 0px;">
-                    SB4
+                    E4_NB_SC2-3
                 </h1>
 
             </div>
@@ -336,7 +336,7 @@
             vm.time(headerDatetime);
 
             _step1Store = () => {
-                const STEP = STATION1.datetime.ll4.step1;
+                const STEP = STATION1.datetime.ll15.step1;
                 if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step1OnHH(data);
@@ -365,7 +365,7 @@
             _step1Store();
 
             _step2Store = () => {
-                const STEP = STATION1.datetime.ll4.step2;
+                const STEP = STATION1.datetime.ll15.step2;
                 if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step2OnHH(data);
@@ -394,7 +394,7 @@
             _step2Store();
 
             _step3Store = () => {
-                const STEP = STATION1.datetime.ll4.step3;
+                const STEP = STATION1.datetime.ll15.step3;
                 if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step3OnHH(data);
@@ -423,7 +423,7 @@
             _step3Store();
 
             _step4Store = () => {
-                const STEP = STATION1.datetime.ll4.step4;
+                const STEP = STATION1.datetime.ll15.step4;
                  if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step4OnHH(data);
@@ -459,7 +459,7 @@
             });
 
             _step1Read = () => {
-                const STEP = STATION1.datetime.ll4.step1;
+                const STEP = STATION1.datetime.ll15.step1;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
 
                     if (data < 10) {
@@ -507,7 +507,7 @@
             _step1Read();
 
             _step2Read = () => {
-                const STEP = STATION1.datetime.ll4.step2;
+                const STEP = STATION1.datetime.ll15.step2;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
                     vm.step2OnHH(_make2Digits(data));
                 });
@@ -530,7 +530,7 @@
             _step2Read();
 
             _step3Read = () => {
-                const STEP = STATION1.datetime.ll4.step3;
+                const STEP = STATION1.datetime.ll15.step3;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
                     vm.step3OnHH(_make2Digits(data));
                 });
@@ -553,7 +553,7 @@
             _step3Read();
 
             _step4Read = () => {
-                const STEP = STATION1.datetime.ll4.step4;
+                const STEP = STATION1.datetime.ll15.step4;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
                     vm.step4OnHH(_make2Digits(data));
                 });
@@ -580,15 +580,15 @@
 
             // Back button
             document.getElementById("back").onclick = function () {
-                // console.log("removed ll1 reads");
-                ipcRenderer.send(CHANNELS.removeLl4, true);
+                console.log("removed ll1 reads");
+                ipcRenderer.send(CHANNELS.removeLl7, true);
                 location.href = "llWindow.html";
             };
 
             // Home button
             document.getElementById("home").onclick = function () {
-                // console.log("removed ll1 reads");
-                ipcRenderer.send(CHANNELS.removeLl4, true);
+                console.log("removed ll1 reads");
+                ipcRenderer.send(CHANNELS.removeLl7, true);
                 location.href = "../../mainWindow.html";
             };
 
@@ -609,7 +609,7 @@
 
             // STEP 1 //
             const _step1Click = () => {
-                const STEP = STATION1.datetime.ll4.step1;
+                const STEP = STATION1.datetime.ll15.step1;
                 setInputFilter(document.getElementById('step1OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
@@ -687,7 +687,7 @@
 
             // Step 2
             const _step2Click = () => {
-                const STEP = STATION1.datetime.ll4.step2;
+                const STEP = STATION1.datetime.ll15.step2;
                 setInputFilter(document.getElementById('step2OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
@@ -765,7 +765,7 @@
 
             // Step 3
             const _step3Click = () => {
-                const STEP = STATION1.datetime.ll4.step3;
+                const STEP = STATION1.datetime.ll15.step3;
                 setInputFilter(document.getElementById('step3OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
@@ -843,7 +843,7 @@
 
             // Step 4
             const _step4Click = () => {
-                const STEP = STATION1.datetime.ll4.step4;
+                const STEP = STATION1.datetime.ll15.step4;
                 setInputFilter(document.getElementById('step4OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
@@ -923,7 +923,7 @@
         // Show when ready
         $(document).ready(() => {
             // Send station id to init connection
-            ipcRenderer.send(CHANNELS.onLLn, 4);
+            ipcRenderer.send(CHANNELS.onLLn, 15);
 
             _startViewModel();
             _getFromStore();

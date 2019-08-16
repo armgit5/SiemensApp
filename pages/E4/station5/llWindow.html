@@ -18,7 +18,7 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
     <div class="container">
-        <h1 class="header" style="text-align: left;">Clading 2, EB</h1>
+        <h1 class="header" style="text-align: left;">E4_NB</h1>
         <div class="row header-row">
             <div class="col-6">
                 <button type="button" class="btn station" id="autoManual"
@@ -41,7 +41,7 @@
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll1Style"
                     onclick="window.location.href='ll1TimeWindow.html'">
-                    CD2-1
+                    SC1-1
                 </button>
             </div>
 
@@ -49,7 +49,7 @@
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll2Style"
                     onclick="window.location.href='ll2TimeWindow.html'">
-                    CD2-2
+                    SC1-2
                 </button>
             </div>
 
@@ -57,7 +57,7 @@
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll3Style"
                     onclick="window.location.href='ll3TimeWindow.html'">
-                    CD2-3
+                    SC1-3
                 </button>
             </div>
         </div>
@@ -339,7 +339,7 @@
         $(document).ready(() => {
             $('body').show();
             // Send station id to init connection
-            // ipcRenderer.send(CHANNELS.onNewStation, 3);
+            // ipcRenderer.send(CHANNELS.onNewStation, 5);
 
             _startViewModel();
             _getFromStore();

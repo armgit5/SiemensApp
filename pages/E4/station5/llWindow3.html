@@ -18,7 +18,7 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
     <div class="container">
-        <h1 class="header" style="text-align: left;">Clading 2, EB</h1>
+        <h1 class="header" style="text-align: left;">E4_NB</h1>
         <div class="row header-row">
             <div class="col-6">
                 <button type="button" class="btn station" id="autoManual"
@@ -40,24 +40,24 @@
 
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll1Style"
-                    onclick="window.location.href='ll1TimeWindow.html'">
-                    CD2-1
+                    onclick="window.location.href='ll4TimeWindow.html'">
+                    SC3-1
                 </button>
             </div>
 
             <!-- Station 2 -->
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll2Style"
-                    onclick="window.location.href='ll2TimeWindow.html'">
-                    CD2-2
+                    onclick="window.location.href='ll5TimeWindow.html'">
+                    SC3-2
                 </button>
             </div>
 
             <!-- Station 3 -->
             <div class="col-sm-4">
                 <button type="button" class="btn station" data-bind="style: ll3Style"
-                    onclick="window.location.href='ll3TimeWindow.html'">
-                    CD2-3
+                    onclick="window.location.href='ll6TimeWindow.html'">
+                    SC3-3
                 </button>
             </div>
         </div>
@@ -195,19 +195,19 @@
                 vm.autoManual('MANUAL');
             }
 
-            if (store.get(CHANNELS.ll1On) === true) {
+            if (store.get(CHANNELS.ll7On) === true) {
                 vm.ll1Style(greenColor);
             } else {
                 vm.ll1Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll2On) === true) {
+            if (store.get(CHANNELS.ll8On) === true) {
                 vm.ll2Style(greenColor);
             } else {
                 vm.ll2Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll3On) === true) {
+            if (store.get(CHANNELS.ll9On) === true) {
                 vm.ll3Style(greenColor);
             } else {
                 vm.ll3Style(redColor);
@@ -234,7 +234,7 @@
             });
 
             const _readLLn = () => {
-                ipcRenderer.on(CHANNELS.ll1On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll7On, (e, isOn) => {
                     if (isOn) {
                         vm.ll1Style(greenColor);
                     } else {
@@ -250,7 +250,7 @@
                 //     }
                 // });
 
-                ipcRenderer.on(CHANNELS.ll2On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll8On, (e, isOn) => {
                     if (isOn) {
                         vm.ll2Style(greenColor);
                     } else {
@@ -258,7 +258,7 @@
                     }
                 });
 
-                // ipcRenderer.on(CHANNELS.ll2Off, (e, isOn) => {
+                // ipcRenderer.on(CHANNELS.ll8Off, (e, isOn) => {
                 //     if (isOn) {
                 //         vm.ll1OnStyle(redColor);
                 //     } else {
@@ -266,7 +266,7 @@
                 //     }
                 // });
 
-                ipcRenderer.on(CHANNELS.ll3On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll9On, (e, isOn) => {
                     if (isOn) {
                         vm.ll3Style(greenColor);
                     } else {
@@ -274,7 +274,7 @@
                     }
                 });
 
-                // ipcRenderer.on(CHANNELS.ll3Off, (e, isOn) => {
+                // ipcRenderer.on(CHANNELS.ll9Off, (e, isOn) => {
                 //     if (isOn) {
                 //         vm.ll1OnStyle(redColor);
                 //     } else {
@@ -301,27 +301,27 @@
 
             // Detect button click
             document.getElementById('ll1On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll1On, true);
+                ipcRenderer.send(CHANNELS.ll7On, true);
             };
 
             document.getElementById('ll2On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll2On, true);
+                ipcRenderer.send(CHANNELS.ll8On, true);
             };
 
             document.getElementById('ll3On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll3On, true);
+                ipcRenderer.send(CHANNELS.ll9On, true);
             };
 
             document.getElementById('ll1Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll1Off, true);
+                ipcRenderer.send(CHANNELS.ll7Off, true);
             };
 
             document.getElementById('ll2Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll2Off, true);
+                ipcRenderer.send(CHANNELS.ll8Off, true);
             };
 
             document.getElementById('ll3Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll3Off, true);
+                ipcRenderer.send(CHANNELS.ll9Off, true);
             };
 
             document.getElementById('autoManual').onclick = () => {
@@ -339,7 +339,7 @@
         $(document).ready(() => {
             $('body').show();
             // Send station id to init connection
-            // ipcRenderer.send(CHANNELS.onNewStation, 3);
+            // ipcRenderer.send(CHANNELS.onNewStation, 5);
 
             _startViewModel();
             _getFromStore();
