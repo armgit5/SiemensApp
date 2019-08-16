@@ -22,7 +22,6 @@ module.exports = (NODE, mainWindow) => {
             });
     }); 
 
-
     // LL1 clicks
     require('./clickll1step1')(NODE);
     require('./clickll1step2')(NODE);
@@ -58,4 +57,58 @@ module.exports = (NODE, mainWindow) => {
     require('./clickll6/clickllnstep2')(NODE);
     require('./clickll6/clickllnstep3')(NODE);
     require('./clickll6/clickllnstep4')(NODE);
+
+    // LL7 clicks
+    require('./clickll7/clickllnstep1')(NODE);
+    require('./clickll7/clickllnstep2')(NODE);
+    require('./clickll7/clickllnstep3')(NODE);
+    require('./clickll7/clickllnstep4')(NODE);
+
+    // LL8 clicks
+    require('./clickll8/clickllnstep1')(NODE);
+    require('./clickll8/clickllnstep2')(NODE);
+    require('./clickll8/clickllnstep3')(NODE);
+    require('./clickll8/clickllnstep4')(NODE);
+
+    // LL9 clicks
+    require('./clickll9/clickllnstep1')(NODE);
+    require('./clickll9/clickllnstep2')(NODE);
+    require('./clickll9/clickllnstep3')(NODE);
+    require('./clickll9/clickllnstep4')(NODE);
+
+    // LL10 clicks
+    require('./clickll10/clickllnstep1')(NODE);
+    require('./clickll10/clickllnstep2')(NODE);
+    require('./clickll10/clickllnstep3')(NODE);
+    require('./clickll10/clickllnstep4')(NODE);
+
+    // LL11 clicks
+    require('./clickll11/clickllnstep1')(NODE);
+    require('./clickll11/clickllnstep2')(NODE);
+    require('./clickll11/clickllnstep3')(NODE);
+    require('./clickll11/clickllnstep4')(NODE);
+
+    // LL12 clicks
+    require('./clickll12/clickllnstep1')(NODE);
+    require('./clickll12/clickllnstep2')(NODE);
+    require('./clickll12/clickllnstep3')(NODE);
+    require('./clickll12/clickllnstep4')(NODE);
+
+    // LL13 clicks
+    require('./clickll13/clickllnstep1')(NODE);
+    require('./clickll13/clickllnstep2')(NODE);
+    require('./clickll13/clickllnstep3')(NODE);
+    require('./clickll13/clickllnstep4')(NODE);
+
+    // LL14 clicks
+    require('./clickll14/clickllnstep1')(NODE);
+    require('./clickll14/clickllnstep2')(NODE);
+    require('./clickll14/clickllnstep3')(NODE);
+    require('./clickll14/clickllnstep4')(NODE);
+
+    // LL15 clicks
+    require('./clickll15/clickllnstep1')(NODE);
+    require('./clickll15/clickllnstep2')(NODE);
+    require('./clickll15/clickllnstep3')(NODE);
+    require('./clickll15/clickllnstep4')(NODE);
 }
