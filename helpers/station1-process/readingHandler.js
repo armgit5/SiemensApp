@@ -263,10 +263,34 @@ module.exports = (NODE, mainWindow) => {
     let ll1On;
     let ll2On;
     let ll3On;
+    let ll4On;
+    let ll5On;
+    let ll6On;
+    let ll7On;
+    let ll8On;
+    let ll9On;
+    let ll10On;
+    let ll11On;
+    let ll12On;
+    let ll13On;
+    let ll14On;
+    let ll15On;
     const _parseLLn = (data) => {
         const ll1OnResult = data[STATION1.bits.ll1isOn];
         const ll2OnResult = data[STATION1.bits.ll2isOn];
         const ll3OnResult = data[STATION1.bits.ll3isOn];
+        const ll4OnResult = data[STATION1.bits.ll4isOn];
+        const ll5OnResult = data[STATION1.bits.ll5isOn];
+        const ll6OnResult = data[STATION1.bits.ll6isOn];
+        const ll7OnResult = data[STATION1.bits.ll7isOn];
+        const ll8OnResult = data[STATION1.bits.ll8isOn];
+        const ll9OnResult = data[STATION1.bits.ll9isOn];
+        const ll10OnResult = data[STATION1.bits.ll10isOn];
+        const ll11OnResult = data[STATION1.bits.ll11isOn];
+        const ll12OnResult = data[STATION1.bits.ll12isOn];
+        const ll13OnResult = data[STATION1.bits.ll13isOn];
+        const ll14OnResult = data[STATION1.bits.ll14isOn];
+        const ll15OnResult = data[STATION1.bits.ll15isOn];
         // console.log(ll1OnResult, ll2OnResult, ll3OnResult);
 
         if (ll1On !== ll1OnResult) {
@@ -274,17 +298,79 @@ module.exports = (NODE, mainWindow) => {
             store.set(CHANNELS.ll1On, ll1OnResult);
             mainWindow.webContents.send(CHANNELS.ll1On, ll1On);
         }
-
         if (ll2On !== ll2OnResult) {
             ll2On = ll2OnResult;
             store.set(CHANNELS.ll2On, ll2OnResult);
             mainWindow.webContents.send(CHANNELS.ll2On, ll2On);
         }
-
         if (ll3On !== ll3OnResult) {
             ll3On = ll3OnResult;
             store.set(CHANNELS.ll3On, ll3OnResult);
             mainWindow.webContents.send(CHANNELS.ll3On, ll3On);
+        }
+
+        if (ll4On !== ll4OnResult) {
+            ll4On = ll4OnResult;
+            store.set(CHANNELS.ll4On, ll4OnResult);
+            mainWindow.webContents.send(CHANNELS.ll4On, ll4On);
+        }
+        if (ll5On !== ll5OnResult) {
+            ll5On = ll5OnResult;
+            store.set(CHANNELS.ll5On, ll5OnResult);
+            mainWindow.webContents.send(CHANNELS.ll5On, ll5On);
+        }
+        if (ll6On !== ll6OnResult) {
+            ll6On = ll6OnResult;
+            store.set(CHANNELS.ll6On, ll6OnResult);
+            mainWindow.webContents.send(CHANNELS.ll6On, ll6On);
+        }
+
+        if (ll7On !== ll7OnResult) {
+            ll7On = ll7OnResult;
+            store.set(CHANNELS.ll7On, ll7OnResult);
+            mainWindow.webContents.send(CHANNELS.ll7On, ll7On);
+        }
+        if (ll8On !== ll8OnResult) {
+            ll8On = ll8OnResult;
+            store.set(CHANNELS.ll8On, ll8OnResult);
+            mainWindow.webContents.send(CHANNELS.ll8On, ll8On);
+        }
+        if (ll9On !== ll9OnResult) {
+            ll9On = ll9OnResult;
+            store.set(CHANNELS.ll9On, ll9OnResult);
+            mainWindow.webContents.send(CHANNELS.ll9On, ll9On);
+        }
+
+        if (ll10On !== ll10OnResult) {
+            ll10On = ll10OnResult;
+            store.set(CHANNELS.ll10On, ll10OnResult);
+            mainWindow.webContents.send(CHANNELS.ll10On, ll10On);
+        }
+        if (ll11On !== ll11OnResult) {
+            ll11On = ll11OnResult;
+            store.set(CHANNELS.ll11On, ll11OnResult);
+            mainWindow.webContents.send(CHANNELS.ll11On, ll11On);
+        }
+        if (ll12On !== ll12OnResult) {
+            ll12On = ll12OnResult;
+            store.set(CHANNELS.ll12On, ll12OnResult);
+            mainWindow.webContents.send(CHANNELS.ll12On, ll12On);
+        }
+
+        if (ll13On !== ll13OnResult) {
+            ll13On = ll13OnResult;
+            store.set(CHANNELS.ll13On, ll13OnResult);
+            mainWindow.webContents.send(CHANNELS.ll13On, ll13On);
+        }
+        if (ll14On !== ll14OnResult) {
+            ll14On = ll14OnResult;
+            store.set(CHANNELS.ll14On, ll14OnResult);
+            mainWindow.webContents.send(CHANNELS.ll14On, ll14On);
+        }
+        if (ll15On !== ll15OnResult) {
+            ll15On = ll15OnResult;
+            store.set(CHANNELS.ll15On, ll15OnResult);
+            mainWindow.webContents.send(CHANNELS.ll15On, ll15On);
         }
     }
 
@@ -339,6 +425,69 @@ module.exports = (NODE, mainWindow) => {
                         require('./readingll6/readingllnstep2')(mainWindow, data);
                         require('./readingll6/readingllnstep3')(mainWindow, data);
                         require('./readingll6/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 7) {
+                        require('./readingll7/readingllnstep1')(mainWindow, data);
+                        require('./readingll7/readingllnstep2')(mainWindow, data);
+                        require('./readingll7/readingllnstep3')(mainWindow, data);
+                        require('./readingll7/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 8) {
+                        require('./readingll8/readingllnstep1')(mainWindow, data);
+                        require('./readingll8/readingllnstep2')(mainWindow, data);
+                        require('./readingll8/readingllnstep3')(mainWindow, data);
+                        require('./readingll8/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 9) {
+                        require('./readingll9/readingllnstep1')(mainWindow, data);
+                        require('./readingll9/readingllnstep2')(mainWindow, data);
+                        require('./readingll9/readingllnstep3')(mainWindow, data);
+                        require('./readingll9/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 10) {
+                        require('./readingll10/readingllnstep1')(mainWindow, data);
+                        require('./readingll10/readingllnstep2')(mainWindow, data);
+                        require('./readingll10/readingllnstep3')(mainWindow, data);
+                        require('./readingll10/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 11) {
+                        require('./readingll11/readingllnstep1')(mainWindow, data);
+                        require('./readingll11/readingllnstep2')(mainWindow, data);
+                        require('./readingll11/readingllnstep3')(mainWindow, data);
+                        require('./readingll11/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 12) {
+                        require('./readingll12/readingllnstep1')(mainWindow, data);
+                        require('./readingll12/readingllnstep2')(mainWindow, data);
+                        require('./readingll12/readingllnstep3')(mainWindow, data);
+                        require('./readingll12/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 13) {
+                        require('./readingll13/readingllnstep1')(mainWindow, data);
+                        require('./readingll13/readingllnstep2')(mainWindow, data);
+                        require('./readingll13/readingllnstep3')(mainWindow, data);
+                        require('./readingll13/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 14) {
+                        require('./readingll14/readingllnstep1')(mainWindow, data);
+                        require('./readingll14/readingllnstep2')(mainWindow, data);
+                        require('./readingll14/readingllnstep3')(mainWindow, data);
+                        require('./readingll14/readingllnstep4')(mainWindow, data);
+                    }
+
+                    if (n === 15) {
+                        require('./readingll15/readingllnstep1')(mainWindow, data);
+                        require('./readingll15/readingllnstep2')(mainWindow, data);
+                        require('./readingll15/readingllnstep3')(mainWindow, data);
+                        require('./readingll15/readingllnstep4')(mainWindow, data);
                     }
                 })
                 .catch(err => {
@@ -410,6 +559,78 @@ module.exports = (NODE, mainWindow) => {
                 _addLLnTime(LL6);
                 _startLoop(6);
                 _removeLl6();
+            }
+
+            if (lln === 7) {
+                console.log('ll7');
+                _stopIntervals();
+                _addLLnTime(LL7);
+                _startLoop(7);
+                _removeLl7();
+            }
+
+            if (lln === 8) {
+                console.log('ll8');
+                _stopIntervals();
+                _addLLnTime(LL8);
+                _startLoop(8);
+                _removeLl8();
+            }
+
+            if (lln === 9) {
+                console.log('ll9');
+                _stopIntervals();
+                _addLLnTime(LL9);
+                _startLoop(9);
+                _removeLl9();
+            }
+
+            if (lln === 10) {
+                console.log('ll10');
+                _stopIntervals();
+                _addLLnTime(LL10);
+                _startLoop(10);
+                _removeLl10();
+            }
+
+            if (lln === 11) {
+                console.log('ll11');
+                _stopIntervals();
+                _addLLnTime(LL11);
+                _startLoop(11);
+                _removeLl11();
+            }
+
+            if (lln === 12) {
+                console.log('ll12');
+                _stopIntervals();
+                _addLLnTime(LL12);
+                _startLoop(12);
+                _removeLl12();
+            }
+
+            if (lln === 13) {
+                console.log('ll13');
+                _stopIntervals();
+                _addLLnTime(LL13);
+                _startLoop(13);
+                _removeLl13();
+            }
+
+            if (lln === 14) {
+                console.log('ll14');
+                _stopIntervals();
+                _addLLnTime(LL14);
+                _startLoop(14);
+                _removeLl14();
+            }
+
+            if (lln === 15) {
+                console.log('ll15');
+                _stopIntervals();
+                _addLLnTime(LL15);
+                _startLoop(15);
+                _removeLl15();
             }
         });
     };
