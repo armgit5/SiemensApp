@@ -29,7 +29,7 @@ module.exports = {
     },
     step3: {
         onHH: 'MW820',
-        onMM: 'MW820',
+        onMM: 'MW822',
         onSS: 'MW824',
         offHH: 'MW826',
         offMM: 'MW828',
