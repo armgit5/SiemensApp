@@ -62,7 +62,15 @@ module.exports = {
             minute: 'MW208',
             second: 'MW210',
             autoManual: 'M190.1',
-            setAutoManual: 'M190.0'
+            setAutoManual: 'M190.0',
+            autoManual2: 'M191.1',
+            setAutoManual2: 'M191.0',
+            autoManual3: 'M192.1',
+            setAutoManual3: 'M192.0',
+            autoManual4: 'M193.1',
+            setAutoManual4: 'M193.0',
+            autoManual5: 'M194.1',
+            setAutoManual5: 'M194.0',
         },
         ll1: {
             step1: {

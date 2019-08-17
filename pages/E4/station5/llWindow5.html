@@ -187,7 +187,7 @@
                 vm.time(headerDatetime);
             }
 
-            if (store.get(CHANNELS.autoManual) === true) {
+            if (store.get(CHANNELS.autoManual5) === true) {
                 vm.autoManualStyle(greenColor);
                 vm.autoManual('AUTO');
             } else {
@@ -284,7 +284,7 @@
             }
             _readLLn();
 
-            ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
+            ipcRenderer.on(CHANNELS.autoManual5, (e, autoManual) => {
                 if (autoManual) {
                     vm.autoManual('AUTO');
                     vm.autoManualStyle(greenColor);
@@ -325,11 +325,11 @@
             };
 
             document.getElementById('autoManual').onclick = () => {
-                const autoManual = store.get(CHANNELS.autoManual);
+                const autoManual = store.get(CHANNELS.autoManual5);
                 if (autoManual) {
-                    ipcRenderer.send(CHANNELS.autoManual, false);
+                    ipcRenderer.send(CHANNELS.autoManual5, false);
                 } else {
-                    ipcRenderer.send(CHANNELS.autoManual, true);
+                    ipcRenderer.send(CHANNELS.autoManual5, true);
                 }
             };
 

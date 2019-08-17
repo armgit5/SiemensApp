@@ -41,6 +41,10 @@ module.exports = (NODE, mainWindow) => {
     // ---- Add to read list ----- //
     const _addAutoManual = () => {
         NODE.conn.addItems(DATETIME.header.autoManual);
+        NODE.conn.addItems(DATETIME.header.autoManual2);
+        NODE.conn.addItems(DATETIME.header.autoManual3);
+        NODE.conn.addItems(DATETIME.header.autoManual4);
+        NODE.conn.addItems(DATETIME.header.autoManual5);
     }
 
     const _addllnBits = () => {
@@ -274,6 +278,8 @@ module.exports = (NODE, mainWindow) => {
 
     };
 
+
+    // Auto manual
     let cachedAutoManual = store.get(CHANNELS.autoManual);
     const _parseAutoManual = (data) => {
         const autoManual = data[DATETIME.header.autoManual];
@@ -282,6 +288,50 @@ module.exports = (NODE, mainWindow) => {
             cachedAutoManual = autoManual;
             store.set(CHANNELS.autoManual, autoManual);
             mainWindow.webContents.send(CHANNELS.autoManual, autoManual);
+        }
+    };
+
+    let cachedAutoManual2 = store.get(CHANNELS.autoManual2);
+    const _parseAutoManual2 = (data) => {
+        const autoManual2 = data[DATETIME.header.autoManual2];
+
+        if (cachedAutoManual2 !== autoManual2) {
+            cachedAutoManual2 = autoManual2;
+            store.set(CHANNELS.autoManual2, autoManual2);
+            mainWindow.webContents.send(CHANNELS.autoManual2, autoManual2);
+        }
+    };
+
+    let cachedAutoManual3 = store.get(CHANNELS.autoManual3);
+    const _parseAutoManual3 = (data) => {
+        const autoManual3 = data[DATETIME.header.autoManual3];
+
+        if (cachedAutoManual3 !== autoManual3) {
+            cachedAutoManual3 = autoManual3;
+            store.set(CHANNELS.autoManual3, autoManual3);
+            mainWindow.webContents.send(CHANNELS.autoManual3, autoManual3);
+        }
+    };
+
+    let cachedAutoManual4 = store.get(CHANNELS.autoManual4);
+    const _parseAutoManual4 = (data) => {
+        const autoManual4 = data[DATETIME.header.autoManual4];
+
+        if (cachedAutoManual4 !== autoManual4) {
+            cachedAutoManual4 = autoManual4;
+            store.set(CHANNELS.autoManual3, autoManual4);
+            mainWindow.webContents.send(CHANNELS.autoManual4, autoManual4);
+        }
+    };
+
+    let cachedAutoManual5 = store.get(CHANNELS.autoManual5);
+    const _parseAutoManual5 = (data) => {
+        const autoManual5 = data[DATETIME.header.autoManual5];
+
+        if (cachedAutoManual5 !== autoManual5) {
+            cachedAutoManual5 = autoManual5;
+            store.set(CHANNELS.autoManual5, autoManual5);
+            mainWindow.webContents.send(CHANNELS.autoManual5, autoManual5);
         }
     };
 
@@ -408,6 +458,11 @@ module.exports = (NODE, mainWindow) => {
                     _parseDatetime(data);
                     // console.log(data);
                     _parseAutoManual(data);
+                    _parseAutoManual2(data);
+                    _parseAutoManual3(data);
+                    _parseAutoManual4(data);
+                    _parseAutoManual5(data);
+
                     _parseLLn(data);
                     if (n === 1) {
                         // console.log('reading step1', data);

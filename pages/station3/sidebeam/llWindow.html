@@ -262,7 +262,7 @@
                 vm.time(headerDatetime);
             }
 
-            if (store.get(CHANNELS.autoManual) === true) {
+            if (store.get(CHANNELS.autoManual3) === true) {
                 vm.autoManualStyle(greenColor);
                 vm.autoManual('AUTO');
             } else {
@@ -353,31 +353,31 @@
 
                 ipcRenderer.on(CHANNELS.ll10On, (e, isOn) => {
                     if (isOn) {
-                        vm.ll3Style(greenColor);
+                        vm.ll4Style(greenColor);
                     } else {
-                        vm.ll3Style(redColor);
+                        vm.ll4Style(redColor);
                     }
                 });
 
                 ipcRenderer.on(CHANNELS.ll11On, (e, isOn) => {
                     if (isOn) {
-                        vm.ll3Style(greenColor);
+                        vm.ll5Style(greenColor);
                     } else {
-                        vm.ll3Style(redColor);
+                        vm.ll5Style(redColor);
                     }
                 });
 
                 ipcRenderer.on(CHANNELS.ll12On, (e, isOn) => {
                     if (isOn) {
-                        vm.ll3Style(greenColor);
+                        vm.ll6Style(greenColor);
                     } else {
-                        vm.ll3Style(redColor);
+                        vm.ll6Style(redColor);
                     }
                 });
             }
             _readLLn();
 
-            ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
+            ipcRenderer.on(CHANNELS.autoManual3, (e, autoManual) => {
                 if (autoManual) {
                     vm.autoManual('AUTO');
                     vm.autoManualStyle(greenColor);
@@ -442,11 +442,11 @@
             };
 
             document.getElementById('autoManual').onclick = () => {
-                const autoManual = store.get(CHANNELS.autoManual);
+                const autoManual = store.get(CHANNELS.autoManual3);
                 if (autoManual) {
-                    ipcRenderer.send(CHANNELS.autoManual, false);
+                    ipcRenderer.send(CHANNELS.autoManual3, false);
                 } else {
-                    ipcRenderer.send(CHANNELS.autoManual, true);
+                    ipcRenderer.send(CHANNELS.autoManual3, true);
                 }
             };
 
