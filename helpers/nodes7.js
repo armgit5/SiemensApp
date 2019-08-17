@@ -19,6 +19,7 @@ let NODE; // Hold node connection
 let STATION_ID = 0;
 const KEYS = STATION1.storedKeys;
 let aNodeIsOnline = false;
+let initReadWrite = false;
 const Store = require('electron-store');
 const store = new Store();
 
@@ -30,27 +31,24 @@ module.exports = (mainWindow) => {
         store.set(KEYS.headerDatetime, outputDatetime); // Save datetime
     };
 
-
-    const _initNode = () => {
+    const _initReadWrite = (n) => {
         if (aNodeIsOnline) {
-            console.log('kill the existing node', NODE);
-            NODE.conn.dropConnection((cb) => {
-                console.log('drop connection', cb);
-            });
-            NODE = null; // Clear node to kill old connection
-
-
+            require('./station1-process/readingHandler')(n, mainWindow);
+            require('./station1-process/clickHandler')(n, mainWindow);
         }
+    }
 
+    const _connect = () => {
         // Init station 1
         if (STATION_ID === 1) {
+            // NODE = null;
             NODE = new Node(STATION1.id, STATION1.ip);
             initHelper(NODE).then(isOnline => {
-                console.log('S1 is online ', isOnline, NODE);
+                console.log('S1 is online ', isOnline);
                 if (isOnline) {
                     aNodeIsOnline = true;
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    console.log('init station 2 sucessfully');
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -58,14 +56,14 @@ module.exports = (mainWindow) => {
         }
 
         if (STATION_ID === 2) {
+            // NODE = null;
             NODE = new Node(STATION2.id, STATION2.ip);
             initHelper(NODE).then(isOnline => {
                 console.log('S2 is online ', isOnline);
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 2 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -73,14 +71,14 @@ module.exports = (mainWindow) => {
         }
 
         if (STATION_ID === 3) {
+            // NODE = null;
             NODE = new Node(STATION3.id, STATION3.ip);
             initHelper(NODE).then(isOnline => {
                 console.log('S3 is online ', isOnline);
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 3 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -94,8 +92,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 4 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -109,8 +106,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 5 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -124,8 +120,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 6 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -139,8 +134,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 7 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -154,8 +148,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 8 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -169,8 +162,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 9 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -184,8 +176,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 10 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -199,8 +190,7 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 11 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
@@ -214,15 +204,28 @@ module.exports = (mainWindow) => {
                 if (isOnline) {
                     aNodeIsOnline = true;
                     console.log('init station 12 sucessfully');
-                    require('./station1-process/readingHandler')(NODE, mainWindow);
-                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
                 }
             });
         }
+    };
 
 
+    const _initNode = () => {
+        if (NODE) {
+            console.log('kill the existing node');
+            NODE.conn.dropConnection((cb) => {
+                console.log('drop connection', cb);
+                NODE.conn = null; // Clear node to kill old connection
+                NODE = null;
+                aNodeIsOnline = false;
+                _connect();
+            });
+        } else {
+            _connect();
+        };
     };
 
     // Main Program

@@ -47,24 +47,43 @@ module.exports = (NODE, mainWindow) => {
         NODE.conn.addItems(STATION1.bits.ll1isOn);
         NODE.conn.addItems(STATION1.bits.ll2isOn);
         NODE.conn.addItems(STATION1.bits.ll3isOn);
+        NODE.conn.addItems(STATION1.bits.ll4isOn);
+        NODE.conn.addItems(STATION1.bits.ll5isOn);
+        NODE.conn.addItems(STATION1.bits.ll6isOn);
+        NODE.conn.addItems(STATION1.bits.ll7isOn);
+        NODE.conn.addItems(STATION1.bits.ll8isOn);
+        NODE.conn.addItems(STATION1.bits.ll9isOn);
+        NODE.conn.addItems(STATION1.bits.ll10isOn);
+        NODE.conn.addItems(STATION1.bits.ll11isOn);
+        NODE.conn.addItems(STATION1.bits.ll12isOn);
+        NODE.conn.addItems(STATION1.bits.ll13isOn);
+        NODE.conn.addItems(STATION1.bits.ll14isOn);
+        NODE.conn.addItems(STATION1.bits.ll15isOn);
     };
 
     const _addLLnTime = (lln) => {
-        for (let i = 1; i <= 4; i++) {
-            let key = lln[`step${i}`];
-            NODE.conn.addItems(key.onHH);
-            // storeReadLLn.push(key.onHH);
-            NODE.conn.addItems(key.onMM);
-            // storeReadLLn.push(key.onMM);
-            NODE.conn.addItems(key.onSS);
-            // storeReadLLn.push(key.onSS);
-            NODE.conn.addItems(key.offHH);
-            // storeReadLLn.push(key.offHH);
-            NODE.conn.addItems(key.offMM);
-            // storeReadLLn.push(key.offMM);
-            NODE.conn.addItems(key.offSS);
-            // storeReadLLn.push(key.offSS);
-        }
+        if (NODE) {
+            if (NODE.conn) {
+                for (let i = 1; i <= 4; i++) {
+                    let key = lln[`step${i}`];
+                    NODE.conn.addItems(key.onHH);
+                    // storeReadLLn.push(key.onHH);
+                    NODE.conn.addItems(key.onMM);
+                    // storeReadLLn.push(key.onMM);
+                    NODE.conn.addItems(key.onSS);
+                    // storeReadLLn.push(key.onSS);
+                    NODE.conn.addItems(key.offHH);
+                    // storeReadLLn.push(key.offHH);
+                    NODE.conn.addItems(key.offMM);
+                    // storeReadLLn.push(key.offMM);
+                    NODE.conn.addItems(key.offSS);
+                    // storeReadLLn.push(key.offSS);
+                }
+            }
+
+           
+        }   
+        
 
         readHelper(NODE)
             .then(data => {
@@ -74,16 +93,22 @@ module.exports = (NODE, mainWindow) => {
     };
 
     const _removeLLnTime = (lln) => {
-        // Loop through 4 steps
-        for (let i = 1; i <= 4; i++) {
-            let key = lln[`step${i}`];
-            NODE.conn.removeItems(key.onHH);
-            NODE.conn.removeItems(key.onMM);
-            NODE.conn.removeItems(key.onSS);
-            NODE.conn.removeItems(key.offHH);
-            NODE.conn.removeItems(key.offMM);
-            NODE.conn.removeItems(key.offSS);
+
+        if (NODE) {
+            if (NODE.conn) {
+                // Loop through 4 steps
+                for (let i = 1; i <= 4; i++) {
+                    let key = lln[`step${i}`];
+                    NODE.conn.removeItems(key.onHH);
+                    NODE.conn.removeItems(key.onMM);
+                    NODE.conn.removeItems(key.onSS);
+                    NODE.conn.removeItems(key.offHH);
+                    NODE.conn.removeItems(key.offMM);
+                    NODE.conn.removeItems(key.offSS);
+                }
+            }
         }
+        
 
         readHelper(NODE)
             .then(data => {

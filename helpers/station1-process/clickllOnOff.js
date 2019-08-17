@@ -91,14 +91,20 @@ module.exports = (NODE) => {
 
     // ll4
     ipcMain.on(CHANNELS.ll4On, (e, status) => {
+        console.log('ll4 on');
         writeHelper(NODE, STATION1.bits.ll4On, true)
             .then(_ => {
                 return writeHelper(NODE, STATION1.bits.ll4On, false);
             })
             .then(_ => {
+                
             })
             .catch(err => {
                 console.log(err);
+            });
+
+            readHelper(NODE, data => {
+                console.log(data);
             });
     });
 

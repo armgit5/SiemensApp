@@ -581,14 +581,14 @@
             // Back button
             document.getElementById("back").onclick = function () {
                 console.log("removed ll1 reads");
-                ipcRenderer.send(CHANNELS.removeLl7, true);
-                location.href = "llWindow.html";
+                ipcRenderer.send(CHANNELS.removeLl10, true);
+                location.href = "llWindow4.html";
             };
 
             // Home button
             document.getElementById("home").onclick = function () {
                 console.log("removed ll1 reads");
-                ipcRenderer.send(CHANNELS.removeLl7, true);
+                ipcRenderer.send(CHANNELS.removeLl10, true);
                 location.href = "../../mainWindow.html";
             };
 
