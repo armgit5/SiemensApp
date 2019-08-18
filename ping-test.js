@@ -7,7 +7,7 @@ var exec = require('child_process').exec;
 // }
 // exec("ping -c 1 localhost2", puts);
 
-const GROUP1 = ['localhost', 'localhost2', 'localhost', 'localhost'];
+const GROUP1 = ['localhost', 'l2ocalhost2', 'localhost', 'localhost'];
 const GROUP2 = ['localhost', 'localhost'];
 const GROUP3 = ['localhost', 'localhost'];
 const GROUP4 = ['localhost', 'localhost'];
@@ -44,14 +44,32 @@ _stopIntervals();
 const loopInterval = setInterval(() => {
 
     let group1ok = true;
+    let group1Len = GROUP1.length;
+    let group1Count = 1;
     GROUP1.forEach(ip => {
         _pingIp(ip).then(ok => {
             if (!ok) {
                 group1ok = false;
             }
+            if (group1Count === group1Len) {
+                console.log('group 1 ok ', group1ok);
+            }
+            group1Count++;
         });
+
     });
-    console.log('group 1 ok ', group1ok);
+
+    // for (const ip of GROUP1) {
+    //     // console.log(ip);
+    //     _pingIp(ip).then(ok => {
+    //         // console.log(ok);
+    //         if (!ok) {
+    //             group1ok = false;
+    //         }
+    //     });
+    // }
+
+    // console.log('group 1 ok ', group1ok);
 
 }, 1000);
 INTERVALS.push(loopInterval);
