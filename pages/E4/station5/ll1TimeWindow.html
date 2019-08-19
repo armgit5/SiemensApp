@@ -22,7 +22,12 @@
         }
 
         .col-4 input {
-            background-color: #FCCBA1;
+            background-color: black;
+            color: white;
+        }
+
+        input {
+            text-align: center;
         }
     </style>
 </head>
@@ -55,51 +60,75 @@
 
         <!-- Time On Off -->
         <div class="row">
-            <div class="col-6 time-border" style="background-color: lightgreen;">
+            <div class="col-1"></div>
+            <div class="col-5 time-border" style="background-color: lightgreen; height: 40px; font-size: larger;">
                 Time On
             </div>
-            <div class="col-6 time-border" style="background-color: yellow;">
+            <div class="col-1"></div>
+            <div class="col-5 time-border" style="background-color: yellow; height: 40px; font-size: larger;">
                 Time Off
             </div>
             <!-- <div class="col2"></div> -->
         </div>
 
+        <!-- HH MM SS -->
+        <div class="row" style="margin-top: 0; height: 25px;">
+            <div class="col-1"></div>
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4">HH</div>
+                    <div class="col-4">MM</div>
+                    <div class="col-4">SS</div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-4">HH</div>
+                    <div class="col-4">MM</div>
+                    <div class="col-4">SS</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Step 1 -->
-        <div class="row">
+        <div class="row" style="margin-top: 0;">
             <div class="col-1">
-                <div class="row" style="padding-left: 15px; padding-top: 10px;">1</div>
+                <div class="row" style="padding-left: 25px; padding-top: 10px;">1</div>
             </div>
 
             <!-- Detail 1 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step1OnHH"
                             data-bind="value: step1OnHH">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step1OnMM"
                             data-bind="value: step1OnMM">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step1OnSS"
                             data-bind="value: step1OnSS">
                     </div>
                 </div>
             </div>
 
+            <div class="col-1"></div>
+
             <!-- Detail 2 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step1OffHH"
                             data-bind="value: step1OffHH">
                     </div>
-                    <div class="col-4" style="padding-right: 5px;">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step1OffMM"
                             data-bind="value: step1OffMM">
                     </div>
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step1OffSS"
                             data-bind="value: step1OffSS">
                     </div>
@@ -116,33 +145,35 @@
             <!-- Detail 1 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step2OnHH"
                             data-bind="value: step2OnHH">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step2OnMM"
                             data-bind="value: step2OnMM">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step2OnSS"
                             data-bind="value: step2OnSS">
                     </div>
                 </div>
             </div>
 
+            <div class="col-1"></div>
+
             <!-- Detail 2 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step2OffHH"
                             data-bind="value: step2OffHH">
                     </div>
-                    <div class="col-4" style="padding-right: 5px;">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step2OffMM"
                             data-bind="value: step2OffMM">
                     </div>
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step2OffSS"
                             data-bind="value: step2OffSS">
                     </div>
@@ -159,33 +190,35 @@
             <!-- Detail 1 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step3OnHH"
                             data-bind="value: step3OnHH">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step3OnMM"
                             data-bind="value: step3OnMM">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step3OnSS"
                             data-bind="value: step3OnSS">
                     </div>
                 </div>
             </div>
 
+            <div class="col-1"></div>
+
             <!-- Detail 2 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step3OffHH"
                             data-bind="value: step3OffHH">
                     </div>
-                    <div class="col-4" style="padding-right: 5px;">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step3OffMM"
                             data-bind="value: step3OffMM">
                     </div>
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step3OffSS"
                             data-bind="value: step3OffSS">
                     </div>
@@ -202,33 +235,35 @@
             <!-- Detail 1 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step4OnHH"
                             data-bind="value: step4OnHH">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step4OnMM"
                             data-bind="value: step4OnMM">
                     </div>
-                    <div class="col-4" style="padding-left: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step4OnSS"
                             data-bind="value: step4OnSS">
                     </div>
                 </div>
             </div>
 
+            <div class="col-1"></div>
+
             <!-- Detail 2 -->
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="HH" id="step4OffHH"
                             data-bind="value: step4OffHH">
                     </div>
-                    <div class="col-4" style="padding-right: 5px;">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="MM" id="step4OffMM"
                             data-bind="value: step4OffMM">
                     </div>
-                    <div class="col-4" style="padding-right: 5px">
+                    <div class="col-4" style="padding: 0;">
                         <input type="text" class="form-control" placeholder="SS" id="step4OffSS"
                             data-bind="value: step4OffSS">
                     </div>
@@ -237,11 +272,12 @@
         </div>
 
         <!-- Footer -->
-        <div class="row">
+        <div class="row" style="margin-top: 25px;">
             <span>
                 <a href="" id="back">
                     <img src="../../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
+                &nbsp;
                 <a href="" id="home">
                     <img src="../../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
@@ -424,7 +460,7 @@
 
             _step4Store = () => {
                 const STEP = STATION1.datetime.ll1.step4;
-                 if (store.get(STEP.onHH)) {
+                if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step4OnHH(data);
                 }
