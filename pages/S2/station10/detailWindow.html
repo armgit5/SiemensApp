@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>BTS APP</title>
+
+  <link rel="stylesheet" href="../../../assets/styles/mainWindow.css">
+
+  <style>
+    .station-mid {
+      width: 150px;
+    }
+
+    .station-longer {
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
+
+  <div class="container">
+    <h1 class="header" style="text-align: left;">S2 Station_WB
+      <!-- <a href="mainWindow.html">
+        <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+      </a> -->
+    </h1>
+
+    <div class="row">
+      <!-- Detail 1 -->
+      <div class="col-6">
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow.html'"
+          style="background-color: white;">
+          Screen 1
+        </button>
+      </div>
+
+      <!-- Detail 2 -->
+      <div class="col-3">
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow4.html'"
+         style="background-color: white;">
+         Screen 4
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Detail 1 -->
+      <div class="col-6">
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow2.html'"
+          style="background-color: white;">
+          Screen 2
+        </button>
+      </div>
+
+      <!-- Detail 2 -->
+      <div class="col-3">
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow5.html'"
+         style="background-color: white;">
+         Screen 5
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Detail 1 -->
+      <div class="col-6">
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow3.html'"
+          style="background-color: white;">
+          Screen 3
+        </button>
+      </div>
+
+      <!-- Detail 2 -->
+      <!-- <div class="col-3">
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./sidebeam/llWindow.html'"
+         style="background-color: white;">
+         Screen 2
+        </button>
+      </div> -->
+    </div>
+
+    <!-- Datetime -->
+    <div class="row">
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+        <div class="footer" data-bind="text: time">
+        </div>
+      </div>
+      <div class="col-4">
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="row">
+      <span>
+        <a href="../detailWindow.html">
+            <img src="../../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+        </a>
+        <a href="../../mainWindow.html">
+          <img src="../../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+        </a>
+      </span>
+    </div>
+
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script src="../../../helpers/knockout.js"></script>
+
+  <!-- IPC script -->
+  <script>
+    const electron = require('electron');
+    const { ipcRenderer } = electron;
+    const { CHANNELS } = require('../../../helpers/environments');
+    const STATION1 = require('../../../data/station1');
+    const Store = require('electron-store');
+    const store = new Store();
+    const keys = STATION1.storedKeys;
+
+    const greenColor = {
+      'background-color': 'green'
+    };
+    const redColor = {
+      'background-color': 'red'
+    };
+    let vm;
+
+    // Start View Model
+    const _startViewModel = () => {
+      // Knockout functions
+      function AppViewModel() {
+        this.time = ko.observable('Reading...');
+        this.S1Style = ko.observable(redColor);
+        this.S1_1Style = ko.observable(redColor);
+      }
+
+      // Activates knockout.js
+      vm = new AppViewModel();
+      ko.applyBindings(vm);
+    };
+
+    // Get from store
+    const _getFromStore = () => {
+      const headerDatetime = store.get(keys.headerDatetime);
+      vm.time(headerDatetime);
+    };
+
+    // Read streaming
+    const _readStreaming = () => {
+      ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+        vm.time(datetime);
+      });
+
+      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
+        console.log(id, status);
+        if (id === 'N1') {
+          if (status === true) {
+            vm.S1Style(greenColor);
+          } else {
+            vm.S1Style(redColor);
+          }
+        }
+      });
+    };
+
+    // Show when ready
+    $(document).ready(() => {
+      $('body').show();
+      ipcRenderer.send(CHANNELS.onNewStation, 10);
+
+      _startViewModel();
+      _getFromStore();
+      _readStreaming();
+    });
+
+
+  </script>
+
+</body>
+
+</html>
