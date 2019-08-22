@@ -34,14 +34,14 @@ const _pingIp = (ip) => {
 //     console.log(ok);
 // });
 
-const INTERVALS = [];
+const PINGINTERVALS = [];
 
-const _stopIntervals = () => {
-    INTERVALS.forEach(clearInterval); // Clear interval
+const _stopPingIntervals = () => {
+    PINGINTERVALS.forEach(clearInterval); // Clear interval
 }
-_stopIntervals();
+_stopPingIntervals();
 
-const loopInterval = setInterval(() => {
+const pingLoopInterval = setInterval(() => {
 
     let group1ok = true;
     let group1Len = GROUP1.length;
@@ -58,18 +58,5 @@ const loopInterval = setInterval(() => {
         });
 
     });
-
-    // for (const ip of GROUP1) {
-    //     // console.log(ip);
-    //     _pingIp(ip).then(ok => {
-    //         // console.log(ok);
-    //         if (!ok) {
-    //             group1ok = false;
-    //         }
-    //     });
-    // }
-
-    // console.log('group 1 ok ', group1ok);
-
 }, 1000);
-INTERVALS.push(loopInterval);
+PINGINTERVALS.push(pingLoopInterval);

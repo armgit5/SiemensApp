@@ -1,3 +1,16 @@
+const STATION1 = require('../data/station1');
+const STATION2 = require('../data/station2');
+const STATION3 = require('../data/station3');
+const STATION4 = require('../data/station4');
+const STATION5 = require('../data/station5');
+const STATION6 = require('../data/station6');
+const STATION7 = require('../data/station7');
+const STATION8 = require('../data/station8');
+const STATION9 = require('../data/station9');
+const STATION10 = require('../data/station10');
+const STATION11 = require('../data/station11');
+const STATION12 = require('../data/station12');
+
 module.exports.CHANNELS = {
     onNewStation: 'on:new:station',
     onLLn: 'on:ll:n',
@@ -57,8 +70,30 @@ module.exports.CHANNELS = {
     removeLl12: 'removeLl12',
     removeLl13: 'removeLl13',
     removeLl14: 'removeLl14',
-    removeLl15: 'removeLl15'
+    removeLl15: 'removeLl15',
+    onStationsCheck: 'on:stations:check',
+    onGroup1: 'on:group1',
+    onGroup2: 'on:group2',
+    onGroup3: 'on:group3',
+    onGroup4: 'on:group4',
+    onGroup5: 'on:group5'
 }
 
 module.exports.PRESSTIME = 2000;
 module.exports.SCANTIME = 1000;
+
+module.exports.GROUP1 = [
+    STATION1.ip, STATION2.ip, STATION3.ip, STATION4.ip
+];
+module.exports.GROUP2 = [
+    STATION5.ip, STATION6.ip
+];
+module.exports.GROUP3 = [
+    STATION7.ip, STATION8.ip
+];
+module.exports.GROUP4 = [
+    STATION9.ip, STATION10.ip
+];
+module.exports.GROUP5 = [
+    STATION11.ip, STATION12.ip
+];
