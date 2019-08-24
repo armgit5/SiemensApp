@@ -296,7 +296,7 @@ module.exports = (mainWindow) => {
         }, 1000);
         PINGINTERVALS.push(_pingLoopInterval);
     };
-   
+
     const _initAllNodes = () => {
         let cnt = 1;
         console.log('Init Total nodes ', NODES.length);
@@ -315,6 +315,7 @@ module.exports = (mainWindow) => {
                     }
                 });
             });
+            NODES.push(NODE);
 
         }
     }
@@ -327,14 +328,16 @@ module.exports = (mainWindow) => {
             const nodeCounts = NODES.length;
             let cnt = 1;
             NODES.forEach(n => {
-                n.conn.dropConnection((cb) => {
-                    console.log('disconnnect node', cb, cnt, n.id);
-                    if (cnt === nodeCounts) {
-                        console.log('set nodes to 0');
-                        NODES = [];
-                    } 
-                    cnt++;
-                });
+                if (n.conn) {
+                    n.conn.dropConnection((cb) => {
+                        console.log('disconnnect node', cb, cnt, n.id);
+                        if (cnt === nodeCounts) {
+                            console.log('set nodes to 0');
+                            NODES = [];
+                        }
+                        cnt++;
+                    });
+                }
             });
         }
     }
@@ -351,17 +354,14 @@ module.exports = (mainWindow) => {
             }
         });
 
-        // const insideF = require('./isOnCheck');
         let startLoop = [true];
         const PINGINTERVALS = [];
 
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsCheck, (e, id) => {
             console.log('on status check working');
-            // _stopPingIntervals();
-            // _startPingLoop();
             _initAllNodes();
-            // insideF(NODES, mainWindow, true);
+            startLoop[0] = true;
             require('./isOnCheck')(NODES, mainWindow, startLoop, PINGINTERVALS);
         });
 
@@ -374,7 +374,7 @@ module.exports = (mainWindow) => {
         });
 
 
-        
+
     }
 
     main();

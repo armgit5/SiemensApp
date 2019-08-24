@@ -18,25 +18,34 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
                 NODES.forEach(n => {
 
-                    // Add to readlist
-                    n.conn.addItems('M217.0');
-                    n.conn.addItems('M218.2');
+                    if (n.conn) {
 
-                    if (n.id === 'N1') {
-                        readHelper(n).then(data => {
-                            console.log(data);
-                        });
+                        // Add to readlist
+                        n.conn.addItems('M217.0');
+                        n.conn.addItems('M218.2');
+
+                        if (n.id === 'N1') {
+                            readHelper(n).then(data => {
+                                console.log(data);
+                            });
+                        }
+
+                        if (n.id === 'N2') {
+                            readHelper(n).then(data => {
+                                console.log(data);
+                                if (data['M217.0']) {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, true);
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, false);
+                                }
+                            });
+                        }
+
+                        // Remove to readlist
+                        n.conn.removeItems('M217.0');
+                        n.conn.removeItems('M218.2');
+
                     }
-
-                    if (n.id === 'N2') {
-                        readHelper(n).then(data => {
-                            console.log(data);
-                        });
-                    }
-
-                    // Remove to readlist
-                    n.conn.removeItems('M217.0');
-                    n.conn.removeItems('M218.2');
 
                 });
 

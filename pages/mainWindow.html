@@ -38,10 +38,10 @@
               <div class="col-6" style="padding: 0">
                   <div class="col" style="padding: 0">
                       <span class="dot" data-bind="style: SiamStyle1"></span>
-                      <span class="dot" data-bind="style: SiamStyle2"></span>
+                      <span class="dot" data-bind="style: SiamStyle3"></span>
                   </div>
                   <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: SiamStyle3"></span>
+                      <span class="dot" data-bind="style: SiamStyle2"></span>
                       <span class="dot" data-bind="style: SiamStyle4"></span>
                   </div>
               </div>
@@ -246,9 +246,9 @@
 
       ipcRenderer.on(CHANNELS.onStation2, (e, isOn) => {
           if (isOn) {
-            vm.SiamStyle1(greenColor);
+            vm.SiamStyle2(greenColor);
           } else {
-            vm.SiamStyle1(redColor);
+            vm.SiamStyle2(redColor);
           }
       });
 
