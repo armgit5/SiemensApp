@@ -3,6 +3,10 @@ const { CHANNELS, SCANTIME } = require('./environments');
 const readHelper = require('./readHelper');
 
 
+const M217_0 = 'M217.0';
+const M218_2 = 'M218.2';
+const M218_3 = 'M218.3';
+
 module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
     // Ping Test
@@ -21,39 +25,39 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                     if (n.conn) {
 
                         // Add to readlist
-                        n.conn.addItems('M217.0');
-                        n.conn.addItems('M218.2');
-                        n.conn.addItems('M218.3');
+                        n.conn.addItems(M217_0);
+                        n.conn.addItems(M218_2);
+                        n.conn.addItems(M218_3);
 
                         if (n.id === 'N1') {
                             readHelper(n).then(data => {
-                                console.log(data);
-                                if (data['M217.0']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation1, true);
+                                console.log('data ', 'N1');
+                                if (data[M217_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: true });
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation1, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: false });
                                 }
                             });
                         }
 
                         if (n.id === 'N2') {
                             readHelper(n).then(data => {
-                                console.log(data);
-                                if (data['M218.2']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation2, true);
+                                console.log(data, 'N2');
+                                if (data[M218_2]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: true });
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation2, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: false });
                                 }
                             });
                         }
 
                         if (n.id === 'N3') {
                             readHelper(n).then(data => {
-                                console.log(data);
-                                if (data['M217.0']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation3, true);
+                                console.log(data, 'N3');
+                                if (data[M217_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: true });
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation3, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: false });
                                 }
                             });
                         }
@@ -61,10 +65,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N4') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.2']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation4, true);
+                                if (data.M218_2) {
+                                    mainWindow.webContents.send(CHANNELS.onStation4, {M218_2: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation4, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation4, {M218_2: false});
                                 }
                             });
                         }
@@ -72,10 +76,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N5') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M218_3: false});
                                 }
                             });
                         }
@@ -83,10 +87,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N6') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_3: false});
                                 }
                             });
                         }
@@ -94,10 +98,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N7') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M218_3: false});
                                 }
                             });
                         }
@@ -105,10 +109,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N8') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M218_3: false});
                                 }
                             });
                         }
@@ -116,10 +120,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N9') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M218_3: false});
                                 }
                             });
                         }
@@ -127,10 +131,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N10') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M218_3: false});
                                 }
                             });
                         }
@@ -138,10 +142,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N11') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M218_3: false});
                                 }
                             });
                         }
@@ -149,10 +153,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N12') {
                             readHelper(n).then(data => {
                                 console.log(data);
-                                if (data['M218.3']) {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, true);
+                                if (data[M218_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M218_3: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, false);
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M218_3: false});
                                 }
                             });
                         }

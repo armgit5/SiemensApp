@@ -71,7 +71,7 @@ module.exports.CHANNELS = {
     removeLl13: 'removeLl13',
     removeLl14: 'removeLl14',
     removeLl15: 'removeLl15',
-    
+
     onStationsCheck: 'on:stations:check',
     onStationsQuit: 'on:stations:quit',
     onStation1: 'on:station:1',
@@ -116,5 +116,6 @@ module.exports.GROUP5 = [
 
 module.exports.COLORS = {
     green: 'lightgreen',
-    red: 'lightcoral'
+    red: 'lightcoral',
+    gray: 'gray'
 }

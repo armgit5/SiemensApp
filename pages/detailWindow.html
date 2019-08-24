@@ -9,7 +9,7 @@
 
   <style>
     .station-mid {
-      width: 150px;
+      width: 175px;
     }
 
     .station-longer {
@@ -29,37 +29,80 @@
 
     <div class="row">
       <!-- Detail 1 -->
-      <div class="col-4">
+      <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./station1/llWindow.html'"
           style="background-color: white;">
-          Lift Lower
+          <!-- Lift Lower <span class="dot" data-bind="style: LiftLowerStyle"></span> -->
+
+          <div class="row main">
+              <div class="col-8" style="padding: 0;padding-top: 10px">
+                  <span>Lift Lower </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: LiftLowerStyle"></span>
+                  </div>
+              </div>
+          </div>
         </button>
       </div>
 
       <!-- Detail 2 -->
-      <div class="col-8">
+      <div class="col-6">
         <button type="button" class="btn station station-longer"
         onclick="window.location.href='./station3/detailWindow.html'" style="background-color: white;">
-          Cading, SideBeam SB
+          <!-- Cading, SideBeam SB <span class="dot" data-bind="style: SBStyle"></span> -->
+
+          <div class="row main">
+              <div class="col-8" style="padding: 0;padding-top: 10px">
+                  <span>Cading, SideBeam SB </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: SBStyle"></span>
+                  </div>
+              </div>
+          </div>
+
         </button>
       </div>
     </div>
 
     <div class="row">
       <!-- Detail 1 -->
-      <div class="col-4">
+      <div class="col-6">
         <button type="button" class="btn station station-mid"
         onclick="window.location.href='./station2/llWindow.html'" 
         style="background-color: white;">
-          Lift
+          <!-- Lift Concourse <span class="dot" data-bind="style: LiftCStyle"></span> -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0;padding-top: 10px">
+                  <span>Lift Concourse </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: LiftCStyle"></span>
+                  </div>
+              </div>
+          </div>
         </button>
       </div>
 
       <!-- Detail 2 -->
-      <div class="col-8">
+      <div class="col-6">
         <button type="button" class="btn station station-longer" 
         onclick="window.location.href='./station4/detailWindow.html'" style="background-color: white;">
-          Cading, SideBeam EB
+          <!-- Cading, SideBeam EB <span class="dot" style="background-color: lightgreen;"></span> -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0;padding-top: 10px">
+                  <span>Cading, SideBeam EB </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: EBCStyle"></span>
+                  </div>
+              </div>
+          </div>
         </button>
       </div>
     </div>
@@ -101,17 +144,17 @@
   <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
-    const { CHANNELS } = require('../helpers/environments');
+    const { CHANNELS, COLORS } = require('../helpers/environments');
     const STATION1 = require('../data/station1');
     const Store = require('electron-store');
     const store = new Store();
     const keys = STATION1.storedKeys;
 
     const greenColor = {
-      'background-color': 'lightgreen'
+      'background-color': COLORS.green
     };
     const redColor = {
-      'background-color': 'red'
+      'background-color': COLORS.red
     };
     let vm;
 
@@ -120,8 +163,10 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('Reading...');
-        this.S1Style = ko.observable(redColor);
-        this.S1_1Style = ko.observable(redColor);
+        this.LiftLowerStyle = ko.observable(redColor);
+        this.LiftCStyle = ko.observable(redColor);
+        this.EBStyle = ko.observable(redColor);
+        this.SBStyle = ko.observable(redColor);
       }
 
       // Activates knockout.js
@@ -141,17 +186,15 @@
         vm.time(datetime);
       });
 
-      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-        console.log(id, status);
-        if (id === 'N1') {
-          if (status === true) {
-            vm.Sa(greenColor);
-          } else {
-            vm.S1Style(redColor);
-          }
-        }
-      });
 
+      // Lift Lower
+      ipcRenderer.on(CHANNELS.onStation2, (e, isOn) => {
+          if (isOn) {
+            vm.SiamStyle2(greenColor);
+          } else {
+            vm.SiamStyle2(redColor);
+          }
+      });
     };
 
     // Show when ready

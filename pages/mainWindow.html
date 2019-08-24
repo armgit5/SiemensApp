@@ -186,6 +186,9 @@
     const redColor = {
       'background-color': COLORS.red
     };
+    const grayColor = {
+      'background-color': COLORS.gray
+    };
     let vm;
 
     // Start View Model
@@ -236,32 +239,33 @@
       });
 
       // Siam
-      ipcRenderer.on(CHANNELS.onStation1, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation1, (e, data) => {
+          if (data.M217_0) {
             vm.SiamStyle1(greenColor);
           } else {
             vm.SiamStyle1(redColor);
           }
       });
 
-      ipcRenderer.on(CHANNELS.onStation2, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation2, (e, data) => {
+          if (data.M218_2) {
             vm.SiamStyle2(greenColor);
           } else {
             vm.SiamStyle2(redColor);
           }
       });
 
-      ipcRenderer.on(CHANNELS.onStation3, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation3, (e, data) => {
+        console.log(data);
+          if (data.M217_0) {
             vm.SiamStyle3(greenColor);
           } else {
             vm.SiamStyle3(redColor);
           }
       });
 
-      ipcRenderer.on(CHANNELS.onStation4, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation4, (e, data) => {
+          if (data.M218_2) {
             vm.SiamStyle4(greenColor);
           } else {
             vm.SiamStyle4(redColor);
@@ -269,16 +273,16 @@
       });
 
       // Asok 
-      ipcRenderer.on(CHANNELS.onStation5, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+          if (data.M218_3) {
             vm.E4Style1(greenColor);
           } else {
             vm.E4Style1(redColor);
           }
       });
 
-      ipcRenderer.on(CHANNELS.onStation6, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+          if (data.M218_3) {
             vm.E4Style2(greenColor);
           } else {
             vm.E4Style2(redColor);
@@ -286,16 +290,16 @@
       });
 
       // E5
-      ipcRenderer.on(CHANNELS.onStation7, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
+          if (data.M218_3) {
             vm.E5Style1(greenColor);
           } else {
             vm.E5Style1(redColor);
           }
       });
 
-      ipcRenderer.on(CHANNELS.onStation8, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation8, (e, data) => {
+          if (data.M218_3) {
             vm.E5Style2(greenColor);
           } else {
             vm.E5Style2(redColor);
@@ -303,16 +307,16 @@
       });
 
       // S2 
-      ipcRenderer.on(CHANNELS.onStation9, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation9, (e, data) => {
+          if (data.M218_3) {
             vm.S2Style1(greenColor);
           } else {
             vm.S2Style1(redColor);
           }
       });
 
-      ipcRenderer.on(CHANNELS.onStation10, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation10, (e, data) => {
+          if (data.M218_3) {
             vm.S2Style2(greenColor);
           } else {
             vm.S2Style2(redColor);
@@ -320,16 +324,16 @@
       });
 
       // S3
-      ipcRenderer.on(CHANNELS.onStation11, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation11, (e, data) => {
+          if (data.M218_3) {
             vm.S3Style1(greenColor);
           } else {
             vm.S3Style1(redColor);
           }
       });
 
-      ipcRenderer.on(CHANNELS.onStation12, (e, isOn) => {
-          if (isOn) {
+      ipcRenderer.on(CHANNELS.onStation12, (e, data) => {
+          if (data.M218_3) {
             vm.S3Style2(greenColor);
           } else {
             vm.S3Style2(redColor);
