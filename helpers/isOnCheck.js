@@ -31,6 +31,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         n.conn.addItems(M217_0);
                         n.conn.addItems(M218_2);
                         n.conn.addItems(M218_3);
+                        n.conn.addItems(M217_2);
+                        n.conn.addItems(M217_3);
+                        n.conn.addItems(M217_4);
 
                         if (n.id === 'N1') {
                             readHelper(n).then(data => {
@@ -80,16 +83,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: false });
                                 }
+                                
                             });
                         }
 
                         if (n.id === 'N4') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N4');
                                 if (data.M218_2) {
                                     mainWindow.webContents.send(CHANNELS.onStation4, {M218_2: true});
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation4, {M218_2: false});
+                                }
+
+                                // console.log(data[M217_2]);
+                                if (data[M217_2]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation4, { M217_2: true });
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation4, { M217_2: false });
+                                }
+
+                                if (data[M217_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation4, { M217_3: true });
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation4, { M217_3: false });
+                                }
+
+                                if (data[M217_4]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: true });
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: false });
                                 }
                             });
                         }
@@ -186,6 +209,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         n.conn.removeItems('M217.0');
                         n.conn.removeItems('M218.2');
                         n.conn.removeItems('M218.3');
+                        n.conn.removeItems(M217_2);
+                        n.conn.removeItems(M217_3);
+                        n.conn.removeItems(M217_4);
 
                     }
 
