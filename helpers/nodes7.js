@@ -309,6 +309,7 @@ module.exports = (mainWindow) => {
                 initHelper(tempNode).then(isOnline => {
                     if (isOnline) {
                         NODES.push(tempNode);
+                        // require('./isOnCheck')(NODES, mainWindow, true);
                         console.log('new node', s.id, cnt);
                         cnt++;
                     }
@@ -350,6 +351,9 @@ module.exports = (mainWindow) => {
             }
         });
 
+        // const insideF = require('./isOnCheck');
+        let startLoop = [true];
+        const PINGINTERVALS = [];
 
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsCheck, (e, id) => {
@@ -357,14 +361,20 @@ module.exports = (mainWindow) => {
             // _stopPingIntervals();
             // _startPingLoop();
             _initAllNodes();
+            // insideF(NODES, mainWindow, true);
+            require('./isOnCheck')(NODES, mainWindow, startLoop, PINGINTERVALS);
         });
 
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsQuit, (e, id) => {
             console.log('on status quite working');
             _killAllNodes();
+            startLoop[0] = false;
+            PINGINTERVALS.forEach(clearInterval);
         });
 
+
+        
     }
 
     main();
