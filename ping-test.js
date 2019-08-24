@@ -7,7 +7,7 @@ var exec = require('child_process').exec;
 // }
 // exec("ping -c 1 localhost2", puts);
 
-const GROUP1 = ['localhost', 'l2ocalhost2', 'localhost', 'localhost'];
+const GROUP1 = ['localhost', 'localhost', 'localhost', 'localhost'];
 const GROUP2 = ['localhost', 'localhost'];
 const GROUP3 = ['localhost', 'localhost'];
 const GROUP4 = ['localhost', 'localhost'];
@@ -47,6 +47,7 @@ const pingLoopInterval = setInterval(() => {
     let group1Len = GROUP1.length;
     let group1Count = 1;
     GROUP1.forEach(ip => {
+
         _pingIp(ip).then(ok => {
             if (!ok) {
                 group1ok = false;

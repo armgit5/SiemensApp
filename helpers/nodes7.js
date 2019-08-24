@@ -13,9 +13,20 @@ const STATION9 = require('../data/station9');
 const STATION10 = require('../data/station10');
 const STATION11 = require('../data/station11');
 const STATION12 = require('../data/station12');
+const STATIONS = [
+    STATION1, STATION2, STATION3, STATION4, STATION5,
+    STATION6, STATION7, STATION8, STATION9, STATION10,
+    STATION11, STATION12
+];
+
 const initHelper = require('./initHelper');
 
+const { GROUP1, GROUP2, GROUP3, GROUP4, GROUP5 } = require('./environments');
+var sys = require('sys')
+var exec = require('child_process').exec;
+
 let NODE; // Hold node connection
+let NODES = [];
 let STATION_ID = 0;
 const KEYS = STATION1.storedKeys;
 let aNodeIsOnline = false;
@@ -47,7 +58,7 @@ module.exports = (mainWindow) => {
                 console.log('S1 is online ', isOnline);
                 if (isOnline) {
                     aNodeIsOnline = true;
-                    console.log('init station 2 sucessfully');
+                    console.log('init station 1 sucessfully');
                     _initReadWrite(NODE);
                 } else {
                     _sendDefaultDatetime();
@@ -212,7 +223,6 @@ module.exports = (mainWindow) => {
         }
     };
 
-
     const _initNode = () => {
         if (NODE) {
             console.log('kill the existing node');
@@ -228,18 +238,133 @@ module.exports = (mainWindow) => {
         };
     };
 
+    // Ping Test
+    const _pingIp = (ip) => {
+        return new Promise((resolve, reject) => {
+            exec(`ping -c 1 ${ip}`, (error, stdout, stderr) => {
+                if (stdout) {
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+
+                if (stderr) {
+                    reject(stderr);
+                }
+            });
+        });
+    };
+    const PINGINTERVALS = [];
+    const _stopPingIntervals = () => {
+        PINGINTERVALS.forEach(clearInterval); // Clear interval
+    }
+    const _startPingLoop = () => {
+
+
+        const _pingLoopInterval = setInterval(() => {
+
+            // Check group 1
+            let group1ok = true;
+            let group1Len = GROUP1.length;
+            let group1Count = 1;
+
+            GROUP1.forEach(ip => {
+
+                _pingIp(ip).then(ok => {
+                    if (!ok) {
+                        group1ok = false;
+                    }
+                    if (group1Count === group1Len) {
+                        console.log('group 1 ok ', group1ok);
+                        if (group1ok) {
+                            mainWindow.webContents.send(CHANNELS.onGroup1, true);
+                        } else {
+                            mainWindow.webContents.send(CHANNELS.onGroup1, false);
+                        }
+                    }
+                    group1Count++;
+                });
+
+
+            });
+
+
+            // Check group 2
+            let group2ok = false;
+            let group2Len = GROUP2.length;
+            let group2Count = 1;
+        }, 1000);
+        PINGINTERVALS.push(_pingLoopInterval);
+    };
+   
+    const _initAllNodes = () => {
+        let cnt = 1;
+        console.log('Init Total nodes ', NODES.length);
+
+        if (NODES.length === 0) {
+
+            STATIONS.forEach(s => {
+                const tempNode = new Node(s.id, s.ip);
+                console.log('node inited ', s.id, s.ip);
+                initHelper(tempNode).then(isOnline => {
+                    if (isOnline) {
+                        NODES.push(tempNode);
+                        console.log('new node', s.id, cnt);
+                        cnt++;
+                    }
+                });
+            });
+
+        }
+    }
+    const _killAllNodes = () => {
+
+        console.log('Kill Total nodes ', NODES.length);
+
+        if (NODES.length > 0) {
+
+            const nodeCounts = NODES.length;
+            let cnt = 1;
+            NODES.forEach(n => {
+                n.conn.dropConnection((cb) => {
+                    console.log('disconnnect node', cb, cnt, n.id);
+                    if (cnt === nodeCounts) {
+                        console.log('set nodes to 0');
+                        NODES = [];
+                    } 
+                    cnt++;
+                });
+            });
+        }
+    }
+
     // Main Program
     const main = () => {
         // Get station id when page changes
         ipcMain.on(CHANNELS.onNewStation, (e, id) => {
             // If new id comes in then kills old connection and start 
             // new connection to new plc
-            console.log(id);
             if (id !== STATION_ID) {
                 STATION_ID = id;
                 _initNode();
             }
         });
+
+
+        // On Status check all stations
+        ipcMain.on(CHANNELS.onStationsCheck, (e, id) => {
+            console.log('on status check working');
+            // _stopPingIntervals();
+            // _startPingLoop();
+            _initAllNodes();
+        });
+
+        // On Status check all stations
+        ipcMain.on(CHANNELS.onStationsQuit, (e, id) => {
+            console.log('on status quite working');
+            _killAllNodes();
+        });
+
     }
 
     main();

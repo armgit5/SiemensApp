@@ -71,7 +71,22 @@ module.exports.CHANNELS = {
     removeLl13: 'removeLl13',
     removeLl14: 'removeLl14',
     removeLl15: 'removeLl15',
+    
     onStationsCheck: 'on:stations:check',
+    onStationsQuit: 'on:stations:quit',
+    onStation1: 'on:station:1',
+    onStation2: 'on:station:2',
+    onStation3: 'on:station:3',
+    onStation4: 'on:station:4',
+    onStation5: 'on:station:5',
+    onStation6: 'on:station:6',
+    onStation7: 'on:station:7',
+    onStation8: 'on:station:8',
+    onStation9: 'on:station:9',
+    onStation10: 'on:station:10',
+    onStation11: 'on:station:11',
+    onStation12: 'on:station:12',
+
     onGroup1: 'on:group1',
     onGroup2: 'on:group2',
     onGroup3: 'on:group3',
@@ -83,7 +98,8 @@ module.exports.PRESSTIME = 2000;
 module.exports.SCANTIME = 1000;
 
 module.exports.GROUP1 = [
-    STATION1.ip, STATION2.ip, STATION3.ip, STATION4.ip
+    'localhost', 'localhost2'
+    // STATION1.ip, STATION2.ip, STATION3.ip, STATION4.ip
 ];
 module.exports.GROUP2 = [
     STATION5.ip, STATION6.ip
@@ -97,3 +113,8 @@ module.exports.GROUP4 = [
 module.exports.GROUP5 = [
     STATION11.ip, STATION12.ip
 ];
+
+module.exports.COLORS = {
+    green: 'lightgreen',
+    red: 'lightcoral'
+}

@@ -145,18 +145,20 @@
         console.log(id, status);
         if (id === 'N1') {
           if (status === true) {
-            vm.S1Style(greenColor);
+            vm.Sa(greenColor);
           } else {
             vm.S1Style(redColor);
           }
         }
       });
+
     };
 
     // Show when ready
     $(document).ready(() => {
       $('body').show();
       ipcRenderer.send(CHANNELS.onNewStation, 1);
+      ipcRenderer.send(CHANNELS.onStationsQuit, 1);
 
       _startViewModel();
       _getFromStore();

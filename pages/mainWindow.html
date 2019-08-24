@@ -7,56 +7,94 @@
 
   <link rel="stylesheet" href="../assets/styles/mainWindow.css">
 
+  <style>
+      .long {
+          width: 200px;
+      }
+
+      .main {
+        margin: 0px;
+      }
+  </style>
 </head>
 
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
   <div class="container">
-    <!-- <div class="row header-row">
-      <div class="col-6">
-        <h1 class="header" style="text-align: left; margin: 0px;">
-          PTL 9M
-        </h1>
-
-      </div>
-
-      <div class="col-6">
-        <div class="row">
-          <div class="col-6">
-          </div>
-          <div class="col-6">
-            <div class="footer" style="margin-top: 0px" data-bind="text: time">
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div> -->
     <h1 class="header" style="text-align: left;">PTL 9M</h1>
 
     <div class="row">
       <!-- Station 1 -->
 
       <div class="col-4">
-        <button type="button" class="btn station" style="background-color: yellow;"
+        <button type="button" class="btn station long" style="background-color: yellow;"
           onclick="window.location.href='detailWindow.html'">
-          Siam <span class="dot" data-bind="style: SiamStyle"></span>
+          <!-- Siam <span class="dot" data-bind="style: SiamStyle"></span> -->
+
+          <div class="row main">
+              <div class="col-6" style="padding: 0; padding-top: 10px">
+                  <span>Siam </span>
+              </div>
+              <div class="col-6" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: SiamStyle1"></span>
+                      <span class="dot" data-bind="style: SiamStyle2"></span>
+                  </div>
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: SiamStyle3"></span>
+                      <span class="dot" data-bind="style: SiamStyle4"></span>
+                  </div>
+              </div>
+          </div>
+          
         </button>
       </div>
 
       <!-- Station 2 -->
       <div class="col-4">
-        <button type="button" class="btn station" style="background-color: white;"
+        <button type="button" class="btn station long" style="background-color: white;"
           onclick="window.location.href='./E4/detailWindow.html'">
-          E4 <span class="dot" style="background-color: lightgreen;"></span>
+          <!-- E4 <span class="dot" style="background-color: lightgreen;"></span> -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0;padding-top: 10px">
+                  <span>Asok (E4) </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: E4Style1"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+                  <div class="col" style="padding: 0">
+
+                      <span class="dot" data-bind="style: E4Style2"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+              </div>
+          </div>
         </button>
       </div>
 
       <!-- Station 3 -->
       <div class="col-4">
-        <button type="button" class="btn station" style="background-color: white;"
+        <button type="button" class="btn station long" style="background-color: white;"
         onclick="window.location.href='./E5/detailWindow.html'">
-          E5 <span class="dot" style="background-color: lightgreen;"></span>
+          <!-- E5 <span class="dot" style="background-color: lightgreen;"></span> -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0; padding-left: 15px;">
+                  <span>Phrom Phong (E5) </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: E5Style1"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+                  <div class="col" style="padding: 0">
+
+                      <span class="dot" data-bind="style: E5Style2"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+              </div>
+          </div>
         </button>
       </div>
     </div>
@@ -64,17 +102,49 @@
     <div class="row" style="margin-top: 15px;">
       <!-- Station 4 -->
       <div class="col-4">
-        <button type="button" class="btn station" style="background-color: white;"
+        <button type="button" class="btn station long" style="background-color: white;"
         onclick="window.location.href='./S2/detailWindow.html'">
-          S2 <span class="dot" style="background-color: lightcoral;"></span>
+          <!-- S2 <span class="dot" style="background-color: lightcoral;"></span> -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0; padding-left: 15px; padding-top: 10px">
+                  <span>Sala Daeng (S2) </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: S2Style1"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+                  <div class="col" style="padding: 0">
+
+                      <span class="dot" data-bind="style: S2Style2"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+              </div>
+          </div>
         </button>
       </div>
 
       <!-- Station 5 -->
       <div class="col-4">
-        <button type="button" class="btn station" style="background-color: white;"
+        <button type="button" class="btn station long" style="background-color: white;"
         onclick="window.location.href='./S3/detailWindow.html'">
-          S3 <span class="dot" style="background-color: lightcoral;"></span>
+          <!-- S3 <span class="dot" style="background-color: lightcoral;"></span> -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0; padding-left: 15px;">
+                  <span>Chong Non Si (S3) </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                  <div class="col" style="padding: 0">
+                      <span class="dot" data-bind="style: S3Style1"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+                  <div class="col" style="padding: 0">
+
+                      <span class="dot" data-bind="style: S3Style2"></span>
+                      <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
+                  </div>
+              </div>
+          </div>
         </button>
       </div>
     </div>
@@ -104,17 +174,17 @@
   <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
-    const { CHANNELS } = require('../helpers/environments');
+    const { CHANNELS, COLORS } = require('../helpers/environments');
     const STATION1 = require('../data/station1');
     const Store = require('electron-store');
     const store = new Store();
     const keys = STATION1.storedKeys;
 
     const greenColor = {
-      'background-color': 'lightgreen'
+      'background-color': COLORS.green
     };
     const redColor = {
-      'background-color': 'lightcoral'
+      'background-color': COLORS.red
     };
     let vm;
 
@@ -124,7 +194,22 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('Reading...');
-        this.SiamStyle = ko.observable(redColor);
+        this.SiamStyle1 = ko.observable(redColor);
+        this.SiamStyle2 = ko.observable(redColor);
+        this.SiamStyle3 = ko.observable(redColor);
+        this.SiamStyle4 = ko.observable(redColor);
+
+        this.E4Style1 = ko.observable(redColor);
+        this.E4Style2 = ko.observable(redColor);
+
+        this.E5Style1 = ko.observable(redColor);
+        this.E5Style2 = ko.observable(redColor);
+
+        this.S2Style1 = ko.observable(redColor);
+        this.S2Style2 = ko.observable(redColor); 
+
+        this.S3Style1 = ko.observable(redColor);
+        this.S3Style2 = ko.observable(redColor);
       }
 
       // Activates knockout.js
@@ -140,13 +225,6 @@
         vm.time(headerDatetime);
       }
 
-      if (store.get(CHANNELS.autoManual) === true) {
-        vm.SiamStyle(greenColor);
-      } else {
-        vm.SiamStyle(redColor);
-      }
-
-
     };
 
     // Read streaming
@@ -157,26 +235,23 @@
         vm.time(datetime);
       });
 
-      // Auto manual 
-      ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
-        console.log(autoManual);
-        if (autoManual) {
-          vm.SiamStyle(greenColor);
-        } else {
-          vm.SiamStyle(redColor);
-        }
+      // Siam
+      ipcRenderer.on(CHANNELS.onStation1, (e, isOn) => {
+          if (isOn) {
+            vm.SiamStyle1(greenColor);
+          } else {
+            vm.SiamStyle1(redColor);
+          }
       });
 
-      // Online status streaming
-      // ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-      //   if (id === 'N1') {
-      //     if (status === true) {
-      //       vm.S1Style(greenColor);
-      //     } else {
-      //       vm.S1Style(redColor);
-      //     }
-      //   }
-      // });
+      ipcRenderer.on(CHANNELS.onStation2, (e, isOn) => {
+          if (isOn) {
+            vm.SiamStyle1(greenColor);
+          } else {
+            vm.SiamStyle1(redColor);
+          }
+      });
+
 
     };
 
@@ -185,6 +260,9 @@
       $('body').show();
       // Send station id to init connection
       ipcRenderer.send(CHANNELS.onNewStation, 1);
+
+      // Send to query status
+      ipcRenderer.send(CHANNELS.onStationsCheck, 1);
 
       _startViewModel();
       _getFromStore();
