@@ -371,10 +371,10 @@ module.exports = (mainWindow) => {
 
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsQuit, (e, id) => {
-            console.log('on status quite working');
-            _killAllNodes();
-            PINGINTERVALS.forEach(clearInterval);
-            startLoop[0] = false;
+            // console.log('on status quite working');
+            // _killAllNodes();
+            // PINGINTERVALS.forEach(clearInterval);
+            // startLoop[0] = false;
         });
 
 

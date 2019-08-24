@@ -99,7 +99,7 @@
               </div>
               <div class="col-4" style="padding: 0">
                   <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: EBCStyle"></span>
+                      <span class="dot" data-bind="style: EBStyle"></span>
                   </div>
               </div>
           </div>
@@ -188,13 +188,41 @@
 
 
       // Lift Lower
-      ipcRenderer.on(CHANNELS.onStation2, (e, isOn) => {
-          if (isOn) {
-            vm.SiamStyle2(greenColor);
+      ipcRenderer.on(CHANNELS.onStation1, (e, data) => {
+          if (data.M217_0) {
+            vm.LiftLowerStyle(greenColor);
           } else {
-            vm.SiamStyle2(redColor);
+            vm.LiftLowerStyle(redColor);
           }
       });
+
+      // SB
+      ipcRenderer.on(CHANNELS.onStation2, (e, data) => {
+          if (data.M218_2) {
+            vm.SBStyle(greenColor);
+          } else {
+            vm.SBStyle(redColor);
+          }
+      });
+
+      // Lift C
+      ipcRenderer.on(CHANNELS.onStation3, (e, data) => {
+          if (data.M217_0) {
+            vm.LiftCStyle(greenColor);
+          } else {
+            vm.LiftCStyle(redColor);
+          }
+      });
+
+      // EB
+      ipcRenderer.on(CHANNELS.onStation4, (e, data) => {
+          if (data.M218_2) {
+            vm.EBStyle(greenColor);
+          } else {
+            vm.EBStyle(redColor);
+          }
+      });
+      
     };
 
     // Show when ready

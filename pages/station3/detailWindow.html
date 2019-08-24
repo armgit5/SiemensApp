@@ -154,7 +154,7 @@
     // Show when ready
     $(document).ready(() => {
       $('body').show();
-      ipcRenderer.send(CHANNELS.onNewStation, 3);
+      ipcRenderer.send(CHANNELS.onNewStation, 2);
 
       _startViewModel();
       _getFromStore();
