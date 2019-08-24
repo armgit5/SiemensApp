@@ -6,6 +6,9 @@ const readHelper = require('./readHelper');
 const M217_0 = 'M217.0';
 const M218_2 = 'M218.2';
 const M218_3 = 'M218.3';
+const M217_2 = 'M217.2';
+const M217_3 = 'M217.3';
+const M217_4 = 'M217.4';
 
 module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
@@ -47,6 +50,24 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: true });
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: false });
+                                }
+
+                                if (data[M217_2]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M217_2: true });
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M217_2: false });
+                                }
+
+                                if (data[M217_3]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M217_3: true });
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M217_3: false });
+                                }
+
+                                if (data[M217_4]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: true });
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: false });
                                 }
                             });
                         }
