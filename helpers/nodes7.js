@@ -356,21 +356,25 @@ module.exports = (mainWindow) => {
 
         let startLoop = [true];
         const PINGINTERVALS = [];
-
+        let reqCnt = 0;
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsCheck, (e, id) => {
             console.log('on status check working');
             _initAllNodes();
+            PINGINTERVALS.forEach(clearInterval);
             startLoop[0] = true;
+            // if (reqCnt) {
             require('./isOnCheck')(NODES, mainWindow, startLoop, PINGINTERVALS);
+            // }
+            // reqCnt++;
         });
 
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsQuit, (e, id) => {
             console.log('on status quite working');
             _killAllNodes();
-            startLoop[0] = false;
             PINGINTERVALS.forEach(clearInterval);
+            startLoop[0] = false;
         });
 
 

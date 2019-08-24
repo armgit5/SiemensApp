@@ -61,12 +61,12 @@
               </div>
               <div class="col-4" style="padding: 0">
                   <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: E4Style1"></span>
+                      <span class="dot" data-bind="style: E4Style2"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
                   <div class="col" style="padding: 0">
 
-                      <span class="dot" data-bind="style: E4Style2"></span>
+                      <span class="dot" data-bind="style: E4Style1"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
               </div>
@@ -85,12 +85,12 @@
               </div>
               <div class="col-4" style="padding: 0">
                   <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: E5Style1"></span>
+                      <span class="dot" data-bind="style: E5Style2"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
                   <div class="col" style="padding: 0">
 
-                      <span class="dot" data-bind="style: E5Style2"></span>
+                      <span class="dot" data-bind="style: E5Style1"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
               </div>
@@ -111,12 +111,12 @@
               </div>
               <div class="col-4" style="padding: 0">
                   <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: S2Style1"></span>
+                      <span class="dot" data-bind="style: S2Style2"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
                   <div class="col" style="padding: 0">
 
-                      <span class="dot" data-bind="style: S2Style2"></span>
+                      <span class="dot" data-bind="style: S2Style1"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
               </div>
@@ -135,12 +135,12 @@
               </div>
               <div class="col-4" style="padding: 0">
                   <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: S3Style1"></span>
+                      <span class="dot" data-bind="style: S3Style2"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
                   <div class="col" style="padding: 0">
 
-                      <span class="dot" data-bind="style: S3Style2"></span>
+                      <span class="dot" data-bind="style: S3Style1"></span>
                       <!-- <span class="dot" style="background-color: green; margin: 0px"></span> -->
                   </div>
               </div>
@@ -249,6 +249,90 @@
             vm.SiamStyle2(greenColor);
           } else {
             vm.SiamStyle2(redColor);
+          }
+      });
+
+      ipcRenderer.on(CHANNELS.onStation3, (e, isOn) => {
+          if (isOn) {
+            vm.SiamStyle3(greenColor);
+          } else {
+            vm.SiamStyle3(redColor);
+          }
+      });
+
+      ipcRenderer.on(CHANNELS.onStation4, (e, isOn) => {
+          if (isOn) {
+            vm.SiamStyle4(greenColor);
+          } else {
+            vm.SiamStyle4(redColor);
+          }
+      });
+
+      // Asok 
+      ipcRenderer.on(CHANNELS.onStation5, (e, isOn) => {
+          if (isOn) {
+            vm.E4Style1(greenColor);
+          } else {
+            vm.E4Style1(redColor);
+          }
+      });
+
+      ipcRenderer.on(CHANNELS.onStation6, (e, isOn) => {
+          if (isOn) {
+            vm.E4Style2(greenColor);
+          } else {
+            vm.E4Style2(redColor);
+          }
+      });
+
+      // E5
+      ipcRenderer.on(CHANNELS.onStation7, (e, isOn) => {
+          if (isOn) {
+            vm.E5Style1(greenColor);
+          } else {
+            vm.E5Style1(redColor);
+          }
+      });
+
+      ipcRenderer.on(CHANNELS.onStation8, (e, isOn) => {
+          if (isOn) {
+            vm.E5Style2(greenColor);
+          } else {
+            vm.E5Style2(redColor);
+          }
+      });
+
+      // S2 
+      ipcRenderer.on(CHANNELS.onStation9, (e, isOn) => {
+          if (isOn) {
+            vm.S2Style1(greenColor);
+          } else {
+            vm.S2Style1(redColor);
+          }
+      });
+
+      ipcRenderer.on(CHANNELS.onStation10, (e, isOn) => {
+          if (isOn) {
+            vm.S2Style2(greenColor);
+          } else {
+            vm.S2Style2(redColor);
+          }
+      });
+
+      // S3
+      ipcRenderer.on(CHANNELS.onStation11, (e, isOn) => {
+          if (isOn) {
+            vm.S3Style1(greenColor);
+          } else {
+            vm.S3Style1(redColor);
+          }
+      });
+
+      ipcRenderer.on(CHANNELS.onStation12, (e, isOn) => {
+          if (isOn) {
+            vm.S3Style2(greenColor);
+          } else {
+            vm.S3Style2(redColor);
           }
       });
 
