@@ -128,6 +128,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation5, {M218_3: false});
                                 }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                }
                             });
                         }
 
@@ -180,6 +210,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation7, {M218_3: false});
                                 }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                }
                             });
                         }
 
@@ -190,6 +250,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation8, {M218_3: true});
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation8, {M218_3: false});
+                                }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
                                 }
                             });
                         }
@@ -202,6 +292,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation9, {M218_3: false});
                                 }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                }
                             });
                         }
 
@@ -212,6 +332,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation10, {M218_3: true});
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation10, {M218_3: false});
+                                }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
                                 }
                             });
                         }
@@ -224,6 +374,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation11, {M218_3: false});
                                 }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                }
                             });
                         }
 
@@ -234,6 +414,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation12, {M218_3: true});
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation12, {M218_3: false});
+                                }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
                                 }
                             });
                         }

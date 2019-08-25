@@ -30,32 +30,51 @@
     <div class="row">
       <!-- Detail 1 -->
       <div class="col-6">
-        <button type="button" class="btn station station-mid" onclick="window.location.href='./station9/detailWindow.html'"
-          style="background-color: white;">
-          SB
+        <button type="button" class="btn station station-mid"
+          onclick="window.location.href='./station9/detailWindow.html'" style="background-color: white;">
+          <!-- NB -->
+          <div class="row main">
+            <div class="col-8" style="padding: 0;">
+              <span> SB </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: NBStyle"></span>
+              </div>
+            </div>
+          </div>
         </button>
       </div>
 
       <!-- Detail 2 -->
       <div class="col-3">
-        <button type="button" class="btn station station-mid" onclick="window.location.href='./station10/detailWindow.html'"
-         style="background-color: white;">
-         WB
+        <button type="button" class="btn station station-mid"
+          onclick="window.location.href='./station10/detailWindow.html'" style="background-color: white;">
+          <!-- EB -->
+          <div class="row main">
+            <div class="col-8" style="padding: 0;">
+              <span> WB </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: EBStyle"></span>
+              </div>
+            </div>
+          </div>
         </button>
       </div>
     </div>
-
     <!-- <div class="row"> -->
-      <!-- Detail 1 -->
-      <!-- <div class="col-4">
+    <!-- Detail 1 -->
+    <!-- <div class="col-4">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./clading2/llWindow.html'" 
         style="background-color: white;">
           EB
         </button>
       </div> -->
 
-      <!-- Detail 2 -->
-      <!-- <div class="col-8">
+    <!-- Detail 2 -->
+    <!-- <div class="col-8">
         <button type="button" class="btn station station-longer" style="background-color: white;">
           Cading, SideBeam EB
         </button>
@@ -99,17 +118,17 @@
   <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
-    const { CHANNELS } = require('../../helpers/environments');
+    const { CHANNELS, COLORS } = require('../../helpers/environments');
     const STATION1 = require('../../data/station1');
     const Store = require('electron-store');
     const store = new Store();
     const keys = STATION1.storedKeys;
 
     const greenColor = {
-      'background-color': 'green'
+      'background-color': COLORS.green
     };
     const redColor = {
-      'background-color': 'red'
+      'background-color': COLORS.red
     };
     let vm;
 
@@ -118,8 +137,8 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('Reading...');
-        this.S1Style = ko.observable(redColor);
-        this.S1_1Style = ko.observable(redColor);
+        this.NBStyle = ko.observable(redColor);
+        this.EBStyle = ko.observable(redColor);
       }
 
       // Activates knockout.js
@@ -139,16 +158,25 @@
         vm.time(datetime);
       });
 
-      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-        console.log(id, status);
-        if (id === 'N1') {
-          if (status === true) {
-            vm.S1Style(greenColor);
-          } else {
-            vm.S1Style(redColor);
-          }
+      // SB
+      ipcRenderer.on(CHANNELS.onStation9, (e, data) => {
+        if (data.M218_3) {
+          vm.NBStyle(greenColor);
+        } else {
+          vm.NBStyle(redColor);
         }
       });
+
+      // WB
+      ipcRenderer.on(CHANNELS.onStation10, (e, data) => {
+        if (data.M218_3) {
+          vm.EBStyle(greenColor);
+        } else {
+          vm.EBStyle(redColor);
+        }
+      });
+
+
     };
 
     // Show when ready
