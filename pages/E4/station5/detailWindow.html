@@ -73,15 +73,15 @@
           style="background-color: white; padding-top: 0px;">
           <!-- Screen 2 -->
           <div class="row main">
-              <div class="col-8" style="padding: 0;">
-                <span> Screen 2 </span>
-              </div>
-              <div class="col-4" style="padding: 0">
-                <div class="col" style="padding: 0">
-                  <span class="dot" data-bind="style: Screen2Style"></span>
-                </div>
+            <div class="col-8" style="padding: 0;">
+              <span> Screen 2 </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: Screen2Style"></span>
               </div>
             </div>
+          </div>
         </button>
       </div>
 
@@ -91,15 +91,15 @@
           style="background-color: white; padding-top: 0px;">
           <!-- Screen 5 -->
           <div class="row main">
-              <div class="col-8" style="padding: 0;">
-                <span> Screen 5 </span>
-              </div>
-              <div class="col-4" style="padding: 0">
-                <div class="col" style="padding: 0">
-                  <span class="dot" data-bind="style: Screen5Style"></span>
-                </div>
+            <div class="col-8" style="padding: 0;">
+              <span> Screen 5 </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: Screen5Style"></span>
               </div>
             </div>
+          </div>
         </button>
       </div>
     </div>
@@ -111,15 +111,15 @@
           style="background-color: white; padding-top: 0px;">
           <!-- Screen 3 -->
           <div class="row main">
-              <div class="col-8" style="padding: 0;">
-                <span> Screen 3 </span>
-              </div>
-              <div class="col-4" style="padding: 0">
-                <div class="col" style="padding: 0">
-                  <span class="dot" data-bind="style: Screen3Style"></span>
-                </div>
+            <div class="col-8" style="padding: 0;">
+              <span> Screen 3 </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: Screen3Style"></span>
               </div>
             </div>
+          </div>
         </button>
       </div>
 
@@ -169,17 +169,17 @@
   <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
-    const { CHANNELS } = require('../../../helpers/environments');
+    const { CHANNELS, COLORS } = require('../../../helpers/environments');
     const STATION1 = require('../../../data/station1');
     const Store = require('electron-store');
     const store = new Store();
     const keys = STATION1.storedKeys;
 
     const greenColor = {
-      'background-color': 'green'
+      'background-color': COLORS.green
     };
     const redColor = {
-      'background-color': 'red'
+      'background-color': COLORS.red
     };
     let vm;
 
@@ -213,48 +213,48 @@
       });
 
       // Screen 1
-      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
-          if (data.M217_5) {
-            vm.Screen1Style(greenColor);
-          } else {
-            vm.Screen1Style(redColor);
-          }
+      ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+        if (data.M217_5) {
+          vm.Screen1Style(greenColor);
+        } else {
+          vm.Screen1Style(redColor);
+        }
       });
 
       // Screen 2
-      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
-          if (data.M217_6) {
-            vm.Screen2Style(greenColor);
-          } else {
-            vm.Screen2Style(redColor);
-          }
+      ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+        if (data.M217_6) {
+          vm.Screen2Style(greenColor);
+        } else {
+          vm.Screen2Style(redColor);
+        }
       });
 
       // Screen 3
-      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
-          if (data.M217_7) {
-            vm.Screen3Style(greenColor);
-          } else {
-            vm.Screen3Style(redColor);
-          }
+      ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+        if (data.M217_7) {
+          vm.Screen3Style(greenColor);
+        } else {
+          vm.Screen3Style(redColor);
+        }
       });
-      
+
       // Screen 4
-      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
-          if (data.M218_0) {
-            vm.Screen4Style(greenColor);
-          } else {
-            vm.Screen4Style(redColor);
-          }
+      ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+        if (data.M218_0) {
+          vm.Screen4Style(greenColor);
+        } else {
+          vm.Screen4Style(redColor);
+        }
       });
 
       // Screen 5
-      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
-          if (data.M218_1) {
-            vm.Screen5Style(greenColor);
-          } else {
-            vm.Screen5Style(redColor);
-          }
+      ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+        if (data.M218_1) {
+          vm.Screen5Style(greenColor);
+        } else {
+          vm.Screen5Style(redColor);
+        }
       });
 
     };
