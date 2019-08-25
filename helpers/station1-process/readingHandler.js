@@ -319,7 +319,7 @@ module.exports = (NODE, mainWindow) => {
 
         if (cachedAutoManual4 !== autoManual4) {
             cachedAutoManual4 = autoManual4;
-            store.set(CHANNELS.autoManual3, autoManual4);
+            store.set(CHANNELS.autoManual4, autoManual4);
             mainWindow.webContents.send(CHANNELS.autoManual4, autoManual4);
         }
     };
