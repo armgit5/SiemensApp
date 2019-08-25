@@ -318,6 +318,30 @@ module.exports = (mainWindow) => {
             NODES.push(NODE);
         }
     }
+
+
+    const _initArrayNodes = (arr) => {
+        let cnt = 1;
+        console.log('Init Total nodes ', NODES.length);
+
+        if (NODES.length === 0) {
+
+            arr.forEach(i => {
+                const tempNode = new Node(STATIONS[i-1].id, STATIONS[i-1].ip);
+                console.log('node inited ', STATIONS[i-1].id, STATIONS[i-1].ip);
+                initHelper(tempNode).then(isOnline => {
+                    if (isOnline) {
+                        NODES.push(tempNode);
+                        // require('./isOnCheck')(NODES, mainWindow, true);
+                        console.log('new node', STATIONS[i-1].id, cnt);
+                        cnt++;
+                    }
+                });
+            });
+            NODES.push(NODE);
+        }
+    }
+
     const _killAllNodes = () => {
 
         console.log('Kill Total nodes ', NODES.length);
@@ -357,15 +381,21 @@ module.exports = (mainWindow) => {
         const PINGINTERVALS = [];
         let reqCnt = 0;
         // On Status check all stations
-        ipcMain.on(CHANNELS.onStationsCheck, (e, id) => {
+        ipcMain.on(CHANNELS.onStationsCheck, (e, id, arr) => {
+
             console.log('on status check working');
-            _initAllNodes();
+
+            _killAllNodes();
             PINGINTERVALS.forEach(clearInterval);
             startLoop[0] = true;
-            // if (reqCnt) {
+
+            if (arr) {
+                _initSomeNodes(arr);
+            } else {
+
+                _initAllNodes();
+            }            
             require('./isOnCheck')(NODES, mainWindow, startLoop, PINGINTERVALS);
-            // }
-            // reqCnt++;
         });
 
         // On Status check all stations

@@ -34,32 +34,32 @@
           style="background-color: white;">
           <!-- Clading 1 -->
           <div class="row main">
-              <div class="col-8" style="padding: 0;">
-                  <span> Clading 1 </span>
+            <div class="col-8" style="padding: 0;">
+              <span> Clading 1 </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: Clading1Style"></span>
               </div>
-              <div class="col-4" style="padding: 0">
-                  <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: Clading1Style"></span>
-                  </div>
-              </div>
+            </div>
           </div>
         </button>
       </div>
 
       <!-- Detail 2 -->
       <div class="col-8">
-        <button type="button" class="btn station station-longer" onclick="window.location.href='./sidebeam/llWindow.html'"
-         style="background-color: white;">
+        <button type="button" class="btn station station-longer"
+          onclick="window.location.href='./sidebeam/llWindow.html'" style="background-color: white;">
           <!-- SideBeam, S -->
           <div class="row main">
-              <div class="col-8" style="padding: 0;">
-                  <span> SideBeam, S </span>
+            <div class="col-8" style="padding: 0;">
+              <span> SideBeam, S </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: SideBeamStyle"></span>
               </div>
-              <div class="col-4" style="padding: 0">
-                  <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: SideBeamStyle"></span>
-                  </div>
-              </div>
+            </div>
           </div>
         </button>
       </div>
@@ -68,18 +68,18 @@
     <div class="row">
       <!-- Detail 1 -->
       <div class="col-4">
-        <button type="button" class="btn station station-mid" onclick="window.location.href='./clading2/llWindow.html'" 
-        style="background-color: white;">
+        <button type="button" class="btn station station-mid" onclick="window.location.href='./clading2/llWindow.html'"
+          style="background-color: white;">
           <!-- Clading 2 -->
           <div class="row main">
-              <div class="col-8" style="padding: 0;">
-                  <span> Clading2 </span>
+            <div class="col-8" style="padding: 0;">
+              <span> Clading2 </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: Clading2Style"></span>
               </div>
-              <div class="col-4" style="padding: 0">
-                  <div class="col" style="padding: 0">
-                      <span class="dot" data-bind="style: Clading2Style"></span>
-                  </div>
-              </div>
+            </div>
           </div>
 
         </button>
@@ -109,7 +109,7 @@
     <div class="row">
       <span>
         <a href="../detailWindow.html">
-            <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+          <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
         </a>
         <a href="../mainWindow.html">
           <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
@@ -173,29 +173,37 @@
 
       // Clading 1
       ipcRenderer.on(CHANNELS.onStation2, (e, data) => {
+        console.log(data.M217_2);
+        if (data.M217_2 !== undefined) {
           if (data.M217_2) {
             vm.Clading1Style(greenColor);
           } else {
             vm.Clading1Style(redColor);
           }
+        }
       });
 
       // Clading 2
       ipcRenderer.on(CHANNELS.onStation2, (e, data) => {
+        // console.log(data);
+        if (data.M217_3 !== undefined) {
           if (data.M217_3) {
             vm.Clading2Style(greenColor);
           } else {
             vm.Clading2Style(redColor);
           }
+        }
       });
 
       // Side Beam
       ipcRenderer.on(CHANNELS.onStation2, (e, data) => {
+        if (data.M217_4 !== undefined) {
           if (data.M217_4) {
             vm.SideBeamStyle(greenColor);
           } else {
             vm.SideBeamStyle(redColor);
           }
+        }
       });
 
     };

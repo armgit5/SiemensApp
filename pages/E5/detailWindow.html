@@ -161,20 +161,25 @@
 
       // NB
       ipcRenderer.on(CHANNELS.onStation8, (e, data) => {
+        if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.NBStyle(greenColor);
           } else {
             vm.NBStyle(redColor);
           }
+        }
+
       });
 
       // EB
       ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
+        if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.EBStyle(greenColor);
           } else {
             vm.EBStyle(redColor);
           }
+        }
       });
 
     };

@@ -158,21 +158,27 @@
         vm.time(datetime);
       });
 
+
       // SB
       ipcRenderer.on(CHANNELS.onStation9, (e, data) => {
-        if (data.M218_3) {
-          vm.NBStyle(greenColor);
-        } else {
-          vm.NBStyle(redColor);
+        if (data.M218_3 !== undefined) {
+          if (data.M218_3) {
+            vm.NBStyle(greenColor);
+          } else {
+            vm.NBStyle(redColor);
+          }
         }
+
       });
 
       // WB
       ipcRenderer.on(CHANNELS.onStation10, (e, data) => {
-        if (data.M218_3) {
-          vm.EBStyle(greenColor);
-        } else {
-          vm.EBStyle(redColor);
+        if (data.M218_3 !== undefined) {
+          if (data.M218_3) {
+            vm.EBStyle(greenColor);
+          } else {
+            vm.EBStyle(redColor);
+          }
         }
       });
 

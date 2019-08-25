@@ -162,19 +162,24 @@
 
       // SB
       ipcRenderer.on(CHANNELS.onStation11, (e, data) => {
-        if (data.M218_3) {
-          vm.NBStyle(greenColor);
-        } else {
-          vm.NBStyle(redColor);
+        if (data.M218_3 !== undefined) {
+          if (data.M218_3) {
+            vm.NBStyle(greenColor);
+          } else {
+            vm.NBStyle(redColor);
+          }
         }
+
       });
 
       // WB
       ipcRenderer.on(CHANNELS.onStation12, (e, data) => {
-        if (data.M218_3) {
-          vm.EBStyle(greenColor);
-        } else {
-          vm.EBStyle(redColor);
+        if (data.M218_3 !== undefined) {
+          if (data.M218_3) {
+            vm.EBStyle(greenColor);
+          } else {
+            vm.EBStyle(redColor);
+          }
         }
       });
     };

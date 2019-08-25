@@ -30,28 +30,28 @@
     <div class="row">
       <!-- Detail 1 -->
       <div class="col-6">
-        <button type="button" class="btn station station-mid" onclick="window.location.href='./station6/detailWindow.html'"
-          style="background-color: white;">
+        <button type="button" class="btn station station-mid"
+          onclick="window.location.href='./station6/detailWindow.html'" style="background-color: white;">
           <!-- NB -->
           <div class="row main">
-              <div class="col-8" style="padding: 0;">
-                <span> NB </span>
-              </div>
-              <div class="col-4" style="padding: 0">
-                <div class="col" style="padding: 0">
-                  <span class="dot" data-bind="style: NBStyle"></span>
-                </div>
+            <div class="col-8" style="padding: 0;">
+              <span> NB </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: NBStyle"></span>
               </div>
             </div>
+          </div>
         </button>
       </div>
 
       <!-- Detail 2 -->
       <div class="col-3">
-        <button type="button" class="btn station station-mid" onclick="window.location.href='./station5/detailWindow.html'"
-         style="background-color: white;">
-         <!-- EB -->
-         <div class="row main">
+        <button type="button" class="btn station station-mid"
+          onclick="window.location.href='./station5/detailWindow.html'" style="background-color: white;">
+          <!-- EB -->
+          <div class="row main">
             <div class="col-8" style="padding: 0;">
               <span> EB </span>
             </div>
@@ -66,16 +66,16 @@
     </div>
 
     <!-- <div class="row"> -->
-      <!-- Detail 1 -->
-      <!-- <div class="col-4">
+    <!-- Detail 1 -->
+    <!-- <div class="col-4">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./clading2/llWindow.html'" 
         style="background-color: white;">
           EB
         </button>
       </div> -->
 
-      <!-- Detail 2 -->
-      <!-- <div class="col-8">
+    <!-- Detail 2 -->
+    <!-- <div class="col-8">
         <button type="button" class="btn station station-longer" style="background-color: white;">
           Cading, SideBeam EB
         </button>
@@ -161,22 +161,27 @@
 
       // NB
       ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+        if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.NBStyle(greenColor);
           } else {
             vm.NBStyle(redColor);
           }
+        }
+
       });
 
       // EB
       ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+        if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.EBStyle(greenColor);
           } else {
             vm.EBStyle(redColor);
           }
+        }
       });
-      
+
     };
 
     // Show when ready

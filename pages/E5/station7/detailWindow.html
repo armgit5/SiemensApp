@@ -212,51 +212,68 @@
         vm.time(datetime);
       });
 
-      
-      // Screen 1
-      ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
-        if (data.M217_5) {
-          vm.Screen1Style(greenColor);
-        } else {
-          vm.Screen1Style(redColor);
+
+            // Screen 1
+            ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
+        console.log(data.M217_5);
+        if (data.M217_5 !== undefined) {
+          if (data.M217_5) {
+            vm.Screen1Style(greenColor);
+          } else {
+            vm.Screen1Style(redColor);
+          }
         }
       });
 
       // Screen 2
       ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
-        if (data.M217_6) {
-          vm.Screen2Style(greenColor);
-        } else {
-          vm.Screen2Style(redColor);
+        if (data.M217_6 !== undefined) {
+          if (data.M217_6) {
+            vm.Screen2Style(greenColor);
+          } else {
+            vm.Screen2Style(redColor);
+          }
         }
+
       });
 
       // Screen 3
       ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
-        if (data.M217_7) {
-          vm.Screen3Style(greenColor);
-        } else {
-          vm.Screen3Style(redColor);
+        if (data.M217_7 !== undefined) {
+          if (data.M217_7) {
+            vm.Screen3Style(greenColor);
+          } else {
+            vm.Screen3Style(redColor);
+          }
         }
+
       });
 
       // Screen 4
       ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
-        if (data.M218_0) {
-          vm.Screen4Style(greenColor);
-        } else {
-          vm.Screen4Style(redColor);
+        if (data.M218_0 !== undefined) {
+          if (data.M218_0) {
+            vm.Screen4Style(greenColor);
+          } else {
+            vm.Screen4Style(redColor);
+          }
         }
+
       });
 
       // Screen 5
       ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
-        if (data.M218_1) {
-          vm.Screen5Style(greenColor);
-        } else {
-          vm.Screen5Style(redColor);
+        if (data.M218_1 !== undefined) {
+          if (data.M218_1) {
+            vm.Screen5Style(greenColor);
+          } else {
+            vm.Screen5Style(redColor);
+          }
         }
+
       });
+
+      
 
     };
 

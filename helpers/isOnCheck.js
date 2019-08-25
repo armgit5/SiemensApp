@@ -7,6 +7,8 @@ const M217_2 = 'M217.2';
 const M217_3 = 'M217.3';
 const M217_4 = 'M217.4';
 const M217_5 = 'M217.5';
+const M217_6 = 'M217.6';
+const M217_7 = 'M217.7';
 
 const M218_0 = 'M218.0';
 const M218_1 = 'M218.1';
@@ -32,11 +34,17 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
                         // Add to readlist
                         n.conn.addItems(M217_0);
-                        n.conn.addItems(M218_2);
-                        n.conn.addItems(M218_3);
                         n.conn.addItems(M217_2);
                         n.conn.addItems(M217_3);
                         n.conn.addItems(M217_4);
+                        n.conn.addItems(M217_5);
+                        n.conn.addItems(M217_6);
+                        n.conn.addItems(M217_7);
+
+                        n.conn.addItems(M218_0);
+                        n.conn.addItems(M218_1);
+                        n.conn.addItems(M218_2);
+                        n.conn.addItems(M218_3);
 
                         if (n.id === 'N1') {
                             readHelper(n).then(data => {
@@ -122,7 +130,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
                         if (n.id === 'N5') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N5');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation5, {M218_3: true});
                                 } else {
@@ -130,40 +138,40 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                                 if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M217_5: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M217_5: false});
                                 }
 
                                 if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M217_6: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M217_6: false});
                                 }
 
                                 if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M217_7: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M217_7: false});
                                 }
 
                                 if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M218_0: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M218_0: false});
                                 }
 
                                 if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M218_1: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation5, {M218_1: false});
                                 }
                             });
                         }
 
                         if (n.id === 'N6') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N6');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation6, {M218_3: true});
                                 } else {
@@ -204,7 +212,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
                         if (n.id === 'N7') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N7');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation7, {M218_3: true});
                                 } else {
@@ -212,40 +220,40 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                                 if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M217_5: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M217_5: false});
                                 }
 
                                 if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M217_6: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M217_6: false});
                                 }
 
                                 if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M217_7: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M217_7: false});
                                 }
 
                                 if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M218_0: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M218_0: false});
                                 }
 
                                 if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M218_1: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation7, {M218_1: false});
                                 }
                             });
                         }
 
                         if (n.id === 'N8') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N8');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation8, {M218_3: true});
                                 } else {
@@ -253,40 +261,40 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                                 if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M217_5: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M217_5: false});
                                 }
 
                                 if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M217_6: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M217_6: false});
                                 }
 
                                 if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M217_7: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M217_7: false});
                                 }
 
                                 if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M218_0: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M218_0: false});
                                 }
 
                                 if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M218_1: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation8, {M218_1: false});
                                 }
                             });
                         }
 
                         if (n.id === 'N9') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N9');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation9, {M218_3: true});
                                 } else {
@@ -294,40 +302,40 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                                 if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M217_5: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M217_5: false});
                                 }
 
                                 if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M217_6: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M217_6: false});
                                 }
 
                                 if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M217_7: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M217_7: false});
                                 }
 
                                 if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M218_0: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M218_0: false});
                                 }
 
                                 if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M218_1: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation9, {M218_1: false});
                                 }
                             });
                         }
 
                         if (n.id === 'N10') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N10');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation10, {M218_3: true});
                                 } else {
@@ -335,40 +343,40 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                                 if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M217_5: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M217_5: false});
                                 }
 
                                 if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M217_6: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M217_6: false});
                                 }
 
                                 if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M217_7: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M217_7: false});
                                 }
 
                                 if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M218_0: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M218_0: false});
                                 }
 
                                 if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M218_1: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation10, {M218_1: false});
                                 }
                             });
                         }
 
                         if (n.id === 'N11') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N11');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation11, {M218_3: true});
                                 } else {
@@ -376,40 +384,40 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                                 if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M217_5: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M217_5: false});
                                 }
 
                                 if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M217_6: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M217_6: false});
                                 }
 
                                 if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M217_7: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M217_7: false});
                                 }
 
                                 if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M218_0: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M218_0: false});
                                 }
 
                                 if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M218_1: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation11, {M218_1: false});
                                 }
                             });
                         }
 
                         if (n.id === 'N12') {
                             readHelper(n).then(data => {
-                                console.log(data);
+                                console.log(data, 'N12');
                                 if (data[M218_3]) {
                                     mainWindow.webContents.send(CHANNELS.onStation12, {M218_3: true});
                                 } else {
@@ -417,44 +425,51 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                                 if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M217_5: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M217_5: false});
                                 }
 
                                 if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M217_6: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M217_6: false});
                                 }
 
                                 if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M217_7: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M217_7: false});
                                 }
 
                                 if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M218_0: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M218_0: false});
                                 }
 
                                 if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M218_1: true});
                                 } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
+                                    mainWindow.webContents.send(CHANNELS.onStation12, {M218_1: false});
                                 }
                             });
                         }
 
                         // Remove to readlist
-                        n.conn.removeItems('M217.0');
-                        n.conn.removeItems('M218.2');
-                        n.conn.removeItems('M218.3');
+                       
+                        n.conn.removeItems(M217_0);
                         n.conn.removeItems(M217_2);
                         n.conn.removeItems(M217_3);
                         n.conn.removeItems(M217_4);
+                        n.conn.removeItems(M217_5);
+                        n.conn.removeItems(M217_6);
+                        n.conn.removeItems(M217_7);
+
+                        n.conn.removeItems(M218_0);
+                        n.conn.removeItems(M218_1);
+                        n.conn.removeItems(M218_2);
+                        n.conn.removeItems(M218_3);
 
                     }
 
