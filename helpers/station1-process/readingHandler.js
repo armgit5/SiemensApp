@@ -1,10 +1,7 @@
 const { ipcMain } = require('electron');
-const { CHANNELS, SCANTIME } = require('../environments');
+const { CHANNELS, SCANTIME, monthNames } = require('../environments');
 const STATION1 = require('../../data/station1');
 const readHelper = require('../readHelper');
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
 const Store = require('electron-store');
 const store = new Store();
 

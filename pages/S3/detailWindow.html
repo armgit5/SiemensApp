@@ -120,7 +120,7 @@
   <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
-    const { CHANNELS, COLORS } = require('../../helpers/environments');
+    const { CHANNELS, COLORS, monthNames } = require('../../helpers/environments');
     const STATION1 = require('../../data/station1');
     const Store = require('electron-store');
     const store = new Store();
@@ -166,7 +166,7 @@
         const mo = d.getMonth();
         const yr = d.getFullYear();
 
-        const dt = `${day} ${mo} ${yr} ${hh}:${mm}:${ss}`;
+        const dt = `${day} ${monthNames[mo]} ${yr} ${hh}:${mm}:${ss}`;
         console.log(dt);
         vm.time(dt);
 

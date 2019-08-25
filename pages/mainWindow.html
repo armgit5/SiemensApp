@@ -21,7 +21,7 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
   <div class="container">
-    <h1 class="header" style="  text-align: left;
+    <h1 class="header" style=" text-align: left;
                                 width: 170px;
                                 border: 1px solid black;
                                 background-color: white;
@@ -179,7 +179,7 @@
   <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
-    const { CHANNELS, COLORS } = require('../helpers/environments');
+    const { CHANNELS, COLORS, monthNames } = require('../helpers/environments');
     const STATION1 = require('../data/station1');
     const Store = require('electron-store');
     const store = new Store();
@@ -250,7 +250,7 @@
         const mo = d.getMonth();
         const yr = d.getFullYear();
 
-        const dt = `${day} ${mo} ${yr} ${hh}:${mm}:${ss}`;
+        const dt = `${day} ${monthNames[mo]} ${yr} ${hh}:${mm}:${ss}`;
         console.log(dt);
         vm.time(dt);
 
