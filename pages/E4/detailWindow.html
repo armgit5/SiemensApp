@@ -155,9 +155,24 @@
 
     // Read streaming
     const _readStreaming = () => {
-      ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
-        vm.time(datetime);
-      });
+      setInterval(() => {
+
+        const d = new Date(); // for now
+        const hh = d.getHours(); // => 9
+        const mm = d.getMinutes(); // =>  30
+        const ss = d.getSeconds();
+        const day = d.getDate();
+        const mo = d.getMonth();
+        const yr = d.getFullYear();
+
+        const dt = `${day} ${mo} ${yr} ${hh}:${mm}:${ss}`;
+        console.log(dt);
+        vm.time(dt);
+
+      }, 1000);
+      // ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
+      //   vm.time(datetime);
+      // });
 
       // NB
       ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
