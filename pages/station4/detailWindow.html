@@ -186,7 +186,7 @@
 
       // Clading 2
       ipcRenderer.on(CHANNELS.onStation4, (e, data) => {
-        if (data !== undefined) {
+        if (data.M217_3 !== undefined) {
           if (data.M217_3) {
             vm.Clading2Style(greenColor);
           } else {
@@ -197,7 +197,7 @@
 
       // Side Beam
       ipcRenderer.on(CHANNELS.onStation4, (e, data) => {
-        if (data !== undefined) {
+        if (data.M217_4 !== undefined) {
           if (data.M217_4) {
             vm.SideBeamStyle(greenColor);
           } else {

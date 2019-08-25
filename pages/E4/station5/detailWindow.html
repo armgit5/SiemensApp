@@ -31,16 +31,37 @@
       <!-- Detail 1 -->
       <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow.html'"
-          style="background-color: white;">
-          Screen 1
+          style="background-color: white; padding-top: 0px;">
+          <!-- Screen 1 -->
+          <div class="row main">
+            <div class="col-8" style="padding: 0;">
+              <span> Screen 1 </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: Screen1Style"></span>
+              </div>
+            </div>
+          </div>
         </button>
       </div>
 
       <!-- Detail 2 -->
       <div class="col-3">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow4.html'"
-         style="background-color: white;">
-         Screen 4
+          style="background-color: white; padding-top: 0px;">
+          <!-- Screen 4 -->
+          <div class="row main">
+            <div class="col-8" style="padding: 0;">
+              <span> Screen 4 </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: Screen4Style"></span>
+              </div>
+            </div>
+          </div>
+
         </button>
       </div>
     </div>
@@ -49,16 +70,36 @@
       <!-- Detail 1 -->
       <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow2.html'"
-          style="background-color: white;">
-          Screen 2
+          style="background-color: white; padding-top: 0px;">
+          <!-- Screen 2 -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0;">
+                <span> Screen 2 </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                <div class="col" style="padding: 0">
+                  <span class="dot" data-bind="style: Screen2Style"></span>
+                </div>
+              </div>
+            </div>
         </button>
       </div>
 
       <!-- Detail 2 -->
       <div class="col-3">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow5.html'"
-         style="background-color: white;">
-         Screen 5
+          style="background-color: white; padding-top: 0px;">
+          <!-- Screen 5 -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0;">
+                <span> Screen 5 </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                <div class="col" style="padding: 0">
+                  <span class="dot" data-bind="style: Screen5Style"></span>
+                </div>
+              </div>
+            </div>
         </button>
       </div>
     </div>
@@ -67,8 +108,18 @@
       <!-- Detail 1 -->
       <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow3.html'"
-          style="background-color: white;">
-          Screen 3
+          style="background-color: white; padding-top: 0px;">
+          <!-- Screen 3 -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0;">
+                <span> Screen 3 </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                <div class="col" style="padding: 0">
+                  <span class="dot" data-bind="style: Screen3Style"></span>
+                </div>
+              </div>
+            </div>
         </button>
       </div>
 
@@ -97,7 +148,7 @@
     <div class="row">
       <span>
         <a href="../detailWindow.html">
-            <img src="../../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+          <img src="../../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
         </a>
         <a href="../../mainWindow.html">
           <img src="../../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
@@ -137,8 +188,11 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('Reading...');
-        this.S1Style = ko.observable(redColor);
-        this.S1_1Style = ko.observable(redColor);
+        this.Screen1Style = ko.observable(redColor);
+        this.Screen2Style = ko.observable(redColor);
+        this.Screen3Style = ko.observable(redColor);
+        this.Screen4Style = ko.observable(redColor);
+        this.Screen5Style = ko.observable(redColor);
       }
 
       // Activates knockout.js
@@ -158,16 +212,51 @@
         vm.time(datetime);
       });
 
-      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-        console.log(id, status);
-        if (id === 'N1') {
-          if (status === true) {
-            vm.S1Style(greenColor);
+      // Screen 1
+      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+          if (data.M217_5) {
+            vm.Screen1Style(greenColor);
           } else {
-            vm.S1Style(redColor);
+            vm.Screen1Style(redColor);
           }
-        }
       });
+
+      // Screen 2
+      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+          if (data.M217_6) {
+            vm.Screen2Style(greenColor);
+          } else {
+            vm.Screen2Style(redColor);
+          }
+      });
+
+      // Screen 3
+      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+          if (data.M217_7) {
+            vm.Screen3Style(greenColor);
+          } else {
+            vm.Screen3Style(redColor);
+          }
+      });
+      
+      // Screen 4
+      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+          if (data.M218_0) {
+            vm.Screen4Style(greenColor);
+          } else {
+            vm.Screen4Style(redColor);
+          }
+      });
+
+      // Screen 5
+      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+          if (data.M218_1) {
+            vm.Screen5Style(greenColor);
+          } else {
+            vm.Screen5Style(redColor);
+          }
+      });
+
     };
 
     // Show when ready

@@ -32,7 +32,17 @@
       <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./station5/detailWindow.html'"
           style="background-color: white;">
-          NB
+          <!-- NB -->
+          <div class="row main">
+              <div class="col-8" style="padding: 0;">
+                <span> NB </span>
+              </div>
+              <div class="col-4" style="padding: 0">
+                <div class="col" style="padding: 0">
+                  <span class="dot" data-bind="style: NBStyle"></span>
+                </div>
+              </div>
+            </div>
         </button>
       </div>
 
@@ -40,7 +50,17 @@
       <div class="col-3">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./station6/detailWindow.html'"
          style="background-color: white;">
-         EB
+         <!-- EB -->
+         <div class="row main">
+            <div class="col-8" style="padding: 0;">
+              <span> EB </span>
+            </div>
+            <div class="col-4" style="padding: 0">
+              <div class="col" style="padding: 0">
+                <span class="dot" data-bind="style: EBStyle"></span>
+              </div>
+            </div>
+          </div>
         </button>
       </div>
     </div>
@@ -99,17 +119,17 @@
   <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
-    const { CHANNELS } = require('../../helpers/environments');
+    const { CHANNELS, COLORS } = require('../../helpers/environments');
     const STATION1 = require('../../data/station1');
     const Store = require('electron-store');
     const store = new Store();
     const keys = STATION1.storedKeys;
 
     const greenColor = {
-      'background-color': 'green'
+      'background-color': COLORS.green
     };
     const redColor = {
-      'background-color': 'red'
+      'background-color': COLORS.red
     };
     let vm;
 
@@ -118,8 +138,8 @@
       // Knockout functions
       function AppViewModel() {
         this.time = ko.observable('Reading...');
-        this.S1Style = ko.observable(redColor);
-        this.S1_1Style = ko.observable(redColor);
+        this.NBStyle = ko.observable(redColor);
+        this.EBStyle = ko.observable(redColor);
       }
 
       // Activates knockout.js
@@ -139,16 +159,24 @@
         vm.time(datetime);
       });
 
-      ipcRenderer.on(CHANNELS.onlineStatus, (e, id, status) => {
-        console.log(id, status);
-        if (id === 'N1') {
-          if (status === true) {
-            vm.S1Style(greenColor);
+      // NB
+      ipcRenderer.on(CHANNELS.onStation6, (e, data) => {
+          if (data.M218_3) {
+            vm.NBStyle(greenColor);
           } else {
-            vm.S1Style(redColor);
+            vm.NBStyle(redColor);
           }
-        }
       });
+
+      // EB
+      ipcRenderer.on(CHANNELS.onStation5, (e, data) => {
+          if (data.M218_3) {
+            vm.EBStyle(greenColor);
+          } else {
+            vm.EBStyle(redColor);
+          }
+      });
+      
     };
 
     // Show when ready

@@ -316,7 +316,6 @@ module.exports = (mainWindow) => {
                 });
             });
             NODES.push(NODE);
-
         }
     }
     const _killAllNodes = () => {

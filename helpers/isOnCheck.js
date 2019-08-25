@@ -2,13 +2,16 @@
 const { CHANNELS, SCANTIME } = require('./environments');
 const readHelper = require('./readHelper');
 
-
 const M217_0 = 'M217.0';
-const M218_2 = 'M218.2';
-const M218_3 = 'M218.3';
 const M217_2 = 'M217.2';
 const M217_3 = 'M217.3';
 const M217_4 = 'M217.4';
+const M217_5 = 'M217.5';
+
+const M218_0 = 'M218.0';
+const M218_1 = 'M218.1';
+const M218_2 = 'M218.2';
+const M218_3 = 'M218.3';
 
 module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
@@ -135,6 +138,36 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation6, {M218_3: true});
                                 } else {
                                     mainWindow.webContents.send(CHANNELS.onStation6, {M218_3: false});
+                                }
+
+                                if (data[M217_5]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_5: false});
+                                }
+
+                                if (data[M217_6]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_6: false});
+                                }
+
+                                if (data[M217_7]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M217_7: false});
+                                }
+
+                                if (data[M218_0]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_0: false});
+                                }
+
+                                if (data[M218_1]) {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: true});
+                                } else {
+                                    mainWindow.webContents.send(CHANNELS.onStation6, {M218_1: false});
                                 }
                             });
                         }
