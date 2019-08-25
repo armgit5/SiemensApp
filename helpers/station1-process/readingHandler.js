@@ -277,7 +277,7 @@ module.exports = (NODE, mainWindow) => {
 
 
     // Auto manual
-    let cachedAutoManual = store.get(CHANNELS.autoManual);
+    let cachedAutoManual;
     const _parseAutoManual = (data) => {
         const autoManual = data[DATETIME.header.autoManual];
 
@@ -288,7 +288,7 @@ module.exports = (NODE, mainWindow) => {
         }
     };
 
-    let cachedAutoManual2 = store.get(CHANNELS.autoManual2);
+    let cachedAutoManual2;
     const _parseAutoManual2 = (data) => {
         const autoManual2 = data[DATETIME.header.autoManual2];
 
@@ -299,7 +299,7 @@ module.exports = (NODE, mainWindow) => {
         }
     };
 
-    let cachedAutoManual3 = store.get(CHANNELS.autoManual3);
+    let cachedAutoManual3;
     const _parseAutoManual3 = (data) => {
         const autoManual3 = data[DATETIME.header.autoManual3];
 
@@ -310,7 +310,7 @@ module.exports = (NODE, mainWindow) => {
         }
     };
 
-    let cachedAutoManual4 = store.get(CHANNELS.autoManual4);
+    let cachedAutoManual4;
     const _parseAutoManual4 = (data) => {
         const autoManual4 = data[DATETIME.header.autoManual4];
 
@@ -321,7 +321,7 @@ module.exports = (NODE, mainWindow) => {
         }
     };
 
-    let cachedAutoManual5 = store.get(CHANNELS.autoManual5);
+    let cachedAutoManual5;
     const _parseAutoManual5 = (data) => {
         const autoManual5 = data[DATETIME.header.autoManual5];
 
