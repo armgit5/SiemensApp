@@ -20,37 +20,37 @@ const M218_3 = 'M218.3';
 // Cache
 let cnt = 0;
 // Station1
-const S1_M217_0 = false;
+let S1_M217_0 = false;
 store.set('S1_M217_0', false);
 
 // Station2
-const S2_M218_2 = false;
+let S2_M218_2 = false;
 store.set('S2_M218_2', false);
 
-const S2_M217_2 = false;
+let S2_M217_2 = false;
 store.set('S2_M217_2', false);
 
-const S2_M217_3 = false;
+let S2_M217_3 = false;
 store.set('S2_M217_3', false);
 
-const S2_M217_4 = false;
+let S2_M217_4 = false;
 store.set('S2_M217_4', false);
 
 // Station3
-const S3_M217_0 = false;
+let S3_M217_0 = false;
 store.set('S3_M217_0', false);
 
 // Station 4
-const S4_M218_2 = false;
+let S4_M218_2 = false;
 store.set('S4_M218_2', false);
 
-const S4_M217_2 = false;
+let S4_M217_2 = false;
 store.set('S4_M217_2', false);
 
-const S4_M217_3 = false;
+let S4_M217_3 = false;
 store.set('S4_M217_3', false);
 
-const S4_M217_4 = false;
+let S4_M217_4 = false;
 store.set('S4_M217_4', false);
 
 // store.set('S2_M218_2', true);
@@ -94,7 +94,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
         cnt = 1;
     }
 
-
+    console.log('cnt ', cnt);
 
     // Ping Test
     const _stopPingIntervals = () => {
@@ -139,31 +139,35 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
                         if (n.id === 'N2') {
                             readHelper(n).then(data => {
-                                console.log(data, 'N2');
+                                // console.log(data, 'N2');
                                 const data1 = data[M218_2];
                                 const data2 = data[M217_2];
                                 const data3 = data[M217_3];
                                 const data4 = data[M217_4];
 
-                                if (data1 && S2_M218_2 !== data1) {
+                                console.log(data2, S2_M218_2, 'N2');
+
+                                if (S2_M218_2 !== data1) {
+                                    
                                     S2_M218_2 = data1;
                                     store.set('S2_M218_2', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: data1 });
                                 }
 
-                                if (data2 && S2_M217_2 !== data2) {
+                                if (S2_M217_2 !== data2) {
+                                    console.log(data2, S2_M218_2, 'N2 inside');
                                     S2_M217_2 = data2;
                                     store.set('S2_M217_2', data2);
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M217_2: data2 });
                                 }
 
-                                if (data3 && S2_M217_3 !== data3) {
+                                if (S2_M217_3 !== data3) {
                                     S2_M217_3 = data3;
                                     store.set('S2_M217_3', data3);
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M217_3: data3 });
                                 }
 
-                                if (data4 && S2_M217_4 !== data4) {
+                                if (S2_M217_4 !== data4) {
                                     S2_M217_4 = data4;
                                     store.set('S2_M217_4', data4);
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: data4 });
