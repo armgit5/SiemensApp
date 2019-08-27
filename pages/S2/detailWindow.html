@@ -152,7 +152,7 @@
       vm.time(headerDatetime);
 
       // SB
-      const data1 = 'S9_M218_3';
+      const data1 = store.get('S9_M218_3');
       if (data1 !== undefined) {
         if (data1) {
           vm.NBStyle(greenColor);
@@ -162,7 +162,7 @@
       }
 
       // WB
-      const data2 = 'S10_M218_3';
+      const data2 = store.get('S10_M218_3');
       if (data2 !== undefined) {
         if (data2) {
           vm.EBStyle(greenColor);
@@ -171,7 +171,7 @@
         }
       }
 
-      
+
     };
 
     // Read streaming

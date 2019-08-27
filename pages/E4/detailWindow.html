@@ -153,7 +153,7 @@
       vm.time(headerDatetime);
 
       // NB
-      const data1 = 'S6_M218_3';
+      const data1 = store.get('S6_M218_3');
       if (data1 !== undefined) {
         if (data1) {
           vm.NBStyle(greenColor);
@@ -163,7 +163,7 @@
       }
 
       // EB
-      const data2 = 'S5_M218_3';
+      const data2 = store.get('S5_M218_3');
       if (data2 !== undefined) {
         if (data2) {
           vm.EBStyle(greenColor);
