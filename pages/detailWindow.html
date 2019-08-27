@@ -177,6 +177,47 @@
     const _getFromStore = () => {
       const headerDatetime = store.get(keys.headerDatetime);
       vm.time(headerDatetime);
+
+
+      // Lift Lower
+      const data1 = store.get('S1_M217_0');
+      if (data1 !== undefined) {
+        if (data1) {
+          vm.LiftLowerStyle(greenColor);
+        } else {
+          vm.LiftLowerStyle(redColor);
+        }
+      }
+      // SB
+      const data2 = store.get('S2_M218_2');
+      if (data2 !== undefined) {
+        if (data2) {
+          vm.SBStyle(greenColor);
+        } else {
+          vm.SBStyle(redColor);
+        }
+      }
+
+      // Lift C
+      const data3 = store.get('S3_M217_0');
+      if (data3 !== undefined) {
+        if (data3) {
+          vm.LiftCStyle(greenColor);
+        } else {
+          vm.LiftCStyle(redColor);
+        }
+      }
+
+      // EB
+      const data4 = store.get('S4_M218_2');
+      if (data4 !== undefined) {
+        if (data4) {
+          vm.EBStyle(greenColor);
+        } else {
+          vm.EBStyle(redColor);
+        }
+      }
+
     };
 
     // Read streaming
