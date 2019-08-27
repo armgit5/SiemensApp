@@ -322,9 +322,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S5_M218_0 !== data1) {
-                                    S5_M218_0 = data1;
-                                    store.set('S5_M218_2', data1);
+                                if (S5_M218_3 !== data1) {
+                                    S5_M218_3 = data1;
+                                    store.set('S5_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation5, { M218_3: data1 });
                                 }
 
@@ -371,9 +371,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S6_M218_0 !== data1) {
-                                    S6_M218_0 = data1;
-                                    store.set('S6_M218_2', data1);
+                                if (S6_M218_3 !== data1) {
+                                    S6_M218_3 = data1;
+                                    store.set('S6_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation6, { M218_3: data1 });
                                 }
 
@@ -421,9 +421,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S7_M218_0 !== data1) {
-                                    S7_M218_0 = data1;
-                                    store.set('S7_M218_2', data1);
+                                if (S7_M218_3 !== data1) {
+                                    S7_M218_3 = data1;
+                                    store.set('S7_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation7, { M218_3: data1 });
                                 }
 
@@ -470,9 +470,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S8_M218_0 !== data1) {
-                                    S8_M218_0 = data1;
-                                    store.set('S8_M218_2', data1);
+                                if (S8_M218_3 !== data1) {
+                                    S8_M218_3 = data1;
+                                    store.set('S8_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation8, { M218_3: data1 });
                                 }
 
@@ -520,9 +520,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S9_M218_0 !== data1) {
-                                    S9_M218_0 = data1;
-                                    store.set('S9_M218_2', data1);
+                                if (S9_M218_3 !== data1) {
+                                    S9_M218_3 = data1;
+                                    store.set('S9_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation9, { M218_3: data1 });
                                 }
 
@@ -572,9 +572,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S10_M218_0 !== data1) {
-                                    S10_M218_0 = data1;
-                                    store.set('S10_M218_2', data1);
+                                if (S10_M218_3 !== data1) {
+                                    S10_M218_3 = data1;
+                                    store.set('S10_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation10, { M218_3: data1 });
                                 }
 
@@ -622,9 +622,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S11_M218_0 !== data1) {
-                                    S11_M218_0 = data1;
-                                    store.set('S11_M218_2', data1);
+                                if (S11_M218_3 !== data1) {
+                                    S11_M218_3 = data1;
+                                    store.set('S11_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation11, { M218_3: data1 });
                                 }
 
@@ -673,9 +673,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data5 = data[M218_0];
                                 const data6 = data[M218_1];
 
-                                if (S12_M218_0 !== data1) {
-                                    S12_M218_0 = data1;
-                                    store.set('S12_M218_2', data1);
+                                if (S12_M218_3 !== data1) {
+                                    S12_M218_3 = data1;
+                                    store.set('S12_M218_3', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation12, { M218_3: data1 });
                                 }
 

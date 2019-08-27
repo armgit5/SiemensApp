@@ -273,6 +273,86 @@
         }
       }
 
+      // Asok 
+      // Station 5
+      const data5 = store.get('S5_M218_3');
+      if (data5 !== undefined) {
+        if (data5) {
+          vm.E4Style1(greenColor);
+        } else {
+          vm.E4Style1(redColor);
+        }
+      }
+
+      // Station 6
+      const data6 = store.get('S6_M218_3');
+      if (data6 !== undefined) {
+        if (data6) {
+          vm.E4Style2(greenColor);
+        } else {
+          vm.E4Style2(redColor);
+        }
+      }
+
+      // E5
+      // Station 7
+      const data7 = store.get('S7_M218_3');
+      if (data7 !== undefined) {
+        if (data7) {
+          vm.E5Style1(greenColor);
+        } else {
+          vm.E5Style1(redColor);
+        }
+      }
+
+      const data8 = store.get('S8_M218_3');
+      if (data8 !== undefined) {
+        if (data8) {
+          vm.E5Style2(greenColor);
+        } else {
+          vm.E5Style2(redColor);
+        }
+      }
+
+      // S2 
+      const data9 = store.get('S9_M218_3');
+      if (data9 !== undefined) {
+        if (data9) {
+          vm.S2Style1(greenColor);
+        } else {
+          vm.S2Style1(redColor);
+        }
+      }
+
+      const data10 = store.get('S10_M218_3');
+      if (data10 !== undefined) {
+        if (data10) {
+          vm.S2Style2(greenColor);
+        } else {
+          vm.S2Style2(redColor);
+        }
+      }
+
+      // S3
+      const data11 = store.get('S11_M218_3');
+      if (data11 !== undefined) {
+        if (data11) {
+          vm.S3Style1(greenColor);
+        } else {
+          vm.S3Style1(redColor);
+        }
+      }
+
+      const data12 = store.get('S12_M218_3');
+      if (data12 !== undefined) {
+        if (data12) {
+          vm.S3Style2(greenColor);
+        } else {
+          vm.S3Style2(redColor);
+        }
+      }
+
+
     };
 
     // Read streaming
