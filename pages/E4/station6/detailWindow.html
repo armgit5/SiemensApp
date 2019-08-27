@@ -204,6 +204,58 @@
     const _getFromStore = () => {
       const headerDatetime = store.get(keys.headerDatetime);
       vm.time(headerDatetime);
+
+      // Screen 1
+      const data1 = 'S6_M217_5';
+      // console.log(data.M217_5);
+      if (data1 !== undefined) {
+        if (data1) {
+          vm.Screen1Style(greenColor);
+        } else {
+          vm.Screen1Style(redColor);
+        }
+      }
+
+      // Screen 2
+      const data2 = 'S6_M217_6';
+      if (data2 !== undefined) {
+        if (data2) {
+          vm.Screen2Style(greenColor);
+        } else {
+          vm.Screen2Style(redColor);
+        }
+      }
+
+      // Screen 3
+      const data3 = 'S6_M217_7';
+      if (data3 !== undefined) {
+        if (data3) {
+          vm.Screen3Style(greenColor);
+        } else {
+          vm.Screen3Style(redColor);
+        }
+      }
+
+      // Screen 4
+      const data4 = 'S6_M218_0';
+      if (data4 !== undefined) {
+        if (data4) {
+          vm.Screen4Style(greenColor);
+        } else {
+          vm.Screen4Style(redColor);
+        }
+      }
+
+      // Screen 5
+      const data5 = 'S6_M218_1';
+      if (data5 !== undefined) {
+        if (data5) {
+          vm.Screen5Style(greenColor);
+        } else {
+          vm.Screen5Style(redColor);
+        }
+      }
+
     };
 
     // Read streaming
@@ -271,7 +323,7 @@
 
       });
 
-      
+
     };
 
     // Show when ready
