@@ -163,6 +163,38 @@
     const _getFromStore = () => {
       const headerDatetime = store.get(keys.headerDatetime);
       vm.time(headerDatetime);
+
+      // Clading 1
+      const data1 = store.get('S2_M217_2');
+      if (data1 !== undefined) {
+        if (data1) {
+          vm.Clading1Style(greenColor);
+        } else {
+          vm.Clading1Style(redColor);
+        }
+      }
+
+      // Clading 2
+      const data2 = store.get('S2_M217_3');
+      // console.log(data);
+      if (data2 !== undefined) {
+        if (data2) {
+          vm.Clading2Style(greenColor);
+        } else {
+          vm.Clading2Style(redColor);
+        }
+      }
+
+      // Side Beam
+      const data3 = store.get('S2_M217_4');
+      if (data3 !== undefined) {
+        if (data3) {
+          vm.SideBeamStyle(greenColor);
+        } else {
+          vm.SideBeamStyle(redColor);
+        }
+      }
+
     };
 
     // Read streaming
