@@ -26,13 +26,10 @@ store.set('S1_M217_0', false);
 // Station2
 let S2_M218_2 = false;
 store.set('S2_M218_2', false);
-
 let S2_M217_2 = false;
 store.set('S2_M217_2', false);
-
 let S2_M217_3 = false;
 store.set('S2_M217_3', false);
-
 let S2_M217_4 = false;
 store.set('S2_M217_4', false);
 
@@ -43,31 +40,124 @@ store.set('S3_M217_0', false);
 // Station 4
 let S4_M218_2 = false;
 store.set('S4_M218_2', false);
-
 let S4_M217_2 = false;
 store.set('S4_M217_2', false);
-
 let S4_M217_3 = false;
 store.set('S4_M217_3', false);
-
 let S4_M217_4 = false;
 store.set('S4_M217_4', false);
 
-// store.set('S2_M218_2', true);
-// console.log('s2 ', store.get('S2_M218_2'));
+// Station 5
+let S5_M218_3 = false;
+store.set('S5_M218_3', false);
+let S5_M217_5 = false;
+store.set('S5_M217_5', false);
+let S5_M217_6 = false;
+store.set('S5_M217_6', false);
+let S5_M217_7 = false;
+store.set('S5_M217_7', false);
+let S5_M218_0 = false;
+store.set('S5_M218_0', false);
+let S5_M218_1 = false;
+store.set('S5_M218_1', false);
 
+// Station 6
+let S6_M218_3 = false;
+store.set('S6_M218_3', false);
+let S6_M217_5 = false;
+store.set('S6_M217_5', false);
+let S6_M217_6 = false;
+store.set('S6_M217_6', false);
+let S6_M217_7 = false;
+store.set('S6_M217_7', false);
+let S6_M218_0 = false;
+store.set('S6_M218_0', false);
+let S6_M218_1 = false;
+store.set('S6_M218_1', false);
 
-// const M217_2 = 'M217.2';
-// const M217_3 = 'M217.3';
-// const M217_4 = 'M217.4';
-// const M217_5 = 'M217.5';
-// const M217_6 = 'M217.6';
-// const M217_7 = 'M217.7';
+// Station 7
+let S7_M218_3 = false;
+store.set('S7_M218_3', false);
+let S7_M217_5 = false;
+store.set('S7_M217_5', false);
+let S7_M217_6 = false;
+store.set('S7_M217_6', false);
+let S7_M217_7 = false;
+store.set('S7_M217_7', false);
+let S7_M218_0 = false;
+store.set('S7_M218_0', false);
+let S7_M218_1 = false;
+store.set('S7_M218_1', false);
 
-// const M218_0 = 'M218.0';
-// const M218_1 = 'M218.1';
-// const M218_2 = 'M218.2';
-// const M218_3 = 'M218.3';
+// Station 8
+let S8_M218_3 = false;
+store.set('S8_M218_3', false);
+let S8_M217_5 = false;
+store.set('S8_M217_5', false);
+let S8_M217_6 = false;
+store.set('S8_M217_6', false);
+let S8_M217_7 = false;
+store.set('S8_M217_7', false);
+let S8_M218_0 = false;
+store.set('S8_M218_0', false);
+let S8_M218_1 = false;
+store.set('S8_M218_1', false);
+
+// Station 9
+let S9_M218_3 = false;
+store.set('S9_M218_3', false);
+let S9_M217_5 = false;
+store.set('S9_M217_5', false);
+let S9_M217_6 = false;
+store.set('S9_M217_6', false);
+let S9_M217_7 = false;
+store.set('S9_M217_7', false);
+let S9_M218_0 = false;
+store.set('S9_M218_0', false);
+let S9_M218_1 = false;
+store.set('S9_M218_1', false);
+
+// Station 10
+let S10_M218_3 = false;
+store.set('S10_M218_3', false);
+let S10_M217_5 = false;
+store.set('S10_M217_5', false);
+let S10_M217_6 = false;
+store.set('S10_M217_6', false);
+let S10_M217_7 = false;
+store.set('S10_M217_7', false);
+let S10_M218_0 = false;
+store.set('S10_M218_0', false);
+let S10_M218_1 = false;
+store.set('S10_M218_1', false);
+
+// Station 11
+let S11_M218_3 = false;
+store.set('S11_M218_3', false);
+let S11_M217_5 = false;
+store.set('S11_M217_5', false);
+let S11_M217_6 = false;
+store.set('S11_M217_6', false);
+let S11_M217_7 = false;
+store.set('S11_M217_7', false);
+let S11_M218_0 = false;
+store.set('S11_M218_0', false);
+let S11_M218_1 = false;
+store.set('S11_M218_1', false);
+
+// Station 12
+let S12_M218_3 = false;
+store.set('S12_M218_3', false);
+let S12_M217_5 = false;
+store.set('S12_M217_5', false);
+let S12_M217_6 = false;
+store.set('S12_M217_6', false);
+let S12_M217_7 = false;
+store.set('S12_M217_7', false);
+let S12_M218_0 = false;
+store.set('S12_M218_0', false);
+let S12_M218_1 = false;
+store.set('S12_M218_1', false);
 
 module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
@@ -129,7 +219,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                             readHelper(n).then(data => {
                                 console.log('data ', 'N1');
                                 const dM217_0 = data[M217_0];
-                                if (dM217_0 && S1_M217_0 !== dM217_0) {
+                                if (S1_M217_0 !== dM217_0) {
                                     S1_M217_0 = dM217_0;
                                     store.set('S1_M217_0', dM217_0);
                                     mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: dM217_0 });
@@ -148,7 +238,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 console.log(data2, S2_M218_2, 'N2');
 
                                 if (S2_M218_2 !== data1) {
-                                    
+
                                     S2_M218_2 = data1;
                                     store.set('S2_M218_2', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: data1 });
@@ -179,7 +269,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                             readHelper(n).then(data => {
                                 console.log(data, 'N3');
                                 const data1 = data[M217_0];
-                                if (data1 && S3_M217_0 !== data1) {
+                                if (S3_M217_0 !== data1) {
                                     S3_M217_0 = data1;
                                     store.set('S3_M217_0', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: data1 });
@@ -195,25 +285,25 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data3 = data[M217_3];
                                 const data4 = data[M217_4];
 
-                                if (data1 && S4_M218_2 !== data1) {
+                                if (S4_M218_2 !== data1) {
                                     S4_M218_2 = data1;
                                     store.set('S4_M218_2', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation4, { M218_2: data1 });
                                 }
 
-                                if (data2 && S4_M217_2 !== data2) {
+                                if (S4_M217_2 !== data2) {
                                     S4_M217_2 = data2;
                                     store.set('S4_M217_2', data2);
                                     mainWindow.webContents.send(CHANNELS.onStation4, { M217_2: data2 });
                                 }
 
-                                if (data3 && S4_M217_3 !== data3) {
+                                if (S4_M217_3 !== data3) {
                                     S4_M217_3 = data3;
                                     store.set('S4_M217_3', data3);
                                     mainWindow.webContents.send(CHANNELS.onStation4, { M217_3: data3 });
                                 }
 
-                                if (data4 && S4_M217_4 !== data4) {
+                                if (S4_M217_4 !== data4) {
                                     S4_M217_4 = data4;
                                     store.set('S4_M217_4', data4);
                                     mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: data4 });
@@ -224,40 +314,48 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N5') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N5');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_3: false });
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S5_M218_0 !== data1) {
+                                    S5_M218_0 = data1;
+                                    store.set('S5_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_5: false });
+                                if (S5_M217_5 !== data2) {
+                                    S5_M217_5 = data2;
+                                    store.set('S5_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_6: false });
+                                if (S5_M217_6 !== data3) {
+                                    S5_M217_6 = data3;
+                                    store.set('S5_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_7: false });
+                                if (S5_M217_7 !== data4) {
+                                    S5_M217_7 = data4;
+                                    store.set('S5_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation5, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_0: false });
+                                if (S5_M218_0 !== data5) {
+                                    S5_M218_0 = data5;
+                                    store.set('S5_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: false });
+                                if (S5_M218_1 !== data6) {
+                                    S5_M218_1 = data6;
+                                    store.set('S5_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: data6 });
                                 }
                             });
                         }
@@ -265,81 +363,98 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N6') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N6');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_3: false });
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S6_M218_0 !== data1) {
+                                    S6_M218_0 = data1;
+                                    store.set('S6_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_5: false });
+                                if (S6_M217_5 !== data2) {
+                                    S6_M217_5 = data2;
+                                    store.set('S6_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_6: false });
+                                if (S6_M217_6 !== data3) {
+                                    S6_M217_6 = data3;
+                                    store.set('S6_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_7: false });
+                                if (S6_M217_7 !== data4) {
+                                    S6_M217_7 = data4;
+                                    store.set('S6_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation6, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_0: false });
+                                if (S6_M218_0 !== data5) {
+                                    S6_M218_0 = data5;
+                                    store.set('S6_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_1: false });
+                                if (S6_M218_1 !== data6) {
+                                    S6_M218_1 = data6;
+                                    store.set('S6_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation6, { M218_1: data6 });
                                 }
+
                             });
                         }
 
                         if (n.id === 'N7') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N7');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_3: false });
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S7_M218_0 !== data1) {
+                                    S7_M218_0 = data1;
+                                    store.set('S7_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_5: false });
+                                if (S7_M217_5 !== data2) {
+                                    S7_M217_5 = data2;
+                                    store.set('S7_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_6: false });
+                                if (S7_M217_6 !== data3) {
+                                    S7_M217_6 = data3;
+                                    store.set('S7_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_7: false });
+                                if (S7_M217_7 !== data4) {
+                                    S7_M217_7 = data4;
+                                    store.set('S7_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation7, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_0: false });
+                                if (S7_M218_0 !== data5) {
+                                    S7_M218_0 = data5;
+                                    store.set('S7_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: false });
+                                if (S7_M218_1 !== data6) {
+                                    S7_M218_1 = data6;
+                                    store.set('S7_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: data6 });
                                 }
                             });
                         }
@@ -347,205 +462,254 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         if (n.id === 'N8') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N8');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_3: false });
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S8_M218_0 !== data1) {
+                                    S8_M218_0 = data1;
+                                    store.set('S8_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_5: false });
+                                if (S8_M217_5 !== data2) {
+                                    S8_M217_5 = data2;
+                                    store.set('S8_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_6: false });
+                                if (S8_M217_6 !== data3) {
+                                    S8_M217_6 = data3;
+                                    store.set('S8_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_7: false });
+                                if (S8_M217_7 !== data4) {
+                                    S8_M217_7 = data4;
+                                    store.set('S8_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation8, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_0: false });
+                                if (S8_M218_0 !== data5) {
+                                    S8_M218_0 = data5;
+                                    store.set('S8_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_1: false });
+                                if (S8_M218_1 !== data6) {
+                                    S8_M218_1 = data6;
+                                    store.set('S8_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation8, { M218_1: data6 });
                                 }
+
                             });
                         }
 
                         if (n.id === 'N9') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N9');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_3: false });
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S9_M218_0 !== data1) {
+                                    S9_M218_0 = data1;
+                                    store.set('S9_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_5: false });
+                                if (S9_M217_5 !== data2) {
+                                    S9_M217_5 = data2;
+                                    store.set('S9_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_6: false });
+                                if (S9_M217_6 !== data3) {
+                                    S9_M217_6 = data3;
+                                    store.set('S9_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_7: false });
+                                if (S9_M217_7 !== data4) {
+                                    S9_M217_7 = data4;
+                                    store.set('S9_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation9, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_0: false });
+                                if (S9_M218_0 !== data5) {
+                                    S9_M218_0 = data5;
+                                    store.set('S9_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_1: false });
+                                if (S9_M218_1 !== data6) {
+                                    S9_M218_1 = data6;
+                                    store.set('S9_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation9, { M218_1: data6 });
                                 }
+
                             });
                         }
 
                         if (n.id === 'N10') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N10');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_3: false });
+
+
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S10_M218_0 !== data1) {
+                                    S10_M218_0 = data1;
+                                    store.set('S10_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_5: false });
+                                if (S10_M217_5 !== data2) {
+                                    S10_M217_5 = data2;
+                                    store.set('S10_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_6: false });
+                                if (S10_M217_6 !== data3) {
+                                    S10_M217_6 = data3;
+                                    store.set('S10_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_7: false });
+                                if (S10_M217_7 !== data4) {
+                                    S10_M217_7 = data4;
+                                    store.set('S10_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation10, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_0: false });
+                                if (S10_M218_0 !== data5) {
+                                    S10_M218_0 = data5;
+                                    store.set('S10_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_1: false });
+                                if (S10_M218_1 !== data6) {
+                                    S10_M218_1 = data6;
+                                    store.set('S10_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation10, { M218_1: data6 });
                                 }
+
                             });
                         }
 
                         if (n.id === 'N11') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N11');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_3: false });
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S11_M218_0 !== data1) {
+                                    S11_M218_0 = data1;
+                                    store.set('S11_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_5: false });
+                                if (S11_M217_5 !== data2) {
+                                    S11_M217_5 = data2;
+                                    store.set('S11_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_6: false });
+                                if (S11_M217_6 !== data3) {
+                                    S11_M217_6 = data3;
+                                    store.set('S11_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_7: false });
+                                if (S11_M217_7 !== data4) {
+                                    S11_M217_7 = data4;
+                                    store.set('S11_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation11, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_0: false });
+                                if (S11_M218_0 !== data5) {
+                                    S11_M218_0 = data5;
+                                    store.set('S11_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_1: false });
+                                if (S11_M218_1 !== data6) {
+                                    S11_M218_1 = data6;
+                                    store.set('S11_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation11, { M218_1: data6 });
                                 }
+
                             });
                         }
 
                         if (n.id === 'N12') {
                             readHelper(n).then(data => {
                                 console.log(data, 'N12');
-                                if (data[M218_3]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_3: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_3: false });
+
+
+                                const data1 = data[M218_3];
+                                const data2 = data[M217_5];
+                                const data3 = data[M217_6];
+                                const data4 = data[M217_7];
+                                const data5 = data[M218_0];
+                                const data6 = data[M218_1];
+
+                                if (S12_M218_0 !== data1) {
+                                    S12_M218_0 = data1;
+                                    store.set('S12_M218_2', data1);
+                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_3: data1 });
                                 }
 
-                                if (data[M217_5]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_5: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_5: false });
+                                if (S12_M217_5 !== data2) {
+                                    S12_M217_5 = data2;
+                                    store.set('S12_M217_5', data2);
+                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_5: data2 });
                                 }
 
-                                if (data[M217_6]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_6: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_6: false });
+                                if (S12_M217_6 !== data3) {
+                                    S12_M217_6 = data3;
+                                    store.set('S12_M217_6', data3)
+                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_6: data3 });
                                 }
 
-                                if (data[M217_7]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_7: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_7: false });
+                                if (S12_M217_7 !== data4) {
+                                    S12_M217_7 = data4;
+                                    store.set('S12_M217_7', data4);
+                                    mainWindow.webContents.send(CHANNELS.onStation12, { M217_7: data4 });
                                 }
 
-                                if (data[M218_0]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_0: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_0: false });
+                                if (S12_M218_0 !== data5) {
+                                    S12_M218_0 = data5;
+                                    store.set('S12_M218_0', data5);
+                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_0: data5 });
                                 }
 
-                                if (data[M218_1]) {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_1: true });
-                                } else {
-                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_1: false });
+                                if (S12_M218_1 !== data6) {
+                                    S12_M218_1 = data6;
+                                    store.set('S12_M218_1', data6);
+                                    mainWindow.webContents.send(CHANNELS.onStation12, { M218_1: data6 });
                                 }
+
+
                             });
                         }
 
