@@ -152,6 +152,26 @@
     const _getFromStore = () => {
       const headerDatetime = store.get(keys.headerDatetime);
       vm.time(headerDatetime);
+
+      // SB
+      const data1 = 'S11_M218_3';
+      if (data1 !== undefined) {
+        if (data1) {
+          vm.NBStyle(greenColor);
+        } else {
+          vm.NBStyle(redColor);
+        }
+      }
+
+      // WB
+      const data2 = 'S12_M218_3';
+      if (data2 !== undefined) {
+        if (data2) {
+          vm.EBStyle(greenColor);
+        } else {
+          vm.EBStyle(redColor);
+        }
+      }
     };
 
     // Read streaming
