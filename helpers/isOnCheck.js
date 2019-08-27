@@ -17,6 +17,42 @@ const M218_1 = 'M218.1';
 const M218_2 = 'M218.2';
 const M218_3 = 'M218.3';
 
+// Cache
+let cnt = 0;
+// Station1
+const S1_M217_0 = false;
+store.set('S1_M217_0', false);
+
+// Station2
+const S2_M218_2 = false;
+store.set('S2_M218_2', false);
+
+const S2_M217_2 = false;
+store.set('S2_M217_2', false);
+
+const S2_M217_3 = false;
+store.set('S2_M217_3', false);
+
+const S2_M217_4 = false;
+store.set('S2_M217_4', false);
+
+// Station3
+const S3_M217_0 = false;
+store.set('S3_M217_0', false);
+
+// Station 4
+const S4_M218_2 = false;
+store.set('S4_M218_2', false);
+
+const S4_M217_2 = false;
+store.set('S4_M217_2', false);
+
+const S4_M217_3 = false;
+store.set('S4_M217_3', false);
+
+const S4_M217_4 = false;
+store.set('S4_M217_4', false);
+
 // store.set('S2_M218_2', true);
 // console.log('s2 ', store.get('S2_M218_2'));
 
@@ -34,52 +70,31 @@ const M218_3 = 'M218.3';
 // const M218_3 = 'M218.3';
 
 module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
-    // Cache
-    // Station1
-    const S1_M217_0 = false;
-    store.set('S1_M217_0', false);
-    mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: false });
 
-    // Station2
-    const S2_M218_2 = false;
-    store.set('S2_M218_2', false);
-    mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: false });
+    if (cnt === 0) {
 
-    const S2_M217_2 = false;
-    store.set('S2_M217_2', false);
-    mainWindow.webContents.send(CHANNELS.onStation2, { M217_2: false });
+        // Station 1
+        mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: S1_M217_0 });
 
-    const S2_M217_3 = false;
-    store.set('S2_M217_3', false);
-    mainWindow.webContents.send(CHANNELS.onStation2, { M217_3: false });
+        // Station 2
+        mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: S2_M218_2 });
+        mainWindow.webContents.send(CHANNELS.onStation2, { M217_2: S2_M217_2 });
+        mainWindow.webContents.send(CHANNELS.onStation2, { M217_3: S2_M217_3 });
+        mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: S2_M217_4 });
 
-    const S2_M217_4 = false;
-    store.set('S2_M217_4', false);
-    mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: false });
+        // Station 3
+        mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: S3_M217_0 });
 
-    // Station3
-    const S3_M217_0 = false;
-    store.set('S3_M217_0', false);
-    mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: false });
+        // Station 4
+        mainWindow.webContents.send(CHANNELS.onStation4, { M218_2: S4_M218_2 });
+        mainWindow.webContents.send(CHANNELS.onStation4, { M217_2: S4_M217_2 });
+        mainWindow.webContents.send(CHANNELS.onStation4, { M217_3: S4_M217_3 });
+        mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: S4_M217_4 });
 
-    // Station 4
-    const S4_M218_2 = false;
-    store.set('S4_M218_2', false);
-    mainWindow.webContents.send(CHANNELS.onStation4, { M218_2: false });
+        cnt = 1;
+    }
 
-    const S4_M217_2 = false;
-    store.set('S4_M217_2', false);
-    mainWindow.webContents.send(CHANNELS.onStation4, { M217_2: false });
 
-    const S4_M217_3 = false;
-    store.set('S4_M217_3', false);
-    mainWindow.webContents.send(CHANNELS.onStation4, { M217_3: false });
-
-    const S4_M217_4 = false;
-    store.set('S4_M217_4', false);
-    mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: false });
-
-    
 
     // Ping Test
     const _stopPingIntervals = () => {
