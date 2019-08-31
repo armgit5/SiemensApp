@@ -21,7 +21,7 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
   <div class="container">
-    <div class="row" style="margin-top: 25px;">
+    <div class="row" style="margin-top: 45px;">
       <div class="col-8" style="padding-left: 25%">
         <h1 class="header" style=" text-align: left;
           width: 275px;
@@ -39,7 +39,7 @@
       </div> -->
     </div>
 
-    <div class="row" style="margin-top: 45px;">
+    <div class="row" style="margin-top: 30px;">
       <!-- Detail 1 -->
       <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./station1/llWindow.html'"
@@ -47,7 +47,7 @@
           <!-- Lift Lower <span class="dot" data-bind="style: LiftLowerStyle"></span> -->
 
           <div class="row main">
-            <div class="col-8" style="padding: 0;">
+            <div class="col-8" style="padding: 0; text-align: left; padding-left: 15px;">
               <span>Lift Lower </span>
             </div>
             <div class="col-4" style="padding: 0">
@@ -80,14 +80,14 @@
       </div>
     </div>
 
-    <div class="row" style="margin-top: 50px;">
+    <div class="row" style="margin-top: 30px;">
       <!-- Detail 1 -->
       <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./station2/llWindow.html'"
           style="background-color: white;">
           <!-- Lift Concourse <span class="dot" data-bind="style: LiftCStyle"></span> -->
           <div class="row main">
-            <div class="col-8" style="padding: 0;">
+            <div class="col-8" style="padding: 0; text-align: left; padding-left: 15px;">
               <span>Lift Concourse </span>
             </div>
             <div class="col-4" style="padding: 0">
@@ -105,7 +105,7 @@
           onclick="window.location.href='./station4/detailWindow.html'" style="background-color: white;">
           <!-- Cading, SideBeam EB <span class="dot" style="background-color: lightgreen;"></span> -->
           <div class="row main">
-            <div class="col-8" style="padding: 0; padding-left: 10px">
+            <div class="col-8" style="padding: 0; padding-left: 10px;">
               <span>Cading, SideBeam EB </span>
             </div>
             <div class="col-4" style="padding: 0">
@@ -120,27 +120,23 @@
 
     <!-- Datetime -->
     <div class="row">
-      <div class="col-2">
-      </div>
-      <div class="col-8">
-        <div class="footer" data-bind="text: time" style="width: 250px; padding-top: 15px;">
+        <div class="col-2" style="margin-top: 25px;">
+            <span>
+                <a href="mainWindow.html">
+                    <img src="../assets/images/home-v1.png" alt="home" class="thumbnails"
+                        style="height: 55px" />
+                </a>
+            </span>
+
         </div>
-      </div>
-      <div class="col-2">
-      </div>
+        <div class="col-8">
+            <div class="footer" style="width: 300px; padding-top: 15px;" data-bind="text: time"></button>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
     </div>
 
-    <!-- Footer -->
-    <div class="row">
-      <div class="col-2">
-      </div>
-      <div class="col-8">
-        <div class="footer" data-bind="text: time" style="width: 250px; padding-top: 15px;">
-        </div>
-      </div>
-      <div class="col-2">
-      </div>
-    </div>
 
   </div>
 
