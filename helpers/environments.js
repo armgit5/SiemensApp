@@ -117,7 +117,8 @@ module.exports.GROUP5 = [
 module.exports.COLORS = {
     green: 'lightgreen',
     red: 'lightcoral',
-    gray: 'gray'
+    gray: 'gray',
+    greenOnOff: '#50FF00'
 }
 
 module.exports.monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
