@@ -12,30 +12,40 @@
             margin-top: 45px;
             margin-bottom: 35px;
         }
+        .station {
+            height: 50px;
+        }
     </style>
 </head>
 
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
     <div class="container">
-        <h1 class="header" style="text-align: left;">S2_WB</h1>
-        <div class="row header-row">
-            <div class="col-6">
-                <button type="button" class="btn station" id="autoManual"
-                    data-bind="text: autoManual, style: autoManualStyle">
-                </button>
-                <!-- <a href="mainWindow.html">
-                    <img src="../../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-                </a> -->
+        <!-- <h1 class="header" style="text-align: left;">S2_WB</h1> -->
+        <div class="row" style="margin-top: 0px;">
+            <div class="col-8" style="padding-left: 5%">
+                <h1 class="header" style=" text-align: left;
+                        padding: 10px;
+                        color: white;
+                        margin: 0px;">S2_WB</h1>
             </div>
 
-            <div class="col-6">
-                <div class="footer" style="margin-top: 0px" data-bind="text: time"></button>
+            <div class="col-4">
+                <div class="footer" style="margin-top: 15px; margin-left: 75px;" data-bind="text: time"></button>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <!-- Auto Manual -->
+        <div class="row header-row" style="margin: 0; margin-top: 0px;">
+            <div class="col-6" style="text-align: left; left: -5%;">
+                <button type="button" class="btn station" id="autoManual" style="height: 55px; width: 175px;"
+                    data-bind="text: autoManual, style: autoManualStyle">
+                </button>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 15px;">
             <!-- Station 1 -->
 
             <div class="col-sm-4">
@@ -111,7 +121,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="row">
+        <div class="row" style="margin-top: 25px;">
             <span>
                 <a href="detailWindow.html">
                     <img src="../../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
@@ -137,14 +147,14 @@
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
-        const { CHANNELS } = require('../../../helpers/environments');
+        const { CHANNELS, COLORS} = require('../../../helpers/environments');
         const STATION1 = require('../../../data/station1');
         const Store = require('electron-store');
         const store = new Store();
         const keys = STATION1.storedKeys;
 
         const greenColor = {
-            'background-color': 'green'
+            'background-color': COLORS.greenOnOff
         };
         const redColor = {
             'background-color': 'red'
