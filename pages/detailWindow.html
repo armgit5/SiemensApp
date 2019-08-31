@@ -9,11 +9,11 @@
 
   <style>
     .station-mid {
-      width: 175px;
+      width: 250px;
     }
 
     .station-longer {
-      width: 300px;
+      width: 250px;
     }
   </style>
 </head>
@@ -21,11 +21,22 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
   <div class="container">
-    <h1 class="header" style="text-align: left;">Siam station
-      <!-- <a href="mainWindow.html">
-        <img src="../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-      </a> -->
-    </h1>
+    <div class="row">
+      <div class="col-8" style="padding-left: 5%">
+        <h1 class="header" style=" text-align: left;
+          width: 275px;
+          border: 1px solid black;
+          background-color: white;
+          padding: 10px;
+          color: black; border-radius: 5px;">SIAM STATION</h1>
+      </div>
+
+      <div class="col-4" style="margin-top: 50px;">
+        <div class="footer" style="margin-top: 0px; padding: 10px;">
+          HH:MM</button>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <!-- Detail 1 -->
@@ -54,7 +65,7 @@
           <!-- Cading, SideBeam SB <span class="dot" data-bind="style: SBStyle"></span> -->
 
           <div class="row main">
-            <div class="col-8" style="padding: 0;">
+            <div class="col-8" style="padding: 0; padding-left: 10px;">
               <span>Cading, SideBeam SB </span>
             </div>
             <div class="col-4" style="padding: 0">
@@ -68,7 +79,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top: 50px;">
       <!-- Detail 1 -->
       <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./station2/llWindow.html'"
@@ -93,7 +104,7 @@
           onclick="window.location.href='./station4/detailWindow.html'" style="background-color: white;">
           <!-- Cading, SideBeam EB <span class="dot" style="background-color: lightgreen;"></span> -->
           <div class="row main">
-            <div class="col-8" style="padding: 0;">
+            <div class="col-8" style="padding: 0; padding-left: 10px">
               <span>Cading, SideBeam EB </span>
             </div>
             <div class="col-4" style="padding: 0">
@@ -107,7 +118,7 @@
     </div>
 
     <!-- Datetime -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-4">
       </div>
       <div class="col-4">
@@ -116,7 +127,7 @@
       </div>
       <div class="col-4">
       </div>
-    </div>
+    </div> -->
 
     <!-- Footer -->
     <div class="row">
