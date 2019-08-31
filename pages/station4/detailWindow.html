@@ -9,11 +9,11 @@
 
   <style>
     .station-mid {
-      width: 150px;
+      width: 250px;
     }
 
     .station-longer {
-      width: 300px;
+      width: 250px;
     }
   </style>
 </head>
@@ -21,15 +21,21 @@
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
   <div class="container">
-    <h1 class="header" style="text-align: left;">Clading, SideBeam, EB
-      <!-- <a href="mainWindow.html">
-        <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-      </a> -->
-    </h1>
+    <!-- <h1 class="header" style="text-align: left;">Clading, SideBeam, EB -->
+    <!-- </h1> -->
 
-    <div class="row">
+    <div class="row" style="margin-top: 45px;">
+      <div class="col-12">
+        <h1 class="header" style=" text-align: center;
+              padding: 10px;
+              color: white;
+              margin: 0px;">Clading, SideBeam, EB</h1>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px;">
       <!-- Detail 1 -->
-      <div class="col-4">
+      <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./llWindow.html'"
           style="background-color: white;">
           <!-- Clading 1 -->
@@ -47,7 +53,7 @@
       </div>
 
       <!-- Detail 2 -->
-      <div class="col-8">
+      <div class="col-6">
         <button type="button" class="btn station station-longer"
           onclick="window.location.href='./sidebeam/llWindow.html'" style="background-color: white;">
           <!-- SideBeam, D -->
@@ -65,9 +71,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top: 30px;">
       <!-- Detail 1 -->
-      <div class="col-4">
+      <div class="col-6">
         <button type="button" class="btn station station-mid" onclick="window.location.href='./clading2/llWindow.html'"
           style="background-color: white;">
           <!-- Clading 2 -->
@@ -92,28 +98,24 @@
       </div> -->
     </div>
 
-    <!-- Datetime -->
-    <div class="row">
-      <div class="col-4">
-      </div>
-      <div class="col-4">
-        <div class="footer" data-bind="text: time">
-        </div>
-      </div>
-      <div class="col-4">
-      </div>
-    </div>
 
     <!-- Footer -->
     <div class="row">
-      <span>
-        <a href="../detailWindow.html">
-          <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
-        </a>
-        <a href="../mainWindow.html">
-          <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-        </a>
-      </span>
+      <div class="col-3" style="margin-top: 25px; padding: 0; left: -5%">
+        <span>
+          <a href="../detailWindow.html">
+            <img src="../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
+          </a>
+          <a href="../mainWindow.html">
+            <img src="../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
+          </a>
+        </span>
+
+      </div>
+      <div class="col-9" style="padding: 0; left: -5%">
+        <div class="footer" style="width: 300px; padding-top: 15px;" data-bind="text: time"></button>
+        </div>
+      </div>
     </div>
 
   </div>
