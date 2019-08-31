@@ -12,22 +12,19 @@
             margin-top: 45px;
             margin-bottom: 35px;
         }
+
+        .station {
+            height: 35px;
+            width: 120px;
+        }
     </style>
 </head>
 
 <body style="background-color: #6095C9; text-align: center; margin: 10px; display: none;">
 
     <div class="container">
-
-        
-        <div class="row header-row" style="margin: 0px;">
+        <!-- <div class="row header-row" style="margin: 0px;">
             <div class="col-6">
-                <!-- <button type="button" class="btn station" id="autoManual"
-                    data-bind="text: autoManual, style: autoManualStyle">
-                </button> -->
-                <!-- <a href="mainWindow.html">
-                    <img src="../../assets//images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
-                </a> -->
                 <h1 class="header" style="text-align: left; margin: 0px">SideBeam, SB</h1>
             </div>
 
@@ -35,142 +32,166 @@
                 <div class="footer" style="margin-top: 0px" data-bind="text: time"></button>
                 </div>
             </div>
+        </div> -->
+
+        <!-- Header -->
+        <div class="row" style="margin-top: 0px;">
+            <div class="col-8" style="padding-left: 5%">
+                <h1 class="header" style=" text-align: left;
+                    padding: 10px;
+                    color: white;
+                    margin: 0px;">SideBeam, SB</h1>
+            </div>
+
+            <div class="col-4">
+                <div class="footer" style="margin-top: 15px; margin-left: 75px;" data-bind="text: time"></button>
+                </div>
+            </div>
         </div>
 
-        
         <div class="row" style="margin: 0px">
-                <!-- Row 1 -->
-                <div class="col-sm-3" style="margin-top: 24%">
-                    <button type="button" class="btn station" id="autoManual"
+            <!-- Row 1 -->
+            <div class="col-sm-3" style="margin-top: 24%; left: -7%">
+                <button type="button" class="btn station" id="autoManual" style="height: 45px;"
+                    data-bind="text: autoManual, style: autoManualStyle">
+                </button>
+            </div>
+
+            <!-- Auto Manual-->
+            <!-- <div class="row header-row" style="margin: 0; margin-top: 0px;">
+                <div class="col-6" style="text-align: left; left: -5%;">
+                    <button type="button" class="btn station" id="autoManual" style="height: 55px; width: 175px;"
                         data-bind="text: autoManual, style: autoManualStyle">
                     </button>
                 </div>
+            </div> -->
 
-                <!-- Row 2 -->
-                <div class="col-sm-3">
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll1Style"
-                            onclick="window.location.href='ll1TimeWindow.html'">
-                            SB1
-                        </button>
-                    </div>
 
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll2Style"
+            <!-- Row 2 -->
+            <div class="col-sm-3" style="right: 0%">
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll1Style"
+                        onclick="window.location.href='ll1TimeWindow.html'">
+                        SB1
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll2Style"
                         onclick="window.location.href='ll2TimeWindow.html'">
-                            SB2
-                        </button>
-                    </div>
+                        SB2
+                    </button>
+                </div>
 
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll3Style"
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll3Style"
                         onclick="window.location.href='ll3TimeWindow.html'">
-                            SB3
-                        </button>
-                    </div>
+                        SB3
+                    </button>
+                </div>
 
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll4Style"
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll4Style"
                         onclick="window.location.href='ll4TimeWindow.html'">
-                            SB4
-                        </button>
-                    </div>
+                        SB4
+                    </button>
+                </div>
 
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll5Style"
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll5Style"
                         onclick="window.location.href='ll5TimeWindow.html'">
-                            SB5
-                        </button>
-                    </div>
+                        SB5
+                    </button>
+                </div>
 
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll6Style"
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll6Style"
                         onclick="window.location.href='ll6TimeWindow.html'">
-                            SB6
-                        </button>
-                    </div>
-
+                        SB6
+                    </button>
                 </div>
 
-                <!-- Row 3 -->
-                <div class="col-sm-3">
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll1OnStyle" id="ll1On">
-                            On
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll2OnStyle" id="ll2On">
-                            On
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll3OnStyle" id="ll3On">
-                            On
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll4OnStyle" id="ll4On">
-                            On
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll5OnStyle" id="ll5On">
-                            On
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll6OnStyle" id="ll6On">
-                            On
-                        </button>
-                    </div>
-
-                </div>
-                <!-- Row 4 -->
-                <div class="col-sm-3">
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll1OffStyle" id="ll1Off">
-                            Off
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll2OffStyle" id="ll2Off">
-                            Off
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll3OffStyle" id="ll3Off">
-                            Off
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll4OffStyle" id="ll4Off">
-                            Off
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll5OffStyle" id="ll5Off">
-                            Off
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn station" data-bind="style: ll6OffStyle" id="ll6Off">
-                            Off
-                        </button>
-                    </div>
-
-                </div>
             </div>
+
+            <!-- Row 3 -->
+            <div class="col-sm-3" style="right: -6%">
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll1OnStyle" id="ll1On">
+                        On
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll2OnStyle" id="ll2On">
+                        On
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll3OnStyle" id="ll3On">
+                        On
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll4OnStyle" id="ll4On">
+                        On
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll5OnStyle" id="ll5On">
+                        On
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll6OnStyle" id="ll6On">
+                        On
+                    </button>
+                </div>
+
+            </div>
+            <!-- Row 4 -->
+            <div class="col-sm-3" style="right: -6%">
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll1OffStyle" id="ll1Off">
+                        Off
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll2OffStyle" id="ll2Off">
+                        Off
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll3OffStyle" id="ll3Off">
+                        Off
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll4OffStyle" id="ll4Off">
+                        Off
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll5OffStyle" id="ll5Off">
+                        Off
+                    </button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn station" data-bind="style: ll6OffStyle" id="ll6Off">
+                        Off
+                    </button>
+                </div>
+
+            </div>
+        </div>
 
         <!-- Footer -->
         <div class="row">
@@ -179,8 +200,7 @@
                     <img src="../../../assets/images/left.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
                 <a href="../../mainWindow.html">
-                    <img src="../../../assets/images/home-v1.png" alt="home" class="thumbnails"
-                        style="height: 55px" />
+                    <img src="../../../assets/images/home-v1.png" alt="home" class="thumbnails" style="height: 55px" />
                 </a>
             </span>
         </div>
@@ -200,14 +220,14 @@
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
-        const { CHANNELS } = require('../../../helpers/environments');
+        const { CHANNELS, COLORS } = require('../../../helpers/environments');
         const STATION1 = require('../../../data/station1');
         const Store = require('electron-store');
         const store = new Store();
         const keys = STATION1.storedKeys;
 
         const greenColor = {
-            'background-color': 'green'
+            'background-color': COLORS.greenOnOff
         };
         const redColor = {
             'background-color': 'red'
