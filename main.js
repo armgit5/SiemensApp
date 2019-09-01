@@ -11,7 +11,7 @@ let alreadyLoaded = false;
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 640,
-        height: 480,
+        height: 500,
         resizable: false,
         show: false,
         icon: path.join(__dirname, '/assets/icons/win/bts.ico')
