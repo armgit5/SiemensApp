@@ -271,37 +271,37 @@
                 vm.autoManual('MANUAL');
             }
 
-            if (store.get(CHANNELS.ll7On) === true) {
+            if (store.get(CHANNELS.ll4On) === true) {
                 vm.ll1Style(greenColor);
             } else {
                 vm.ll1Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll8On) === true) {
+            if (store.get(CHANNELS.ll5On) === true) {
                 vm.ll2Style(greenColor);
             } else {
                 vm.ll2Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll9On) === true) {
+            if (store.get(CHANNELS.ll6On) === true) {
                 vm.ll3Style(greenColor);
             } else {
                 vm.ll3Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll10On) === true) {
+            if (store.get(CHANNELS.ll7On) === true) {
                 vm.ll4Style(greenColor);
             } else {
                 vm.ll4Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll11On) === true) {
+            if (store.get(CHANNELS.ll8On) === true) {
                 vm.ll5Style(greenColor);
             } else {
                 vm.ll5Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll12On) === true) {
+            if (store.get(CHANNELS.ll9On) === true) {
                 vm.ll6Style(greenColor);
             } else {
                 vm.ll6Style(redColor);
@@ -328,7 +328,7 @@
             });
 
             const _readLLn = () => {
-                ipcRenderer.on(CHANNELS.ll7On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll4On, (e, isOn) => {
                     if (isOn) {
                         vm.ll1Style(greenColor);
                     } else {
@@ -336,7 +336,7 @@
                     }
                 });
 
-                ipcRenderer.on(CHANNELS.ll8On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll5On, (e, isOn) => {
                     if (isOn) {
                         vm.ll2Style(greenColor);
                     } else {
@@ -344,31 +344,31 @@
                     }
                 });
 
+                ipcRenderer.on(CHANNELS.ll6On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll3Style(greenColor);
+                    } else {
+                        vm.ll3Style(redColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll7On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll3Style(greenColor);
+                    } else {
+                        vm.ll3Style(redColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll8On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll3Style(greenColor);
+                    } else {
+                        vm.ll3Style(redColor);
+                    }
+                });
+
                 ipcRenderer.on(CHANNELS.ll9On, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll3Style(greenColor);
-                    } else {
-                        vm.ll3Style(redColor);
-                    }
-                });
-
-                ipcRenderer.on(CHANNELS.ll10On, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll3Style(greenColor);
-                    } else {
-                        vm.ll3Style(redColor);
-                    }
-                });
-
-                ipcRenderer.on(CHANNELS.ll11On, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll3Style(greenColor);
-                    } else {
-                        vm.ll3Style(redColor);
-                    }
-                });
-
-                ipcRenderer.on(CHANNELS.ll12On, (e, isOn) => {
                     if (isOn) {
                         vm.ll3Style(greenColor);
                     } else {
@@ -393,53 +393,53 @@
 
             // Detect button click
             document.getElementById('ll1On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll7On, true);
+                ipcRenderer.send(CHANNELS.ll4On, true);
             };
 
             document.getElementById('ll2On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll8On, true);
+                ipcRenderer.send(CHANNELS.ll5On, true);
             };
 
             document.getElementById('ll3On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll9On, true);
+                ipcRenderer.send(CHANNELS.ll6On, true);
             };
 
             document.getElementById('ll4On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll10On, true);
+                ipcRenderer.send(CHANNELS.ll7On, true);
             };
 
             document.getElementById('ll5On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll11On, true);
+                ipcRenderer.send(CHANNELS.ll8On, true);
             };
 
             document.getElementById('ll6On').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll12On, true);
+                ipcRenderer.send(CHANNELS.ll9On, true);
             };
 
             // Off
 
             document.getElementById('ll1Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll7Off, true);
+                ipcRenderer.send(CHANNELS.ll4Off, true);
             };
 
             document.getElementById('ll2Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll8Off, true);
+                ipcRenderer.send(CHANNELS.ll5Off, true);
             };
 
             document.getElementById('ll3Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll9Off, true);
+                ipcRenderer.send(CHANNELS.ll6Off, true);
             };
 
             document.getElementById('ll4Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll10Off, true);
+                ipcRenderer.send(CHANNELS.ll7Off, true);
             };
 
             document.getElementById('ll5Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll11Off, true);
+                ipcRenderer.send(CHANNELS.ll8Off, true);
             };
 
             document.getElementById('ll6Off').onclick = () => {
-                ipcRenderer.send(CHANNELS.ll12Off, true);
+                ipcRenderer.send(CHANNELS.ll9Off, true);
             };
 
             document.getElementById('autoManual').onclick = () => {

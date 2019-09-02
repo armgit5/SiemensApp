@@ -371,7 +371,7 @@
             vm.time(headerDatetime);
 
             _step1Store = () => {
-                const STEP = STATION1.datetime.ll9.step1;
+                const STEP = STATION1.datetime.ll6.step1;
                 if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step1OnHH(data);
@@ -400,7 +400,7 @@
             _step1Store();
 
             _step2Store = () => {
-                const STEP = STATION1.datetime.ll9.step2;
+                const STEP = STATION1.datetime.ll6.step2;
                 if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step2OnHH(data);
@@ -429,7 +429,7 @@
             _step2Store();
 
             _step3Store = () => {
-                const STEP = STATION1.datetime.ll9.step3;
+                const STEP = STATION1.datetime.ll6.step3;
                 if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step3OnHH(data);
@@ -458,7 +458,7 @@
             _step3Store();
 
             _step4Store = () => {
-                const STEP = STATION1.datetime.ll9.step4;
+                const STEP = STATION1.datetime.ll6.step4;
                 if (store.get(STEP.onHH)) {
                     const data = _make2Digits(store.get(STEP.onHH));
                     vm.step4OnHH(data);
@@ -494,7 +494,7 @@
             });
 
             _step1Read = () => {
-                const STEP = STATION1.datetime.ll9.step1;
+                const STEP = STATION1.datetime.ll6.step1;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
 
                     if (data < 10) {
@@ -542,7 +542,7 @@
             _step1Read();
 
             _step2Read = () => {
-                const STEP = STATION1.datetime.ll9.step2;
+                const STEP = STATION1.datetime.ll6.step2;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
                     vm.step2OnHH(_make2Digits(data));
                 });
@@ -565,7 +565,7 @@
             _step2Read();
 
             _step3Read = () => {
-                const STEP = STATION1.datetime.ll9.step3;
+                const STEP = STATION1.datetime.ll6.step3;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
                     vm.step3OnHH(_make2Digits(data));
                 });
@@ -588,7 +588,7 @@
             _step3Read();
 
             _step4Read = () => {
-                const STEP = STATION1.datetime.ll9.step4;
+                const STEP = STATION1.datetime.ll6.step4;
                 ipcRenderer.on(STEP.onHH, (e, data) => {
                     vm.step4OnHH(_make2Digits(data));
                 });
@@ -644,7 +644,7 @@
 
             // STEP 1 //
             const _step1Click = () => {
-                const STEP = STATION1.datetime.ll9.step1;
+                const STEP = STATION1.datetime.ll6.step1;
                 setInputFilter(document.getElementById('step1OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
@@ -722,7 +722,7 @@
 
             // Step 2
             const _step2Click = () => {
-                const STEP = STATION1.datetime.ll9.step2;
+                const STEP = STATION1.datetime.ll6.step2;
                 setInputFilter(document.getElementById('step2OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
@@ -800,7 +800,7 @@
 
             // Step 3
             const _step3Click = () => {
-                const STEP = STATION1.datetime.ll9.step3;
+                const STEP = STATION1.datetime.ll6.step3;
                 setInputFilter(document.getElementById('step3OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
@@ -878,7 +878,7 @@
 
             // Step 4
             const _step4Click = () => {
-                const STEP = STATION1.datetime.ll9.step4;
+                const STEP = STATION1.datetime.ll6.step4;
                 setInputFilter(document.getElementById('step4OnHH'), function (value) {
                     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 23 && value.length <= 2);
                 });
