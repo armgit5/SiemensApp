@@ -208,19 +208,19 @@
                 vm.autoManual('MANUAL');
             }
 
-            if (store.get(CHANNELS.ll4On) === true) {
+            if (store.get(CHANNELS.ll10On) === true) {
                 vm.ll1Style(greenColor);
             } else {
                 vm.ll1Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll5On) === true) {
+            if (store.get(CHANNELS.ll11On) === true) {
                 vm.ll2Style(greenColor);
             } else {
                 vm.ll2Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll6On) === true) {
+            if (store.get(CHANNELS.ll12On) === true) {
                 vm.ll3Style(greenColor);
             } else {
                 vm.ll3Style(redColor);
@@ -247,7 +247,7 @@
             });
 
             const _readLLn = () => {
-                ipcRenderer.on(CHANNELS.ll4On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll10On, (e, isOn) => {
                     if (isOn) {
                         vm.ll1Style(greenColor);
                     } else {
@@ -263,7 +263,7 @@
                 //     }
                 // });
 
-                ipcRenderer.on(CHANNELS.ll5On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll11On, (e, isOn) => {
                     if (isOn) {
                         vm.ll2Style(greenColor);
                     } else {
@@ -279,7 +279,7 @@
                 //     }
                 // });
 
-                ipcRenderer.on(CHANNELS.ll6On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll12On, (e, isOn) => {
                     if (isOn) {
                         vm.ll3Style(greenColor);
                     } else {

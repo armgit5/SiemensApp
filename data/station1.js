@@ -15,7 +15,7 @@ module.exports = {
         ll5Off: 'M145.3',
         ll6On: 'M145.4',
         ll6Off: 'M145.5',
-        
+
         ll7On: 'M145.6',
         ll7Off: 'M145.7',
         ll8On: 'M146.0',
@@ -40,18 +40,37 @@ module.exports = {
         ll1isOn: 'Q0.0',
         ll2isOn: 'Q0.1',
         ll3isOn: 'Q0.2',
+
         ll4isOn: 'Q0.3',
         ll5isOn: 'Q0.4',
         ll6isOn: 'Q0.5',
         ll7isOn: 'Q9.0',
         ll8isOn: 'Q9.1',
         ll9isOn: 'Q9.2',
+
         ll10isOn: 'Q9.3',
         ll11isOn: 'Q9.4',
         ll12isOn: 'Q9.5',
         ll13isOn: 'Q9.6',
         ll14isOn: 'Q9.7',
         ll15isOn: 'Q8.0',
+    },
+    bits2: {
+        ll1isOn: 'Q0.0',
+        ll2isOn: 'Q0.1',
+        ll3isOn: 'Q0.2',
+
+        ll4isOn: 'Q9.3', // 10
+        ll5isOn: 'Q9.4', // 11
+        ll6isOn: 'Q9.5', // 12
+
+        ll7isOn: 'Q0.3', // 4
+        ll8isOn: 'Q0.4', // 5
+        ll9isOn: 'Q0.5', // 6
+
+        ll10isOn: 'Q9.0',
+        ll11isOn: 'Q9.1',
+        ll12isOn: 'Q9.2'
     },
     datetime: {
         header: {

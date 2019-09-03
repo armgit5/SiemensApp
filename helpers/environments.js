@@ -94,6 +94,11 @@ module.exports.CHANNELS = {
     onGroup5: 'on:group5'
 }
 
+module.exports.CHANNELS2 = {
+    autoManual3: 'auto:manual3:2',
+    setAutoManual3: 'set:auto:manual3:2',
+}
+
 module.exports.PRESSTIME = 2000;
 module.exports.SCANTIME = 1000;
 

@@ -11,7 +11,7 @@ const readHelper = require('../readHelper');
 module.exports = (NODE, mainWindow) => {
 
     require('./clickllOnOff')(NODE);
-    
+
     // Set automanual
     ipcMain.on(CHANNELS.autoManual, (e, autoManual) => {
         writeHelper(NODE, STATION1.datetime.header.setAutoManual, true)
@@ -21,7 +21,7 @@ module.exports = (NODE, mainWindow) => {
             .then(_ => {
             });
     });
-    
+
     ipcMain.on(CHANNELS.autoManual2, (e, autoManual) => {
         writeHelper(NODE, STATION1.datetime.header.setAutoManual2, true)
             .then(_ => {
@@ -29,7 +29,7 @@ module.exports = (NODE, mainWindow) => {
             })
             .then(_ => {
             });
-    }); 
+    });
 
     ipcMain.on(CHANNELS.autoManual3, (e, autoManual) => {
         writeHelper(NODE, STATION1.datetime.header.setAutoManual3, true)
@@ -38,7 +38,24 @@ module.exports = (NODE, mainWindow) => {
             })
             .then(_ => {
             });
-    }); 
+    });
+
+    ipcMain.on(CHANNELS2.autoManual3, (e, autoManual) => {
+        ipcMain.on(CHANNELS.autoManual3, (e, autoManual) => {
+            writeHelper(NODE, STATION1.datetime.header.setAutoManual3, true)
+                .then(_ => {
+                    return writeHelper(NODE, STATION1.datetime.header.setAutoManual4, true)
+                })
+                .then(_ => {
+                    return writeHelper(NODE, STATION1.datetime.header.setAutoManual3, false);
+                })
+                .then(_ => {
+                    return writeHelper(NODE, STATION1.datetime.header.setAutoManual4, false);
+                })
+                .then(_ => {
+                });
+        });
+    });
 
     ipcMain.on(CHANNELS.autoManual4, (e, autoManual) => {
         writeHelper(NODE, STATION1.datetime.header.setAutoManual4, true)
@@ -47,7 +64,7 @@ module.exports = (NODE, mainWindow) => {
             })
             .then(_ => {
             });
-    }); 
+    });
 
     ipcMain.on(CHANNELS.autoManual5, (e, autoManual) => {
         writeHelper(NODE, STATION1.datetime.header.setAutoManual5, true)
@@ -56,7 +73,7 @@ module.exports = (NODE, mainWindow) => {
             })
             .then(_ => {
             });
-    }); 
+    });
 
     // LL1 clicks
     require('./clickll1step1')(NODE);
