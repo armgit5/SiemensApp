@@ -663,6 +663,7 @@
                 });
                 $('#step1OnHH').on('keypress', function (e) {
                     if (e.which === 13) {
+                        // console.log(this.value);
                         const data = parseInt(this.value);
                         if (data >= 0) {
                             ipcRenderer.send(STEP.onHH, data);

@@ -316,6 +316,7 @@ module.exports = (mainWindow) => {
                 });
             });
             NODES.push(NODE);
+            require('./station1-process/clickHandler')(NODE, mainWindow);
         }
     }
 

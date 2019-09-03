@@ -8,6 +8,7 @@ module.exports = (NODE) => {
     const onHH = STATION1.datetime.ll7.step1.onHH;
     const onHHTimer = STATION1.datetime.ll7.step1.onHHTimer;
     ipcMain.on(onHH, (e, data) => {
+        // console.log('ll7 ', data);
         writeHelper(NODE, onHH, data)
             .then(_ => {
                 return writeHelper(NODE, onHHTimer, true);

@@ -1,5 +1,5 @@
 const { ipcMain } = require('electron');
-const { CHANNELS, SCANTIME } = require('../environments');
+const { CHANNELS, SCANTIME, CHANNELS2 } = require('../environments');
 const STATION1 = require('../../data/station1');
 
 const Store = require('electron-store');
