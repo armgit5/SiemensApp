@@ -166,7 +166,8 @@
       vm.time(headerDatetime);
 
       // Clading 1
-      const data1 = 'S4_M217_2';
+      const data1 = store.get('S4_M217_2');
+      console.log(data1);
       if (data1 !== undefined) {
         if (data1) {
           vm.Clading1Style(greenColor);
@@ -176,7 +177,7 @@
       }
 
       // Clading 2
-      const data2 = 'S4_M217_3';
+      const data2 = store.get('S4_M217_3');
       if (data2 !== undefined) {
         if (data2) {
           vm.Clading2Style(greenColor);
@@ -186,7 +187,7 @@
       }
 
       // Side Beam
-      const data3 = 'S4_M217_4';
+      const data3 = store.get('S4_M217_4');
       if (data3 !== undefined) {
         if (data3) {
           vm.SideBeamStyle(greenColor);

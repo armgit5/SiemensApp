@@ -201,7 +201,7 @@
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
-        const { CHANNELS, COLORS } = require('../../../helpers/environments');
+        const { CHANNELS, COLORS, CHANNELS2 } = require('../../../helpers/environments');
         const STATION1 = require('../../../data/station1');
         const Store = require('electron-store');
         const store = new Store();
@@ -263,7 +263,7 @@
                 vm.time(headerDatetime);
             }
 
-            if (store.get(CHANNELS.autoManual) === true) {
+            if (store.get(CHANNELS.autoManual3) === true) {
                 vm.autoManualStyle(greenColor);
                 vm.autoManual('AUTO');
             } else {
@@ -271,37 +271,37 @@
                 vm.autoManual('MANUAL');
             }
 
-            if (store.get(CHANNELS.ll7On) === true) {
+            if (store.get(CHANNELS.ll4On) === true) {
                 vm.ll1Style(greenColor);
             } else {
                 vm.ll1Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll8On) === true) {
+            if (store.get(CHANNELS.ll5On) === true) {
                 vm.ll2Style(greenColor);
             } else {
                 vm.ll2Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll9On) === true) {
+            if (store.get(CHANNELS.ll6On) === true) {
                 vm.ll3Style(greenColor);
             } else {
                 vm.ll3Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll10On) === true) {
+            if (store.get(CHANNELS.ll7On) === true) {
                 vm.ll4Style(greenColor);
             } else {
                 vm.ll4Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll11On) === true) {
+            if (store.get(CHANNELS.ll8On) === true) {
                 vm.ll5Style(greenColor);
             } else {
                 vm.ll5Style(redColor);
             }
 
-            if (store.get(CHANNELS.ll12On) === true) {
+            if (store.get(CHANNELS.ll9On) === true) {
                 vm.ll6Style(greenColor);
             } else {
                 vm.ll6Style(redColor);
@@ -328,7 +328,7 @@
             });
 
             const _readLLn = () => {
-                ipcRenderer.on(CHANNELS.ll7On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll4On, (e, isOn) => {
                     if (isOn) {
                         vm.ll1Style(greenColor);
                     } else {
@@ -336,7 +336,7 @@
                     }
                 });
 
-                ipcRenderer.on(CHANNELS.ll8On, (e, isOn) => {
+                ipcRenderer.on(CHANNELS.ll5On, (e, isOn) => {
                     if (isOn) {
                         vm.ll2Style(greenColor);
                     } else {
@@ -344,41 +344,41 @@
                     }
                 });
 
+                ipcRenderer.on(CHANNELS.ll6On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll3Style(greenColor);
+                    } else {
+                        vm.ll3Style(redColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll7On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll4Style(greenColor);
+                    } else {
+                        vm.ll4Style(redColor);
+                    }
+                });
+
+                ipcRenderer.on(CHANNELS.ll8On, (e, isOn) => {
+                    if (isOn) {
+                        vm.ll5Style(greenColor);
+                    } else {
+                        vm.ll5Style(redColor);
+                    }
+                });
+
                 ipcRenderer.on(CHANNELS.ll9On, (e, isOn) => {
                     if (isOn) {
-                        vm.ll3Style(greenColor);
+                        vm.ll6Style(greenColor);
                     } else {
-                        vm.ll3Style(redColor);
-                    }
-                });
-
-                ipcRenderer.on(CHANNELS.ll10On, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll3Style(greenColor);
-                    } else {
-                        vm.ll3Style(redColor);
-                    }
-                });
-
-                ipcRenderer.on(CHANNELS.ll11On, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll3Style(greenColor);
-                    } else {
-                        vm.ll3Style(redColor);
-                    }
-                });
-
-                ipcRenderer.on(CHANNELS.ll12On, (e, isOn) => {
-                    if (isOn) {
-                        vm.ll3Style(greenColor);
-                    } else {
-                        vm.ll3Style(redColor);
+                        vm.ll6Style(redColor);
                     }
                 });
             }
             _readLLn();
 
-            ipcRenderer.on(CHANNELS.autoManual, (e, autoManual) => {
+            ipcRenderer.on(CHANNELS.autoManual3, (e, autoManual) => {
                 if (autoManual) {
                     vm.autoManual('AUTO');
                     vm.autoManualStyle(greenColor);
@@ -443,11 +443,11 @@
             };
 
             document.getElementById('autoManual').onclick = () => {
-                const autoManual = store.get(CHANNELS.autoManual);
+                const autoManual = store.get(CHANNELS.autoManual3);
                 if (autoManual) {
-                    ipcRenderer.send(CHANNELS.autoManual, false);
+                    ipcRenderer.send(CHANNELS.autoManual3, false);
                 } else {
-                    ipcRenderer.send(CHANNELS.autoManual, true);
+                    ipcRenderer.send(CHANNELS.autoManual3, true);
                 }
             };
 
