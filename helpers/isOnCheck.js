@@ -235,7 +235,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 const data3 = data[M217_3];
                                 const data4 = data[M217_4];
 
-                                console.log(data2, S2_M218_2, 'N2');
+                                // console.log(data2, S2_M218_2, 'N2');
 
                                 if (S2_M218_2 !== data1) {
 
@@ -728,6 +728,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                         n.conn.removeItems(M218_2);
                         n.conn.removeItems(M218_3);
 
+                    } else {
+                        console.log(n, 'not connected');
                     }
 
                 });

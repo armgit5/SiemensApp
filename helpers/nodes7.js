@@ -34,6 +34,9 @@ let initReadWrite = false;
 const Store = require('electron-store');
 const store = new Store();
 
+let startLoop = [true];
+const PINGINTERVALS = [];
+
 module.exports = (mainWindow) => {
 
     const _sendDefaultDatetime = () => {
@@ -76,7 +79,8 @@ module.exports = (mainWindow) => {
                     console.log('init station 2 sucessfully');
                     _initReadWrite(NODE);
                 } else {
-                    _sendDefaultDatetime();
+                    // require('./reInit')(mainWindow, STATION2.id, false);
+                    // _sendDefaultDatetime();
                 }
             });
         }
@@ -312,6 +316,8 @@ module.exports = (mainWindow) => {
                         // require('./isOnCheck')(NODES, mainWindow, true);
                         console.log('new node', s.id, cnt);
                         cnt++;
+                    } else {
+                        console.log(s.id, 'is offline');
                     }
                 });
             });
@@ -328,13 +334,13 @@ module.exports = (mainWindow) => {
         if (NODES.length === 0) {
 
             arr.forEach(i => {
-                const tempNode = new Node(STATIONS[i-1].id, STATIONS[i-1].ip);
-                console.log('node inited ', STATIONS[i-1].id, STATIONS[i-1].ip);
+                const tempNode = new Node(STATIONS[i - 1].id, STATIONS[i - 1].ip);
+                console.log('node inited ', STATIONS[i - 1].id, STATIONS[i - 1].ip);
                 initHelper(tempNode).then(isOnline => {
                     if (isOnline) {
                         NODES.push(tempNode);
                         // require('./isOnCheck')(NODES, mainWindow, true);
-                        console.log('new node', STATIONS[i-1].id, cnt);
+                        console.log('new node', STATIONS[i - 1].id, cnt);
                         cnt++;
                     }
                 });
@@ -378,8 +384,7 @@ module.exports = (mainWindow) => {
             }
         });
 
-        let startLoop = [true];
-        const PINGINTERVALS = [];
+
         let reqCnt = 0;
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsCheck, (e, id, arr) => {
@@ -395,7 +400,7 @@ module.exports = (mainWindow) => {
             } else {
 
                 _initAllNodes();
-            }            
+            }
             require('./isOnCheck')(NODES, mainWindow, startLoop, PINGINTERVALS);
         });
 

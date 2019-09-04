@@ -568,9 +568,10 @@ module.exports = (NODE, mainWindow) => {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    console.log(err, 'reading error', NODE);
                     const errMessage = 'Reading...';
                     _parseDatetime(errMessage);
+                    require('../reInit')(mainWindow, NODE.id, false);
                 });
 
         }, SCANTIME);
