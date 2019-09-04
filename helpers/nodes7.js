@@ -301,6 +301,7 @@ module.exports = (mainWindow) => {
         PINGINTERVALS.push(_pingLoopInterval);
     };
 
+    let IDS = [];
     const _initAllNodes = () => {
         let cnt = 1;
         console.log('Init Total nodes ', NODES.length);
@@ -312,17 +313,23 @@ module.exports = (mainWindow) => {
                 console.log('node inited ', s.id, s.ip);
                 initHelper(tempNode).then(isOnline => {
                     if (isOnline) {
-                        NODES.push(tempNode);
                         // require('./isOnCheck')(NODES, mainWindow, true);
                         console.log('new node', s.id, cnt);
+                        if (!IDS.includes(s.id)) {
+                            IDS.push(s.id);
+                            NODES.push(tempNode);
+                        }
                         cnt++;
                     } else {
                         console.log(s.id, 'is offline');
                     }
                 });
             });
-            NODES.push(NODE);
-            require('./station1-process/clickHandler')(NODE, mainWindow);
+            if (NODE && !IDS.includes(NODE.id)) {
+                IDS.push(NODE.id);
+                NODES.push(NODE);
+                require('./station1-process/clickHandler')(NODE, mainWindow);
+            }
         }
     }
 
@@ -358,7 +365,7 @@ module.exports = (mainWindow) => {
             const nodeCounts = NODES.length;
             let cnt = 1;
             NODES.forEach(n => {
-                if (n.conn) {
+                if (n && n.conn) {
                     n.conn.dropConnection((cb) => {
                         console.log('disconnnect node', cb, cnt, n.id);
                         if (cnt === nodeCounts) {
@@ -386,12 +393,13 @@ module.exports = (mainWindow) => {
 
 
         let reqCnt = 0;
+        let alreadyInitAllNodes = false;
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsCheck, (e, id, arr) => {
 
             console.log('on status check working');
 
-            _killAllNodes();
+            // _killAllNodes();
             PINGINTERVALS.forEach(clearInterval);
             startLoop[0] = true;
 
@@ -399,7 +407,11 @@ module.exports = (mainWindow) => {
                 _initSomeNodes(arr);
             } else {
 
-                _initAllNodes();
+                if (true) {
+                    _initAllNodes();
+                    alreadyInitAllNodes = true;
+                }
+
             }
             require('./isOnCheck')(NODES, mainWindow, startLoop, PINGINTERVALS);
         });
