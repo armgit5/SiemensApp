@@ -41,20 +41,18 @@ module.exports = (NODE, mainWindow) => {
     });
 
     ipcMain.on(CHANNELS2.autoManual3, (e, autoManual) => {
-        ipcMain.on(CHANNELS.autoManual3, (e, autoManual) => {
-            writeHelper(NODE, STATION1.datetime.header.setAutoManual3, true)
-                .then(_ => {
-                    return writeHelper(NODE, STATION1.datetime.header.setAutoManual4, true)
-                })
-                .then(_ => {
-                    return writeHelper(NODE, STATION1.datetime.header.setAutoManual3, false);
-                })
-                .then(_ => {
-                    return writeHelper(NODE, STATION1.datetime.header.setAutoManual4, false);
-                })
-                .then(_ => {
-                });
-        });
+        writeHelper(NODE, STATION1.datetime.header.setAutoManual3, true)
+            .then(_ => {
+                return writeHelper(NODE, STATION1.datetime.header.setAutoManual4, true)
+            })
+            .then(_ => {
+                return writeHelper(NODE, STATION1.datetime.header.setAutoManual3, false);
+            })
+            .then(_ => {
+                return writeHelper(NODE, STATION1.datetime.header.setAutoManual4, false);
+            })
+            .then(_ => {
+            });
     });
 
     ipcMain.on(CHANNELS.autoManual4, (e, autoManual) => {

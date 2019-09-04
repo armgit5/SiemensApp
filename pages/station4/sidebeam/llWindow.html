@@ -445,9 +445,9 @@
             document.getElementById('autoManual').onclick = () => {
                 const autoManual = store.get(CHANNELS.autoManual3);
                 if (autoManual) {
-                    ipcRenderer.send(CHANNELS.autoManual3, false);
+                    ipcRenderer.send(CHANNELS2.autoManual3, false);
                 } else {
-                    ipcRenderer.send(CHANNELS.autoManual3, true);
+                    ipcRenderer.send(CHANNELS2.autoManual3, true);
                 }
             };
 
