@@ -159,7 +159,186 @@ store.set('S12_M218_0', false);
 let S12_M218_1 = false;
 store.set('S12_M218_1', false);
 
+let STATION_ID = 0;
+
+
 module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
+
+    const _connect = () => {
+        // Init station 1
+        if (STATION_ID === 1) {
+            // NODE = null;
+            NODE = new Node(STATION1.id, STATION1.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S1 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 1 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 2) {
+            // NODE = null;
+            NODE = new Node(STATION2.id, STATION2.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S2 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 2 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    // require('./reInit')(mainWindow, STATION2.id, false);
+                    // _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 3) {
+            // NODE = null;
+            NODE = new Node(STATION3.id, STATION3.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S3 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 3 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 4) {
+            NODE = new Node(STATION4.id, STATION4.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S4 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 4 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 5) {
+            NODE = new Node(STATION5.id, STATION5.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S5 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 5 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 6) {
+            NODE = new Node(STATION6.id, STATION6.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S6 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 6 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 7) {
+            NODE = new Node(STATION7.id, STATION7.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S7 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 7 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 8) {
+            NODE = new Node(STATION8.id, STATION8.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S8 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 8 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 9) {
+            NODE = new Node(STATION9.id, STATION9.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S9 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 9 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 10) {
+            NODE = new Node(STATION10.id, STATION10.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S10 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 10 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 11) {
+            NODE = new Node(STATION11.id, STATION11.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S11 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 11 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+
+        if (STATION_ID === 12) {
+            NODE = new Node(STATION12.id, STATION12.ip);
+            initHelper(NODE).then(isOnline => {
+                console.log('S12 is online ', isOnline);
+                if (isOnline) {
+                    aNodeIsOnline = true;
+                    console.log('init station 12 sucessfully');
+                    _initReadWrite(NODE);
+                } else {
+                    _sendDefaultDatetime();
+                }
+            });
+        }
+    };
+
 
     if (cnt === 0) {
 
@@ -224,6 +403,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     store.set('S1_M217_0', dM217_0);
                                     mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: dM217_0 });
                                 }
+                            })
+                            .catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -262,6 +444,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     store.set('S2_M217_4', data4);
                                     mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: data4 });
                                 }
+                            })
+                            .catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -274,6 +459,9 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     store.set('S3_M217_0', data1);
                                     mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: data1 });
                                 }
+                            })
+                            .catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -308,6 +496,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     store.set('S4_M217_4', data4);
                                     mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: data4 });
                                 }
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -357,6 +547,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     store.set('S5_M218_1', data6);
                                     mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: data6 });
                                 }
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -407,6 +599,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation6, { M218_1: data6 });
                                 }
 
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -456,6 +650,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     store.set('S7_M218_1', data6);
                                     mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: data6 });
                                 }
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -506,6 +702,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation8, { M218_1: data6 });
                                 }
 
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -556,6 +754,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation9, { M218_1: data6 });
                                 }
 
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -608,6 +808,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation10, { M218_1: data6 });
                                 }
 
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -658,6 +860,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation11, { M218_1: data6 });
                                 }
 
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
@@ -710,6 +914,8 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
 
+                            }).catch(err => {
+                                require('./reInit')(mainWindow, n.id, false);
                             });
                         }
 
