@@ -328,6 +328,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: data4 });
                                 }
                             }).catch(err => {
+                                S4_M218_2 = false;
+                                S4_M217_2 = false;
+                                S4_M217_3 = false;
+                                S4_M217_4 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -379,6 +383,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: data6 });
                                 }
                             }).catch(err => {
+                                S5_M218_3 = false;
+                                S5_M217_5 = false;
+                                S5_M217_6 = false;
+                                S5_M217_7 = false;
+                                S5_M218_0 = false;
+                                S5_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -431,6 +441,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
+                                S6_M218_3 = false;
+                                S6_M217_5 = false;
+                                S6_M217_6 = false;
+                                S6_M217_7 = false;
+                                S6_M218_0 = false;
+                                S6_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -482,6 +498,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: data6 });
                                 }
                             }).catch(err => {
+                                S7_M218_3 = false;
+                                S7_M217_5 = false;
+                                S7_M217_6 = false;
+                                S7_M217_7 = false;
+                                S7_M218_0 = false;
+                                S7_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -534,6 +556,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
+                                S8_M218_3 = false;
+                                S8_M217_5 = false;
+                                S8_M217_6 = false;
+                                S8_M217_7 = false;
+                                S8_M218_0 = false;
+                                S8_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -586,6 +614,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
+                                S9_M218_3 = false;
+                                S9_M217_5 = false;
+                                S9_M217_6 = false;
+                                S9_M217_7 = false;
+                                S9_M218_0 = false;
+                                S9_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -640,6 +674,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
+                                S10_M218_3 = false;
+                                S10_M217_5 = false;
+                                S10_M217_6 = false;
+                                S10_M217_7 = false;
+                                S10_M218_0 = false;
+                                S10_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -692,6 +732,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
+                                S11_M218_3 = false;
+                                S11_M217_5 = false;
+                                S11_M217_6 = false;
+                                S11_M217_7 = false;
+                                S11_M218_0 = false;
+                                S11_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -746,6 +792,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
 
                             }).catch(err => {
+                                S12_M218_3 = false;
+                                S12_M217_5 = false;
+                                S12_M217_6 = false;
+                                S12_M217_7 = false;
+                                S12_M218_0 = false;
+                                S12_M218_1 = false;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
