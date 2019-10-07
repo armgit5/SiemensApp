@@ -65,7 +65,7 @@ module.exports = (mainWindow, NodeId, initAll) => {
         mainWindow.webContents.send(CHANNELS.onStation5, { M218_3: false });
 
         store.set('S5_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation5, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation5, { M217_5: false, blink: true });
 
         store.set('S5_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation5, { M217_6: false });
@@ -85,7 +85,7 @@ module.exports = (mainWindow, NodeId, initAll) => {
         mainWindow.webContents.send(CHANNELS.onStation6, { M218_3: false });
 
         store.set('S6_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation6, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation6, { M217_5: false, blink: true });
 
         store.set('S6_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation6, { M217_6: false });
@@ -104,44 +104,44 @@ module.exports = (mainWindow, NodeId, initAll) => {
     if (NodeId === 'N7' || initAll) {
 
         store.set('S7_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation7, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation7, { M218_3: false, blink: true });
 
         store.set('S7_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation7, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation7, { M217_5: false, blink: true });
 
         store.set('S7_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation7, { M217_6: false })
+        mainWindow.webContents.send(CHANNELS.onStation7, { M217_6: false, blink: true })
 
         store.set('S7_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation7, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation7, { M217_7: false, blink: true });
 
         store.set('S7_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation7, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation7, { M218_0: false, blink: true });
 
         store.set('S7_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: false, blink: true });
 
     }
 
     if (NodeId === 'N8' || initAll) {
 
         store.set('S8_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation8, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation8, { M218_3: false, blink: true });
 
         store.set('S8_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation8, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation8, { M217_5: false, blink: true });
 
         store.set('S8_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation8, { M217_6: false });
+        mainWindow.webContents.send(CHANNELS.onStation8, { M217_6: false, blink: true });
 
         store.set('S8_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation8, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation8, { M217_7: false, blink: true });
 
         store.set('S8_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation8, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation8, { M218_0: false, blink: true });
 
         store.set('S8_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation8, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation8, { M218_1: false, blink: true });
     }
 
     if (NodeId === 'N9' || initAll) {
@@ -149,7 +149,7 @@ module.exports = (mainWindow, NodeId, initAll) => {
         mainWindow.webContents.send(CHANNELS.onStation9, { M218_3: false });
 
         store.set('S9_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation9, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation9, { M217_5: false, blink: true });
 
         store.set('S9_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation9, { M217_6: false });
@@ -170,7 +170,7 @@ module.exports = (mainWindow, NodeId, initAll) => {
         mainWindow.webContents.send(CHANNELS.onStation10, { M218_3: false });
 
         store.set('S10_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation10, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation10, { M217_5: false, blink: true });
 
         store.set('S10_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation10, { M217_6: false });
@@ -190,7 +190,7 @@ module.exports = (mainWindow, NodeId, initAll) => {
         mainWindow.webContents.send(CHANNELS.onStation11, { M218_3: false });
 
         store.set('S11_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation11, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation11, { M217_5: false, blink: true });
 
         store.set('S11_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation11, { M217_6: false });
@@ -211,7 +211,7 @@ module.exports = (mainWindow, NodeId, initAll) => {
         mainWindow.webContents.send(CHANNELS.onStation12, { M218_3: false });
 
         store.set('S12_M217_5', false);
-        mainWindow.webContents.send(CHANNELS.onStation12, { M217_5: false });
+        mainWindow.webContents.send(CHANNELS.onStation12, { M217_5: false, blink: true });
 
         store.set('S12_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation12, { M217_6: false });

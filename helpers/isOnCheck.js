@@ -20,144 +20,144 @@ const M218_3 = 'M218.3';
 // Cache
 let cnt = 0;
 // Station1
-let S1_M217_0 = false;
-store.set('S1_M217_0', false);
+let S1_M217_0;
+// store.set('S1_M217_0', false);
 
 // Station2
-let S2_M218_2 = false;
-store.set('S2_M218_2', false);
-let S2_M217_2 = false;
-store.set('S2_M217_2', false);
-let S2_M217_3 = false;
-store.set('S2_M217_3', false);
-let S2_M217_4 = false;
-store.set('S2_M217_4', false);
+let S2_M218_2;
+// store.set('S2_M218_2', false);
+let S2_M217_2;
+// store.set('S2_M217_2', false);
+let S2_M217_3;
+// store.set('S2_M217_3', false);
+let S2_M217_4;
+// store.set('S2_M217_4', false);
 
 // Station3
-let S3_M217_0 = false;
-store.set('S3_M217_0', false);
+let S3_M217_0;
+// store.set('S3_M217_0', false);
 
 // Station 4
-let S4_M218_2 = false;
-store.set('S4_M218_2', false);
-let S4_M217_2 = false;
-store.set('S4_M217_2', false);
-let S4_M217_3 = false;
-store.set('S4_M217_3', false);
-let S4_M217_4 = false;
-store.set('S4_M217_4', false);
+let S4_M218_2;
+// store.set('S4_M218_2', false);
+let S4_M217_2;
+// store.set('S4_M217_2', false);
+let S4_M217_3;
+// store.set('S4_M217_3', false);
+let S4_M217_4;
+// store.set('S4_M217_4', false);
 
 // Station 5
-let S5_M218_3 = false;
-store.set('S5_M218_3', false);
-let S5_M217_5 = false;
-store.set('S5_M217_5', false);
-let S5_M217_6 = false;
-store.set('S5_M217_6', false);
-let S5_M217_7 = false;
-store.set('S5_M217_7', false);
-let S5_M218_0 = false;
-store.set('S5_M218_0', false);
-let S5_M218_1 = false;
-store.set('S5_M218_1', false);
+let S5_M218_3;
+// store.set('S5_M218_3', false);
+let S5_M217_5;
+// store.set('S5_M217_5', false);
+let S5_M217_6;
+// store.set('S5_M217_6', false);
+let S5_M217_7;
+// store.set('S5_M217_7', false);
+let S5_M218_0;
+// store.set('S5_M218_0', false);
+let S5_M218_1;
+// store.set('S5_M218_1', false);
 
 // Station 6
-let S6_M218_3 = false;
-store.set('S6_M218_3', false);
-let S6_M217_5 = false;
-store.set('S6_M217_5', false);
-let S6_M217_6 = false;
-store.set('S6_M217_6', false);
-let S6_M217_7 = false;
-store.set('S6_M217_7', false);
-let S6_M218_0 = false;
-store.set('S6_M218_0', false);
-let S6_M218_1 = false;
-store.set('S6_M218_1', false);
+let S6_M218_3;
+// store.set('S6_M218_3', false);
+let S6_M217_5;
+// store.set('S6_M217_5', false);
+let S6_M217_6;
+// store.set('S6_M217_6', false);
+let S6_M217_7;
+// store.set('S6_M217_7', false);
+let S6_M218_0;
+// store.set('S6_M218_0', false);
+let S6_M218_1;
+// store.set('S6_M218_1', false);
 
 // Station 7
-let S7_M218_3 = false;
-store.set('S7_M218_3', false);
-let S7_M217_5 = false;
-store.set('S7_M217_5', false);
-let S7_M217_6 = false;
-store.set('S7_M217_6', false);
-let S7_M217_7 = false;
-store.set('S7_M217_7', false);
-let S7_M218_0 = false;
-store.set('S7_M218_0', false);
-let S7_M218_1 = false;
-store.set('S7_M218_1', false);
+let S7_M218_3;
+// store.set('S7_M218_3', false);
+let S7_M217_5;
+// store.set('S7_M217_5', false);
+let S7_M217_6;
+// store.set('S7_M217_6', false);
+let S7_M217_7;
+// store.set('S7_M217_7', false);
+let S7_M218_0;
+// store.set('S7_M218_0', false);
+let S7_M218_1;
+// store.set('S7_M218_1', false);
 
 // Station 8
-let S8_M218_3 = false;
-store.set('S8_M218_3', false);
-let S8_M217_5 = false;
-store.set('S8_M217_5', false);
-let S8_M217_6 = false;
-store.set('S8_M217_6', false);
-let S8_M217_7 = false;
-store.set('S8_M217_7', false);
-let S8_M218_0 = false;
-store.set('S8_M218_0', false);
-let S8_M218_1 = false;
-store.set('S8_M218_1', false);
+let S8_M218_3;
+// store.set('S8_M218_3', false);
+let S8_M217_5;
+// store.set('S8_M217_5', false);
+let S8_M217_6;
+// store.set('S8_M217_6', false);
+let S8_M217_7;
+// store.set('S8_M217_7', false);
+let S8_M218_0;
+// store.set('S8_M218_0', false);
+let S8_M218_1;
+// store.set('S8_M218_1', false);
 
 // Station 9
-let S9_M218_3 = false;
-store.set('S9_M218_3', false);
-let S9_M217_5 = false;
-store.set('S9_M217_5', false);
-let S9_M217_6 = false;
-store.set('S9_M217_6', false);
-let S9_M217_7 = false;
-store.set('S9_M217_7', false);
-let S9_M218_0 = false;
-store.set('S9_M218_0', false);
-let S9_M218_1 = false;
-store.set('S9_M218_1', false);
+let S9_M218_3;
+// store.set('S9_M218_3', false);
+let S9_M217_5;
+// store.set('S9_M217_5', false);
+let S9_M217_6;
+// store.set('S9_M217_6', false);
+let S9_M217_7;
+// store.set('S9_M217_7', false);
+let S9_M218_0;
+// store.set('S9_M218_0', false);
+let S9_M218_1;
+// store.set('S9_M218_1', false);
 
 // Station 10
-let S10_M218_3 = false;
-store.set('S10_M218_3', false);
-let S10_M217_5 = false;
-store.set('S10_M217_5', false);
-let S10_M217_6 = false;
-store.set('S10_M217_6', false);
-let S10_M217_7 = false;
-store.set('S10_M217_7', false);
-let S10_M218_0 = false;
-store.set('S10_M218_0', false);
-let S10_M218_1 = false;
-store.set('S10_M218_1', false);
+let S10_M218_3;
+// store.set('S10_M218_3', false);
+let S10_M217_5;
+// store.set('S10_M217_5', false);
+let S10_M217_6;
+// store.set('S10_M217_6', false);
+let S10_M217_7;
+// store.set('S10_M217_7', false);
+let S10_M218_0;
+// store.set('S10_M218_0', false);
+let S10_M218_1;
+// store.set('S10_M218_1', false);
 
 // Station 11
-let S11_M218_3 = false;
-store.set('S11_M218_3', false);
-let S11_M217_5 = false;
-store.set('S11_M217_5', false);
-let S11_M217_6 = false;
-store.set('S11_M217_6', false);
-let S11_M217_7 = false;
-store.set('S11_M217_7', false);
-let S11_M218_0 = false;
-store.set('S11_M218_0', false);
-let S11_M218_1 = false;
-store.set('S11_M218_1', false);
+let S11_M218_3;
+// store.set('S11_M218_3', false);
+let S11_M217_5;
+// store.set('S11_M217_5', false);
+let S11_M217_6;
+// store.set('S11_M217_6', false);
+let S11_M217_7;
+// store.set('S11_M217_7', false);
+let S11_M218_0;
+// store.set('S11_M218_0', false);
+let S11_M218_1;
+// store.set('S11_M218_1', false);
 
 // Station 12
-let S12_M218_3 = false;
-store.set('S12_M218_3', false);
-let S12_M217_5 = false;
-store.set('S12_M217_5', false);
-let S12_M217_6 = false;
-store.set('S12_M217_6', false);
-let S12_M217_7 = false;
-store.set('S12_M217_7', false);
-let S12_M218_0 = false;
-store.set('S12_M218_0', false);
-let S12_M218_1 = false;
-store.set('S12_M218_1', false);
+let S12_M218_3;
+// store.set('S12_M218_3', false);
+let S12_M217_5;
+// store.set('S12_M217_5', false);
+let S12_M217_6;
+// store.set('S12_M217_6', false);
+let S12_M217_7;
+// store.set('S12_M217_7', false);
+let S12_M218_0;
+// store.set('S12_M218_0', false);
+let S12_M218_1;
+// store.set('S12_M218_1', false);
 
 let STATION_ID = 0;
 
@@ -229,7 +229,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
                             })
                                 .catch(err => {
-                                    S1_M217_0 = false;
+                                    S1_M217_0 = undefined;
                                     require('./reInit')(mainWindow, n.id, false);
                                 });
                         }
@@ -271,10 +271,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
                             })
                                 .catch(err => {
-                                    S2_M218_2 = false;
-                                    S2_M217_2 = false;
-                                    S2_M217_3 = false;
-                                    S2_M217_4 = false;
+                                    S2_M218_2 = undefined;
+                                    S2_M217_2 = undefined;
+                                    S2_M217_3 = undefined;
+                                    S2_M217_4 = undefined;
                                     require('./reInit')(mainWindow, n.id, false);
 
                                 });
@@ -291,7 +291,7 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
                             })
                                 .catch(err => {
-                                    S3_M217_0 = false;
+                                    S3_M217_0 = undefined;
                                     require('./reInit')(mainWindow, n.id, false);
                                 });
                         }
@@ -328,10 +328,10 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: data4 });
                                 }
                             }).catch(err => {
-                                S4_M218_2 = false;
-                                S4_M217_2 = false;
-                                S4_M217_3 = false;
-                                S4_M217_4 = false;
+                                S4_M218_2 = undefined;
+                                S4_M217_2 = undefined;
+                                S4_M217_3 = undefined;
+                                S4_M217_4 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -383,12 +383,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: data6 });
                                 }
                             }).catch(err => {
-                                S5_M218_3 = false;
-                                S5_M217_5 = false;
-                                S5_M217_6 = false;
-                                S5_M217_7 = false;
-                                S5_M218_0 = false;
-                                S5_M218_1 = false;
+                                S5_M218_3 = undefined;
+                                S5_M217_5 = undefined;
+                                S5_M217_6 = undefined;
+                                S5_M217_7 = undefined;
+                                S5_M218_0 = undefined;
+                                S5_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -441,12 +441,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
-                                S6_M218_3 = false;
-                                S6_M217_5 = false;
-                                S6_M217_6 = false;
-                                S6_M217_7 = false;
-                                S6_M218_0 = false;
-                                S6_M218_1 = false;
+                                S6_M218_3 = undefined;
+                                S6_M217_5 = undefined;
+                                S6_M217_6 = undefined;
+                                S6_M217_7 = undefined;
+                                S6_M218_0 = undefined;
+                                S6_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -498,12 +498,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                     mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: data6 });
                                 }
                             }).catch(err => {
-                                S7_M218_3 = false;
-                                S7_M217_5 = false;
-                                S7_M217_6 = false;
-                                S7_M217_7 = false;
-                                S7_M218_0 = false;
-                                S7_M218_1 = false;
+                                S7_M218_3 = undefined;
+                                S7_M217_5 = undefined;
+                                S7_M217_6 = undefined;
+                                S7_M217_7 = undefined;
+                                S7_M218_0 = undefined;
+                                S7_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -556,12 +556,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
-                                S8_M218_3 = false;
-                                S8_M217_5 = false;
-                                S8_M217_6 = false;
-                                S8_M217_7 = false;
-                                S8_M218_0 = false;
-                                S8_M218_1 = false;
+                                S8_M218_3 = undefined;
+                                S8_M217_5 = undefined;
+                                S8_M217_6 = undefined;
+                                S8_M217_7 = undefined;
+                                S8_M218_0 = undefined;
+                                S8_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -614,12 +614,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
-                                S9_M218_3 = false;
-                                S9_M217_5 = false;
-                                S9_M217_6 = false;
-                                S9_M217_7 = false;
-                                S9_M218_0 = false;
-                                S9_M218_1 = false;
+                                S9_M218_3 = undefined;
+                                S9_M217_5 = undefined;
+                                S9_M217_6 = undefined;
+                                S9_M217_7 = undefined;
+                                S9_M218_0 = undefined;
+                                S9_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -674,12 +674,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
-                                S10_M218_3 = false;
-                                S10_M217_5 = false;
-                                S10_M217_6 = false;
-                                S10_M217_7 = false;
-                                S10_M218_0 = false;
-                                S10_M218_1 = false;
+                                S10_M218_3 = undefined;
+                                S10_M217_5 = undefined;
+                                S10_M217_6 = undefined;
+                                S10_M217_7 = undefined;
+                                S10_M218_0 = undefined;
+                                S10_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -732,12 +732,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
                                 }
 
                             }).catch(err => {
-                                S11_M218_3 = false;
-                                S11_M217_5 = false;
-                                S11_M217_6 = false;
-                                S11_M217_7 = false;
-                                S11_M218_0 = false;
-                                S11_M218_1 = false;
+                                S11_M218_3 = undefined;
+                                S11_M217_5 = undefined;
+                                S11_M217_6 = undefined;
+                                S11_M217_7 = undefined;
+                                S11_M218_0 = undefined;
+                                S11_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }
@@ -792,12 +792,12 @@ module.exports = (NODES, mainWindow, startLoop, PINGINTERVALS) => {
 
 
                             }).catch(err => {
-                                S12_M218_3 = false;
-                                S12_M217_5 = false;
-                                S12_M217_6 = false;
-                                S12_M217_7 = false;
-                                S12_M218_0 = false;
-                                S12_M218_1 = false;
+                                S12_M218_3 = undefined;
+                                S12_M217_5 = undefined;
+                                S12_M217_6 = undefined;
+                                S12_M217_7 = undefined;
+                                S12_M218_0 = undefined;
+                                S12_M218_1 = undefined;
                                 require('./reInit')(mainWindow, n.id, false);
                             });
                         }

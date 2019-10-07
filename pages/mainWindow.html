@@ -24,7 +24,7 @@
 
     <div class="row">
       <div class="col-12" style="margin-top: 30px; margin-left: 10px;">
-          <h1 class="header" style=" text-align: left;
+        <h1 class="header" style=" text-align: left;
           width: 500px;
           border: 1px solid black;
           background-color: white;
@@ -38,7 +38,7 @@
               HH:MM</button>
           </div>
       </div> -->
-  </div>
+    </div>
 
     <div class="row" style="margin-top: 30px;">
       <!-- Station 1 -->
@@ -206,6 +206,11 @@
     const grayColor = {
       'background-color': COLORS.gray
     };
+
+    const yellowColor = {
+      'background-color': COLORS.yellow
+    };
+
     let vm;
 
     // Start View Model
@@ -253,8 +258,10 @@
         } else {
           vm.SiamStyle1(redColor);
         }
+      } else {
+        vm.SiamStyle1(yellowColor);
       }
-
+ 
       // Station 2
       const data2 = store.get('S2_M218_2');
       if (data2 !== undefined) {
@@ -263,6 +270,8 @@
         } else {
           vm.SiamStyle2(redColor);
         }
+      } else {
+        vm.SiamStyle2(yellowColor);
       }
 
       // Station 3
@@ -273,6 +282,8 @@
         } else {
           vm.SiamStyle3(redColor);
         }
+      } else {
+        vm.SiamStyle3(yellowColor);
       }
 
       // Station 4
@@ -283,6 +294,8 @@
         } else {
           vm.SiamStyle4(redColor);
         }
+      } else {
+        vm.SiamStyle4(yellowColor);
       }
 
       // Asok 
@@ -294,6 +307,8 @@
         } else {
           vm.E4Style1(redColor);
         }
+      } else {
+        vm.E4Style1(yellowColor);
       }
 
       // Station 6
@@ -304,6 +319,8 @@
         } else {
           vm.E4Style2(redColor);
         }
+      } else {
+        vm.E4Style2(yellowColor);
       }
 
       // E5
@@ -315,6 +332,8 @@
         } else {
           vm.E5Style1(redColor);
         }
+      } else {
+        vm.E5Style1(yellowColor);
       }
 
       const data8 = store.get('S8_M218_3');
@@ -324,6 +343,8 @@
         } else {
           vm.E5Style2(redColor);
         }
+      } else {
+        vm.E5Style2(yellowColor);
       }
 
       // S2 
@@ -334,6 +355,8 @@
         } else {
           vm.S2Style1(redColor);
         }
+      } else {
+        vm.S2Style1(yellowColor);
       }
 
       const data10 = store.get('S10_M218_3');
@@ -343,6 +366,8 @@
         } else {
           vm.S2Style2(redColor);
         }
+      } else {
+        vm.S2Style2(yellowColor);
       }
 
       // S3
@@ -353,6 +378,8 @@
         } else {
           vm.S3Style1(redColor);
         }
+      } else {
+        vm.S3Style1(yellowColor);
       }
 
       const data12 = store.get('S12_M218_3');
@@ -362,6 +389,8 @@
         } else {
           vm.S3Style2(redColor);
         }
+      } else {
+        vm.S3Style2(yellowColor);
       }
 
 
@@ -383,7 +412,7 @@
         const yr = d.getFullYear();
 
         const dt = `${day} ${monthNames[mo]} ${yr} ${hh}:${mm}:${ss}`;
-        console.log(dt);
+        // console.log(dt);
         vm.time(dt);
 
       }, 1000);
@@ -392,9 +421,31 @@
       // ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
       //   vm.time(datetime);
       // });
+      
+      // Blink 218
+      // let interval218;
+      // const _blink218 = () => {
+      //   let isYellow = false;
+      //   interval218 = setInterval(() => {
+
+      //     if (isYellow) {
+      //       vm.SiamStyle2(redColor);
+      //       isYellow = false;
+      //     } else {
+      //       vm.SiamStyle2(yellowColor);
+      //       isYellow = true;
+      //     }
+      //   }, 1000);
+      // }
+
+      // const _stop218 = () => {
+      //   clearInterval(interval218);
+      // }
 
       // Siam
       ipcRenderer.on(CHANNELS.onStation1, (e, data) => {
+
+        console.log('217 ', data.M217_0);
 
         if (data.M217_0 !== undefined) {
           if (data.M217_0) {
@@ -402,6 +453,10 @@
           } else {
             vm.SiamStyle1(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.SiamStyle1(yellowColor);
         }
 
       });
@@ -415,6 +470,10 @@
           }
         }
 
+        if (data.blink !== undefined && data.blink) {
+          vm.SiamStyle2(yellowColor);
+        }
+
 
       });
 
@@ -426,6 +485,10 @@
             vm.SiamStyle3(redColor);
           }
         }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.SiamStyle3(yellowColor);
+        }
       });
 
       ipcRenderer.on(CHANNELS.onStation4, (e, data) => {
@@ -435,6 +498,9 @@
           } else {
             vm.SiamStyle4(redColor);
           }
+        }
+        if (data.blink !== undefined && data.blink) {
+          vm.SiamStyle4(yellowColor);
         }
 
       });
@@ -447,6 +513,10 @@
           } else {
             vm.E4Style1(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.E4Style1(yellowColor);
         }
       });
 
@@ -462,6 +532,7 @@
 
       // E5
       ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
+
         if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.E5Style1(greenColor);
@@ -469,15 +540,27 @@
             vm.E5Style1(redColor);
           }
         }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.E5Style1(yellowColor);
+        }
+
+        
       });
 
       ipcRenderer.on(CHANNELS.onStation8, (e, data) => {
+
+        // console.log(data);
         if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.E5Style2(greenColor);
           } else {
             vm.E5Style2(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.E5Style2(yellowColor);
         }
       });
 
@@ -491,6 +574,10 @@
           }
         }
 
+        if (data.blink !== undefined && data.blink) {
+          vm.S2Style1(yellowColor);
+        }
+
       });
 
       ipcRenderer.on(CHANNELS.onStation10, (e, data) => {
@@ -500,6 +587,10 @@
           } else {
             vm.S2Style2(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.S2Style2(yellowColor);
         }
       });
 
@@ -512,6 +603,10 @@
             vm.S3Style1(redColor);
           }
         }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.S3Style1(yellowColor);
+        }
       });
 
       ipcRenderer.on(CHANNELS.onStation12, (e, data) => {
@@ -521,6 +616,10 @@
           } else {
             vm.S3Style2(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.S3Style2(yellowColor);
         }
       });
 
