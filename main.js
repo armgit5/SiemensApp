@@ -3,6 +3,10 @@ const url = require('url');
 const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
 
+const Store = require('electron-store');
+const store = new Store();
+
+
 // Starting main window
 let mainWindow;
 module.exports.mainWindow = mainWindow;
@@ -36,6 +40,7 @@ app.on('ready', () => {
     mainWindow.webContents.on('did-finish-load', () => {
         // Starting Siemens Nodes7 process once 
         if (!alreadyLoaded) {
+            store.clear();
             require('./helpers/nodes7')(mainWindow);
             alreadyLoaded = true;
         }
