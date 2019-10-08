@@ -367,10 +367,57 @@
             ko.applyBindings(vm);
         };
 
+        const _setTimeToZero = () => {
+            // Step 1
+            vm.step1OnHH('00');
+            vm.step1OnMM('00');
+            vm.step1OnSS('00');
+            vm.step1OffHH('00');
+            vm.step1OffMM('00');
+            vm.step1OffSS('00');
+
+            // Step 2
+            vm.step2OnHH('00');
+            vm.step2OnMM('00');
+            vm.step2OnSS('00');
+            vm.step2OffHH('00');
+            vm.step2OffMM('00');
+            vm.step2OffSS('00');
+
+            // Step 3
+            vm.step3OnHH('00');
+            vm.step3OnMM('00');
+            vm.step3OnSS('00');
+            vm.step3OffHH('00');
+            vm.step3OffMM('00');
+            vm.step3OffSS('00');
+
+            // Step 4
+            vm.step4OnHH('00');
+            vm.step4OnMM('00');
+            vm.step4OnSS('00');
+            vm.step4OffHH('00');
+            vm.step4OffMM('00');
+            vm.step4OffSS('00');
+        }
+
+        const _checkForDisconnection = (datetime) => {
+            if (datetime === 'Reading...') {
+                $(':input').prop("disabled", true);
+                _setTimeToZero();
+            } else {
+                $(':input').prop("disabled", false);
+            }
+        }
+
+
+
         // Get from store
         const _getFromStore = () => {
             const headerDatetime = store.get(keys.headerDatetime);
             vm.time(headerDatetime);
+
+            _checkForDisconnection(headerDatetime);
 
             _step1Store = () => {
                 const STEP = STATION1.datetime.ll2.step1;
@@ -493,6 +540,8 @@
         const _readStreaming = () => {
             ipcRenderer.on(CHANNELS.datetime, (e, datetime) => {
                 vm.time(datetime);
+
+                _checkForDisconnection(datetime);
             });
 
             _step1Read = () => {

@@ -103,44 +103,44 @@ module.exports = (mainWindow, NodeId, initAll) => {
 
     if (NodeId === 'N7' || initAll) {
 
-        store.set('S7_M218_3', false);
+        // store.set('S7_M218_3', false);
         mainWindow.webContents.send(CHANNELS.onStation7, { M218_3: false, blink: true });
 
-        store.set('S7_M217_5', false);
+        // store.set('S7_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation7, { M217_5: false, blink: true });
 
-        store.set('S7_M217_6', false)
+        // store.set('S7_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation7, { M217_6: false, blink: true })
 
-        store.set('S7_M217_7', false);
+        // store.set('S7_M217_7', false);
         mainWindow.webContents.send(CHANNELS.onStation7, { M217_7: false, blink: true });
 
-        store.set('S7_M218_0', false);
+        // store.set('S7_M218_0', false);
         mainWindow.webContents.send(CHANNELS.onStation7, { M218_0: false, blink: true });
 
-        store.set('S7_M218_1', false);
+        // store.set('S7_M218_1', false);
         mainWindow.webContents.send(CHANNELS.onStation7, { M218_1: false, blink: true });
 
     }
 
     if (NodeId === 'N8' || initAll) {
 
-        store.set('S8_M218_3', false);
+        // store.set('S8_M218_3', false);
         mainWindow.webContents.send(CHANNELS.onStation8, { M218_3: false, blink: true });
 
-        store.set('S8_M217_5', false);
+        // store.set('S8_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation8, { M217_5: false, blink: true });
 
-        store.set('S8_M217_6', false)
+        // store.set('S8_M217_6', false)
         mainWindow.webContents.send(CHANNELS.onStation8, { M217_6: false, blink: true });
 
-        store.set('S8_M217_7', false);
+        // store.set('S8_M217_7', false);
         mainWindow.webContents.send(CHANNELS.onStation8, { M217_7: false, blink: true });
 
-        store.set('S8_M218_0', false);
+        // store.set('S8_M218_0', false);
         mainWindow.webContents.send(CHANNELS.onStation8, { M218_0: false, blink: true });
 
-        store.set('S8_M218_1', false);
+        // store.set('S8_M218_1', false);
         mainWindow.webContents.send(CHANNELS.onStation8, { M218_1: false, blink: true });
     }
 
