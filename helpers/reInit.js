@@ -22,82 +22,82 @@ module.exports = (mainWindow, NodeId, initAll) => {
 
     if (NodeId === 'N1' || initAll) {
         store.set('S1_M217_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation1, { M217_0: false, blink: true });
     }
 
     if (NodeId === 'N2' || initAll) {
         console.log('N2 fault');
         store.set('S2_M218_2', false);
-        mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: false });
+        mainWindow.webContents.send(CHANNELS.onStation2, { M218_2: false, blink: true });
 
         store.set('S2_M217_2', false);
-        mainWindow.webContents.send(CHANNELS.onStation2, { M217_2: false });
+        mainWindow.webContents.send(CHANNELS.onStation2, { M217_2: false, blink: true });
 
         store.set('S2_M217_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation2, { M217_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation2, { M217_3: false, blink: true });
 
         store.set('S2_M217_4', false);
-        mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: false });
+        mainWindow.webContents.send(CHANNELS.onStation2, { M217_4: false, blink: true });
     }
 
     if (NodeId === 'N3' || initAll) {
         store.set('S3_M217_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation3, { M217_0: false, blink: true });
     }
 
     if (NodeId === 'N4' || initAll) {
         store.set('S4_M218_2', false);
-        mainWindow.webContents.send(CHANNELS.onStation4, { M218_2: false });
+        mainWindow.webContents.send(CHANNELS.onStation4, { M218_2: false, blink: true });
 
         store.set('S4_M217_2', false);
-        mainWindow.webContents.send(CHANNELS.onStation4, { M217_2: false });
+        mainWindow.webContents.send(CHANNELS.onStation4, { M217_2: false, blink: true });
 
         store.set('S4_M217_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation4, { M217_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation4, { M217_3: false, blink: true });
 
         store.set('S4_M217_4', false);
-        mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: false });
+        mainWindow.webContents.send(CHANNELS.onStation4, { M217_4: false, blink: true });
     }
 
     if (NodeId === 'N5' || initAll) {
 
         store.set('S5_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation5, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation5, { M218_3: false, blink: true });
 
         store.set('S5_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation5, { M217_5: false, blink: true });
 
         store.set('S5_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation5, { M217_6: false });
+        mainWindow.webContents.send(CHANNELS.onStation5, { M217_6: false, blink: true });
 
         store.set('S5_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation5, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation5, { M217_7: false, blink: true });
 
         store.set('S5_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation5, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation5, { M218_0: false, blink: true });
 
         store.set('S5_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation5, { M218_1: false, blink: true });
     }
 
     if (NodeId === 'N6' || initAll) {
         store.set('S6_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation6, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation6, { M218_3: false, blink: true });
 
         store.set('S6_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation6, { M217_5: false, blink: true });
 
         store.set('S6_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation6, { M217_6: false });
+        mainWindow.webContents.send(CHANNELS.onStation6, { M217_6: false, blink: true });
 
         store.set('S6_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation6, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation6, { M217_7: false, blink: true });
 
         store.set('S6_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation6, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation6, { M218_0: false, blink: true });
 
         store.set('S6_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation6, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation6, { M218_1: false, blink: true });
 
     }
 
@@ -146,84 +146,84 @@ module.exports = (mainWindow, NodeId, initAll) => {
 
     if (NodeId === 'N9' || initAll) {
         store.set('S9_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation9, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation9, { M218_3: false, blink: true });
 
         store.set('S9_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation9, { M217_5: false, blink: true });
 
         store.set('S9_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation9, { M217_6: false });
+        mainWindow.webContents.send(CHANNELS.onStation9, { M217_6: false, blink: true });
 
         store.set('S9_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation9, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation9, { M217_7: false, blink: true });
 
         store.set('S9_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation9, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation9, { M218_0: false, blink: true });
 
         store.set('S9_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation9, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation9, { M218_1: false, blink: true });
     }
 
     if (NodeId === 'N10' || initAll) {
 
         store.set('S10_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation10, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation10, { M218_3: false, blink: true });
 
         store.set('S10_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation10, { M217_5: false, blink: true });
 
         store.set('S10_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation10, { M217_6: false });
+        mainWindow.webContents.send(CHANNELS.onStation10, { M217_6: false, blink: true });
 
         store.set('S10_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation10, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation10, { M217_7: false, blink: true });
 
         store.set('S10_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation10, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation10, { M218_0: false, blink: true });
 
         store.set('S10_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation10, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation10, { M218_1: false, blink: true });
     }
 
     if (NodeId === 'N11' || initAll) {
         store.set('S11_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation11, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation11, { M218_3: false, blink: true });
 
         store.set('S11_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation11, { M217_5: false, blink: true });
 
         store.set('S11_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation11, { M217_6: false });
+        mainWindow.webContents.send(CHANNELS.onStation11, { M217_6: false, blink: true });
 
         store.set('S11_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation11, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation11, { M217_7: false, blink: true });
 
         store.set('S11_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation11, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation11, { M218_0: false, blink: true });
 
         store.set('S11_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation11, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation11, { M218_1: false, blink: true });
     }
 
     if (NodeId === 'N12' || initAll) {
 
         store.set('S12_M218_3', false);
-        mainWindow.webContents.send(CHANNELS.onStation12, { M218_3: false });
+        mainWindow.webContents.send(CHANNELS.onStation12, { M218_3: false, blink: true });
 
         store.set('S12_M217_5', false);
         mainWindow.webContents.send(CHANNELS.onStation12, { M217_5: false, blink: true });
 
         store.set('S12_M217_6', false)
-        mainWindow.webContents.send(CHANNELS.onStation12, { M217_6: false });
+        mainWindow.webContents.send(CHANNELS.onStation12, { M217_6: false, blink: true });
 
         store.set('S12_M217_7', false);
-        mainWindow.webContents.send(CHANNELS.onStation12, { M217_7: false });
+        mainWindow.webContents.send(CHANNELS.onStation12, { M217_7: false, blink: true });
 
         store.set('S12_M218_0', false);
-        mainWindow.webContents.send(CHANNELS.onStation12, { M218_0: false });
+        mainWindow.webContents.send(CHANNELS.onStation12, { M218_0: false, blink: true });
 
         store.set('S12_M218_1', false);
-        mainWindow.webContents.send(CHANNELS.onStation12, { M218_1: false });
+        mainWindow.webContents.send(CHANNELS.onStation12, { M218_1: false, blink: true });
     }
 
 };
