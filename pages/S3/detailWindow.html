@@ -131,6 +131,9 @@
     const redColor = {
       'background-color': COLORS.red
     };
+    const yellowColor = {
+      'background-color': COLORS.yellow
+    };
     let vm;
 
     // Start View Model
@@ -160,6 +163,8 @@
         } else {
           vm.NBStyle(redColor);
         }
+      } else {
+        vm.NBStyle(yellowColor);
       }
 
       // WB
@@ -170,6 +175,8 @@
         } else {
           vm.EBStyle(redColor);
         }
+      } else {
+        vm.EBStyle(yellowColor);
       }
     };
 
@@ -204,6 +211,10 @@
           }
         }
 
+        if (data.blink !== undefined && data.blink) {
+          vm.NBStyle(yellowColor);
+        }
+
       });
 
       // WB
@@ -214,6 +225,10 @@
           } else {
             vm.EBStyle(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.EBStyle(yellowColor);
         }
       });
     };
