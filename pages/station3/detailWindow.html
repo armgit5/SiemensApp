@@ -166,6 +166,9 @@
     const redColor = {
       'background-color': COLORS.red
     };
+    const yellowColor = {
+      'background-color': COLORS.yellow
+    };
     let vm;
 
     // Start View Model
@@ -196,6 +199,8 @@
         } else {
           vm.Clading1Style(redColor);
         }
+      } else {
+        vm.Clading1Style(yellowColor);
       }
 
       // Clading 2
@@ -207,6 +212,8 @@
         } else {
           vm.Clading2Style(redColor);
         }
+      } else {
+        vm.Clading2Style(yellowColor);
       }
 
       // Side Beam
@@ -217,6 +224,8 @@
         } else {
           vm.SideBeamStyle(redColor);
         }
+      } else {
+        vm.SideBeamStyle(yellowColor);
       }
 
     };
@@ -237,6 +246,10 @@
             vm.Clading1Style(redColor);
           }
         }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.Clading1Style(yellowColor);
+        }
       });
 
       // Clading 2
@@ -249,6 +262,10 @@
             vm.Clading2Style(redColor);
           }
         }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.Clading2Style(yellowColor);
+        }
       });
 
       // Side Beam
@@ -259,6 +276,10 @@
           } else {
             vm.SideBeamStyle(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.SideBeamStyle(yellowColor);
         }
       });
 

@@ -157,6 +157,9 @@
     const redColor = {
       'background-color': COLORS.red
     };
+    const yellowColor = {
+      'background-color': COLORS.yellow
+    };
     let vm;
 
     // Start View Model
@@ -189,6 +192,8 @@
         } else {
           vm.LiftLowerStyle(redColor);
         }
+      } else {
+        vm.LiftLowerStyle(yellowColor);
       }
       // SB
       const data2 = store.get('S2_M218_2');
@@ -198,6 +203,8 @@
         } else {
           vm.SBStyle(redColor);
         }
+      } else {
+        vm.SBStyle(yellowColor);
       }
 
       // Lift C
@@ -208,6 +215,8 @@
         } else {
           vm.LiftCStyle(redColor);
         }
+      } else {
+        vm.LiftCStyle(yellowColor);
       }
 
       // EB
@@ -218,6 +227,8 @@
         } else {
           vm.EBStyle(redColor);
         }
+      } else {
+        vm.EBStyle(yellowColor);
       }
 
     };
@@ -255,6 +266,10 @@
             vm.LiftLowerStyle(redColor);
           }
         }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.LiftLowerStyle(yellowColor);
+        }
       });
 
       // SB
@@ -265,6 +280,10 @@
           } else {
             vm.SBStyle(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.SBStyle(yellowColor);
         }
 
       });
@@ -279,6 +298,10 @@
           }
         }
 
+        if (data.blink !== undefined && data.blink) {
+          vm.LiftCStyle(yellowColor);
+        }
+
       });
 
       // EB
@@ -289,6 +312,10 @@
           } else {
             vm.EBStyle(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.EBStyle(yellowColor);
         }
 
       });
