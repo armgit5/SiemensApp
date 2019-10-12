@@ -189,6 +189,9 @@
     const redColor = {
       'background-color': COLORS.red
     };
+    const yellowColor = {
+      'background-color': COLORS.yellow
+    };
     let vm;
 
     // Start View Model
@@ -222,6 +225,8 @@
         } else {
           vm.Screen1Style(redColor);
         }
+      } else {
+        vm.Screen1Style(yellowColor);
       }
 
       // Screen 2
@@ -232,6 +237,8 @@
         } else {
           vm.Screen2Style(redColor);
         }
+      } else {
+        vm.Screen2Style(yellowColor);
       }
 
       // Screen 3
@@ -242,6 +249,8 @@
         } else {
           vm.Screen3Style(redColor);
         }
+      } else {
+        vm.Screen3Style(yellowColor);
       }
 
       // Screen 4
@@ -252,6 +261,8 @@
         } else {
           vm.Screen4Style(redColor);
         }
+      } else {
+        vm.Screen4Style(yellowColor);
       }
 
       // Screen 5
@@ -262,6 +273,8 @@
         } else {
           vm.Screen5Style(redColor);
         }
+      } else {
+        vm.Screen5Style(yellowColor);
       }
 
     };
@@ -282,6 +295,10 @@
             vm.Screen1Style(redColor);
           }
         }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.Screen1Style(yellowColor);
+        }
       });
 
       // Screen 2
@@ -292,6 +309,10 @@
           } else {
             vm.Screen2Style(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.Screen2Style(yellowColor);
         }
 
       });
@@ -306,6 +327,10 @@
           }
         }
 
+        if (data.blink !== undefined && data.blink) {
+          vm.Screen3Style(yellowColor);
+        }
+
       });
 
       // Screen 4
@@ -318,6 +343,10 @@
           }
         }
 
+        if (data.blink !== undefined && data.blink) {
+          vm.Screen4Style(yellowColor);
+        }
+
       });
 
       // Screen 5
@@ -328,6 +357,10 @@
           } else {
             vm.Screen5Style(redColor);
           }
+        }
+
+        if (data.blink !== undefined && data.blink) {
+          vm.Screen5Style(yellowColor);
         }
 
       });

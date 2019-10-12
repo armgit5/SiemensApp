@@ -537,6 +537,7 @@
       // E5
       ipcRenderer.on(CHANNELS.onStation7, (e, data) => {
 
+        console.log('s7 ', data);
         if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.E5Style1(greenColor);
@@ -554,7 +555,7 @@
 
       ipcRenderer.on(CHANNELS.onStation8, (e, data) => {
 
-        // console.log(data);
+        console.log('s8 ', data);
         if (data.M218_3 !== undefined) {
           if (data.M218_3) {
             vm.E5Style2(greenColor);
