@@ -256,17 +256,28 @@ module.exports = (NODE, mainWindow) => {
     // ----- Parse data ------- //
     // let cachedDatetime = null;
     // store.set(KEYS.headerDatetime, 'Reading...');
+
+    // Make 2 digit helper function
+    const _make2Digits = (data) => {
+        if (data < 10) {
+            return '0' + data;
+        } else {
+            return data;
+        }
+    };
+
     const _parseDatetime = (data) => {
         let outputDatetime = 'Reading...';
 
         if (data !== 'Reading...') {
             const header = DATETIME.header;
-            const date = data[header.date];
-            const month = data[header.month];
-            const year = data[header.year];
-            const hour = data[header.hour];
-            const minute = data[header.minute];
-            const second = data[header.second];
+            const date = _make2Digits(data[header.date]);
+            const month = _make2Digits(data[header.month]);
+            const year = _make2Digits(data[header.year]);
+            const hour = _make2Digits(data[header.hour]);
+            const minute = _make2Digits(data[header.minute]);
+            const second = _make2Digits(data[header.second]);
+            
             outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}:${second}`;
         }
 
