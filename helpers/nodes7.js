@@ -242,6 +242,49 @@ module.exports = (mainWindow) => {
         };
     };
 
+
+    let alreadyAssignToNode = false;
+    const _connectV2 = (id) => {
+
+        const tempId = 'N' + id;
+
+        NODES.forEach(n => {
+            console.log('node id ', n.id);
+            if (tempId === n.id) {
+                NODE = n;
+                if (NODE !== undefined) {
+                    require('./station1-process/readingHandler')(NODE, mainWindow);
+                    require('./station1-process/clickHandler')(NODE, mainWindow);
+                    alreadyAssignToNode = true;
+                }
+                console.log('selected node ', n.id);
+                console.log('selected node 2 ', NODE.id);
+            }
+        });
+
+    }
+
+    const _initNodeV2 = (id) => {
+        console.log('init node v2');
+        
+        _connectV2(id);
+
+        let runCnt = 0;
+        let timerId;
+        const timerMethod = () => {
+            if (alreadyAssignToNode) clearInterval(timerId);
+            runCnt++;
+            _connectV2(id);
+            if (runCnt > 3) clearInterval(timerId);
+        }
+        if (!alreadyAssignToNode) {
+            clearInterval(timerId);
+            timerId = setInterval(timerMethod, 1000);
+        }
+
+
+    };
+
     // Ping Test
     const _pingIp = (ip) => {
         return new Promise((resolve, reject) => {
@@ -262,47 +305,12 @@ module.exports = (mainWindow) => {
     const _stopPingIntervals = () => {
         PINGINTERVALS.forEach(clearInterval); // Clear interval
     }
-    const _startPingLoop = () => {
-
-
-        const _pingLoopInterval = setInterval(() => {
-
-            // Check group 1
-            let group1ok = true;
-            let group1Len = GROUP1.length;
-            let group1Count = 1;
-
-            GROUP1.forEach(ip => {
-
-                _pingIp(ip).then(ok => {
-                    if (!ok) {
-                        group1ok = false;
-                    }
-                    if (group1Count === group1Len) {
-                        console.log('group 1 ok ', group1ok);
-                        if (group1ok) {
-                            mainWindow.webContents.send(CHANNELS.onGroup1, true);
-                        } else {
-                            mainWindow.webContents.send(CHANNELS.onGroup1, false);
-                        }
-                    }
-                    group1Count++;
-                });
-
-
-            });
-
-
-            // Check group 2
-            let group2ok = false;
-            let group2Len = GROUP2.length;
-            let group2Count = 1;
-        }, 1000);
-        PINGINTERVALS.push(_pingLoopInterval);
-    };
 
     let IDS = [];
+    let alreadyInitAllNodes = false;
+    let stationCnt = 0;
     const _initAllNodes = () => {
+        stationCnt = 0;
         let cnt = 1;
         console.log('Init Total nodes ', NODES.length);
 
@@ -324,6 +332,14 @@ module.exports = (mainWindow) => {
                         console.log(s.id, 'is offline');
                     }
                 });
+
+                stationCnt++;
+                if (stationCnt === STATIONS.length) {
+                    alreadyInitAllNodes = true;
+                }
+
+
+
             });
             if (NODE && !IDS.includes(NODE.id)) {
                 IDS.push(NODE.id);
@@ -333,51 +349,85 @@ module.exports = (mainWindow) => {
         }
     }
 
+    // const _startPingLoop = () => {
+    //     const _pingLoopInterval = setInterval(() => {
 
-    const _initArrayNodes = (arr) => {
-        let cnt = 1;
-        console.log('Init Total nodes ', NODES.length);
+    //         // Check group 1
+    //         let group1ok = true;
+    //         let group1Len = GROUP1.length;
+    //         let group1Count = 1;
 
-        if (NODES.length === 0) {
+    //         GROUP1.forEach(ip => {
 
-            arr.forEach(i => {
-                const tempNode = new Node(STATIONS[i - 1].id, STATIONS[i - 1].ip);
-                console.log('node inited ', STATIONS[i - 1].id, STATIONS[i - 1].ip);
-                initHelper(tempNode).then(isOnline => {
-                    if (isOnline) {
-                        NODES.push(tempNode);
-                        // require('./isOnCheck')(NODES, mainWindow, true);
-                        console.log('new node', STATIONS[i - 1].id, cnt);
-                        cnt++;
-                    }
-                });
-            });
-            NODES.push(NODE);
-        }
-    }
+    //             _pingIp(ip).then(ok => {
+    //                 if (!ok) {
+    //                     group1ok = false;
+    //                 }
+    //                 if (group1Count === group1Len) {
+    //                     console.log('group 1 ok ', group1ok);
+    //                     if (group1ok) {
+    //                         mainWindow.webContents.send(CHANNELS.onGroup1, true);
+    //                     } else {
+    //                         mainWindow.webContents.send(CHANNELS.onGroup1, false);
+    //                     }
+    //                 }
+    //                 group1Count++;
+    //             });
+    //         });
 
-    const _killAllNodes = () => {
+    //         // Check group 2
+    //         let group2ok = false;
+    //         let group2Len = GROUP2.length;
+    //         let group2Count = 1;
+    //     }, 1000);
+    //     PINGINTERVALS.push(_pingLoopInterval);
+    // };
 
-        console.log('Kill Total nodes ', NODES.length);
 
-        if (NODES.length > 0) {
+    // const _initArrayNodes = (arr) => {
+    //     let cnt = 1;
+    //     console.log('Init Total nodes ', NODES.length);
 
-            const nodeCounts = NODES.length;
-            let cnt = 1;
-            NODES.forEach(n => {
-                if (n && n.conn) {
-                    n.conn.dropConnection((cb) => {
-                        console.log('disconnnect node', cb, cnt, n.id);
-                        if (cnt === nodeCounts) {
-                            console.log('set nodes to 0');
-                            NODES = [];
-                        }
-                        cnt++;
-                    });
-                }
-            });
-        }
-    }
+    //     if (NODES.length === 0) {
+
+    //         arr.forEach(i => {
+    //             const tempNode = new Node(STATIONS[i - 1].id, STATIONS[i - 1].ip);
+    //             console.log('node inited ', STATIONS[i - 1].id, STATIONS[i - 1].ip);
+    //             initHelper(tempNode).then(isOnline => {
+    //                 if (isOnline) {
+    //                     NODES.push(tempNode);
+    //                     // require('./isOnCheck')(NODES, mainWindow, true);
+    //                     console.log('new node', STATIONS[i - 1].id, cnt);
+    //                     cnt++;
+    //                 }
+    //             });
+    //         });
+    //         NODES.push(NODE);
+    //     }
+    // }
+
+    // const _killAllNodes = () => {
+
+    //     console.log('Kill Total nodes ', NODES.length);
+
+    //     if (NODES.length > 0) {
+
+    //         const nodeCounts = NODES.length;
+    //         let cnt = 1;
+    //         NODES.forEach(n => {
+    //             if (n && n.conn) {
+    //                 n.conn.dropConnection((cb) => {
+    //                     console.log('disconnnect node', cb, cnt, n.id);
+    //                     if (cnt === nodeCounts) {
+    //                         console.log('set nodes to 0');
+    //                         NODES = [];
+    //                     }
+    //                     cnt++;
+    //                 });
+    //             }
+    //         });
+    //     }
+    // }
 
     // Main Program
     const main = () => {
@@ -385,15 +435,17 @@ module.exports = (mainWindow) => {
         ipcMain.on(CHANNELS.onNewStation, (e, id) => {
             // If new id comes in then kills old connection and start 
             // new connection to new plc
+            console.log('connect 1 node', id);
+
             if (id !== STATION_ID) {
                 STATION_ID = id;
-                _initNode();
+                // _initNode();
+                _initNodeV2(id);
             }
         });
 
 
         let reqCnt = 0;
-        let alreadyInitAllNodes = false;
         // On Status check all stations
         ipcMain.on(CHANNELS.onStationsCheck, (e, id, arr) => {
 
@@ -403,16 +455,24 @@ module.exports = (mainWindow) => {
             PINGINTERVALS.forEach(clearInterval);
             startLoop[0] = true;
 
-            if (arr) {
-                _initSomeNodes(arr);
+            // if (arr) {
+            //     _initSomeNodes(arr);
+            // } else {
+
+            //     if (true) {
+            //         _initAllNodes();
+            //         alreadyInitAllNodes = true;
+            //     }
+            // }
+
+            if (!alreadyInitAllNodes) {
+                _initAllNodes();
             } else {
-
-                if (true) {
-                    _initAllNodes();
-                    alreadyInitAllNodes = true;
-                }
-
+                console.log('not reinit all');
             }
+
+            console.log('station count ', stationCnt, alreadyInitAllNodes, NODES.length);
+
             require('./isOnCheck')(NODES, mainWindow, startLoop, PINGINTERVALS);
         });
 
