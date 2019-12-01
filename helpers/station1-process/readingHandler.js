@@ -272,13 +272,13 @@ module.exports = (NODE, mainWindow) => {
         if (data !== 'Reading...') {
             const header = DATETIME.header;
             const date = _make2Digits(data[header.date]);
-            const month = _make2Digits(data[header.month]);
+            const month = data[header.month];
             const year = _make2Digits(data[header.year]);
             const hour = _make2Digits(data[header.hour]);
             const minute = _make2Digits(data[header.minute]);
             const second = _make2Digits(data[header.second]);
             
-            outputDatetime = `${date} ${monthNames[month]} ${year} ${hour}:${minute}:${second}`;
+            outputDatetime = `${date} ${monthNames[month - 1]} ${year} ${hour}:${minute}:${second}`;
         }
 
         mainWindow.webContents.send(CHANNELS.datetime, outputDatetime); // Send to channel                        
