@@ -436,11 +436,11 @@ module.exports = (mainWindow) => {
             // If new id comes in then kills old connection and start 
             // new connection to new plc
             console.log('connect 1 node', id);
-
+            startLoop[0] = true;
             if (id !== STATION_ID) {
                 STATION_ID = id;
-                // _initNode();
-                _initNodeV2(id);
+                _initNode();
+                // _initNodeV2(id);
             }
         });
 
