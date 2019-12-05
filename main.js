@@ -60,9 +60,26 @@ app.on('window-all-closed', function () {
 // Create menu template
 const mainMenuTemplate = [
     {
-        label: "                                                                                                                                                                                      V2.4"
+        label: "                                                                                                                                                                                      V2.5"
     }
 ];
+
+
+// Handle errors
+
+// setTimeout(() => {
+//     throw ({message: 'This Failed'})
+// }, 5000);
+
+process.on("uncaughtException", (err) => {
+    const messageBoxOptions = {
+         type: "error",
+         title: "Error in Main process",
+         message: "Something failed"
+     };
+    //  throw err;
+    console.log(messageBoxOptions, err);
+ });
 
 // Add dev tools item
 if (process.env.NODE_ENV !== 'production') {
