@@ -185,10 +185,10 @@
       setInterval(() => {
 
         const d = new Date(); // for now
-        const hh = d.getHours(); // => 9
-        const mm = d.getMinutes(); // =>  30
-        const ss = d.getSeconds();
-        const day = d.getDate();
+        const hh = ("0" + d.getHours()).slice(-2); // => 9
+        const mm = ("0" + d.getMinutes()).slice(-2); // =>  30
+        const ss = ("0" + d.getSeconds()).slice(-2);
+        const day = ("0" + d.getDate()).slice(-2);
         const mo = d.getMonth();
         const yr = d.getFullYear();
 
