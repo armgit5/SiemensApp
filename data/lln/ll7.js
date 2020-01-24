@@ -45,7 +45,7 @@ module.exports = {
         onHH: 'MW1200',
         onMM: 'MW1202',
         onSS: 'MW1204',
-        offHH: 'MW0026',
+        offHH: 'MW1206',
         offMM: 'MW1208',
         offSS: 'MW1210',
         onHHTimer: 'M1212.0',
