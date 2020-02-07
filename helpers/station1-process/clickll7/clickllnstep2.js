@@ -13,10 +13,7 @@ module.exports = (NODE) => {
                 return writeHelper(NODE, onHHTimer, true);
             })
             .then(_ => {
-                return writeHelper(NODE, onHHTimer, false);
-            })
-            .then(_ => {
-                
+                writeHelper(NODE, onHHTimer, false);
             });
     }); 
 
@@ -28,10 +25,7 @@ module.exports = (NODE) => {
                 return writeHelper(NODE, onMMTimer, true);
             })
             .then(_ => {
-                return writeHelper(NODE, onMMTimer, false);
-            })
-            .then(_ => {
-                
+                writeHelper(NODE, onMMTimer, false);
             });
     }); 
 
@@ -43,10 +37,7 @@ module.exports = (NODE) => {
                 return writeHelper(NODE, onSSTimer, true);
             })
             .then(_ => {
-                return writeHelper(NODE, onSSTimer, false);
-            })
-            .then(_ => {
-                
+                writeHelper(NODE, onSSTimer, false);
             });
     }); 
 
@@ -56,13 +47,10 @@ module.exports = (NODE) => {
     ipcMain.on(offHH, (e, data) => {
         writeHelper(NODE, offHH, data)
             .then(_ => {
-                return writeHelper(NODE, offHHTimer, true);
+                return writeHelper(NODE, offHHTimer, 1);
             })
             .then(_ => {
-                return writeHelper(NODE, offHHTimer, false);
-            })
-            .then(_ => {
-                
+                writeHelper(NODE, offHHTimer, 0);
             });
     }); 
 
@@ -71,13 +59,10 @@ module.exports = (NODE) => {
     ipcMain.on(offMM, (e, data) => {
         writeHelper(NODE, offMM, data)
             .then(_ => {
-                return writeHelper(NODE, offMMTimer, true);
+                return writeHelper(NODE, offMMTimer, 1);
             })
             .then(_ => {
-                return writeHelper(NODE, offMMTimer, false);
-            })
-            .then(_ => {
-                
+                writeHelper(NODE, offMMTimer, 0);
             });
     }); 
 
@@ -86,13 +71,10 @@ module.exports = (NODE) => {
     ipcMain.on(offSS, (e, data) => {
         writeHelper(NODE, offSS, data)
             .then(_ => {
-                return writeHelper(NODE, offSSTimer, true);
+                return writeHelper(NODE, offSSTimer, 1);
             })
             .then(_ => {
-                return writeHelper(NODE, offSSTimer, false);
-            })
-            .then(_ => {
-                
+                writeHelper(NODE, offSSTimer, 0);
             });
     }); 
 
